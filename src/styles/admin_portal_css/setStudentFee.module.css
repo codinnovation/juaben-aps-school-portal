@@ -1,0 +1,69 @@
+.container {
+   width: 85%;
+   margin-left: 15%;
+}
+
+.containerItems{
+   margin: 5% auto;
+}
+
+.containerHeader{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.containerHeader h1{
+   font-size: 21px;
+}
+
+.containerBody{
+   margin: 5% auto;
+   width: 50%;
+}
+
+.items{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+
+}
+
+.item{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   margin-top: 10px;
+}
+.itemName{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.itemName h1{
+   font-size: 15px;
+}
+
+.item .inputField input{
+   width: auto;
+   height: 40px;
+   border-radius: 10px;
+   border: 1px solid #aeaeae;
+   padding: 10px;
+}
+
+.submitBtn{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.submitBtn button{
+   padding: 10px;
+   color: #fff;
+   border-radius: 10px;
+   background-color: orange;
+   border: none;
+}
+

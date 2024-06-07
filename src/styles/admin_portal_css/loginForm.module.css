@@ -1,0 +1,128 @@
+.loginFormContainer{
+   width: 400px;
+   height: 430px;
+   background-color: #fff;
+   position: absolute;
+   margin: 6% 40%;
+   box-shadow: 0px 0px 0px 1000000px rgba(0, 0, 0, 30);
+   border-radius: 15px;
+}
+
+.hideFormContainer{
+   text-transform: uppercase;
+   cursor: pointer;
+}
+
+.hideFormContainer h1{
+   font-size: 11px;
+   margin: 10px;
+   color: brown;
+}
+
+.hideFormContainer h1:hover{
+   color: #fff;
+}
+
+.loginHeader{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 20px;
+}
+
+.loginHeader h1{
+   font-size: 18px;
+   text-transform: uppercase;
+   color: royalblue;
+}
+
+.formContainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 50px;
+}
+
+.formContainer form .emailInput p{
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   font-family: sans-serif;
+   margin-bottom: 5px;
+}
+.formContainer form .emailInput input{
+ 
+   letter-spacing: 1px;
+   font-family: sans-serif;
+   width: 300px;
+   height: 50px;
+   border-radius: 6px;
+   border: 1px solid #e2e2e2;
+   outline: none;
+}
+
+.formContainer form .emailInput input::placeholder{
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   font-family: sans-serif;
+   padding-left: 10px;
+}
+
+.formContainer form .passwprdInput{
+   margin-top: 30px;
+}
+
+.formContainer form .passwprdInput p{
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   font-family: sans-serif;
+   margin-bottom: 5px;
+}
+.formContainer form .passwprdInput input{
+   letter-spacing: 1px;
+   font-family: sans-serif;
+   width: 300px;
+   height: 50px;
+   border-radius: 6px;
+   border: 1px solid #e2e2e2;
+   outline: none;
+}
+
+.formContainer form .passwprdInput input::placeholder{
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   font-family: sans-serif;
+   padding-left: 10px;
+}
+
+.passwprdInput .showIcon{
+   position: absolute;
+   margin-left: -30px;
+   margin-top: 10px;
+   cursor: pointer;
+}
+
+.loginButtonContainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 50px;
+
+}
+
+.loginButtonContainer button{
+   width: 220px;
+   height: 50px;
+   outline: none;
+   border: none;
+   background-color: royalblue;
+   color: #fff;
+   border-radius: 6px;
+   text-transform: uppercase;
+   font-weight: 600;
+   cursor: pointer;
+}
+
+.loginButtonContainer button:hover{
+   color: royalblue;
+   background-color: #fff;
+}

@@ -1,0 +1,145 @@
+@media (max-width: 700px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
+
+  .containerHeader {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  .containerHeader h1 {
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+
+  .addBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .addBtn button {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: #35530A;
+    color: #fff;
+  }
+
+  .searchInput {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .searchInput input {
+    height: 25px;
+    width: 200px;
+    border-radius: 10px;
+    border: 1px solid #aeaeae;
+  }
+
+  .listItems {
+    margin-top: 5%; /* Adjust the percentage as needed */
+  }
+
+  .listItems ul {
+    list-style: none;
+  }
+
+  .listItems ul li {
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.5);
+    padding: 13px;
+    margin-top: 10px; /* Adjust the margin as needed */
+    border-radius: 10px;
+  }
+
+  .createContainer {
+    width: 250px;
+    height: 250px;
+    background-color: #35530A;
+    box-shadow: 0px 0px 0px 1000000px rgba(0, 0, 0, 0.7);
+    position: absolute;
+    margin-top: 40%; /* Adjust the negative margin as needed */
+    margin-left: 21%;
+    border-radius: 20px;
+  }
+
+  .inputFields {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15%;
+  }
+
+  .inputFields input {
+    margin-top: 20px;
+    width: 230px;
+    height: 35px;
+    border-radius: 10px;
+  }
+
+  .closeBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .closeBtn button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+  }
+
+  .infoContainer {
+    width: 250px;
+    height: 250px;
+    background-color: #35530A;
+    box-shadow: 0px 0px 0px 1000000px rgba(0, 0, 0, 0.7);
+    position: absolute;
+    margin-top: 40%;
+    margin-left: 21%;
+    border-radius: 20px;
+  }
+
+  .infoContainerHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%; /* Adjust the percentage as needed */
+  }
+
+  .infoContainerHeader h1 {
+    font-size: 20px;
+  }
+
+  .infoContainerBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .infoContainerBody p {
+    color: #aeaeae;
+  }
+
+  .closeBtn button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+  }
+}

@@ -1,0 +1,184 @@
+.Formcontainer {
+   position: absolute;
+   width: 85%;
+   height: 90vh;
+   border-radius: 6px;
+   padding: 30px;
+   margin-left: 15%;
+   background-color: #fff;
+  
+}
+
+.FormcontainerHeader {
+   display: grid;
+   grid-template-columns: 1fr auto;
+}
+
+.Formcontainer header:nth-child(1) {
+   position: relative;
+   font-size: 20px;
+   font-weight: 600;
+   color: #333;
+}
+
+.Formcontainer header:nth-child(2) {
+   position: relative;
+   font-size: 13px;
+   font-weight: 600;
+   color: #333;
+   cursor: pointer;
+}
+
+.Formcontainer header::before {
+   content: "";
+   position: absolute;
+   left: 0;
+   bottom: -2px;
+   height: 3px;
+   width: 57px;
+   border-radius: 8px;
+   background-color: royalblue;
+}
+
+.Formcontainer header:nth-child(2):before {
+   content: "";
+   position: absolute;
+   left: 0;
+   bottom: 2px;
+   height: 3px;
+   width: 20px;
+   border-radius: 8px;
+   background-color: red;
+}
+
+.Formcontainer form {
+   position: relative;
+   margin-top: 16px;
+   min-height: 350px;
+   background-color: #fff;
+   overflow: hidden;
+}
+
+.Formcontainer form .form {
+   position: absolute;
+   background-color: #fff;
+   transition: 0.3s ease;
+}
+
+
+.Formcontainer form .fields {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+
+.Formcontainer form .fields .inputField {
+   display: flex;
+   width: calc(100% / 3 - 15px);
+   flex-direction: column;
+   margin: 15px 0;
+}
+
+.inputField label {
+   font-size: 15px;
+   font-weight: 600;
+   color: #2e2e2e;
+}
+
+.inputField input {
+   outline: none;
+   font-size: 14px;
+   font-weight: 400;
+   color: #333;
+   border-radius: 5px;
+   border: 1px solid #aaa;
+   padding: 0 15px;
+   height: 52px;
+   margin: 8px 0;
+}
+
+
+.Formcontainer form .btnText {
+   font-size: 14px;
+   font-weight: 400;
+}
+
+.Formcontainer form button:hover {
+   background-color: #fff;
+   color: royalblue;
+}
+
+.buttons {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.buttons button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 45px;
+   max-width: 100px;
+   width: 100%;
+   border: none;
+   outline: none;
+   color: #fff;
+   border-radius: 5px;
+   background-color: #4070f4;
+   transition: all 0.3s linear;
+   cursor: pointer;
+}
+
+.buttons .prevBtn {
+   margin-right: 10px;
+}
+
+.successModalContainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 90vh;
+   position: relative;
+   background-color: #aaa;
+   box-shadow: 0px 0px 1000000px rgba(0, 0, 0, .9);
+}
+
+.successModalContainer button{
+   background-color: green;
+   border: none;
+   border-radius: 10px;
+   padding: 15px;
+   outline: none;
+   margin-left: 10px;
+}
+
+
+@media (max-width: 700px) {
+   .Formcontainer{
+      width: 100%;
+      margin: 0;
+      padding: 6px;
+   }
+   .FormcontainerHeader {
+      display: grid;
+      grid-template-columns: 1fr auto;
+   }
+   .Formcontainer header:nth-child(1) {
+      font-size: 18px;
+      color: #333;
+   }
+   .Formcontainer form .fields .inputField {
+      display: flex;
+      width: calc(100% / 2 - 10px);
+      flex-direction: column;
+      margin: 10px 0;
+   }
+   .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+}

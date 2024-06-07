@@ -1,0 +1,60 @@
+.container {
+   margin: 0 auto;
+   width: 100%;
+}
+
+.containerItems {
+   width: 50%;
+   margin: 3% auto;
+}
+
+.containerHeader {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.containerHeader h1 {
+   font-size: 20px;
+}
+
+
+.containerBody {
+   box-shadow: 0px 0px 5px rgba(0, 0, 0, .5);
+   border-radius: 10px;
+   height: 60vh;
+   width: 50%;
+   margin: 2% auto;
+   overflow-y: scroll;
+}
+
+.notificationItem {
+   margin-left: 5%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   list-style: none;
+}
+
+.notificationItem li {
+   margin-top: 7px;
+   width: 100%;
+   padding: 5px;
+   border-radius: 10px;
+   font-size: 15px;
+}
+
+
+.selectDateContainer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.selectDateContainer input {
+   height: 40px;
+   width: 200px;
+   text-align: center;
+   border-radius: 20px;
+   border: 1px solid #aeaeae;
+}

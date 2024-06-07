@@ -1,0 +1,155 @@
+.studentProfilePageContainer {
+   display: grid;
+   grid-template-columns: 1fr 3fr;
+   position: absolute;
+   width: 76%;
+   top: 10;
+   right: 0;
+   margin: 3% 4%;
+}
+
+.firstBox {
+   width: 250px;
+   height: 700px;
+   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+   background-color: #fff;
+   margin-right: 5px;
+   border-radius: 20px;
+}
+
+.studentPhoto{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.stundentName{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.stundentName h1{
+   font-size: 13px;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   text-align: center;
+}
+
+.studentNavLinks {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 10px;
+}
+
+.studentNavLinks ul {
+   list-style: none;
+}
+
+.studentNavLinks ul li {
+   margin-top: 10px;
+   text-transform: uppercase;
+}
+
+.studentNavLinks ul li button{
+   width: 200px;
+   height: 50px;
+   border-radius: 10px;
+   border: none;
+   cursor: pointer;
+   text-transform: uppercase;
+   text-align: left;
+   padding: 10px;
+   font-size: 12px;
+}
+
+.studentNavLinks ul li button:hover {
+   color: #4070f4;
+   cursor: pointer;
+}
+
+.backToList {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 20%;
+}
+
+.backToList button {
+   width: 140px;
+   height: 40px;
+   border-radius: 6px;
+   background: royalblue;
+   color: #fff;
+   outline: none;
+   border: none;
+   cursor: pointer;
+}
+
+.attendanceContainer{
+   width: 100%;
+}
+
+.attendanceBody{
+   width: 100%;
+   height: 80vh;
+   overflow-y: scroll;
+}
+
+.attendanceHeader{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 1%;
+   margin-bottom: 10px;
+}
+
+.attendanceHeader h1{
+   font-size: 15px;
+}
+
+
+.attendanceName{
+   margin-bottom: 10px;
+}
+.attendanceName h1{
+   font-size: 20px;
+}
+
+.attendanceTable table {
+   font-family: arial, sans-serif;
+   border-collapse: collapse;
+   width: 100%;
+ }
+ 
+ .attendanceTable td {
+   border: 1px solid #dddddd;
+   text-align: left;
+   padding: 10px;
+   font-size: 13px;
+ }
+
+ .attendanceTable th{
+   border: 1px solid #dddddd;
+   text-align: left;
+   padding: 8px;
+   color: orange;
+   font-size: 15px;
+ }
+ 
+ .attendanceTable tr:nth-child(even) {
+   background-color: #dddddd;
+ }
+
+.chooseDateContainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.chooseDateContainer input{
+   width: 200px;
+   height: 40px;
+   border-radius: 20px;
+   text-align: center;
+}

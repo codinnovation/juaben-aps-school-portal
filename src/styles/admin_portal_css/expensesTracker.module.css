@@ -1,0 +1,142 @@
+.expenseContainer {
+   margin-left: 15%;
+}
+
+.expenseContainerHeader {
+   display: grid;
+   grid-template-columns: 1fr auto;
+   margin: 1%;
+}
+
+.expenseContainerHeader h1 {
+   font-size: 20px;
+}
+
+.backBtn {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.backBtn button {
+   width: 100px;
+   height: 50px;
+   background-color: #191970;
+   outline: none;
+   border: none;
+   border-radius: 10px;
+   color: #fff;
+}
+
+
+.expenseBalanceAndTotal {
+   width: 50%;
+   display: grid;
+   grid-template-columns: 1fr auto;
+   margin: 3% auto;
+}
+
+.expenseTotalContainer {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.expenseTotalContainer input {
+   background-color: green;
+   font-size: 20px;
+   width: 250px;
+   height: 70px;
+   display: flex;
+   text-align: center;
+   justify-content: center;
+   align-items: center;
+   color: #fff;
+   font-weight: 700;
+   border-radius: 10px;
+}
+
+.expenseBalanceContainer {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.expenseBalanceContainer h1 {
+   background-color: red;
+   font-size: 20px;
+   width: 250px;
+   height: 70px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #fff;
+   font-weight: 700;
+   border-radius: 10px;
+}
+
+.expenseBody {
+   width: 50%;
+   margin: 3% auto;
+}
+
+.expenseInputFields {
+   display: grid;
+   grid-template-columns: 1fr auto;
+}
+
+.itemName input {
+   width: 300px;
+   height: 50px;
+   border-radius: 10px;
+   outline: none;
+   border: 1px solid #aeaeae;
+   text-align: center;
+}
+
+.itemAmount input {
+   width: 250px;
+   height: 50px;
+   border-radius: 10px;
+   outline: none;
+   border: 1px solid #aeaeae;
+   text-align: center;
+}
+
+.deleteInput{
+   margin-top: 1%;
+}
+
+.deleteInput button{
+   background-color: red;
+   width: 80px;
+   height: 35px;
+   color: #fff;
+   outline: none;
+   border: none;
+   border-radius: 8px;
+}
+
+.addAndCheckExpenses{
+   width: 20%;
+   margin: 3% auto;
+}
+
+.buttons button{
+   margin: 4%;
+   width: 100px;
+   height: 40px;
+   color: #fff;
+   outline: none;
+   border: none;
+   border-radius: 8px;
+}
+
+.buttons button:nth-child(1){
+   background-color: green;
+   color: #fff;
+}
+
+.buttons button:nth-child(2){
+   background-color: #000;
+}

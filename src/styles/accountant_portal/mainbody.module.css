@@ -1,0 +1,122 @@
+.mainbodyContainer {
+   width: 100%;
+   margin-top: 3%;
+}
+
+.mainbodyBoxes {
+   margin-left: 19%;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+}
+
+.mainbodyBoxes .box {
+   background-color: #191f70;
+   margin: 0;
+   width: 90%;
+   height: 55vh;
+   border-radius: 10px;
+   color: aliceblue;
+   margin-top: 10px;
+   transition: transform 0.3s ease-in-out;
+   box-shadow: 0.9s ease-in-out;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.mainbodyBoxes .box:hover {
+   transform: scale(1.05);
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.boxIcon {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   margin: 1%;
+}
+
+.boxDes {
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   font-size: 18px;
+   color: orange;
+   text-transform: uppercase;
+}
+
+
+
+
+.PaymentIcon {
+   font-size: 90px;
+   margin: 10px;
+}
+
+.paySchoolFee {
+   font-size: 18px;
+   font-weight: 700;
+   float: right;
+   margin: 0px 10px;
+}
+
+.EventIcon {
+   font-size: 90px;
+   margin: 10px;
+}
+
+.upcomingEvent {
+   font-size: 18px;
+   font-weight: 700;
+   float: right;
+   margin: 0px 10px;
+}
+
+.DirectionsBusIcon {
+   font-size: 90px;
+   margin: 10px;
+}
+
+.transport {
+   font-size: 18px;
+   font-weight: 700;
+   float: right;
+   margin: 0px 10px;
+}
+
+
+.calenderContainer {
+   margin-left: 19%;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   width: 80%;
+   margin-top: 3%;
+   box-shadow: 0 0  21px rgba(0, 0, 0, 0.9);
+
+}
+
+.activeDay {
+   color: red;
+   font-weight: 700;
+   line-height: 30px;
+   width: 80%;
+}
+
+.calendar {
+   font-size: 16px;
+   background-color: #fff;
+   border: 1px solid #ccc;
+   border-radius: 10px;
+}
+
+@media (max-width: 700px) {
+   .mainbodyBoxes .box {
+      width: 90%;
+   }
+
+   .mainbodyBoxes {
+      margin-left: 19%;
+      grid-template-columns: 1fr;
+   }
+}

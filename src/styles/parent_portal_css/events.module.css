@@ -1,0 +1,57 @@
+.container {
+   width: 100%;
+   width: 80%;
+   margin: 3% auto;
+}
+
+.containerItems {
+   margin-left: 19%;
+}
+
+.containerHeader {
+   width: 70%;
+   margin: 0 auto;
+   display: grid;
+   grid-template-columns: 1fr auto;
+}
+
+.containerHeader h1:nth-child(1) {
+   font-size: 15px;
+   cursor: pointer;
+}
+
+.containerHeader h1:nth-child(2) {
+   font-size: 15px;
+   cursor: pointer;
+}
+
+.containerBody {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   margin-top: 2%;
+}
+
+.bodyItem{
+   margin-top: 3%;
+}
+
+.eventTitle label {
+   color: orange;
+}
+
+.eventTitle h1 {
+   font-size: 15px;
+}
+.eventDate{
+   margin-top: 10px;
+}
+.eventDate label {
+   color: orange;
+}
+
+.eventDate h1{
+   font-size: 15px;
+   font-weight: 100;
+}

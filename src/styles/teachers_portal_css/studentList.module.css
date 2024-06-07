@@ -1,0 +1,289 @@
+.container{
+   width: 100%;
+   height: 100%;
+}
+
+.containerItems{
+   width: 80%;
+   margin: 1% auto;
+}
+
+.containerHeader{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   height: 12vh;
+   background-color: #191970;
+   border-radius: 10px;
+}
+
+.tableSearch{
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.tableSearch input{
+   width: 400px;
+   height: 40px;
+   border: 1px solid #aeaeae;
+   background: none;
+   border-radius: 20px;
+   color: #fff;
+}
+
+.tableSearch input::placeholder{
+   color: #fff;
+   padding-left: 20px;
+}
+
+.portalName{
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   margin-left: 10px;
+}
+
+.portalName h1{
+   font-size: 20px;
+   color: #fff;
+}
+
+.userContainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 10px;
+}
+
+.userContainer .userIcon{
+   color: #fff;
+   margin-right: 10px;
+}
+
+.userProfile{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.userProfile p{
+   color: #aeaeae;
+}
+
+.userLogout{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.userLogout p{
+   color: #aeaeae;
+}
+
+.tableContainer{
+   width: 100%;
+   height: 100%;
+}
+
+.tableItems{
+   width: 50%;
+   margin: 0 auto;
+}
+
+
+.tableHeader{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.tableHeader h1{
+   font-size: 15px;
+   text-transform: uppercase;
+   text-align: center;
+}
+
+.tableColumn{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   margin-top: 4%;
+   border: 1px solid #aeaeae;
+   border-radius: 20px;
+   padding: 10px;
+}
+
+.tableColumn h1{
+   font-size: 13px;
+   font-weight: 100;
+   text-align: center;
+}
+
+
+.containerLastSection{
+   width: 100%;
+   height: 100%;
+}
+
+.lastSectionItems{
+   width: 60%;
+   margin: 1.5% auto;
+}
+
+.items{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   height: 9vh;
+   background-color: #191970;
+   border-radius: 10px;
+}
+
+.item1{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.item1 p{
+   font-size: 13px;
+   color: #fff;
+}
+
+.item1 h1{
+   font-size: 13px;
+   color: #fff;
+   margin-left: 5px;
+}
+
+.item2{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.item2 button{
+   padding: 10px;
+   border-radius: 10px;
+}
+
+.item2 p{
+   padding: 10px;
+   color: red;
+   font-weight: 600;
+}
+
+.item3{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.item3 select{
+   padding: 7px;
+   border-radius: 10px;
+}
+.menuBurger{
+   display: none;
+}
+
+
+@media (max-width: 700px){
+   .containerItems{
+      width: 99%;
+   }
+
+   .containerHeader{
+      border-radius: 5px;
+   }
+
+   .menuBurger{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      margin-right: 10px;
+   }
+
+   .userContainer{
+      display: none;
+   }
+
+   .portalName{
+      display: none;
+   }
+
+   .tableSearch{
+      margin-left: 10px;
+   }
+
+   .tableSearch input{
+      width: 220px;
+      border: 1px solid #fff;
+   }
+
+   .tableSearch input::placeholder{
+      color: #aeaeae;
+      padding-left: 10px;
+   }
+
+   .containerHeader{
+      grid-template-columns: 1fr auto;
+   }
+
+   .tableItems{
+      width: 98%;
+      margin: 5% auto;
+   }
+
+   .tableHeader, .tableColumn{
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+   }
+
+   .tableHeader h1{
+      font-size: 11px;
+      font-weight: 100;
+   }
+
+   .tableHeader h1:nth-child(5){
+      display: none;
+   }
+
+   .tableColumn{
+      margin-top: 9%;
+   }
+
+   .tableColumn h1{
+      font-size: 10px;
+      font-weight: 100;
+   }
+
+   .tableColumn h1:nth-child(5){
+      display: none;
+   }
+
+   .lastSectionItems{
+      width: 95%;
+      margin: 2% auto;
+   }
+
+   .menuContainerNav{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+   }
+
+   .menuContainerNav ul{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+   }
+
+   .menuContainerNav ul li{
+      list-style: none;
+      color: #fff;
+   }
+   .items{
+      border-radius: 5px;
+   }
+
+}

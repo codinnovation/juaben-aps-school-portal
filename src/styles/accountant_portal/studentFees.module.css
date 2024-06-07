@@ -1,0 +1,143 @@
+.feeContainer {
+   width: 80%;
+   height: 100%;
+   margin-left: 20%;
+
+}
+
+.feeContainerItems {
+   width: 70%;
+   height: 100%;
+   padding: 10px;
+   margin: 1% auto;
+   border: 1px solid #191970;
+   border-radius: 20px;
+}
+
+.feeContainerHeader {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}
+
+.feeContainerHeader h1 {
+   font-size: 20px;
+}
+
+.feeContainerBody {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   margin-top: 1%;
+}
+
+.feeContainerBodyHeader {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 500px;
+}
+
+.feeContainerBodyHeader h1 {
+   font-size: 20px;
+}
+
+.feeContainerBodyHeader h1:nth-child(2) {
+   color: red;
+}
+
+.feeContainerBodyHeader h1:nth-child(1) {
+   color: green;
+}
+
+.addPaymentContainer {
+   margin-top: 2%;
+}
+
+.field {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}
+
+.field input {
+   margin-top: 10px;
+   width: 300px;
+   height: 40px;
+   border-radius: 10px;
+   border: 1px solid #aeaeae;
+   padding-left: 10px;
+}
+
+.submitBtn{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 10px;
+}
+
+.submitBtn button{
+   background-color: orange;
+   border: none;
+   padding: 10px;
+   width: 100px;
+   border-radius: 10px;
+}
+
+.paymentsList{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   margin-top: 1%;
+
+}
+
+.paymentHistory{
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   margin-top: 2%;
+   height: 42vh;
+   overflow-y: scroll;
+   scrollbar-width: thin;
+}
+
+.paymentHistory h1{
+   font-size: 15px;
+}
+
+.paymentHistoryFields{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   gap: 30px;
+   margin-top: 2%;
+}
+
+.paymentDate{
+   display: flex;
+   flex-direction: column;
+}
+
+.paymentDate label{
+   margin-bottom: 10px;
+   color: orange;
+   font-size: 14px;
+}
+
+.paymentDate h1{
+   border: 1px solid #aeaeae;
+   border-radius: 10px;
+   padding: 10px;
+   font-size: 15px;
+   font-weight: 100;
+}
+
+@media (max-width: 700px) {
+   .feeContainerItems {
+      width: 80%;
+      height: 75vh;
+   }
+}

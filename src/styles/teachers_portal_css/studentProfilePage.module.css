@@ -1,0 +1,159 @@
+.container {
+   width: 100%;
+   height: 100%;
+}
+
+.containerItems {
+   width: 80%;
+   margin: 1% auto;
+}
+
+.containerHeader {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   height: 15vh;
+   background-color: #191970;
+   border-radius: 20px;
+}
+
+.item1 {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   margin-left: 15px;
+}
+
+.item1 h1 {
+   font-size: 20px;
+   color: #fff;
+}
+
+.navContainer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 15px;
+}
+
+.navContainer button {
+   margin-left: 15px;
+   background-color: #fff;
+   color: #000;
+   width: 150px;
+   height: 40px;
+   border-radius: 20px;
+}
+
+.menuContainer {
+   display: none;
+}
+
+
+.profileContainer {
+   width: 100%;
+   height: 100%;
+
+}
+
+.profileItems {
+   width: 60%;
+   height: 70vh;
+   padding: 10px;
+   margin: 1% auto;
+   border: 1px solid #191970;
+   border-radius: 20px;
+}
+
+.items {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   margin-top: 2%;
+   gap: 32px;
+}
+
+.item {
+   width: 100%;
+   height: 100%;
+}
+
+.item p {
+   font-size: 15px;
+   font-weight: 600;
+   text-transform: uppercase;
+}
+
+.item h1 {
+   font-size: 15px;
+   font-weight: 100;
+   border: 1px solid #aeaeae;
+   margin-right: 10px;
+   margin-top: 6px;
+   border-radius: 10px;
+   padding: 10px;
+}
+
+.backToList {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.backToList button {
+   width: 150px;
+   height: 45px;
+   background-color: green;
+   color: #fff;
+   border-radius: 20px;
+   border: none;
+}
+
+@media (max-width: 700px) {
+   .containerItems {
+      width: 99%;
+   }
+   .containerHeader {
+      height: 10vh;
+      border-radius: 10px;
+   }
+
+   .navContainer {
+      display: none;
+   }
+
+   .menuContainer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      color: #fff;
+      margin-right: 10px;
+   }
+
+   .profileItems{
+      width: 95%;
+      height: auto;
+   }
+
+   .items{
+      grid-template-columns: 1fr 1fr;
+   }
+
+   .item1{
+      width: 100%;
+   }
+
+   .item1 h1{
+      font-size: 13px;
+   }
+
+   .item p{
+      font-size: 13px;
+   }
+
+   .item h1{
+      font-size: 12px;
+   }
+
+   .backToList{
+      margin-bottom: 2px;
+   }
+}
