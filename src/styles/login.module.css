@@ -1,4 +1,4 @@
-.container {
+.authContainer {
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -7,33 +7,31 @@
    width: 100%;
 }
 
-.container_items {
+.authItems {
    width: 30%;
    height: 100%;
-   box-shadow: 0px 0px 20px dodgerblue;
+   box-shadow: 0px 0px 20px #0f3834;
    margin-top: 10%;
    border-radius: 20px;
 }
 
-
-.container_login {
+.authLogin {
    margin: 10% auto;
    width: 50%;
 }
 
-.container_login h2 {
+.authLogin h2 {
    font-size: 20px;
-   font-family: 'metropolis';
+   font-family: serif;
    text-align: center;
 }
 
-
-.container_form {
+.authForm {
    width: 50%;
    margin: 7% auto;
 }
 
-.container_form_input {
+.authFormInput {
    display: flex;
    flex-direction: column;
    width: 100%;
@@ -41,50 +39,50 @@
    position: relative;
 }
 
-.container_form_input label {
+.authFormInput label {
    color: #230035;
    font-size: 18px;
-   font-family: 'metropolis';
+   font-family: serif;
 }
 
-.container_form_input input {
+.authFormInput input {
    width: 100%;
    height: 45px;
    border-radius: 5px;
-   border: 1px solid #230035;
+   border: 1px solid #000;
    display: flex;
    padding-left: 10px;
    color: #230035;
-   font-family: 'metropolis';
+   font-family: serif;
    font-weight: 600;
    letter-spacing: 0.5px;
    transition: 0.2s ease-in-out;
 }
 
-.container_form_input input:active{
-   transform: scaleX(1.2);
+.authFormInput input:active {
+   transform: scaleX(1.1);
 }
 
-.container_form_input .VisibilityIcon{
+.authFormInput .visibilityIcon {
    position: absolute;
-  top: 62%;
-  transform: translateY(-50%);
-  right: 10px;
+   top: 62%;
+   transform: translateY(-50%);
+   right: 10px;
 }
 
-.container_forget_password a{
+.authForgetPassword a {
    color: #FF176C;
    text-decoration: none;
-   font-family: 'metropolis';
+   font-family: serif;
    font-size: 18px;
 }
 
-.container_form button{
+.authForm button {
    width: 100%;
    height: 45px;
-   background-color: dodgerblue;
+   background-color: #0f3834;
    color: #fff;
-   font-family: 'metropolis';
+   font-family: serif;
    font-size: 20px;
    transition: 0.4s ease-in-out;
    border-radius: 5px;
@@ -92,42 +90,37 @@
    border: none;
 }
 
-.container_form button:hover{
-  transform: scaleX(1.1);
+.authForm button:hover {
+   transform: scaleX(1.1);
 }
 
-.container_forget_password{
+.authForgetPassword {
    display: grid;
    grid-template-columns: 1fr auto;
    width: 100%;
 }
 
-.container_forget_password .link{
+.authForgetPassword .link {
    font-size: 13px;
 }
 
-.container_forget_password a {
+.authForgetPassword a {
    font-size: 13px;
    cursor: pointer;
 }
 
-
-
-.footer_container {
+.footerContainer {
    margin-top: auto;
    margin-bottom: 10px;
 }
 
-.footer_container p {
+.footerContainer p {
    color: #230035;
    font-size: 20px;
+   font-family: serif;
 }
 
-
-
-
-
-.circle_container {
+.loadingContainer {
    display: flex;
    align-items: center;
    justify-content: center;
@@ -139,60 +132,68 @@
    height: 100%;
    background-color: rgba(0, 0, 0, 0.8);
    z-index: 9999;
- }
- 
- .circle {
+}
+
+.loadingCircle {
    width: 50px;
    height: 50px;
    border-radius: 50%;
    border: 3px solid #fff;
    border-top-color: transparent;
    animation: spin 1s linear infinite;
- }
- 
- @keyframes spin {
-   0% { transform: rotate(0deg); }
-   100% { transform: rotate(360deg); }
- }
- 
- .circle_container span {
+}
+
+@keyframes spin {
+   0% {
+      transform: rotate(0deg);
+   }
+
+   100% {
+      transform: rotate(360deg);
+   }
+}
+
+.loadingContainer span {
    margin-left: 10px;
    font-size: 17px;
    color: dodgerblue;
    font-family: 'metropolis';
- }
- 
+}
 
- @media (max-width:700px){
-   .container_items{
+@media (max-width:700px) {
+   .authItems {
       width: 90%;
       margin-top: 25%;
    }
-   .container_login{
+
+   .authLogin {
       width: 90%;
    }
-   .container_login h2{
+
+   .authLogin h2 {
       font-size: 17px;
    }
-   .container_form{
+
+   .authForm {
       width: 80%;
    }
 
-   .container_form_input label {
+   .authFormInput label {
       color: #000;
       font-size: 14px;
    }
-   .container_form_input input {
+
+   .authFormInput input {
       height: 40px;
    }
-   
-   .footer_container p {
+
+   .footerContainer p {
       color: #000;
       font-size: 15px;
       margin-bottom: 7%;
    }
 
-   .container_form button{
+   .authForm button {
       width: 100%;
       height: 40px;
       background-color: dodgerblue;
@@ -201,4 +202,194 @@
       font-size: 16px;
       border: none;
    }
- }
+}
+
+
+
+
+
+/*Desktops/laptops 1024 - 1440 x 600 - 900*/
+@media (min-width: 1024px) and (max-width: 1440px) and (min-height: 600px) and (max-height: 900px) {
+   .authItems {
+      width: 40%;
+      margin-top: 5%;
+   }
+
+   .authLogin {
+      margin: 10% auto;
+      width: 70%;
+   }
+
+   .authLogin h2 {
+      font-size: 1.4em;
+   }
+
+   .authForm {
+      width: 70%;
+      margin: 7% auto;
+   }
+
+   .authFormInput label {
+      font-size: 1em;
+   }
+
+
+   .authForgetPassword a {
+      font-size: 1em;
+   }
+
+   .footerContainer p {
+      font-size: 1.4em;
+   }
+
+}
+
+
+
+
+
+
+
+
+
+
+/*Desktops/laptops 1680 - 1920 x 1050 - 1200 */
+
+@media (min-width: 1680px) and (max-width: 1920px) and (min-height: 1050px) and (max-height: 1200px) {
+   .authItems {
+      width: 30%;
+      margin-top: 5%;
+   }
+
+   .authLogin {
+      margin: 10% auto;
+      width: 70%;
+   }
+
+   .authLogin h2 {
+      font-size: 1.6em;
+   }
+
+   .authForm {
+      width: 70%;
+      margin: 7% auto;
+   }
+
+   .authFormInput label {
+      font-size: 1.2em;
+   }
+
+
+   .authForgetPassword a {
+      font-size: 1.1em;
+   }
+
+   .footerContainer p {
+      font-size: 1.6em;
+   }
+
+}
+
+
+
+
+
+
+
+
+
+/*Desktops/laptops 2560 -  x 1440 -  */
+@media (min-width: 2560px) and (max-width: 2560px) and (min-height: 1440px) and (max-height: 1440px) {
+   .authItems {
+      width: 30%;
+      margin-top: 5%;
+   }
+
+   .authLogin {
+      margin: 10% auto;
+      width: 70%;
+   }
+
+   .authLogin h2 {
+      font-size: 2.3em;
+   }
+
+   .authForm {
+      width: 70%;
+      margin: 7% auto;
+   }
+
+   .authFormInput label {
+      font-size: 1.5em;
+   }
+
+   .authFormInput input {
+      width: 100%;
+      height: 65px;
+   }
+
+
+   .authForgetPassword a {
+      font-size: 1.4em;
+   }
+
+   .footerContainer p {
+      font-size: 2em;
+   }
+
+}
+
+
+
+
+
+
+
+
+
+/*Desktops/laptops 3840 - 4096 x 2160 - 2304 */
+@media (min-width: 3840px) and (max-width: 4096px) and (min-height: 2160px) and (max-height: 2304px) {
+   .authItems {
+      width: 22%;
+      margin-top: 5%;
+   }
+
+   .authLogin {
+      margin: 10% auto;
+      width: 70%;
+   }
+
+   .authLogin h2 {
+      font-size: 2.3em;
+   }
+
+   .authForm {
+      width: 70%;
+      margin: 7% auto;
+   }
+
+   .authFormInput label {
+      font-size: 1.5em;
+   }
+
+   .authFormInput input {
+      width: 100%;
+      height: 65px;
+   }
+
+   .authForm button {
+      width: 100%;
+      height: 65px;
+      font-size: 2em;
+   }
+
+
+   .authForgetPassword a {
+      font-size: 1.4em;
+   }
+
+   .footerContainer p {
+      font-size: 2em;
+   }
+
+}
