@@ -91,15 +91,15 @@ function Index({ user }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={styles.container}>
-        <div className={styles.container_items}>
-          <div className={styles.container_login}>
+      <div className={styles.authContainer}>
+        <div className={styles.authItems}>
+          <div className={styles.authLogin}>
             <h2>Create an account</h2>
           </div>
 
-          <div className={styles.container_form}>
+          <div className={styles.authForm}>
             <form onSubmit={handleFormSubmit}>
-              <div className={styles.container_form_input}>
+              <div className={styles.authFormInput}>
                 <label>Email</label>
                 <input
                   type="text"
@@ -111,7 +111,7 @@ function Index({ user }) {
                 />
               </div>
 
-              <div className={styles.container_form_input}>
+              <div className={styles.authFormInput}>
                 <label>Role</label>
                 <select
                   value={createUser.role}
@@ -127,7 +127,7 @@ function Index({ user }) {
                 </select>
               </div>
 
-              <div className={styles.container_form_input}>
+              <div className={styles.authFormInput}>
                 <label>Password</label>
                 <input
                   type={showPassword ? "text" : "password"}
@@ -139,30 +139,30 @@ function Index({ user }) {
                 />
                 {showPassword ? (
                   <VisibilityOffOutlined
-                    className={styles.VisibilityIcon}
+                    className={styles.visibilityIcon}
                     onClick={() => setShowPassword(false)}
                   />
                 ) : (
                   <VisibilityOutlinedIcon
-                    className={styles.VisibilityIcon}
+                    className={styles.visibilityIcon}
                     onClick={() => setShowPassword(true)}
                   />
                 )}
               </div>
 
-              <div className={styles.container_forget_password}>
+              <div className={styles.authForgetPassword}>
                 <Link href="/choose_portal" className={styles.link}>
                   Choose Another Portal
                 </Link>
               </div>
 
-              <button type="submit" className={styles.login_btn}>
+              <button type="submit" className={styles.loginBtn}>
                 Create Account
               </button>
             </form>
           </div>
         </div>
-        <div className={styles.footer_container}>
+        <div className={styles.footerContainer}>
           <p>
             &copy;{new Date().getFullYear()} - Juaben APS | All Rights Reserved
           </p>
