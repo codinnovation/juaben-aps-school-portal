@@ -76,6 +76,12 @@
    font-family: serif;
    font-size: 18px;
 }
+.authForgetPassword .link{
+   color: #FF176C;
+   text-decoration: none;
+   font-family: serif;
+   font-size: 18px;
+}
 
 .authForm button {
    width: 100%;
