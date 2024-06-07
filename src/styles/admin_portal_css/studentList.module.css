@@ -36,7 +36,7 @@
    height: 7vh;
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-   background-color: #001f3f;
+   background-color: #0b1e1c;
 }
 
 .tableHeader h1 {
