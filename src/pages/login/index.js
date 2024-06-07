@@ -10,20 +10,20 @@ import { useRouter } from "next/router";
 import { auth } from ".././../lib/firebase";
 
 
-function Index() {
+function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
-  const [user, setUser] = useState({
+  const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUser((prevUser) => ({
-      ...prevUser,
+    setUserCredentials((prevCredentials) => ({
+      ...prevCredentials,
       [name]: value,
     }));
   };
@@ -31,11 +31,11 @@ function Index() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    setIsButtonClicked(true);
+    setIsSubmitting(true);
 
     let data = {
-      email: user.email,
-      password: user.password,
+      email: userCredentials.email,
+      password: userCredentials.password,
     };
 
     try {
@@ -48,41 +48,41 @@ function Index() {
       });
 
       if (response.ok) {
-         toast.success("Login successful");
-        setIsButtonClicked(false);
+        toast.success("Login successful");
+        setIsSubmitting(false);
         router.push("/")
       } else {
         toast.error("Login Failed");
-        setIsButtonClicked(false);
+        setIsSubmitting(false);
       }
     } catch (error) {
       toast.error("Error Occurred");
-      setIsButtonClicked(false);
+      setIsSubmitting(false);
     } finally {
-      setIsButtonClicked(false);
+      setIsSubmitting(false);
     }
   };
 
   
   const resetPassword = async () => {
-   if(!email){
+    if(!userCredentials.email){
       toast.error("Please enter your email address")
-   }
-   try {
-     await sendPasswordResetEmail(auth, email);
-     toast.success("Password reset email sent. Please check your email.");
-   } catch (error) {
-     toast.error("Error sending password reset email");
-   }
- };
+    }
+    try {
+      await sendPasswordResetEmail(auth, userCredentials.email);
+      toast.success("Password reset email sent. Please check your email.");
+    } catch (error) {
+      toast.error("Error sending password reset email");
+    }
+  };
 
 
   return (
     <>
-      {isButtonClicked && (
+      {isSubmitting && (
         <>
-          <div className={styles.circle_container}>
-            <div className={styles.circle}></div>
+          <div className={styles.loadingContainer}>
+            <div className={styles.loadingCircle}></div>
             <span>Please wait...</span>
           </div>
         </>
@@ -92,60 +92,60 @@ function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={styles.container}>
-        <div className={styles.container_items}>
-          <div className={styles.container_login}>
+      <div className={styles.authContainer}>
+        <div className={styles.authItems}>
+          <div className={styles.authLogin}>
             <h2>Login to your account</h2>
           </div>
 
-          <div className={styles.container_form}>
+          <div className={styles.authForm}>
             <form onSubmit={handleFormSubmit}>
-              <div className={styles.container_form_input}>
+              <div className={styles.authFormInput}>
                 <label>Email</label>
                 <input
                   type="text"
                   id="email"
                   name="email"
                   required
-                  value={user.email}
+                  value={userCredentials.email}
                   onChange={handleInputChange}
                 />
               </div>
 
-              <div className={styles.container_form_input}>
+              <div className={styles.authFormInput}>
                 <label>Password</label>
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   required
-                  value={user.password}
+                  value={userCredentials.password}
                   onChange={handleInputChange}
                 />
                 {showPassword ? (
                   <VisibilityOffOutlined
-                    className={styles.VisibilityIcon}
+                    className={styles.visibilityIcon}
                     onClick={() => setShowPassword(false)}
                   />
                 ) : (
                   <VisibilityOutlinedIcon
-                    className={styles.VisibilityIcon}
+                    className={styles.visibilityIcon}
                     onClick={() => setShowPassword(true)}
                   />
                 )}
               </div>
 
-              <div className={styles.container_forget_password}>
+              <div className={styles.authForgetPassword}>
                 <a onClick={resetPassword}>Forget Password</a>
               </div>
 
-              <button type="submit" className={styles.login_btn}>
+              <button type="submit" className={styles.loginButton}>
                 Login
               </button>
             </form>
           </div>
         </div>
-        <div className={styles.footer_container}>
+        <div className={styles.footerContainer}>
           <p>
             &copy;{new Date().getFullYear()} - Juaben APS | All Rights
             Reserved
@@ -157,4 +157,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default LoginForm;
