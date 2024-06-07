@@ -12,12 +12,33 @@ import "react-toastify/dist/ReactToastify.css";
 import Menu from "@mui/icons-material/Menu";
 import withSession from "@/lib/session";
 import Logout from "@mui/icons-material/Logout";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 
 function Index({ user }) {
   const [openModal, setOpenModal] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
+          return 0;
+        }
+        const diff = Math.random() * 10;
+        return Math.min(oldProgress + diff, 100);
+      });
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   const router = useRouter();
 
@@ -58,8 +79,9 @@ function Index({ user }) {
       {isButtonClicked && (
         <>
           <div className={styles.circle_container}>
-            <div className={styles.circle}></div>
-            <span>Logging out...</span>
+            <Box sx={{ width: "70%" }}>
+              <LinearProgress variant="determinate" value={progress} />
+            </Box>
           </div>
         </>
       )}
