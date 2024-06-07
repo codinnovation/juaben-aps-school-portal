@@ -78,6 +78,8 @@ function StudentList() {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const totalPages = Math.ceil(searchForStudent.length / studentsPerPage);
+
   return (
     <Layout>
       <Head>
@@ -151,29 +153,27 @@ function StudentList() {
                 </button>
                 {Array.from(
                   {
-                    length: Math.ceil(
-                      searchForStudent.length / studentsPerPage
-                    ),
+                    length: totalPages,
                   },
-                  (_, i) => (
-                    <p
-                      key={i + 1}
-                      onClick={() => paginate(i + 1)}
-                      className={
-                        currentPage === i + 1 ? styles.currentPage : ""
-                      }
-                    >
-                      {i + 1}
-                    </p>
-                  )
+                  (_, i) =>
+                    i < 3 || i === totalPages - 1 ? (
+                      <p
+                        key={i + 1}
+                        onClick={() => paginate(i + 1)}
+                        className={
+                          currentPage === i + 1 ? styles.currentPage : ""
+                        }
+                      >
+                        {i + 1}
+                      </p>
+                    ) : i === 3 ? (
+                      <span key="ellipsis">...</span>
+                    ) : null
                 )}
                 <button
                   onClick={() =>
                     setCurrentPage((prevPage) =>
-                      prevPage <
-                      Math.ceil(searchForStudent.length / studentsPerPage)
-                        ? prevPage + 1
-                        : prevPage
+                      prevPage < totalPages ? prevPage + 1 : prevPage
                     )
                   }
                 >
