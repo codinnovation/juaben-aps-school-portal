@@ -1,90 +1,87 @@
-.container {
+.mainContainer {
    width: 100%;
-   
 }
 
-.container_items {
+.itemContainer {
    display: grid;
    grid-template-columns: 1fr;
    padding-top: 2%;
    width: 85%;
    margin: 0% auto;
-   
 }
 
-.container_1 {
+.portalWrapper {
    display: flex;
    justify-content: flex-start;
    align-items: center;
    width: 100%;
 }
 
-.arrow_forward_container {
+.arrowContainer {
    margin-right: 3%;
 }
 
-.arrow_back_container {
+.arrowContainerBack {
    margin-left: 3%;
 }
 
-.portals_boxes {
+.portalGrid {
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr;
    width: 90%;
    gap: 5%;
 }
 
-
-.portals_boxes .portal {
+.portalGrid .portalCard {
    padding: 30px;
 }
 
-.portals_boxes .portal:hover {
-   transform: scaleX(1.1);
+.portalGrid .portalCard:hover {
+   transform: scaleX(1.0);
    transition: 0.5s ease-in-out;
 }
 
-.portals_boxes .portal:nth-child(1) {
+.portalGrid .portalCard:nth-child(1) {
    width: 100%;
    height: 100%;
    background-color: #d2a114;
    border-radius: 20px;
 }
 
-.portals_boxes .portal:nth-child(2) {
+.portalGrid .portalCard:nth-child(2) {
    width: 100%;
    height: 100%;
    background-color: #0f3834;
    border-radius: 20px;
 }
 
-.portals_boxes .portal:nth-child(3) {
+.portalGrid .portalCard:nth-child(3) {
    width: 100%;
    height: 100%;
    background-color: #d2a114;
    border-radius: 20px;
 }
 
-.portals_boxes .portal:nth-child(4) {
+.portalGrid .portalCard:nth-child(4) {
    width: 100%;
    height: 100%;
    background-color: #0f3834;
    border-radius: 20px;
 }
 
-.portals_boxes .portal .portal_icon_container {
+.portalGrid .portalCard .portalIconWrapper {
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-.portals_boxes .portal .portal_icon_container .portal_icon {
+.portalGrid .portalCard .portalIconWrapper .portalIcon {
    font-size: 50px;
    color: #ffff;
    font-weight: 700;
 }
 
-.portals_boxes .portal .portal_name {
+.portalGrid .portalCard .portalName {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -94,27 +91,21 @@
    cursor: pointer;
 }
 
-
-.portals_boxes .portal .portal_name h1 {
+.portalGrid .portalCard .portalName h1 {
    color: #f2f2f2f2;
    text-align: center;
    font-size: 25px;
    font-family: Helvetica;
 }
 
-
-
-
-
-
-
+/* Media Query */
 
 @media (max-width:700px) {
-   .container_items {
+   .itemContainer {
       width: 100%;
    }
 
-   .portals_boxes {
+   .portalGrid {
       width: 95vw;
       overflow-y: scroll;
       gap: 6%;
@@ -122,70 +113,67 @@
       grid-template-columns: auto auto auto auto;
    }
 
-   .arrow_forward_container {
+   .arrowContainer {
       display: none;
    }
 
-   .arrow_back_container {
+   .arrowContainerBack {
       display: none;
    }
 
-   .portals_boxes .portal {
+   .portalGrid .portalCard {
       padding: 20px;
       width: 100%;
       height: 100%;
    }
 
-   .portals_boxes .portal:hover {
+   .portalGrid .portalCard:hover {
       transform: scaleX(1.0);
       transition: 0.5s ease-in-out;
    }
 
-   .portals_boxes .portal:nth-child(1) {
+   .portalGrid .portalCard:nth-child(1) {
       width: 100%;
       height: 100%;
       border-radius: 10px;
 
    }
 
-   .portals_boxes .portal:nth-child(2) {
+   .portalGrid .portalCard:nth-child(2) {
       width: 100%;
       height: 100%;
       border-radius: 10px;
 
    }
 
-   .portals_boxes .portal:nth-child(3) {
+   .portalGrid .portalCard:nth-child(3) {
       width: 100%;
       height: 100%;
       border-radius: 10px;
 
    }
 
-   .portals_boxes .portal:nth-child(4) {
+   .portalGrid .portalCard:nth-child(4) {
       width: 100%;
       height: 100%;
       border-radius: 10px;
 
    }
 
-
-   .portals_boxes .portal .portal_icon_container .portal_icon {
+   .portalGrid .portalCard .portalIconWrapper .portalIcon {
       font-size: 40px;
       color: #ffff;
       font-weight: 700;
    }
 
-   .portals_boxes .portal .portal_name h1 {
+   .portalGrid .portalCard .portalName h1 {
       color: #f2f2f2f2;
       text-align: center;
       font-size: 13px;
       font-weight: 100;
    }
-   
-   .portals_boxes .portal .portal_name {
+
+   .portalGrid .portalCard .portalName {
       width: 100%;
    }
-   
-
 }
