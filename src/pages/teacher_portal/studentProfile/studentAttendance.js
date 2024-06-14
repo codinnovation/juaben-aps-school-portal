@@ -11,7 +11,6 @@ function StudentAttendance({ selectedStudent }) {
   const [attendanceData, setAttendanceData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
-
   const handleCloseModal = () => {
     setOpenModal(false);
   };
@@ -38,28 +37,26 @@ function StudentAttendance({ selectedStudent }) {
 
   useEffect(() => {
     fetchAttendanceData();
-  });
+  }, []);
 
   const addAttendance = () => {
-  
-      const studentRef = ref(
-        db,
-        `/japsstudents/${selectedStudent.key}/attendance`
-      );
-      const newAttendance = {
-        date: date,
-        status: status,
-      };
+    const studentRef = ref(
+      db,
+      `/japsstudents/${selectedStudent.key}/attendance`
+    );
+    const newAttendance = {
+      date: date,
+      status: status,
+    };
 
-      push(studentRef, newAttendance)
-        .then(() => {
-          console.log("Attendance added successfully.");
-          fetchAttendanceData();
-        })
-        .catch((error) => {
-          console.error("Error adding attendance:");
-        });
-    
+    push(studentRef, newAttendance)
+      .then(() => {
+        console.log("Attendance added successfully.");
+        fetchAttendanceData();
+      })
+      .catch((error) => {
+        console.error("Error adding attendance:");
+      });
   };
 
   const handleDateChange = (e) => {
@@ -77,6 +74,13 @@ function StudentAttendance({ selectedStudent }) {
     }
     return groupedData;
   };
+
+  const formatDate = (dateString) => {
+    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, options);
+  };
+
   const groupedAttendanceData = splitAttendanceIntoGroups(attendanceData, 5);
 
   return (
@@ -95,9 +99,7 @@ function StudentAttendance({ selectedStudent }) {
             {groupedAttendanceData.map((group, rowIndex) => (
               <div className={styles.attendanceBody} key={rowIndex}>
                 {group.map((attendance, index) => (
-                  <p
-                    key={index}
-                  >{`${attendance.status} - ${attendance.date}`}</p>
+                  <p key={index}>{`${attendance.status} - ${formatDate(attendance.date)}`}</p>
                 ))}
               </div>
             ))}
@@ -131,7 +133,7 @@ function StudentAttendance({ selectedStudent }) {
             </div>
 
             <div
-              classNam={styles.addAttendanceBtn}
+              className={styles.addAttendanceBtn}
               style={{ marginTop: "10px" }}
             >
               <button
