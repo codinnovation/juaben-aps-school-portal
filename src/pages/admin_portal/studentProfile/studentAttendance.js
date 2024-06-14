@@ -36,7 +36,6 @@ function StudentAttendance({
     fetchAttendanceData();
   }, []);
 
-
   const navigateToStudentProfilePage = () => {
     navigateToComp("studentProfile");
   };
@@ -89,7 +88,9 @@ function StudentAttendance({
             />
           </div>
           <div className={styles.stundentName}>
-            <h1>{selectedStudent?.FirstName || ""}</h1>
+            <h1>{`${selectedStudent?.FirstName || ""} ${
+              selectedStudent?.LastName || ""
+            }`}</h1>
           </div>
 
           <div className={styles.studentNavLinks}>
@@ -142,7 +143,6 @@ function StudentAttendance({
             <div className={styles.attendanceHeader}>
               <h1>Students Attendance Page</h1>
             </div>
-           
 
             <div className={styles.attendanceTable}>
               <table>
