@@ -158,7 +158,7 @@ function StudentAttendance({
                     {group.map((attendance, index) => (
                       <td
                         key={index}
-                      >{`${attendance.status} - ${attendance.date}`}</td>
+                      >{`${attendance.status}, ${attendance?.day || "No day"} - ${attendance.date}`}</td>
                     ))}
                   </tr>
                 ))}
