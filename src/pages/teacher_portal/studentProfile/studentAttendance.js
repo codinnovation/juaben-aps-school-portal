@@ -31,7 +31,7 @@ function StudentAttendance({ selectedStudent }) {
         }
       })
       .catch((error) => {
-        console.error("Error fetching attendance data:");
+        console.error("Error fetching attendance data:", error);
       });
   };
 
@@ -44,8 +44,14 @@ function StudentAttendance({ selectedStudent }) {
       db,
       `/japsstudents/${selectedStudent.key}/attendance`
     );
+
+    const dateObj = new Date(date);
+    const options = { weekday: "long" };
+    const day = dateObj.toLocaleDateString(undefined, options);
+
     const newAttendance = {
       date: date,
+      day: day,
       status: status,
     };
 
@@ -55,7 +61,7 @@ function StudentAttendance({ selectedStudent }) {
         fetchAttendanceData();
       })
       .catch((error) => {
-        console.error("Error adding attendance:");
+        console.error("Error adding attendance:", error);
       });
   };
 

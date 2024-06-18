@@ -181,7 +181,7 @@ function RegistrationForm() {
                         Previous
                       </button>
                     )}
-                    {formSection <= 1 && (
+                    {formSection < 1 && (
                       <button onClick={() => setFormSection(formSection + 1)} disabled={formSection === 1}>
                         Next
                       </button>
