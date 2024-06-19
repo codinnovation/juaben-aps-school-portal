@@ -35,6 +35,9 @@ function Index({ user }) {
     if (user?.displayName !== "Administrator") {
       toast.error("You do not have permission to create user");
       setIsButtonClicked(false);
+      setTimeout(() => {
+        router.push("/login");
+      }, 200);
       return;
     }
 
@@ -58,13 +61,13 @@ function Index({ user }) {
         toast.success(`Email verification sent to ${createUser.email}`);
 
         setTimeout(() => {
+          setIsButtonClicked(true)
           router.push("/login");
+
         }, 1000);
         setIsButtonClicked(false);
       } else {
-        toast.error(
-          `Creating Failed: ${response.message || response.statusText}`
-        );
+        toast.error("Create Failed");
         setIsButtonClicked(false);
       }
     } catch (error) {
