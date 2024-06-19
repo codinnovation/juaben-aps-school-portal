@@ -7,6 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 import withSession from "@/lib/session";
 
 function Index({ user }) {
@@ -61,9 +63,8 @@ function Index({ user }) {
         toast.success(`Email verification sent to ${createUser.email}`);
 
         setTimeout(() => {
-          setIsButtonClicked(true)
+          setIsButtonClicked(true);
           router.push("/login");
-
         }, 1000);
         setIsButtonClicked(false);
       } else {
@@ -82,9 +83,10 @@ function Index({ user }) {
     <>
       {isButtonClicked && (
         <>
-          <div className={styles.circle_container}>
-            <div className={styles.circle}></div>
-            <span>Please wait...</span>
+          <div className={styles.loadingContainer}>
+            <Box sx={{ width: "70%" }}>
+              <LinearProgress variant="determinate" value={progress} />
+            </Box>
           </div>
         </>
       )}
