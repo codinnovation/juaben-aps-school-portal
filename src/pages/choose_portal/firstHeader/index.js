@@ -22,8 +22,6 @@ function Index({ user }) {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [progress, setProgress] = useState(0);
 
-
-
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
@@ -41,6 +39,11 @@ function Index({ user }) {
   }, []);
 
   const router = useRouter();
+
+  const createTeacherAccount = () => {
+    setIsButtonClicked(true);
+    router.push("/create-teacher");
+  };
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -125,9 +128,9 @@ function Index({ user }) {
       </div>
 
       <Dialog open={openModal} onClose={handleCloseModal}>
-        <DialogContent>
+        <DialogContent style={{ display: "flex", flexDirection: "column" }}>
           <Button>Profile</Button>
-          <Button>Settings</Button>
+          <Button onClick={createTeacherAccount}>Create Account For Teacher</Button>
           <Button onClick={handleLogout}>Logout</Button>
         </DialogContent>
       </Dialog>
