@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/accountant_portal/studentFees.module.css";
-import { ref, push, get } from "firebase/database";
+import { ref, push, get, set } from "firebase/database";
 import { db } from "../../../lib/firebase";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,6 +16,8 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
   const [balanceFee, setBalanceFee] = useState(0);
   const [paymentList, setPaymentList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [editPaymentId, setEditPaymentId] = useState(null);
+  const [editPaymentAmount, setEditPaymentAmount] = useState("");
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -56,6 +58,23 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
     }
   };
 
+  const updatePaymentAmount = async () => {
+    const paymentRef = ref(
+      db,
+      `/japsstudents/${selectedStudent.key}/SchoolFees/Payments/${editPaymentId}`
+    );
+
+    try {
+      await set(paymentRef, { ...paymentList.find(p => p.key === editPaymentId), AmountOfPayment: parseInt(editPaymentAmount) });
+      setEditPaymentId(null);
+      setEditPaymentAmount("");
+      toast.success("Payment amount updated successfully");
+    } catch (error) {
+      console.error("Error updating payment amount:", error);
+      toast.error("Error updating payment amount");
+    }
+  };
+
   useEffect(() => {
     if (
       selectedStudent &&
@@ -70,7 +89,7 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
         return total + payment.AmountOfPayment;
       }, 0);
 
-      const updatedBalance = paidAmount - totalFees;
+      const updatedBalance = totalFees - paidAmount;
       setBalanceFee(updatedBalance);
     } else {
       setBalanceFee(0);
@@ -173,8 +192,8 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
 
           <div className={styles.paymentHistory}>
             <h1>Payment History</h1>
-            {paymentList.map((payment, index) => (
-              <div className={styles.paymentHistoryFields} key={index}>
+            {paymentList.map((payment) => (
+              <div className={styles.paymentHistoryFields} key={payment.key}>
                 <div className={styles.paymentDate}>
                   <label>Payment Date</label>
                   <h1>{payment?.DateOfPayment || "No"}</h1>
@@ -182,7 +201,15 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
 
                 <div className={styles.paymentDate}>
                   <label>Payment Amount</label>
-                  <h1>{`Ghc ${payment?.AmountOfPayment || "No Amount"}`}</h1>
+                  {editPaymentId === payment.key ? (
+                    <input
+                      type="number"
+                      value={editPaymentAmount}
+                      onChange={(e) => setEditPaymentAmount(e.target.value)}
+                    />
+                  ) : (
+                    <h1>{`Ghc ${payment?.AmountOfPayment || "No Amount"}`}</h1>
+                  )}
                 </div>
 
                 <div className={styles.paymentDate}>
@@ -193,6 +220,31 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
                 <div className={styles.paymentDate}>
                   <label>By</label>
                   <h1>{`${payment?.By || "No one"}`}</h1>
+                </div>
+
+                <div className={styles.editButton}>
+                  {editPaymentId === payment.key ? (
+                    <>
+                      <button onClick={updatePaymentAmount}>Save</button>
+                      <button
+                        onClick={() => {
+                          setEditPaymentId(null);
+                          setEditPaymentAmount("");
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setEditPaymentId(payment.key);
+                        setEditPaymentAmount(payment.AmountOfPayment);
+                      }}
+                    >
+                      Edit
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
