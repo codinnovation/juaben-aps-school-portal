@@ -97,7 +97,7 @@ function Sidebar() {
 
           <div className={styles.container_items_2}>
             <PeopleIcon className={styles.container_items_2_icon} />
-            <Link href="/admin_portal/studentList/" className={styles.link}>
+            <Link href="/account_portal/studentList/" className={styles.link}>
               Student&apos;s List
             </Link>
           </div>
@@ -110,17 +110,12 @@ function Sidebar() {
             <div className={styles.container_items_4_items}>
               <div className={styles.container_items_4_link}>
                 <Dashboard className={styles.container_items_4_icon} />
-                <Link href="/accountant_portal/" className={styles.link}>
+                <Link href="/" className={styles.link}>
                   Dashboard
                 </Link>{" "}
               </div>
 
-              <div className={styles.container_items_4_link}>
-                <PeopleIcon className={styles.container_items_4_icon} />
-                <Link href="/" className={styles.link}>
-                  Teacher&apos;s List
-                </Link>
-              </div>
+              
 
               <div className={styles.container_items_4_link}>
                 <NotificationAddIcon
@@ -140,17 +135,11 @@ function Sidebar() {
                 </Link>
               </div>
 
-              <div className={styles.container_items_4_link}>
-                <PaymentIcon className={styles.container_items_4_icon} />
-                <Link href="/" className={styles.link}>
-                  Student&apos;s Fees
-                </Link>
-              </div>
-
+              
               <div className={styles.container_items_4_link}>
                 <EventAvailable className={styles.container_items_4_icon} />
                 <Link
-                  href="/admin_portal/event_available/"
+                  href="/"
                   className={styles.link}
                 >
                   Events
