@@ -6,13 +6,14 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import withSession from "@/lib/session";
 
-function StudentFees({ selectedStudent, hideStudentProfilePage }) {
+function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
   const [paymentAmount, setPaymentAmount] = useState("");
   const [paymentDate, setPaymentDate] = useState("");
   const [semesterFee, setSemesterFee] = useState("");
-  const [by, setBy] = useState("");
-  const [balanceFee, setBalanceFee] = useState();
+  const [by, setBy] = useState(user?.email);
+  const [balanceFee, setBalanceFee] = useState(0);
   const [paymentList, setPaymentList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
@@ -45,13 +46,13 @@ function StudentFees({ selectedStudent, hideStudentProfilePage }) {
       // Update the balance immediately after making the payment
       const updatedBalance = balanceFee - parseInt(paymentAmount);
       setBalanceFee(updatedBalance);
-      console.log("Payment Received successfully");
+      console.log("Payment received successfully");
       toast.success(
-        `Payment made for Ghc${paymentAmount} - ${selectedStudent?.FirstName} `
+        `Payment made for Ghc${paymentAmount} - ${selectedStudent?.FirstName}`
       );
       router.push("/account_portal");
     } catch (error) {
-      console.error("Error Adding Payment:");
+      console.error("Error adding payment:", error);
     }
   };
 
@@ -69,7 +70,7 @@ function StudentFees({ selectedStudent, hideStudentProfilePage }) {
         return total + payment.AmountOfPayment;
       }, 0);
 
-      const updatedBalance = totalFees - paidAmount;
+      const updatedBalance = paidAmount - totalFees;
       setBalanceFee(updatedBalance);
     } else {
       setBalanceFee(0);
@@ -96,7 +97,7 @@ function StudentFees({ selectedStudent, hideStudentProfilePage }) {
           setPaymentList([]);
         }
       } catch (error) {
-        console.error("Error fetching data:");
+        console.error("Error fetching data:", error);
         setPaymentList([]);
       }
     };
@@ -105,23 +106,27 @@ function StudentFees({ selectedStudent, hideStudentProfilePage }) {
 
     const fetchInterval = setInterval(fetchData, 1000);
     return () => clearInterval(fetchInterval);
-  });
+  }, [selectedStudent]);
 
   return (
     <>
       <div className={styles.feeContainer}>
         <div className={styles.feeContainerItems}>
-          <button onClick={hideStudentProfilePage}>Back To List</button>
+          <button onClick={hideStudentProfilePage} style={{ padding: "10px" }}>
+            Back To List
+          </button>
           <div className={styles.feeContainerHeader}>
             <h1>School Fees</h1>
           </div>
 
           <div className={styles.feeContainerBody}>
             <div className={styles.feeContainerBodyHeader}>
-              <h1>{`Total Fees  ${
+              <h1>{`Total Fees: ${
                 selectedStudent?.SchoolFees?.TotalFees || 0
               }`}</h1>
-              <h1>{`Remaining  ${balanceFee}`}</h1>
+              <h1>{`Remaining: ${
+                balanceFee >= 0 ? `Ghc ${balanceFee} (+)` : `Ghc ${-balanceFee}`
+              }`}</h1>
             </div>
 
             <div className={styles.addPaymentContainer}>
@@ -152,7 +157,8 @@ function StudentFees({ selectedStudent, hideStudentProfilePage }) {
 
                 <input
                   placeholder="Made by"
-                  value={by}
+                  value={`${user?.email} - ${user?.displayName}` || "No User"}
+                  disabled
                   name="by"
                   type="text"
                   onChange={(e) => setBy(e.target.value)}
@@ -176,17 +182,17 @@ function StudentFees({ selectedStudent, hideStudentProfilePage }) {
 
                 <div className={styles.paymentDate}>
                   <label>Payment Amount</label>
-                  <h1>{`Ghc ${payment?.AmountOfPayment || "No"}`}</h1>
+                  <h1>{`Ghc ${payment?.AmountOfPayment || "No Amount"}`}</h1>
                 </div>
 
                 <div className={styles.paymentDate}>
                   <label>Semester</label>
-                  <h1>{`${payment?.SemesterFee || "No"}`}</h1>
+                  <h1>{`${payment?.SemesterFee || "No Semester"}`}</h1>
                 </div>
 
                 <div className={styles.paymentDate}>
                   <label>By</label>
-                  <h1>{`${payment?.By || "No"}`}</h1>
+                  <h1>{`${payment?.By || "No one"}`}</h1>
                 </div>
               </div>
             ))}
