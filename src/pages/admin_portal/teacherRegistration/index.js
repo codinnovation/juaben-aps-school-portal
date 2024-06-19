@@ -124,6 +124,7 @@ function RegistrationForm() {
         type: "select",
         options: [
           "",
+          "O'LEVEL",
           "SSCE",
           "WASSCE",
           "DIPLOMA",
