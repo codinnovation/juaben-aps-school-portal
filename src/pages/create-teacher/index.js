@@ -57,7 +57,9 @@ function Index({ user }) {
         toast.success("Account created successful");
         toast.success(`Email verification sent to ${createUser.email}`);
 
-        router.push("/login");
+        setTimeout(() => {
+          router.push("/login");
+        }, 1000);
         setIsButtonClicked(false);
       } else {
         toast.error(
