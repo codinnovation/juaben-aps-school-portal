@@ -45,7 +45,7 @@
    font-family: serif;
 }
 
-.authFormInput input {
+.authFormInput input, .authFormInput select {
    width: 100%;
    height: 45px;
    border-radius: 5px;

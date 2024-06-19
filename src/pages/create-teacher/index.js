@@ -32,7 +32,7 @@ function Index({ user }) {
     e.preventDefault();
     setIsButtonClicked(true);
 
-    if (user?.user?.displayName !== "Administrator") {
+    if (user?.displayName !== "Administrator") {
       toast.error("You do not have permission to create user");
       setIsButtonClicked(false);
       setTimeout(() => {
@@ -61,8 +61,8 @@ function Index({ user }) {
         toast.success(`Email verification sent to ${createUser.email}`);
 
         setTimeout(() => {
-          router.push("/");
-        }, 2000);
+          router.push("/login");
+        }, 1000);
         setIsButtonClicked(false);
       } else {
         toast.error("Login Failed");
@@ -94,7 +94,7 @@ function Index({ user }) {
       <div className={styles.authContainer}>
         <div className={styles.authItems}>
           <div className={styles.authLogin}>
-            <h2>Create an account</h2>
+            <h2>Create an account for Teacher</h2>
           </div>
 
           <div className={styles.authForm}>
@@ -122,8 +122,17 @@ function Index({ user }) {
                 >
                   <option></option>
                   <option value="Administrator">Administrator</option>
-                  <option value="Teacher">Teacher</option>
-                  <option value="Parent">Parent</option>
+                  <option value="Teacher-Creche">Teacher - Creche</option>
+                  <option value="Teacher-Nursery-1">Teacher - Nursery 1</option>
+                  <option value="Teacher-Nursery-2">Teacher - Nursery 2</option>
+                  <option value="Teacher-K.G 1">Teacher - K.G 1</option>
+                  <option value="Teacher-K.G 1">Teacher - K.G 2</option>
+                  <option value="Teacher-Class-1">Teacher - Class 1</option>
+                  <option value="Teacher-Class-2">Teacher - Class 2</option>
+                  <option value="Teacher-Class-3">Teacher - Class 3</option>
+                  <option value="Teacher-Class-4">Teacher - Class 4</option>
+                  <option value="Teacher-Class-5">Teacher - Class 5</option>
+                  <option value="Teacher-Class-6">Teacher - Class 6</option>
                 </select>
               </div>
 
@@ -177,7 +186,7 @@ export default Index;
 
 export const getServerSideProps = withSession(async function ({ req, res }) {
   const user = req.session.get("user");
-  if (!user || !user?.user?.emailVerified) {
+  if (!user || user?.displayName !== "Administrator") {
     return {
       redirect: {
         destination: "/login",
