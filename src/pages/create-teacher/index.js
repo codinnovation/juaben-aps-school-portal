@@ -7,6 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 import withSession from "@/lib/session";
 
 function Index({ user }) {
@@ -35,6 +37,9 @@ function Index({ user }) {
     if (user?.displayName !== "Administrator") {
       toast.error("You do not have permission to create user");
       setIsButtonClicked(false);
+      setTimeout(() => {
+        router.push("/login");
+      }, 200);
       return;
     }
 
@@ -58,13 +63,12 @@ function Index({ user }) {
         toast.success(`Email verification sent to ${createUser.email}`);
 
         setTimeout(() => {
+          setIsButtonClicked(true);
           router.push("/login");
         }, 1000);
         setIsButtonClicked(false);
       } else {
-        toast.error(
-          `Creating Failed: ${response.message || response.statusText}`
-        );
+        toast.error("Create Failed");
         setIsButtonClicked(false);
       }
     } catch (error) {
@@ -79,9 +83,10 @@ function Index({ user }) {
     <>
       {isButtonClicked && (
         <>
-          <div className={styles.circle_container}>
-            <div className={styles.circle}></div>
-            <span>Please wait...</span>
+          <div className={styles.loadingContainer}>
+            <Box sx={{ width: "70%" }}>
+              <LinearProgress variant="determinate" value={progress} />
+            </Box>
           </div>
         </>
       )}
