@@ -61,11 +61,11 @@ function Index({ user }) {
         toast.success(`Email verification sent to ${createUser.email}`);
 
         setTimeout(() => {
-          router.push("/login");
+          router.push("/choose-portal");
         }, 1000);
         setIsButtonClicked(false);
       } else {
-        toast.error("Login Failed");
+        toast.error("Creating Failed");
         setIsButtonClicked(false);
       }
     } catch (error) {
