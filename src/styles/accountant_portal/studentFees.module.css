@@ -96,6 +96,7 @@
 }
 
 .paymentHistory{
+   width: 100%;
    display: flex;
    align-items: center;
    flex-direction: column;
@@ -130,9 +131,11 @@
 .paymentDate h1{
    border: 1px solid #aeaeae;
    border-radius: 10px;
-   padding: 10px;
+   padding: 8px;
    font-size: 15px;
    font-weight: 100;
+   width: 100%;
+   font-size: 14px;
 }
 
 @media (max-width: 700px) {

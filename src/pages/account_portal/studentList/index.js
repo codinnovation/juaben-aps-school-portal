@@ -6,8 +6,9 @@ import { get } from "firebase/database";
 import Layout from "../layout";
 import { useRouter } from "next/router";
 import StudentFees from "../studentProfile/studentFees";
+import withSession from "@/lib/session";
 
-function StudentList() {
+function StudentList({ user }) {
   const [studentProfilePageView, setStudentProfilePageView] = useState(false);
   const [studentListView, setStudentListView] = useState(true);
   const [studentData, setStudentData] = useState([]);
@@ -15,6 +16,8 @@ function StudentList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [studentsPerPage, setStudentsPerPage] = useState(13);
+
+  console.log(user)
 
   const handlePerPageChange = (e) => {
     setStudentsPerPage(Number(e.target.value));
@@ -187,6 +190,7 @@ function StudentList() {
         {studentProfilePageView && (
           <StudentFees
             selectedStudent={selectedStudent}
+            user={user}
             hideStudentProfilePage={hideStudentProfilePage}
           />
         )}
@@ -196,3 +200,29 @@ function StudentList() {
 }
 
 export default StudentList;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (
+    !user ||
+    user?.displayName !== "Administrator"  ) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  auth.signOut();
+
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

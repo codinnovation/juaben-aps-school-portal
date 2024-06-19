@@ -4,8 +4,9 @@ import Layout from "./layout";
 import { useRouter } from "next/router";
 import { auth } from "../../lib/firebase";
 import MainBody from "../account_portal/mainBody";
+import withSession from "@/lib/session";
 
-function Index() {
+function Index({user}) {
   const router = useRouter();
 
   return (
@@ -17,10 +18,37 @@ function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <MainBody />
+        <MainBody user={user} />
       </Layout>
     </>
   );
 }
 
 export default Index;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (
+    !user ||
+    user?.displayName !== "Administrator"
+  ) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  auth.signOut();
+
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+
+  return {
+    props: {
+      user: user,
+    },
+  };
+});
