@@ -201,6 +201,8 @@
    .studentListContainer {
       width: 95%;
       margin: 1% auto;
+      height: 100vh;
+      overflow-y: scroll;
    }
 
    .searchStudent h1 {
@@ -253,6 +255,7 @@
       display: grid;
       grid-template-columns: auto 1fr auto;
       padding: 2px;
+      height: 6vh;
    }
 
    .tableColumn h1 {
@@ -281,7 +284,8 @@
    }
 
    .paginationContainer {
-      margin-top: 0;
+      margin-top: 7%;
+      margin-bottom: 25%;
    }
 
    .paginationItems {
