@@ -1,70 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import styles from "../../../styles/teachers_portal_css/studentList.module.css";
-import Person2 from "@mui/icons-material/Person2";
-import Logout from "@mui/icons-material/Logout";
-import Menu from "@mui/icons-material/Menu";
 import { auth, db } from "../../../lib/firebase";
 import { ref } from "firebase/database";
 import { get } from "firebase/database";
-import StudentProfilePage from "../studentProfile/studentProfilePage";
-import withSession from "@/lib/session";
+import StudentProfilePageComponent from "../studentProfile/studentProfilePage";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Layout from "../layout";
 import { useRouter } from "next/router";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-} from "@mui/material";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import Paper from "@mui/material/Paper";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import AddIcon from "@mui/icons-material/Add";
+import Dashboard from "@mui/icons-material/Dashboard";
+import NotificationAdd from "@mui/icons-material/NotificationAdd";
+import EventIcon from "@mui/icons-material/Event";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function Index({user}) {
-  const [studentData, setStudentData] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedStudent, setSelectedStudent] = useState("");
+function StudentList() {
+  const [studentProfilePageView, setStudentProfilePageView] = useState(false);
   const [studentListView, setStudentListView] = useState(true);
-  const [studentProfileVis, setStudentProfileVis] = useState(false);
+  const [studentData, setStudentData] = useState([]);
+  const [selectedStudent, setSelectedStudent] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [studentsPerPage, setStudentsPerPage] = useState(8);
-  const [openModal, setOpenModal] = useState(false);
-  const [openClassModal, setOpenClassModal] = useState(false);
-  const [selectedClass, setSelectedClass] = useState("");
-  const classArray = [
-    "",
-    "Creche",
-    "Nursery 1",
-    "Nursery 2",
-    "K.G 1",
-    "K.G 2",
-    "Class 1",
-    "Class 2",
-    "Class 3",
-    "Class 4",
-    "Class 5",
-    "Class 6",
-  ];
+  const [studentsPerPage, setStudentsPerPage] = useState(13);
+  const [searchInputClicked, setSearchInputClicked] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  const router = useRouter();
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
-
-  const handleCloseClassModal = () => {
-    setOpenClassModal(false);
-  };
-
-  const handleLogOut = async () => {
+  const handleLogout = async (e) => {
+    setIsButtonClicked(true);
     try {
-      await auth.signOut();
-      console.log("User logged out successfully!");
-      router.push("/");
+      const response = await fetch("/api/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        toast.success("Logout Successful");
+        router.push("/login");
+        setIsButtonClicked(false);
+      } else {
+        toast.error("Logout Failed");
+        setIsButtonClicked(false);
+      }
     } catch (error) {
-      console.error("Error logging out:");
+      toast.error("Error Occurred");
+      setIsButtonClicked(false);
     }
   };
+
+  const handlePerPageChange = (e) => {
+    setStudentsPerPage(Number(e.target.value));
+  };
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -91,6 +85,17 @@ function Index({user}) {
     fetchData();
   }, []);
 
+  const showStudentProfilePage = (rowData) => {
+    setSelectedStudent(rowData);
+    setStudentListView(false);
+    setStudentProfilePageView(true);
+  };
+
+  const hideStudentProfilePage = () => {
+    setStudentProfilePageView(false);
+    setStudentListView(true);
+  };
+
   const searchForStudent = studentData.filter(
     (student) =>
       student.FirstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -99,162 +104,92 @@ function Index({user}) {
       student.StudentNumber.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Filter students based on selected class
-  const filteredStudents = selectedClass
-    ? searchForStudent.filter((student) => student.Class === selectedClass)
-    : searchForStudent;
-
   const indexOfLastStudent = currentPage * studentsPerPage;
   const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
-  const currentStudents = filteredStudents.slice(
+  const currentStudents = searchForStudent.slice(
     indexOfFirstStudent,
     indexOfLastStudent
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const selectedstudentFunc = (selectedStudentData) => {
-    setStudentListView(false);
-    setSelectedStudent(selectedStudentData);
-    setStudentProfileVis(true);
-  };
-
-  const hideStudentProfilePage = () => {
-    setStudentProfileVis(false);
-    setStudentListView(true);
-  };
-
-  const handlePerPageChange = (e) => {
-    setStudentsPerPage(Number(e.target.value));
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setOpenClassModal(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
+  const totalPages = Math.ceil(searchForStudent.length / studentsPerPage);
 
   return (
-    <>
+    <Layout>
+      {isButtonClicked && (
+        <>
+          <div className={styles.circle_container}>
+            <div className={styles.circle}></div>
+            <span>Logging out...</span>
+          </div>
+        </>
+      )}
+      <Head>
+        <title>Juaben APS - Student List</title>
+        <meta name="description" content="Generated by create next app" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       {studentListView && (
-        <div className={styles.container}>
-          <div className={styles.containerItems}>
-            <div className={styles.containerHeader}>
-              <div className={styles.portalName}>
-                <h1>Teacher&apos;s Portal</h1>
-              </div>
+        <div className={styles.studentListContainer}>
+          <div className={styles.searchStudent}>
+            <h1>Teacher&apos;s Portal</h1>
 
-              <div className={styles.tableSearch}>
-                <input
-                  placeholder="Search for a student"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-
-              <div className={styles.userContainer}>
-                <div className={styles.userProfile}>
-                  <p>Profile</p>
-                  <Person2 className={styles.userIcon} />
-                </div>
-
-                <div className={styles.userLogout} onClick={handleLogOut}>
-                  <p>Logout</p>
-                  <Logout className={styles.userIcon} />
-                </div>
-              </div>
-
-              <div
-                className={styles.menuBurger}
-                onClick={() => setOpenModal(true)}
-              >
-                <Menu />
-              </div>
-            </div>
+            <input
+              placeholder="Search for a student"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
-
-          <Dialog open={openModal} onClose={handleCloseModal}>
-            <DialogTitle>{user?.user?.displayName}</DialogTitle>
-            <DialogContent>
-              <IconButton onClick={handleLogOut}>Logout</IconButton>
-            </DialogContent>
-          </Dialog>
-
-          <Dialog open={openClassModal} onClose={handleCloseClassModal}>
-            <DialogTitle>Select Class</DialogTitle>
-            <DialogContent>
-              <FormControl fullWidth>
-                <InputLabel>Select Class</InputLabel>
-                <Select
-                  value={selectedClass}
-                  onChange={(e) => setSelectedClass(e.target.value)}
-                >
-                  <MenuItem value="">All Classes</MenuItem>
-                  {classArray.map((className, index) => (
-                    <MenuItem key={index} value={className}>
-                      {className}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </DialogContent>
-          </Dialog>
-
           <div className={styles.tableContainer}>
-            <div className={styles.tableItems}>
-              <div className={styles.tableHeader}>
-                <h1>First Name</h1>
-                <h1>Middle Name</h1>
-                <h1>Last Name</h1>
-                <h1>Class</h1>
-                <h1>Student Number</h1>
-              </div>
-
-              {currentStudents.map((student, index) => (
-                <div
-                  className={styles.tableColumn}
-                  key={index}
-                  onClick={() => selectedstudentFunc(student)}
-                >
-                  <h1>{student.FirstName}</h1>
-                  <h1>{student.MiddleName}</h1>
-                  <h1>{student.LastName}</h1>
-                  <h1>{student.Class}</h1>
-                  <h1>{student.StudentNumber}</h1>
-                </div>
-              ))}
+            <div className={styles.tableHeader}>
+              <h1>First Name</h1>
+              <h1>Middle Name</h1>
+              <h1>Last Name</h1>
+              <h1>Class</h1>
+              <h1>Gender</h1>
+              <h1>Student Number</h1>
             </div>
+
+            {currentStudents.map((student, index) => (
+              <div
+                className={styles.tableColumn}
+                key={index}
+                onClick={() => showStudentProfilePage(student)}
+              >
+                <h1>{student.FirstName}</h1>
+                <h1>{student.MiddleName}</h1>
+                <h1>{student.LastName}</h1>
+                <h1>{student.Class}</h1>
+                <h1>{student.Gender}</h1>
+                <h1>{student.StudentNumber}</h1>
+              </div>
+            ))}
           </div>
 
-          <div className={styles.containerLastSection}>
-            <div className={styles.lastSectionItems}>
-              <div className={styles.items}>
-                <div className={styles.item1}>
-                  <p>{filteredStudents.length}</p>
-                  <h1>Students</h1>
-                </div>
+          <div className={styles.paginationContainer}>
+            <div className={styles.paginationItems}>
+              <div className={styles.totalMembers}>
+                <p>{searchForStudent.length}</p>
+                <h1>Students</h1>
+              </div>
 
-                <div className={styles.item2}>
-                  <button
-                    onClick={() =>
-                      setCurrentPage((prevPage) =>
-                        prevPage <
-                        Math.ceil(filteredStudents.length / studentsPerPage)
-                          ? prevPage + 1
-                          : prevPage
-                      )
-                    }
-                  >
-                    Next
-                  </button>
-                  {Array.from(
-                    {
-                      length: Math.ceil(
-                        filteredStudents.length / studentsPerPage
-                      ),
-                    },
-                    (_, i) => (
+              <div className={styles.navigation}>
+                <button
+                  onClick={() =>
+                    setCurrentPage((prevPage) =>
+                      prevPage > 1 ? prevPage - 1 : prevPage
+                    )
+                  }
+                >
+                  Prev
+                </button>
+                {Array.from(
+                  {
+                    length: totalPages,
+                  },
+                  (_, i) =>
+                    i < 3 || i === totalPages - 1 ? (
                       <p
                         key={i + 1}
                         onClick={() => paginate(i + 1)}
@@ -264,67 +199,73 @@ function Index({user}) {
                       >
                         {i + 1}
                       </p>
+                    ) : i === 3 ? (
+                      <span key="ellipsis">...</span>
+                    ) : null
+                )}
+                <button
+                  onClick={() =>
+                    setCurrentPage((prevPage) =>
+                      prevPage < totalPages ? prevPage + 1 : prevPage
                     )
-                  )}
-                  <button
-                    onClick={() =>
-                      setCurrentPage((prevPage) =>
-                        prevPage > 1 ? prevPage - 1 : prevPage
-                      )
-                    }
-                  >
-                    Prev
-                  </button>
-                </div>
+                  }
+                >
+                  Next
+                </button>
+              </div>
 
-                <div className={styles.item3}>
-                  <select
-                    value={studentsPerPage}
-                    onChange={handlePerPageChange}
-                  >
-                    <option value={10}>10</option>
-                    <option value={20}>20</option>
-                    <option value={30}>30</option>
-                    <option value={40}>40</option>
-                  </select>
-                </div>
+              <div className={styles.displayNumRow}>
+                <select value={studentsPerPage} onChange={handlePerPageChange}>
+                  <option value={10}>10</option>
+                  <option value={20}>20</option>
+                  <option value={30}>30</option>
+                  <option value={40}>40</option>
+                  <option value={50}>50</option>
+                  <option value={60}>60</option>
+                  <option value={70}>70</option>
+                  <option value={80}>80</option>
+                  <option value={90}>90</option>
+                  <option value={100}>100</option>
+                  <option value={150}>150</option>
+                  <option value={200}>200</option>
+                  <option value={300}>300</option>
+                  <option value={400}>400</option>
+                </select>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {studentProfileVis && (
-        <StudentProfilePage
-          selectedStudent={selectedStudent}
+      <div className={styles.MobileMenu}>
+        <Paper
+          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          elevation={3}
+        >
+          <BottomNavigation showLabels>
+            <BottomNavigationAction label="Menu" icon={<Dashboard />} />
+            <BottomNavigationAction
+              label="Notifications"
+              icon={<NotificationAdd />}
+            />
+            <BottomNavigationAction label="Events" icon={<EventIcon />} />
+            <BottomNavigationAction
+              label="Logout"
+              icon={<LogoutIcon />}
+              onClick={handleLogout}
+            />
+          </BottomNavigation>
+        </Paper>
+      </div>
+
+      {studentProfilePageView && (
+        <StudentProfilePageComponent
           hideStudentProfilePage={hideStudentProfilePage}
+          selectedStudent={selectedStudent}
         />
       )}
-    </>
+    </Layout>
   );
 }
 
-export default Index;
-
-
-export const getServerSideProps = withSession(async function ({ req, res }) {
-  const user = req.session.get("user");
-  if (!user) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  if (user) {
-    req.session.set("user", user);
-    await req.session.save();
-  }
-  return {
-    props: {
-      user: user,
-    },
-  };
-});
+export default StudentList;

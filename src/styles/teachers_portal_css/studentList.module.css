@@ -1,289 +1,300 @@
-.container{
-   width: 100%;
-   height: 100%;
+.studentListContainer {
+   width: 77%;
+   margin-left: 20%;
+   margin-top: 2%;
 }
 
-.containerItems{
-   width: 80%;
-   margin: 1% auto;
-}
-
-.containerHeader{
+.searchStudent {
    display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   height: 12vh;
-   background-color: #191970;
-   border-radius: 10px;
+   grid-template-columns: 1fr auto;
+   margin-bottom: 1%;
+   cursor: pointer;
 }
 
-.tableSearch{
+.searchInputContainer {
    display: flex;
-   justify-content: flex-start;
+   justify-content: center;
    align-items: center;
+   position: absolute;
 }
 
-.tableSearch input{
-   width: 400px;
+.searchInputContainer input {
+   width: 250px;
    height: 40px;
-   border: 1px solid #aeaeae;
-   background: none;
-   border-radius: 20px;
-   color: #fff;
+   padding-left: 10px;
 }
 
-.tableSearch input::placeholder{
-   color: #fff;
-   padding-left: 20px;
+
+.searchStudent span {
+   font-weight: 700;
 }
 
-.portalName{
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-   margin-left: 10px;
+.searchStudent input {
+   width: 300px;
+   height: 40px;
+   border-radius: 5px;
+   border: 1px solid #0b1e1c;
+   padding-left: 5px;
 }
 
-.portalName h1{
-   font-size: 20px;
-   color: #fff;
-}
-
-.userContainer{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin-right: 10px;
-}
-
-.userContainer .userIcon{
-   color: #fff;
-   margin-right: 10px;
-}
-
-.userProfile{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-.userProfile p{
-   color: #aeaeae;
-}
-
-.userLogout{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-.userLogout p{
-   color: #aeaeae;
-}
-
-.tableContainer{
+.tableHeader {
    width: 100%;
-   height: 100%;
-}
-
-.tableItems{
-   width: 50%;
    margin: 0 auto;
-}
-
-
-.tableHeader{
+   height: 7vh;
    display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+   background-color: #0b1e1c;
 }
 
-.tableHeader h1{
+.tableHeader h1 {
+   color: #fff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
    font-size: 15px;
    text-transform: uppercase;
-   text-align: center;
+   font-family: sans-serif;
 }
 
-.tableColumn{
+.tableColumn {
    display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-   margin-top: 4%;
-   border: 1px solid #aeaeae;
-   border-radius: 20px;
-   padding: 10px;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+   margin-top: 5px;
+   padding: 10.5px;
+   width: 100%;
+   margin: 10px auto;
+   background-color: #f1f1f1;
+   margin-bottom: 0.9%;
 }
 
-.tableColumn h1{
+.tableColumn h1 {
+   color: #000;
+   display: flex;
+   justify-content: center;
+   align-items: center;
    font-size: 13px;
    font-weight: 100;
-   text-align: center;
+   padding: 3px;
+   font-family: sans-serif;
+}
+
+.tableColumn h1:nth-child(6) {
+   color: #f5a826;
 }
 
 
-.containerLastSection{
+.paginationContainer {
    width: 100%;
-   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 20px;
+   border-radius: 50px;
 }
 
-.lastSectionItems{
-   width: 60%;
-   margin: 1.5% auto;
-}
-
-.items{
+.paginationItems {
    display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   height: 9vh;
-   background-color: #191970;
-   border-radius: 10px;
+   grid-template-columns: 1fr 8fr 1fr;
 }
 
-.item1{
+.totalMembers {
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-.item1 p{
-   font-size: 13px;
+.totalMembers h1 {
+   font-size: 15px;
+   color: #f5a826;
+}
+
+
+.totalMembers p {
+   margin-right: 5px;
+   color: #001f3f;
+}
+
+.navigation {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.navigation p {
+   background-color: #001f3f;
+   width: 30px;
+   height: 30px;
    color: #fff;
+   justify-content: center;
+   align-items: center;
+   display: flex;
+   font-weight: 700;
+   margin: 5px;
+   border-radius: 50%;
 }
 
-.item1 h1{
-   font-size: 13px;
+.navigation button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 40px;
+   max-width: 80px;
+   width: 100%;
+   border: none;
+   outline: none;
    color: #fff;
-   margin-left: 5px;
+   border-radius: 5px;
+   background-color: #f5a826;
+   transition: all 0.3s linear;
+   cursor: pointer;
 }
 
-.item2{
+.displayNumRow {
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-.item2 button{
-   padding: 10px;
-   border-radius: 10px;
-}
-
-.item2 p{
-   padding: 10px;
-   color: red;
-   font-weight: 600;
-}
-
-.item3{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-.item3 select{
-   padding: 7px;
-   border-radius: 10px;
-}
-.menuBurger{
+.MobileMenu {
    display: none;
 }
 
 
-@media (max-width: 700px){
-   .containerItems{
-      width: 99%;
-   }
 
-   .containerHeader{
-      border-radius: 5px;
-   }
+.circle_container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.8);
+   z-index: 9999;
+ }
+ 
+ .circle {
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   border: 3px solid #fff;
+   border-top-color: transparent;
+   animation: spin 1s linear infinite;
+ }
+ 
+ @keyframes spin {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
+ }
+ 
+ .circle_container span {
+   margin-left: 10px;
+   font-size: 20px;
+   color: dodgerblue;
+   font-family: 'metropolis';
+ }
 
-   .menuBurger{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      margin-right: 10px;
-   }
 
-   .userContainer{
-      display: none;
-   }
-
-   .portalName{
-      display: none;
-   }
-
-   .tableSearch{
-      margin-left: 10px;
-   }
-
-   .tableSearch input{
-      width: 220px;
-      border: 1px solid #fff;
-   }
-
-   .tableSearch input::placeholder{
-      color: #aeaeae;
-      padding-left: 10px;
-   }
-
-   .containerHeader{
-      grid-template-columns: 1fr auto;
-   }
-
-   .tableItems{
-      width: 98%;
-      margin: 5% auto;
-   }
-
-   .tableHeader, .tableColumn{
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-   }
-
-   .tableHeader h1{
-      font-size: 11px;
-      font-weight: 100;
-   }
-
-   .tableHeader h1:nth-child(5){
-      display: none;
-   }
-
-   .tableColumn{
-      margin-top: 9%;
-   }
-
-   .tableColumn h1{
-      font-size: 10px;
-      font-weight: 100;
-   }
-
-   .tableColumn h1:nth-child(5){
-      display: none;
-   }
-
-   .lastSectionItems{
+@media (max-width:700px) {
+   .studentListContainer {
       width: 95%;
-      margin: 2% auto;
+      margin: 1% auto;
    }
 
-   .menuContainerNav{
+   .searchStudent h1 {
+      font-size: 20px;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      flex-direction: column;
    }
 
-   .menuContainerNav ul{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+   .searchStudent input {
+      width: 100%;
    }
 
-   .menuContainerNav ul li{
-      list-style: none;
-      color: #fff;
+   .tableHeader {
+      grid-template-columns: auto 1fr auto;
+      height: 8vh;
+      padding: 2px;
+      margin-top: 2%;
    }
-   .items{
-      border-radius: 5px;
+
+   .tableHeader h1 {
+      font-size: 12px;
+   }
+
+   .tableHeader h1:nth-child(2) {
+      display: none;
+   }
+
+   .tableHeader h1:nth-child(3) {
+      display: none;
+   }
+
+   .tableHeader h1:nth-child(5) {
+      display: none;
+   }
+
+   .tableColumn h1:nth-child(2) {
+      display: none;
+   }
+
+   .tableColumn h1:nth-child(3) {
+      display: none;
+   }
+
+   .tableColumn h1:nth-child(5) {
+      display: none;
+   }
+
+   .tableColumn {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      padding: 2px;
+   }
+
+   .tableColumn h1 {
+      font-size: 12px;
+   }
+
+
+   .totalMembers h1 {
+      font-size: 12px;
+      color: #f5a826;
+   }
+
+   .totalMembers p {
+      font-size: 12px;
+   }
+
+   .navigation button {
+      width: auto;
+      padding: 5px;
+   }
+
+   .navigation p {
+      width: 20px;
+      height: 20px;
+      font-size: 11px;
+   }
+
+   .paginationContainer {
+      margin-top: 0;
+   }
+
+   .paginationItems {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+   }
+
+   .MobileMenu {
+      display: block;
+   }
+
+   .displayNumRow {
+      display: none;
    }
 
 }
