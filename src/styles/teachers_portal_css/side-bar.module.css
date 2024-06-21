@@ -1,0 +1,186 @@
+.container {
+   background-color: #0b1e1c;
+   height: 100%;
+   position: fixed;
+   width: 17%;
+   top: 0;
+}
+
+.container_items {
+   padding: 20px;
+}
+
+.container_items_1 {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 1%;
+}
+
+.container_items_1_logo .logo {
+   width: auto;
+   height: auto;
+}
+
+
+.container_items_2 {
+   margin-top: 20%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.container_items_2 .link {
+   font-size: 16px;
+   color: #fff;
+   margin-left: 5px;
+   font-weight: 600;
+   cursor: pointer;
+   text-decoration: none;
+}
+
+.container_items_2 .container_items_2_icon {
+   color: #fff;
+}
+
+.container_items_2 h1 {
+   color: #fff;
+   font-size: 15px;
+   margin-left: 7px;
+   font-family: Helvetica, ;
+}
+
+.container_items_3 {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 10%;
+}
+
+.container_items_3 .hr {
+   width: 90%;
+}
+
+
+.container_items_4 {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 25%;
+}
+
+.container_items_4_link {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   margin-bottom: 21%;
+}
+
+.container_items_4_link .container_items_4_icon {
+   color: #aeaeae;
+}
+
+.container_items_4_link .link {
+   font-size: 16px;
+   color: #aeaeae;
+   margin-left: 5px;
+   font-weight: 100;
+   cursor: pointer;
+   text-decoration: none;
+}
+
+.container_items_4_link:active {
+   color: red;
+}
+
+
+
+
+.container_items_5 {
+   display: flex;
+   position: fixed;
+   top: 94%;
+   justify-content: center;
+   align-items: center;
+   left: 4.3%;
+   color: #aeaeae;
+   cursor: pointer;
+}
+
+.container_items_5 h1 {
+   font-size: 18px;
+   color: #aeaeae;
+   margin-left: 5px;
+   font-family: Helvetica;
+}
+
+
+
+
+.userProfileContainer {
+   display: flex;
+   justify-content: flex-start;
+   margin-top: 38%;
+   margin-left: 1%;
+}
+
+.userProfileBox {
+   width: 250px;
+   background-color: #fff;
+   position: absolute;
+   border-radius: 10px;
+}
+
+.buttonLinks .item {
+   font-size: 14px;
+   font-family: 'metropolis';
+}
+
+
+.circle_container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.8);
+   z-index: 9999;
+}
+
+.circle {
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   border: 3px solid #fff;
+   border-top-color: transparent;
+   animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+   0% {
+      transform: rotate(0deg);
+   }
+
+   100% {
+      transform: rotate(360deg);
+   }
+}
+
+.circle_container span {
+   margin-left: 10px;
+   font-size: 20px;
+   color: dodgerblue;
+   font-family: 'metropolis';
+}
+
+
+@media (max-width:700px) {
+   .container {
+      display: none;
+   }
+}
