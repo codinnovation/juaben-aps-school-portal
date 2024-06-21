@@ -141,7 +141,7 @@ function StudentAttendance({
         <div className={styles.attendanceContainer}>
           <div className={styles.attendanceBody}>
             <div className={styles.attendanceHeader}>
-              <h1>Students Attendance Page</h1>
+              <h1>Students Attendance Page - Term one</h1>
             </div>
 
             <div className={styles.attendanceTable}>

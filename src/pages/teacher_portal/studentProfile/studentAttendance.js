@@ -8,7 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 function StudentAttendance({ selectedStudent }) {
   const [date, setDate] = useState("");
   const [status, setStatus] = useState("");
-  const [attendanceData, setAttendanceData] = useState([]);
+  const [semester, setSemester] = useState("");
+  const [attendanceData, setAttendanceData] = useState({});
   const [openModal, setOpenModal] = useState(false);
 
   const handleCloseModal = () => {
@@ -24,10 +25,7 @@ function StudentAttendance({ selectedStudent }) {
       .then((snapshot) => {
         if (snapshot.exists()) {
           const data = snapshot.val();
-          if (data) {
-            const attendanceArray = Object.values(data);
-            setAttendanceData(attendanceArray);
-          }
+          setAttendanceData(data || {});
         }
       })
       .catch((error) => {
@@ -40,9 +38,14 @@ function StudentAttendance({ selectedStudent }) {
   }, []);
 
   const addAttendance = () => {
-    const studentRef = ref(
+    if (!semester) {
+      toast.error("Please select a semester");
+      return;
+    }
+
+    const semesterRef = ref(
       db,
-      `/japsstudents/${selectedStudent.key}/attendance`
+      `/japsstudents/${selectedStudent.key}/attendance/${semester}`
     );
 
     const dateObj = new Date(date);
@@ -55,13 +58,16 @@ function StudentAttendance({ selectedStudent }) {
       status: status,
     };
 
-    push(studentRef, newAttendance)
+    push(semesterRef, newAttendance)
       .then(() => {
         console.log("Attendance added successfully.");
         fetchAttendanceData();
+        handleCloseModal();
+        toast.success("Attendance added successfully");
       })
       .catch((error) => {
         console.error("Error adding attendance:", error);
+        toast.error("Error adding attendance");
       });
   };
 
@@ -73,12 +79,8 @@ function StudentAttendance({ selectedStudent }) {
     setStatus(e.target.value);
   };
 
-  const splitAttendanceIntoGroups = (data, groupSize) => {
-    const groupedData = [];
-    for (let i = 0; i < data.length; i += groupSize) {
-      groupedData.push(data.slice(i, i + groupSize));
-    }
-    return groupedData;
+  const handleSemesterChange = (e) => {
+    setSemester(e.target.value);
   };
 
   const formatDate = (dateString) => {
@@ -87,29 +89,56 @@ function StudentAttendance({ selectedStudent }) {
     return date.toLocaleDateString(undefined, options);
   };
 
-  const groupedAttendanceData = splitAttendanceIntoGroups(attendanceData, 5);
+  const splitAttendanceIntoGroups = (data) => {
+    const groupedData = { Monday: [], Tuesday: [], Wednesday: [], Thursday: [], Friday: [] };
+    if (data) {
+      Object.values(data).forEach((attendance) => {
+        groupedData[attendance.day].push(attendance);
+      });
+    }
+    return groupedData;
+  };
+
+  const groupedAttendanceData = semester ? splitAttendanceIntoGroups(attendanceData[semester]) : {};
 
   return (
     <>
       <div className={styles.attendanceContainer}>
         <div className={styles.attendanceItems}>
-          <div className={styles.attendanceTable}>
-            <div className={styles.attendanceHeader}>
-              <h1>Monday</h1>
-              <h1>Tuesday</h1>
-              <h1>Wednesday</h1>
-              <h1>Thursday</h1>
-              <h1>Friday</h1>
-            </div>
+          <div className={styles.semesterSelection}>
+            <label>Select Semester:</label>
+            <select value={semester} onChange={handleSemesterChange}>
+              <option value=""></option>
+              <option value="Semester One">Semester One</option>
+              <option value="Semester Two">Semester Two</option>
+              <option value="Semester Three">Semester Three</option>
+            </select>
+          </div>
 
-            {groupedAttendanceData.map((group, rowIndex) => (
-              <div className={styles.attendanceBody} key={rowIndex}>
-                {group.map((attendance, index) => (
-                  <p key={index}>{`${attendance.status} - ${formatDate(attendance.date)}`}</p>
+          {semester && (
+            <div className={styles.attendanceTable}>
+              <div className={styles.attendanceHeader}>
+                <h1>Monday</h1>
+                <h1>Tuesday</h1>
+                <h1>Wednesday</h1>
+                <h1>Thursday</h1>
+                <h1>Friday</h1>
+              </div>
+              <div className={styles.attendanceBody}>
+                {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((day) => (
+                  <div key={day} className={styles.attendanceColumn}>
+                    {groupedAttendanceData[day] ? (
+                      groupedAttendanceData[day].map((attendance, index) => (
+                        <p key={index}>{`${attendance.status} - ${formatDate(attendance.date)}`}</p>
+                      ))
+                    ) : (
+                      <p>No attendance records</p>
+                    )}
+                  </div>
                 ))}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
 
         <div className={styles.addBtn}>
@@ -135,6 +164,16 @@ function StudentAttendance({ selectedStudent }) {
                 <option value=""></option>
                 <option value="Present">Present</option>
                 <option value="Absent">Absent</option>
+              </select>
+            </div>
+
+            <div className={styles.semesterFieldContainer}>
+              <label>Semester:</label>
+              <select value={semester} onChange={handleSemesterChange}>
+                <option value=""></option>
+                <option value="Semester One">Semester One</option>
+                <option value="Semester Two">Semester Two</option>
+                <option value="Semester Three">Semester Three</option>
               </select>
             </div>
 
