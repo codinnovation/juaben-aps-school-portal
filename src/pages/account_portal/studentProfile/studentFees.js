@@ -13,11 +13,18 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
   const [paymentDate, setPaymentDate] = useState("");
   const [semesterFee, setSemesterFee] = useState("");
   const [by, setBy] = useState(user?.email);
+  const [madeBy, setMadeBy] = useState("");
   const [balanceFee, setBalanceFee] = useState(0);
   const [paymentList, setPaymentList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [editPaymentId, setEditPaymentId] = useState(null);
-  const [editPaymentAmount, setEditPaymentAmount] = useState("");
+  const [editPaymentData, setEditPaymentData] = useState({
+    editPaymentDate: "",
+    editPaymentAmount: "",
+    editSemesterFee: "",
+    editMadeBy: "",
+    editBy: "",
+  });
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -40,15 +47,14 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
       AmountOfPayment: parseInt(paymentAmount),
       SemesterFee: semesterFee,
       By: by,
+      MadeBy: madeBy
     };
 
     try {
       await push(studentRef, newPaymentOfFees);
 
-      // Update the balance immediately after making the payment
       const updatedBalance = balanceFee - parseInt(paymentAmount);
       setBalanceFee(updatedBalance);
-      console.log("Payment received successfully");
       toast.success(
         `Payment made for Ghc${paymentAmount} - ${selectedStudent?.FirstName}`
       );
@@ -58,20 +64,33 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
     }
   };
 
-  const updatePaymentAmount = async () => {
+  const updatePaymentData = async () => {
     const paymentRef = ref(
       db,
       `/japsstudents/${selectedStudent.key}/SchoolFees/Payments/${editPaymentId}`
     );
 
     try {
-      await set(paymentRef, { ...paymentList.find(p => p.key === editPaymentId), AmountOfPayment: parseInt(editPaymentAmount) });
+      await set(paymentRef, {
+        ...paymentList.find((p) => p.key === editPaymentId),
+        DateOfPayment: editPaymentData.editPaymentDate,
+        AmountOfPayment: parseInt(editPaymentData.editPaymentAmount),
+        SemesterFee: editPaymentData.editSemesterFee,
+        MadeBy: editPaymentData.editMadeBy,
+        By: editPaymentData.editBy,
+      });
       setEditPaymentId(null);
-      setEditPaymentAmount("");
-      toast.success("Payment amount updated successfully");
+      setEditPaymentData({
+        editPaymentDate: "",
+        editPaymentAmount: "",
+        editSemesterFee: "",
+        editMadeBy: "",
+        editBy: "",
+      });
+      toast.success("Payment data updated successfully");
     } catch (error) {
-      console.error("Error updating payment amount:", error);
-      toast.error("Error updating payment amount");
+      console.error("Error updating payment data:", error);
+      toast.error("Error updating payment data");
     }
   };
 
@@ -175,6 +194,14 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
                 />
 
                 <input
+                  placeholder="Made By"
+                  value={madeBy}
+                  name="madeBy"
+                  type="text"
+                  onChange={(e) => setMadeBy(e.target.value)}
+                />
+
+                <input
                   placeholder="Made by"
                   value={`${user?.email} - ${user?.displayName}` || "No User"}
                   disabled
@@ -196,7 +223,20 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
               <div className={styles.paymentHistoryFields} key={payment.key}>
                 <div className={styles.paymentDate}>
                   <label>Payment Date</label>
-                  <h1>{payment?.DateOfPayment || "No"}</h1>
+                  {editPaymentId === payment.key ? (
+                    <input
+                      type="date"
+                      value={editPaymentData.editPaymentDate}
+                      onChange={(e) =>
+                        setEditPaymentData({
+                          ...editPaymentData,
+                          editPaymentDate: e.target.value,
+                        })
+                      }
+                    />
+                  ) : (
+                    <h1>{payment?.DateOfPayment || "No"}</h1>
+                  )}
                 </div>
 
                 <div className={styles.paymentDate}>
@@ -204,8 +244,13 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
                   {editPaymentId === payment.key ? (
                     <input
                       type="number"
-                      value={editPaymentAmount}
-                      onChange={(e) => setEditPaymentAmount(e.target.value)}
+                      value={editPaymentData.editPaymentAmount}
+                      onChange={(e) =>
+                        setEditPaymentData({
+                          ...editPaymentData,
+                          editPaymentAmount: e.target.value,
+                        })
+                      }
                     />
                   ) : (
                     <h1>{`Ghc ${payment?.AmountOfPayment || "No Amount"}`}</h1>
@@ -214,36 +259,79 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
 
                 <div className={styles.paymentDate}>
                   <label>Semester</label>
-                  <h1>{`${payment?.SemesterFee || "No Semester"}`}</h1>
+                  {editPaymentId === payment.key ? (
+                    <input
+                      type="number"
+                      value={editPaymentData.editSemesterFee}
+                      onChange={(e) =>
+                        setEditPaymentData({
+                          ...editPaymentData,
+                          editSemesterFee: e.target.value,
+                        })
+                      }
+                    />
+                  ) : (
+                    <h1>{`${payment?.SemesterFee || "No Semester"}`}</h1>
+                  )}
                 </div>
 
                 <div className={styles.paymentDate}>
-                  <label>By</label>
-                  <h1>{`${payment?.By || "No one"}`}</h1>
+                  <label>Made By</label>
+                  {editPaymentId === payment.key ? (
+                    <input
+                      type="text"
+                      value={editPaymentData.editMadeBy}
+                      onChange={(e) =>
+                        setEditPaymentData({
+                          ...editPaymentData,
+                          editMadeBy: e.target.value,
+                        })
+                      }
+                    />
+                  ) : (
+                    <h1>{payment?.MadeBy || "No"}</h1>
+                  )}
                 </div>
 
-                <div className={styles.editButton}>
+                <div className={styles.paymentDate}>
+                  <label>Receiver</label>
                   {editPaymentId === payment.key ? (
-                    <>
-                      <button onClick={updatePaymentAmount}>Save</button>
-                      <button
-                        onClick={() => {
-                          setEditPaymentId(null);
-                          setEditPaymentAmount("");
-                        }}
-                      >
-                        Cancel
-                      </button>
-                    </>
+                    <input
+                      type="text"
+                      value={editPaymentData.editBy}
+                      onChange={(e) =>
+                        setEditPaymentData({
+                          ...editPaymentData,
+                          editBy: e.target.value,
+                        })
+                      }
+                    />
+                  ) : (
+                    <h1>{payment?.By || "No"}</h1>
+                  )}
+                </div>
+
+                <div className={styles.paymentActions}>
+                  {editPaymentId === payment.key ? (
+                    <button onClick={updatePaymentData}>Save</button>
                   ) : (
                     <button
                       onClick={() => {
                         setEditPaymentId(payment.key);
-                        setEditPaymentAmount(payment.AmountOfPayment);
+                        setEditPaymentData({
+                          editPaymentDate: payment?.DateOfPayment,
+                          editPaymentAmount: payment?.AmountOfPayment,
+                          editSemesterFee: payment?.SemesterFee,
+                          editMadeBy: payment?.MadeBy,
+                          editBy: payment?.By,
+                        });
                       }}
                     >
                       Edit
                     </button>
+                  )}
+                  {editPaymentId === payment.key && (
+                    <button onClick={() => setEditPaymentId(null)}>Cancel</button>
                   )}
                 </div>
               </div>
@@ -253,20 +341,11 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
       </div>
 
       <Dialog open={openModal} onClose={handleCloseModal}>
-        <DialogTitle
-          style={{ fontSize: "15px", textTransform: "uppercase" }}
-        >{`Proceed payment`}</DialogTitle>
+        <DialogTitle>Confirm Payment</DialogTitle>
         <DialogContent>
-          <ul
-            style={{
-              textDecoration: "none",
-              listStyle: "none",
-              fontFamily: "sans-serif",
-            }}
-          >
-            <Button onClick={addPaymentOfFee}>Yes</Button>
-            <Button onClick={handleCloseModal}>No</Button>
-          </ul>
+          <p>Are you sure you want to make this payment?</p>
+          <Button onClick={addPaymentOfFee}>Yes</Button>
+          <Button onClick={handleCloseModal}>No</Button>
         </DialogContent>
       </Dialog>
 
