@@ -162,22 +162,27 @@ function StudentFees({
               <div className={styles.paymentHistoryFields} key={index}>
                 <div className={styles.paymentDate}>
                   <label>Payment Date</label>
-                  <h1>{payment?.DateOfPayment || "Null"}</h1>
+                  <h1>{payment?.DateOfPayment || ""}</h1>
                 </div>
 
                 <div className={styles.paymentDate}>
                   <label>Payment Amount</label>
-                  <h1>{`Ghc ${payment?.AmountOfPayment || "Null"}`}</h1>
+                  <h1>{`Ghc ${payment?.AmountOfPayment || ""}`}</h1>
                 </div>
 
                 <div className={styles.paymentDate}>
                   <label>Semester</label>
-                  <h1>{`${payment?.SemesterFee || "Null"}`}</h1>
+                  <h1>{`${payment?.SemesterFee || ""}`}</h1>
                 </div>
 
                 <div className={styles.paymentDate}>
-                  <label>By</label>
-                  <h1>{`Accountant`}</h1>
+                  <label>Made By</label>
+                  <h1>{payment?.by}</h1>
+                </div>
+
+                <div className={styles.paymentDate}>
+                  <label>Receiver</label>
+                  <h1>{payment?.by}</h1>
                 </div>
               </div>
             ))}
