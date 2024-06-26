@@ -18,6 +18,8 @@ function Index({ user }) {
 
   const router = useRouter();
 
+  
+
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
@@ -33,7 +35,6 @@ function Index({ user }) {
       clearInterval(timer);
     };
   }, []);
-
 
   const [createUser, setCreateUser] = useState({
     email: "",
@@ -144,7 +145,7 @@ function Index({ user }) {
                   id="role"
                 >
                   <option></option>
-                  <option value="Administrator">Administrator</option>
+                  <option value=""></option>
                   <option value="Teacher-Creche">Teacher - Creche</option>
                   <option value="Teacher-Nursery-1">Teacher - Nursery 1</option>
                   <option value="Teacher-Nursery-2">Teacher - Nursery 2</option>
