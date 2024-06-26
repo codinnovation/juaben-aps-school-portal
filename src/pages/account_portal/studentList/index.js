@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../../styles/admin_portal_css/studentList.module.css";
+import styles from "../../../styles/accountant_portal/studentList.module.css";
 import { auth, db } from "../../../lib/firebase";
 import { ref } from "firebase/database";
 import { get } from "firebase/database";
@@ -81,6 +81,9 @@ function StudentList({ user }) {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const totalPages = Math.ceil(searchForStudent.length / studentsPerPage);
+
+
   return (
     <>
       <Layout>
@@ -127,22 +130,21 @@ function StudentList({ user }) {
                 </div>
 
                 <div className={styles.navigation}>
-                  <button
-                    onClick={() =>
-                      setCurrentPage((prevPage) =>
-                        prevPage > 1 ? prevPage - 1 : prevPage
-                      )
-                    }
-                  >
-                    Prev
-                  </button>
-                  {Array.from(
-                    {
-                      length: Math.ceil(
-                        searchForStudent.length / studentsPerPage
-                      ),
-                    },
-                    (_, i) => (
+                <button
+                  onClick={() =>
+                    setCurrentPage((prevPage) =>
+                      prevPage > 1 ? prevPage - 1 : prevPage
+                    )
+                  }
+                >
+                  Prev
+                </button>
+                {Array.from(
+                  {
+                    length: totalPages,
+                  },
+                  (_, i) =>
+                    i < 3 || i === totalPages - 1 ? (
                       <p
                         key={i + 1}
                         onClick={() => paginate(i + 1)}
@@ -152,36 +154,40 @@ function StudentList({ user }) {
                       >
                         {i + 1}
                       </p>
+                    ) : i === 3 ? (
+                      <span key="ellipsis">...</span>
+                    ) : null
+                )}
+                <button
+                  onClick={() =>
+                    setCurrentPage((prevPage) =>
+                      prevPage < totalPages ? prevPage + 1 : prevPage
                     )
-                  )}
-                  <button
-                    onClick={() =>
-                      setCurrentPage((prevPage) =>
-                        prevPage <
-                        Math.ceil(searchForStudent.length / studentsPerPage)
-                          ? prevPage + 1
-                          : prevPage
-                      )
-                    }
-                  >
-                    Next
-                  </button>
-                </div>
+                  }
+                >
+                  Next
+                </button>
+              </div>
+
 
                 <div className={styles.displayNumRow}>
-                  <select
-                    value={studentsPerPage}
-                    onChange={handlePerPageChange}
-                  >
-                    <option value={10}>10</option>
-                    <option value={20}>20</option>
-                    <option value={30}>30</option>
-                    <option value={40}>40</option>
-                    <option value={50}>50</option>
-                    <option value={60}>60</option>
-                    <option value={70}>70</option>
-                  </select>
-                </div>
+                <select value={studentsPerPage} onChange={handlePerPageChange}>
+                  <option value={13}>13</option>
+                  <option value={20}>20</option>
+                  <option value={30}>30</option>
+                  <option value={40}>40</option>
+                  <option value={50}>50</option>
+                  <option value={60}>60</option>
+                  <option value={70}>70</option>
+                  <option value={80}>80</option>
+                  <option value={90}>90</option>
+                  <option value={100}>100</option>
+                  <option value={150}>150</option>
+                  <option value={200}>200</option>
+                  <option value={300}>300</option>
+                  <option value={400}>400</option>
+                </select>
+              </div>
               </div>
             </div>
           </div>

@@ -43,7 +43,7 @@ function Sidebar() {
   };
 
   const goToThpDashboard = async () => {
-    router.push("https://juabenapsportal.vercel.app/admin_portal");
+    router.push("/");
   };
 
   const handleLogout = async (e) => {
@@ -110,7 +110,7 @@ function Sidebar() {
             <div className={styles.container_items_4_items}>
               <div className={styles.container_items_4_link}>
                 <Dashboard className={styles.container_items_4_icon} />
-                <Link href="/" className={styles.link}>
+                <Link href="/account_portal" className={styles.link}>
                   Dashboard
                 </Link>{" "}
               </div>
@@ -121,7 +121,7 @@ function Sidebar() {
                 <NotificationAddIcon
                   className={styles.container_items_4_icon}
                 />
-                <Link href="/" className={styles.link}>
+                <Link href="/account_portal" className={styles.link}>
                   Parent&apos;s Notification
                 </Link>
               </div>
@@ -130,7 +130,7 @@ function Sidebar() {
                 <NotificationAddIcon
                   className={styles.container_items_4_icon}
                 />
-                <Link href="/" className={styles.link}>
+                <Link href="/account_portal" className={styles.link}>
                   Teacher&apos;s Notification
                 </Link>
               </div>

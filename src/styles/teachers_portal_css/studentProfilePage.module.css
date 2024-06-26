@@ -1,6 +1,7 @@
 .container {
-   width: 100%;
-   height: 100%;
+   width: 77%;
+   margin-left: 20%;
+   margin-top: 2%;
 }
 
 .containerItems {
@@ -12,8 +13,7 @@
    display: grid;
    grid-template-columns: 1fr 1fr;
    height: 15vh;
-   background-color: #191970;
-   border-radius: 20px;
+   background-color: #0b1e1c;
 }
 
 .item1 {
@@ -40,8 +40,7 @@
    background-color: #fff;
    color: #000;
    width: 150px;
-   height: 40px;
-   border-radius: 20px;
+   height: 50px;
 }
 
 .menuContainer {
@@ -56,12 +55,10 @@
 }
 
 .profileItems {
-   width: 60%;
-   height: 70vh;
+   width: 70%;
+   height: auto;
    padding: 10px;
    margin: 1% auto;
-   border: 1px solid #191970;
-   border-radius: 20px;
 }
 
 .items {
@@ -74,6 +71,7 @@
 .item {
    width: 100%;
    height: 100%;
+   margin-bottom: 10px;
 }
 
 .item p {
@@ -84,36 +82,46 @@
 
 .item h1 {
    font-size: 15px;
+   width: 100%;
+   height: 60px;
    font-weight: 100;
    border: 1px solid #aeaeae;
    margin-right: 10px;
    margin-top: 6px;
-   border-radius: 10px;
+   border-radius: 5px;
    padding: 10px;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
 }
 
 .backToList {
    display: flex;
    justify-content: center;
    align-items: center;
+   margin-top: 5%;
 }
 
 .backToList button {
    width: 150px;
-   height: 45px;
-   background-color: green;
+   height: 50px;
+   background-color: #0b1e1c;
    color: #fff;
-   border-radius: 20px;
    border: none;
 }
 
 @media (max-width: 700px) {
+   .container{
+      width: 100%;
+      margin-left: 0%;
+      margin-top: 0%;
+   }
    .containerItems {
       width: 99%;
    }
    .containerHeader {
-      height: 10vh;
-      border-radius: 10px;
+      height: 13vh;
+      border-radius: 4px;
    }
 
    .navContainer {
@@ -155,5 +163,21 @@
 
    .backToList{
       margin-bottom: 2px;
+   }
+
+ 
+   .menuContainerNav{
+      width: 100%;
+   }
+
+   .menuContainerNav ul{
+      list-style: none;
+   }
+
+   .menuContainerNav li{
+      background-color: #0b1e1c;
+      margin: 20px;
+      padding: 10px;
+      color: #fff;
    }
 }

@@ -18,6 +18,7 @@ import NotificationAdd from "@mui/icons-material/NotificationAdd";
 import EventIcon from "@mui/icons-material/Event";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import withSession from "@/lib/session";
 
 function StudentList() {
   const [studentProfilePageView, setStudentProfilePageView] = useState(false);
@@ -27,8 +28,32 @@ function StudentList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [studentsPerPage, setStudentsPerPage] = useState(13);
-  const [searchInputClicked, setSearchInputClicked] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [user, setUser] = useState(null)
+
+  console.log(user)
+
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("/api/user");
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setUser(null);
+      } finally {
+      }
+    };
+
+    fetchUser();
+  }, []);
+
 
   const handleLogout = async (e) => {
     setIsButtonClicked(true);
@@ -72,7 +97,14 @@ function StudentList() {
             key,
             ...value,
           }));
-          setStudentData(dataArray);
+
+          const teacherClass = user?.displayName
+            ?.replace("Teacher-", "")
+            .replace("-", " ");
+          const filteredStudents = dataArray.filter(
+            (student) => student.Class === teacherClass
+          );
+          setStudentData(filteredStudents);
         } else {
           setStudentData([]);
         }
@@ -83,7 +115,7 @@ function StudentList() {
     };
 
     fetchData();
-  }, []);
+  }, [user]);
 
   const showStudentProfilePage = (rowData) => {
     setSelectedStudent(rowData);
@@ -236,27 +268,9 @@ function StudentList() {
           </div>
         </div>
       )}
+      <ToastContainer />
 
-      <div className={styles.MobileMenu}>
-        <Paper
-          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-          elevation={3}
-        >
-          <BottomNavigation showLabels>
-            <BottomNavigationAction label="Menu" icon={<Dashboard />} />
-            <BottomNavigationAction
-              label="Notifications"
-              icon={<NotificationAdd />}
-            />
-            <BottomNavigationAction label="Events" icon={<EventIcon />} />
-            <BottomNavigationAction
-              label="Logout"
-              icon={<LogoutIcon />}
-              onClick={handleLogout}
-            />
-          </BottomNavigation>
-        </Paper>
-      </div>
+    
 
       {studentProfilePageView && (
         <StudentProfilePageComponent
@@ -269,3 +283,24 @@ function StudentList() {
 }
 
 export default StudentList;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

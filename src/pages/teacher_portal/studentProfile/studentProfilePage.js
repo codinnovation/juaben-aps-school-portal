@@ -17,7 +17,6 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
   const [openModal, setOpenModal] = useState(false);
   const [activeComponent, setActiveComponent] = useState("studentProfile");
 
-
   const handleCloseModal = () => {
     setOpenModal(false);
   };
@@ -179,122 +178,27 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
         <SetExamScores selectedStudent={selectedStudent} />
       )}
 
-      <Dialog open={openModal} onClose={handleCloseModal}>
+      <Dialog
+        open={openModal}
+        onClose={handleCloseModal}
+        className={styles.menuDialogContainer}
+      >
         <DialogTitle>{user?.user?.displayName}</DialogTitle>
         <DialogContent>
           <div className={styles.menuContainerNav}>
-            <ul
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                alignItems: "center",
-                listStyle: "none",
-              }}
-            >
-              <li
-                onClick={() => naviagteTo("studentProfile")}
-                style={{
-                  backgroundColor: "#191970",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "20px",
-                  width: "100%",
-                  textAlign: "center",
-                  fontSize: "12px",
-                }}
-              >
-                Profile
-              </li>
-              <li
-                onClick={() => naviagteTo("studentAttendance")}
-                style={{
-                  backgroundColor: "#191970",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "20px",
-                  marginTop: "10px",
-                  width: "100%",
-                  textAlign: "center",
-                  fontSize: "12px",
-                }}
-              >
+            <ul>
+              <li onClick={() => naviagteTo("studentProfile")}>Profile</li>
+              <li onClick={() => naviagteTo("studentAttendance")}>
                 Attendance
               </li>
 
-              <li
-                onClick={() => naviagteTo("studentClassScore")}
-                style={{
-                  backgroundColor: "#191970",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "20px",
-                  marginTop: "10px",
-                  width: "100%",
-                  textAlign: "center",
-                  fontSize: "12px",
-                }}
-              >
+              <li onClick={() => naviagteTo("studentClassScore")}>
                 Class Score
               </li>
 
-              <li
-                onClick={() => naviagteTo("studentClassTest")}
-                style={{
-                  backgroundColor: "#191970",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "20px",
-                  marginTop: "10px",
-                  width: "100%",
-                  textAlign: "center",
-                  fontSize: "12px",
-                }}
-              >
-                Class Test
-              </li>
+              <li onClick={() => naviagteTo("studentClassTest")}>Class Test</li>
 
-              <li
-                onClick={() => naviagteTo("studentHomework")}
-                style={{
-                  backgroundColor: "#191970",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "20px",
-                  marginTop: "10px",
-                  width: "100%",
-                  textAlign: "center",
-                  fontSize: "12px",
-                }}
-              >
-                Home Work
-              </li>
-
-              {/* <li
-                onClick={() => naviagteTo("studentExams")}
-                style={{
-                  backgroundColor: "#191970",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "20px",
-                  marginTop: "10px",
-                }}
-              >
-                Exam Results
-              </li>
-
-              <li
-                onClick={() => naviagteTo("setExamScores")}
-                style={{
-                  backgroundColor: "#191970",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "20px",
-                  marginTop: "10px",
-                }}
-              >
-                Exams Assessment
-              </li> */}
+              <li onClick={() => naviagteTo("studentHomework")}>Home Work</li>
             </ul>
           </div>
         </DialogContent>
@@ -304,7 +208,6 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
 }
 
 export default StudentProfilePage;
-
 
 export const getServerSideProps = withSession(async function ({ req, res }) {
   const user = req.session.get("user");
