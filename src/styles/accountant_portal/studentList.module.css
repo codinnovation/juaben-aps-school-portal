@@ -1,0 +1,155 @@
+.studentListContainer {
+   width: 77%;
+   margin-left: 20%;
+   margin-top: 1%;
+}
+
+.searchStudent{
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   margin-bottom: 1%;
+   cursor: pointer;
+}
+
+.searchInputContainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: absolute;
+}
+
+.searchInputContainer input{
+   width: 250px;
+   height: 40px;
+   padding-left: 10px;
+}
+
+
+.searchStudent span{
+   font-weight: 700;
+}
+
+.searchStudent input{
+   width: 300px;
+   height: 40px;
+   border-radius: 5px;
+   border: 1px solid #0b1e1c;
+   padding-left: 5px;
+}
+
+.tableHeader {
+   width: 100%;
+   margin: 0 auto;
+   height: 7vh;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+   background-color: #0b1e1c;
+}
+
+.tableHeader h1 {
+   color: #fff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 15px;
+   text-transform: uppercase;
+   font-family: sans-serif;
+}
+
+.tableColumn {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+   margin-top:5px;
+   padding: 10.5px;
+   width: 100%;
+   margin: 10px auto;
+   background-color:#f1f1f1;
+}
+
+.tableColumn h1 {
+   color: #000;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 13px;
+   font-weight: 100;
+   padding: 3px;
+   font-family: sans-serif;
+}
+
+.tableColumn h1:nth-child(6){
+   color: #f5a826;
+}
+
+
+.paginationContainer {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 20px;
+   border-radius: 50px;
+}
+
+.paginationItems {
+   display: grid;
+   grid-template-columns: 1fr 8fr 1fr;
+}
+
+.totalMembers {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.totalMembers h1 {
+   font-size: 15px;
+   color: #f5a826;
+}
+
+
+.totalMembers p {
+   margin-right: 5px;
+   color: #001f3f;
+}
+
+.navigation {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.navigation p{
+   background-color: #001f3f;
+   width: 30px;
+   height: 30px;
+   color: #fff;
+   justify-content: center;
+   align-items: center;
+   display: flex;
+   font-weight: 700;
+   margin: 5px;
+   border-radius: 50%;
+}
+
+.navigation button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 40px;
+   max-width: 80px;
+   width: 100%;
+   border: none;
+   outline: none;
+   color: #fff;
+   border-radius: 5px;
+   background-color: #f5a826;
+   transition: all 0.3s linear;
+   cursor: pointer;
+}
+
+.displayNumRow {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
