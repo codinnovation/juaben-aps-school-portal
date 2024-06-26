@@ -47,7 +47,7 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
       AmountOfPayment: parseInt(paymentAmount),
       SemesterFee: semesterFee,
       By: by,
-      MadeBy: madeBy
+      MadeBy: madeBy,
     };
 
     try {
@@ -95,25 +95,26 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
   };
 
   useEffect(() => {
-    if (
-      selectedStudent &&
-      selectedStudent.SchoolFees &&
-      selectedStudent.SchoolFees.Payments
-    ) {
-      const paymentKeys = Object.keys(selectedStudent.SchoolFees.Payments);
+    if (selectedStudent && selectedStudent.SchoolFees) {
+      const { Payments, TotalFees } = selectedStudent.SchoolFees;
+      const totalFees = TotalFees || 0;
 
-      const totalFees = selectedStudent.SchoolFees.TotalFees || 0;
-      const paidAmount = paymentKeys.reduce((total, paymentKey) => {
-        const payment = selectedStudent.SchoolFees.Payments[paymentKey];
-        return total + payment.AmountOfPayment;
-      }, 0);
+      if (Payments) {
+        const paymentKeys = Object.keys(Payments);
+        const paidAmount = paymentKeys.reduce((total, paymentKey) => {
+          const payment = Payments[paymentKey];
+          return total + (payment.AmountOfPayment || 0);
+        }, 0);
 
-      const updatedBalance = totalFees - paidAmount;
-      setBalanceFee(updatedBalance);
+        const updatedBalance = totalFees - paidAmount;
+        setBalanceFee(updatedBalance);
+      } else {
+        setBalanceFee(totalFees);
+      }
     } else {
       setBalanceFee(0);
     }
-  }, [selectedStudent, paymentList, paymentAmount]);
+  }, [selectedStudent]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -163,7 +164,9 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
                 selectedStudent?.SchoolFees?.TotalFees || 0
               }`}</h1>
               <h1>{`Remaining: ${
-                balanceFee >= 0 ? `Ghc ${balanceFee} (+)` : `Ghc ${-balanceFee}`
+                balanceFee >= 0
+                  ? `Ghc ${balanceFee} (-)`
+                  : `Ghc ${balanceFee} (+)`
               }`}</h1>
             </div>
 
@@ -173,6 +176,7 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
                   placeholder="Date of Payment"
                   value={paymentDate}
                   name="paymentDate"
+                  required
                   type="date"
                   onChange={(e) => setPaymentDate(e.target.value)}
                 />
@@ -183,14 +187,16 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
                   name="paymentDate"
                   type="number"
                   onChange={(e) => setPaymentAmount(e.target.value)}
+                  required
                 />
 
                 <input
-                  placeholder="Semester"
+                  placeholder="Term"
                   value={semesterFee}
                   name="semesterFee"
                   type="number"
                   onChange={(e) => setSemesterFee(e.target.value)}
+                  required
                 />
 
                 <input
@@ -199,10 +205,11 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
                   name="madeBy"
                   type="text"
                   onChange={(e) => setMadeBy(e.target.value)}
+                  required
                 />
 
                 <input
-                  placeholder="Made by"
+                  placeholder="Received by"
                   value={`${user?.email} - ${user?.displayName}` || "No User"}
                   disabled
                   name="by"
@@ -212,7 +219,7 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
               </div>
 
               <div className={styles.submitBtn}>
-                <button onClick={handleOpenModal}>Pay</button>
+                <button onClick={handleOpenModal}>Pay Amount</button>
               </div>
             </div>
           </div>
@@ -258,7 +265,7 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
                 </div>
 
                 <div className={styles.paymentDate}>
-                  <label>Semester</label>
+                  <label>Term</label>
                   {editPaymentId === payment.key ? (
                     <input
                       type="number"
@@ -331,7 +338,9 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
                     </button>
                   )}
                   {editPaymentId === payment.key && (
-                    <button onClick={() => setEditPaymentId(null)}>Cancel</button>
+                    <button onClick={() => setEditPaymentId(null)}>
+                      Cancel
+                    </button>
                   )}
                 </div>
               </div>
