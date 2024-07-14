@@ -33,7 +33,8 @@ function StudentClassScore({ selectedStudent }) {
       ]);
     } else if (
       selectedStudent?.Class === "Creche" ||
-      selectedStudent?.Class === "Nursary"
+      selectedStudent?.Class === "Nursery 1" ||
+      selectedStudent?.Class === "Nursery 2"
     ) {
       setSubjects([
         "",
@@ -108,7 +109,7 @@ function StudentClassScore({ selectedStudent }) {
         }
       })
       .catch((error) => {
-        console.error("Error fetching subject scores:");
+        console.error("Error fetching subject scores:" );
       });
   };
 

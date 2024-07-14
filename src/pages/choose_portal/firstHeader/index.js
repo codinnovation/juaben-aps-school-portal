@@ -45,6 +45,12 @@ function Index({ user }) {
     router.push("/create-teacher");
   };
 
+  const createParentAccount = () => {
+    setIsButtonClicked(true);
+    router.push("/create-parent");
+  };
+
+
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -131,6 +137,8 @@ function Index({ user }) {
         <DialogContent style={{ display: "flex", flexDirection: "column" }}>
           <Button>Profile</Button>
           <Button onClick={createTeacherAccount}>Create Account For Teacher</Button>
+          <Button onClick={createParentAccount}>Create Account For Parent</Button>
+
           <Button onClick={handleLogout}>Logout</Button>
         </DialogContent>
       </Dialog>
