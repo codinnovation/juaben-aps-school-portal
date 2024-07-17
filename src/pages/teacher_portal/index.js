@@ -27,7 +27,7 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
   if (!user || !user.displayName === "Teacher") {
     return {
       redirect: {
-        destination: "/comps/login",
+        destination: "/login",
         permanent: false,
       },
     };

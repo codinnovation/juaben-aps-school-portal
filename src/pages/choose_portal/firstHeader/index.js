@@ -14,29 +14,12 @@ import withSession from "@/lib/session";
 import Logout from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Box from "@mui/material/Box";
-import LinearProgress from "@mui/material/LinearProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Index({ user }) {
   const [openModal, setOpenModal] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
-      });
-    }, 500);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
 
   const router = useRouter();
 
@@ -49,7 +32,6 @@ function Index({ user }) {
     setIsButtonClicked(true);
     router.push("/create-parent");
   };
-
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -88,8 +70,8 @@ function Index({ user }) {
       {isButtonClicked && (
         <>
           <div className={styles.circle_container}>
-            <Box sx={{ width: "70%" }}>
-              <LinearProgress variant="determinate" value={progress} />
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
             </Box>
           </div>
         </>
@@ -136,8 +118,12 @@ function Index({ user }) {
       <Dialog open={openModal} onClose={handleCloseModal}>
         <DialogContent style={{ display: "flex", flexDirection: "column" }}>
           <Button>Profile</Button>
-          <Button onClick={createTeacherAccount}>Create Account For Teacher</Button>
-          <Button onClick={createParentAccount}>Create Account For Parent</Button>
+          <Button onClick={createTeacherAccount}>
+            Create Account For Teacher
+          </Button>
+          <Button onClick={createParentAccount}>
+            Create Account For Parent
+          </Button>
 
           <Button onClick={handleLogout}>Logout</Button>
         </DialogContent>

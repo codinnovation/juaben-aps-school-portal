@@ -8,15 +8,14 @@ import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
-import LinearProgress from "@mui/material/LinearProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 import withSession from "@/lib/session";
 import { db } from "@/lib/firebase";
-import { ref } from "firebase/database";
+import { ref, get } from "firebase/database";
 
 function Index({ user }) {
   const [showPassword, setShowPassword] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [studentData, setStudentData] = useState([]);
   const router = useRouter();
 
@@ -32,25 +31,11 @@ function Index({ user }) {
           ...value,
         }));
         setStudentData(dataArray);
-      }else
-
+      } else {
+        setStudentData([]);
+      }
     };
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
-      });
-    }, 500);
-
-    return () => {
-      clearInterval(timer);
-    };
+    fetchData();
   }, []);
 
   const [createUser, setCreateUser] = useState({
@@ -96,14 +81,13 @@ function Index({ user }) {
       });
 
       if (response.ok) {
-        toast.success("Account created successful");
+        toast.success("Account created successfully");
         toast.success(`Email verification sent to ${createUser.email}`);
 
         setTimeout(() => {
-          setIsButtonClicked(true);
+          setIsButtonClicked(false);
           router.push("/login");
         }, 1000);
-        setIsButtonClicked(false);
       } else {
         toast.error("Create Failed");
         setIsButtonClicked(false);
@@ -111,21 +95,17 @@ function Index({ user }) {
     } catch (error) {
       toast.error("Error Occurred");
       setIsButtonClicked(false);
-    } finally {
-      setIsButtonClicked(false);
     }
   };
 
   return (
     <>
       {isButtonClicked && (
-        <>
-          <div className={styles.loadingContainer}>
-            <Box sx={{ width: "70%" }}>
-              <LinearProgress variant="determinate" value={progress} />
-            </Box>
-          </div>
-        </>
+        <div className={styles.loadingContainer}>
+          <Box sx={{ display: 'flex' }}>
+            <CircularProgress />
+          </Box>
+        </div>
       )}
       <Head>
         <title>Please Sign Up</title>
@@ -157,6 +137,7 @@ function Index({ user }) {
                 <input
                   value={createUser.studentNumber}
                   required
+                  name="studentNumber"
                   onChange={handleInputChange}
                   type="number"
                 />
@@ -210,24 +191,24 @@ function Index({ user }) {
 
 export default Index;
 
-// export const getServerSideProps = withSession(async function ({ req, res }) {
-//   const user = req.session.get("user");
-//   if (!user || user?.displayName !== "Administrator") {
-//     return {
-//       redirect: {
-//         destination: "/login",
-//         permanent: false,
-//       },
-//     };
-//   }
-//   if (user) {
-//     req.session.set("user", user);
-//     await req.session.save();
-//   }
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user || user?.displayName !== "Administrator") {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
 
-//   return {
-//     props: {
-//       user: user,
-//     },
-//   };
-// });
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

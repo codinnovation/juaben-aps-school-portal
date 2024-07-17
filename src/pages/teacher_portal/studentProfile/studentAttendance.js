@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 function StudentAttendance({ selectedStudent }) {
   const [date, setDate] = useState("");
   const [status, setStatus] = useState("");
-  const [semester, setSemester] = useState("");
+  const [term, setTerm] = useState("");
   const [attendanceData, setAttendanceData] = useState({});
   const [openModal, setOpenModal] = useState(false);
 
@@ -35,17 +35,17 @@ function StudentAttendance({ selectedStudent }) {
 
   useEffect(() => {
     fetchAttendanceData();
-  }, []);
+  }, [selectedStudent]);
 
   const addAttendance = () => {
-    if (!semester) {
-      toast.error("Please select a semester");
+    if (!term) {
+      toast.error("Please select a term");
       return;
     }
 
-    const semesterRef = ref(
+    const termRef = ref(
       db,
-      `/japsstudents/${selectedStudent.key}/attendance/${semester}`
+      `/japsstudents/${selectedStudent.key}/attendance/${term}`
     );
 
     const dateObj = new Date(date);
@@ -58,15 +58,13 @@ function StudentAttendance({ selectedStudent }) {
       status: status,
     };
 
-    push(semesterRef, newAttendance)
+    push(termRef, newAttendance)
       .then(() => {
-        console.log("Attendance added successfully.");
         fetchAttendanceData();
         handleCloseModal();
         toast.success("Attendance added successfully");
       })
       .catch((error) => {
-        console.error("Error adding attendance:", error);
         toast.error("Error adding attendance");
       });
   };
@@ -79,66 +77,58 @@ function StudentAttendance({ selectedStudent }) {
     setStatus(e.target.value);
   };
 
-  const handleSemesterChange = (e) => {
-    setSemester(e.target.value);
+  const handleTermChange = (e) => {
+    setTerm(e.target.value);
   };
 
-  const formatDate = (dateString) => {
-    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-    const date = new Date(dateString);
-    return date.toLocaleDateString(undefined, options);
-  };
+  const renderAttendanceByDay = (day) => {
+    if (!attendanceData[term]) return null;
 
-  const splitAttendanceIntoGroups = (data) => {
-    const groupedData = { Monday: [], Tuesday: [], Wednesday: [], Thursday: [], Friday: [] };
-    if (data) {
-      Object.values(data).forEach((attendance) => {
-        groupedData[attendance.day].push(attendance);
-      });
-    }
-    return groupedData;
-  };
+    const dayAttendance = Object.values(attendanceData[term]).filter(
+      (record) => record.day === day
+    );
 
-  const groupedAttendanceData = semester ? splitAttendanceIntoGroups(attendanceData[semester]) : {};
+    return dayAttendance.map((record, index) => (
+      <div key={index}>{`${record.status} - ${record.date}`}</div>
+    ));
+  };
 
   return (
     <>
       <div className={styles.attendanceContainer}>
         <div className={styles.attendanceItems}>
-          <div className={styles.semesterSelection}>
-            <label>Select Semester:</label>
-            <select value={semester} onChange={handleSemesterChange}>
+          <div className={styles.termSelection}>
+            <label>Select Term:</label>
+            <select value={term} onChange={handleTermChange}>
               <option value=""></option>
-              <option value="Semester One">Semester One</option>
-              <option value="Semester Two">Semester Two</option>
-              <option value="Semester Three">Semester Three</option>
+              <option value="Term One">Term 1</option>
+              <option value="Term Two">Term 2</option>
+              <option value="Term Three">Term 3</option>
             </select>
           </div>
 
-          {semester && (
-            <div className={styles.attendanceTable}>
-              <div className={styles.attendanceHeader}>
-                <h1>Monday</h1>
-                <h1>Tuesday</h1>
-                <h1>Wednesday</h1>
-                <h1>Thursday</h1>
-                <h1>Friday</h1>
-              </div>
-              <div className={styles.attendanceBody}>
-                {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((day) => (
-                  <div key={day} className={styles.attendanceColumn}>
-                    {groupedAttendanceData[day] ? (
-                      groupedAttendanceData[day].map((attendance, index) => (
-                        <p key={index}>{`${attendance.status} - ${formatDate(attendance.date)}`}</p>
-                      ))
-                    ) : (
-                      <p>No attendance records</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          <div className={styles.attendanceTable}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thursday</th>
+                  <th>Friday</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{renderAttendanceByDay("Monday")}</td>
+                  <td>{renderAttendanceByDay("Tuesday")}</td>
+                  <td>{renderAttendanceByDay("Wednesday")}</td>
+                  <td>{renderAttendanceByDay("Thursday")}</td>
+                  <td>{renderAttendanceByDay("Friday")}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div className={styles.addBtn}>
@@ -167,40 +157,19 @@ function StudentAttendance({ selectedStudent }) {
               </select>
             </div>
 
-            <div className={styles.semesterFieldContainer}>
-              <label>Semester:</label>
-              <select value={semester} onChange={handleSemesterChange}>
+            <div className={styles.termFieldContainer}>
+              <label>Term:</label>
+              <select value={term} onChange={handleTermChange}>
                 <option value=""></option>
-                <option value="Semester One">Semester One</option>
-                <option value="Semester Two">Semester Two</option>
-                <option value="Semester Three">Semester Three</option>
+                <option value="Term One">Term 1</option>
+                <option value="Term Two">Term 2</option>
+                <option value="Term Three">Term 3</option>
               </select>
             </div>
 
-            <div
-              className={styles.addAttendanceBtn}
-              style={{ marginTop: "10px" }}
-            >
-              <button
-                onClick={addAttendance}
-                style={{
-                  padding: "10px",
-                  border: "none",
-                  borderRadius: "10px",
-                }}
-              >
-                Add Attendance
-              </button>
-              <button
-                onClick={handleCloseModal}
-                style={{
-                  padding: "10px",
-                  border: "none",
-                  borderRadius: "10px",
-                }}
-              >
-                Close
-              </button>
+            <div className={styles.addAttendanceBtn}>
+              <button onClick={addAttendance}>Add Attendance</button>
+              <button onClick={handleCloseModal}>Close</button>
             </div>
           </div>
         </DialogContent>

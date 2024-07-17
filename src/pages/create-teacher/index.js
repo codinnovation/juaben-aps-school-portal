@@ -8,33 +8,13 @@ import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
-import LinearProgress from "@mui/material/LinearProgress";
 import withSession from "@/lib/session";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Index({ user }) {
   const [showPassword, setShowPassword] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [progress, setProgress] = useState(0);
-
   const router = useRouter();
-
-  
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
-      });
-    }, 500);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
 
   const [createUser, setCreateUser] = useState({
     email: "",
@@ -104,8 +84,8 @@ function Index({ user }) {
       {isButtonClicked && (
         <>
           <div className={styles.loadingContainer}>
-            <Box sx={{ width: "70%" }}>
-              <LinearProgress variant="determinate" value={progress} />
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
             </Box>
           </div>
         </>
