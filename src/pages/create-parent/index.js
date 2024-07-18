@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import styles from "../../styles/login.module.css";
+import styles from "../../styles/create-parent.module.css";
 import VisibilityOffOutlined from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,18 +8,40 @@ import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
-import withSession from "@/lib/session";
 import CircularProgress from "@mui/material/CircularProgress";
+import withSession from "@/lib/session";
+import { db } from "@/lib/firebase";
+import { ref, get } from "firebase/database";
 
 function Index({ user }) {
   const [showPassword, setShowPassword] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [studentData, setStudentData] = useState([]);
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const dbRef = ref(db, "japsstudents");
+      const response = await get(dbRef);
+      const data = response.val();
+
+      if (data && typeof data === "object") {
+        const dataArray = Object.entries(data).map(([key, value]) => ({
+          key,
+          ...value,
+        }));
+        setStudentData(dataArray);
+      } else {
+        setStudentData([]);
+      }
+    };
+    fetchData();
+  }, []);
 
   const [createUser, setCreateUser] = useState({
     email: "",
     password: "",
-    role: "",
+    studentNumber: "",
   });
 
   const handleInputChange = (e) => {
@@ -46,11 +68,11 @@ function Index({ user }) {
     let data = {
       email: createUser.email,
       password: createUser.password,
-      role: createUser.role,
+      studentNumber: createUser.studentNumber,
     };
 
     try {
-      const response = await fetch("/api/create_user", {
+      const response = await fetch("/api/create-parent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,14 +81,13 @@ function Index({ user }) {
       });
 
       if (response.ok) {
-        toast.success("Account created successful");
+        toast.success("Account created successfully");
         toast.success(`Email verification sent to ${createUser.email}`);
 
         setTimeout(() => {
-          setIsButtonClicked(true);
+          setIsButtonClicked(false);
           router.push("/login");
         }, 1000);
-        setIsButtonClicked(false);
       } else {
         toast.error("Create Failed");
         setIsButtonClicked(false);
@@ -74,21 +95,17 @@ function Index({ user }) {
     } catch (error) {
       toast.error("Error Occurred");
       setIsButtonClicked(false);
-    } finally {
-      setIsButtonClicked(false);
     }
   };
 
   return (
     <>
       {isButtonClicked && (
-        <>
-          <div className={styles.loadingContainer}>
-            <Box sx={{ display: "flex" }}>
-              <CircularProgress />
-            </Box>
-          </div>
-        </>
+        <div className={styles.loadingContainer}>
+          <Box sx={{ display: 'flex' }}>
+            <CircularProgress />
+          </Box>
+        </div>
       )}
       <Head>
         <title>Please Sign Up</title>
@@ -98,7 +115,7 @@ function Index({ user }) {
       <div className={styles.authContainer}>
         <div className={styles.authItems}>
           <div className={styles.authLogin}>
-            <h2>Create an account for Teacher</h2>
+            <h2>Create an account for Parent</h2>
           </div>
 
           <div className={styles.authForm}>
@@ -116,28 +133,14 @@ function Index({ user }) {
               </div>
 
               <div className={styles.authFormInput}>
-                <label>Role</label>
-                <select
-                  value={createUser.role}
+                <label>Student Number</label>
+                <input
+                  value={createUser.studentNumber}
+                  required
+                  name="studentNumber"
                   onChange={handleInputChange}
-                  placeholder="role"
-                  name="role"
-                  id="role"
-                >
-                  <option></option>
-                  <option value=""></option>
-                  <option value="Teacher-Creche">Teacher - Creche</option>
-                  <option value="Teacher-Nursery-1">Teacher - Nursery 1</option>
-                  <option value="Teacher-Nursery-2">Teacher - Nursery 2</option>
-                  <option value="Teacher-K.G 1">Teacher - K.G 1</option>
-                  <option value="Teacher-K.G 1">Teacher - K.G 2</option>
-                  <option value="Teacher-Class-1">Teacher - Class 1</option>
-                  <option value="Teacher-Class-2">Teacher - Class 2</option>
-                  <option value="Teacher-Class-3">Teacher - Class 3</option>
-                  <option value="Teacher-Class-4">Teacher - Class 4</option>
-                  <option value="Teacher-Class-5">Teacher - Class 5</option>
-                  <option value="Teacher-Class-6">Teacher - Class 6</option>
-                </select>
+                  type="number"
+                />
               </div>
 
               <div className={styles.authFormInput}>

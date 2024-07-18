@@ -14,6 +14,7 @@ function StudentClassScore({ selectedStudent }) {
   const [subjectScores, setSubjectScores] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [chooseSubModal, setChooseSubModal] = useState(false);
+  const [selectedTerm, setSelectedTerm] = useState("");
   const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
@@ -32,11 +33,12 @@ function StudentClassScore({ selectedStudent }) {
       ]);
     } else if (
       selectedStudent?.Class === "Creche" ||
-      selectedStudent?.Class === "Nursary"
+      selectedStudent?.Class === "Nursery 1" ||
+      selectedStudent?.Class === "Nursery 2"
     ) {
       setSubjects([
         "",
-        "Copy & Picuture Reading",
+        "Copy & Picture Reading",
         "Phonics Colouring",
         "Numeracy",
         "Phonics Writing",
@@ -71,28 +73,31 @@ function StudentClassScore({ selectedStudent }) {
   };
 
   const addSubjectScores = () => {
-    if (user.displayName !== "Teacher") {
-      toast.error("You do not have permission to add Class Test Scores");
-    } else {
-      const scoreRef = ref(
-        db,
-        `/japsstudents/${selectedStudent.key}/ClassTest/${selectedSubject}`
-      );
-      push(scoreRef, {
-        score: subjectScore,
-        date: subjectDate,
-        outOf: subjectOutOfScore,
-      })
-        .then(() => {
-          setSubjectScore(0);
-          setSubjectDate("");
-          setSubjectOutOfScore(0);
-          setShowAddScoreModal(false);
-        })
-        .catch((error) => {
-          console.error("Error adding subject score:");
-        });
+    if (!selectedTerm) {
+      toast.error("Please select a term");
+      return;
     }
+
+    const scoreRef = ref(
+      db,
+      `/japsstudents/${selectedStudent.key}/ClassTest/${selectedTerm}/${selectedSubject}`
+    );
+    push(scoreRef, {
+      score: subjectScore,
+      date: subjectDate,
+      outOf: subjectOutOfScore,
+    })
+      .then(() => {
+        setSubjectScore(0);
+        setSubjectDate("");
+        setSubjectOutOfScore(0);
+        setShowAddScoreModal(false);
+        fetchSubjectScores();
+        toast.success("Score added successfully");
+      })
+      .catch((error) => {
+        console.error("Error adding subject score:", error);
+      });
   };
 
   const fetchSubjectScores = () => {
@@ -109,7 +114,7 @@ function StudentClassScore({ selectedStudent }) {
         }
       })
       .catch((error) => {
-        console.error("Error fetching subject scores:");
+        console.error("Error fetching subject scores:", error);
       });
   };
 
@@ -118,9 +123,9 @@ function StudentClassScore({ selectedStudent }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderSubjectScores = (subject) => {
-    if (subjectScores[subject]) {
-      return Object.values(subjectScores[subject]).map((scoreObj, index) => (
+  const renderSubjectScores = (term, subject) => {
+    if (subjectScores[term] && subjectScores[term][subject]) {
+      return Object.values(subjectScores[term][subject]).map((scoreObj, index) => (
         <div key={index} className={styles.scores}>{`Date: ${
           scoreObj.date
         } - Score: ${scoreObj.score} out of ${scoreObj?.outOf || "0"}`}</div>
@@ -133,12 +138,22 @@ function StudentClassScore({ selectedStudent }) {
     <>
       <div className={styles.classScoreContainer}>
         <div className={styles.classScoreItems}>
+          <div className={styles.termSelection}>
+            <label>Select Term:</label>
+            <select value={selectedTerm} onChange={(e) => setSelectedTerm(e.target.value)}>
+              <option value=""></option>
+              <option value="Term 1">Term 1</option>
+              <option value="Term 2">Term 2</option>
+              <option value="Term 3">Term 3</option>
+            </select>
+          </div>
+
           <div className={styles.subjectHeader}>
-            <h1>{`Class Test - ${selectedSubject}`}</h1>
+            <h1>{`Class Test - ${selectedTerm} - ${selectedSubject}`}</h1>
           </div>
 
           <div className={styles.subjectScores}>
-            <p>{renderSubjectScores(selectedSubject)}</p>
+            <p>{renderSubjectScores(selectedTerm, selectedSubject)}</p>
           </div>
         </div>
       </div>
@@ -182,7 +197,7 @@ function StudentClassScore({ selectedStudent }) {
           </div>
 
           <div className={styles.subjScore}>
-            <span>Out</span>
+            <span>Out of</span>
             <input
               type="number"
               value={subjectOutOfScore}

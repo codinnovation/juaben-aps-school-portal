@@ -5,8 +5,8 @@ import VisibilityOffOutlined from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import LinearProgress from "@mui/material/LinearProgress";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { auth } from ".././../lib/firebase";
@@ -14,24 +14,7 @@ import { auth } from ".././../lib/firebase";
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [progress, setProgress] = useState(0);
   const router = useRouter();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
-      });
-    }, 500);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
 
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -72,6 +55,10 @@ function LoginForm() {
       } else {
         toast.error("Login Failed");
         setIsSubmitting(false);
+        setUserCredentials({
+          email: "",
+          password: "",
+        });
       }
     } catch (error) {
       toast.error("Error Occurred");
@@ -95,18 +82,9 @@ function LoginForm() {
 
   return (
     <>
-      {isSubmitting && (
-        <>
-          <div className={styles.loadingContainer}>
-            <Box sx={{ width: "70%" }}>
-              <LinearProgress variant="determinate" value={progress} />
-            </Box>
-          </div>
-        </>
-      )}
       <Head>
         <title>Please Sign In</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       <div className={styles.authContainer}>
@@ -169,6 +147,15 @@ function LoginForm() {
         </div>
       </div>
       <ToastContainer />
+      {isSubmitting && (
+        <>
+          <div className={styles.loadingContainer}>
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
+          </div>
+        </>
+      )}
     </>
   );
 }

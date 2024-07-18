@@ -51,6 +51,9 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
               <button onClick={() => naviagteTo("studentHomework")}>
                 Home Work
               </button>
+              <button onClick={() => naviagteTo("studentExams")}>
+                Exams
+              </button>
             </div>
 
             <div
