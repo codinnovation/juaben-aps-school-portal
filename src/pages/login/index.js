@@ -84,7 +84,7 @@ function LoginForm() {
     <>
       <Head>
         <title>Please Sign In</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       <div className={styles.authContainer}>
