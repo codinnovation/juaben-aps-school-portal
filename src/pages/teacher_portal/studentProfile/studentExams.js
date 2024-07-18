@@ -4,56 +4,42 @@ import styles from "../../../styles/teachers_portal_css/studentExam.module.css";
 function StudentExams() {
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.containerHeader}>
-          <h1>Semester 1</h1>
-          <h1>Kwabena Asumadu</h1>
-        </div>
+      <div className={styles.examContainer}>
+        <div className={styles.examContents}>
+          <div className={styles.examHeader}>
+            <div className={styles.field}>
+              <label>Name</label>
+              <h1>Kwabena Asumadu Sakyi</h1>
+            </div>
+            <div className={styles.field}>
+              <label>Class</label>
+              <h1>Class 1</h1>
+            </div>
 
-        <div className={styles.resultsTable}>
-          <table>
-            <thead>
-              <tr>
-                <th>Subject</th>
-                <th>Class Score</th>
-                <th>Exam Score</th>
-                <th>Grade</th>
-                <th>Position</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Mathematics</td>
-                <td>50%</td>
-                <td>85%</td>
-                <td>A</td>
-                <td>1st</td>
-              </tr>
-              <tr>
-                <td>Science</td>
-                <td>30%</td>
-                <td>95%</td>
-                <td>B</td>
-                <td>2nd</td>
-              </tr>
+            <div className={styles.field}>
+              <label>Number on Roll</label>
+              <h1>24</h1>
+            </div>
+            <div className={styles.field}>
+              <label>Position in Class</label>
+              <h1>1ST</h1>
+            </div>
 
-              <tr>
-                <td>Science</td>
-                <td>30%</td>
-                <td>95%</td>
-                <td>B</td>
-                <td>2nd</td>
-              </tr>
+            <div className={styles.field}>
+              <label>Clsoing Date</label>
+              <h1>19/12/2024</h1>
+            </div>
 
-              <tr>
-                <td>Science</td>
-                <td>30%</td>
-                <td>95%</td>
-                <td>B</td>
-                <td>2nd</td>
-              </tr>
-            </tbody>
-          </table>
+            <div className={styles.field}>
+              <label>Reopening Date</label>
+              <h1>8/09/2030</h1>
+            </div>
+          </div>
+
+
+          <div className={styles.examResults}>
+            
+          </div>
         </div>
       </div>
     </>

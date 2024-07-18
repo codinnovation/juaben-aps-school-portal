@@ -1,45 +1,44 @@
-.container {
-   width: 70%;
+
+.examContainer {
+   width: 77%;
+   margin-left: 20%;
+   margin-top: 2%;
+}
+
+.examContents {
+   width: 80%;
+   height: 70vh;
    margin: 1% auto;
-   height: 100%;
+   border: 1px solid #ccc;
 }
 
-.containerHeader {
+.examHeader{
+   padding: 5px;
    display: grid;
-   grid-template-columns: 1fr auto;
+   grid-template-columns: 1fr 1fr auto;
+   gap: 10px;
 }
 
-.containerHeader h1 {
-   font-size: 20px;
-   font-family: sans-serif;
-}
-
-.resultsTable {
-   width: 100%;
-   border-collapse: collapse;
+.examHeader .field{
    display: flex;
+   flex-direction: column;
    justify-content: center;
-   align-items: center;
-   margin-top: 5%;
+   align-items: flex-start;
 }
 
-.resultsTable th,
-.resultsTable td {
-   border: 1px solid #ddd;
-   padding: 8px;
-   text-align: left;
+.examHeader .field label{
+   font-family: sans-serif;
+   font-size: 1em;
+   font-weight: 700;
+   padding: 5px;
 }
 
-.resultsTable th {
-   background-color: #f2f2f2;
-}
-
-.resultsTable tr:nth-child(even) {
-   background-color: #f2f2f2;
-}
-
-.resultsTable tr:hover {
-   background-color: #ddd;
+.examHeader .field h1{
+   font-weight: 100;
+   font-size: 1em;
+   margin-top: 10px;
+   border: 1px solid #eee;
+   padding: 5px;
 }
 
 @media (max-width: 700px) {

@@ -17,7 +17,7 @@ import Dashboard from "@mui/icons-material/Dashboard";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import CircularProgress from "@mui/material/CircularProgress";
 import {
   Button,
   Dialog,
@@ -43,7 +43,7 @@ function Sidebar() {
   };
 
   const goToThpDashboard = async () => {
-    router.push("https://juabenapsportal.vercel.app/admin_portal");
+    router.push("/");
   };
 
   const handleLogout = async (e) => {
@@ -75,8 +75,9 @@ function Sidebar() {
       {isButtonClicked && (
         <>
           <div className={styles.circle_container}>
-            <div className={styles.circle}></div>
-            <span>Logging out...</span>
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
           </div>
         </>
       )}
@@ -96,9 +97,8 @@ function Sidebar() {
           </div>
 
           <div className={styles.container_items_2}>
-            <AddCircleIcon className={styles.container_items_2_icon} />
             <Link
-              href="/admin_portal/studentRegistration/"
+              href="/teacher_portal/"
               className={styles.link}
             >
               Teacher&apos;s Portal
@@ -113,16 +113,9 @@ function Sidebar() {
             <div className={styles.container_items_4_items}>
               <div className={styles.container_items_4_link}>
                 <Dashboard className={styles.container_items_4_icon} />
-                <Link href="/admin_portal/" className={styles.link}>
+                <Link href="/" className={styles.link}>
                   Dashboard
                 </Link>{" "}
-              </div>
-
-              <div className={styles.container_items_4_link}>
-                <PeopleIcon className={styles.container_items_4_icon} />
-                <Link href="/admin_portal/studentList/" className={styles.link}>
-                  Student&apos;s List
-                </Link>
               </div>
 
               <div className={styles.container_items_4_link}>
@@ -130,7 +123,7 @@ function Sidebar() {
                   className={styles.container_items_4_icon}
                 />
                 <Link
-                  href="/admin_portal/teacherNotification/"
+                  href="/teacher_portal/notification/"
                   className={styles.link}
                 >
                   Teacher&apos;s Notification
@@ -140,7 +133,7 @@ function Sidebar() {
               <div className={styles.container_items_4_link}>
                 <EventAvailable className={styles.container_items_4_icon} />
                 <Link
-                  href="/admin_portal/event_available/"
+                  href="/teacher_portal/events/"
                   className={styles.link}
                 >
                   Events
