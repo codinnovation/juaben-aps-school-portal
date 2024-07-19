@@ -19,6 +19,9 @@ import EventIcon from "@mui/icons-material/Event";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import withSession from "@/lib/session";
+import MenuIcon from "@mui/icons-material/Menu";
+import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
+import EventAvailable from "@mui/icons-material/EventAvailable";
 
 function StudentList() {
   const [studentProfilePageView, setStudentProfilePageView] = useState(false);
@@ -29,10 +32,9 @@ function StudentList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [studentsPerPage, setStudentsPerPage] = useState(13);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
-  console.log(user)
-
+  console.log(user);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -53,7 +55,6 @@ function StudentList() {
 
     fetchUser();
   }, []);
-
 
   const handleLogout = async (e) => {
     setIsButtonClicked(true);
@@ -173,6 +174,22 @@ function StudentList() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
+          <div className={styles.menuIconContainer}>
+            <div className={styles.link}>
+              <Dashboard className={styles.icon} />
+              <h1>Dashboard</h1>
+            </div>
+
+            <div className={styles.link}>
+              <NotificationAddIcon className={styles.icon} />
+             <h1>Notification</h1> 
+            </div>
+
+            <div className={styles.link}>
+              <EventAvailable className={styles.icon} />
+             <h1>Events</h1> 
+            </div>
+          </div>
           <div className={styles.tableContainer}>
             <div className={styles.tableHeader}>
               <h1>First Name</h1>
@@ -269,8 +286,6 @@ function StudentList() {
         </div>
       )}
       <ToastContainer />
-
-    
 
       {studentProfilePageView && (
         <StudentProfilePageComponent
