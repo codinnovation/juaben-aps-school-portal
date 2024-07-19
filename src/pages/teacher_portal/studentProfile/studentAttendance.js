@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 function StudentAttendance({ selectedStudent }) {
   const [date, setDate] = useState("");
   const [status, setStatus] = useState("");
-  const [term, setTerm] = useState("");
+  const [term, setTerm] = useState("Term One");
   const [attendanceData, setAttendanceData] = useState({});
   const [openModal, setOpenModal] = useState(false);
 
@@ -102,8 +102,8 @@ function StudentAttendance({ selectedStudent }) {
             <select value={term} onChange={handleTermChange}>
               <option value=""></option>
               <option value="Term One">Term 1</option>
-              <option value="Term Two">Term 2</option>
-              <option value="Term Three">Term 3</option>
+              <option value="Term Two" disabled>Term 2</option>
+              <option value="Term Three" disabled>Term 3</option>
             </select>
           </div>
 
@@ -162,8 +162,8 @@ function StudentAttendance({ selectedStudent }) {
               <select value={term} onChange={handleTermChange}>
                 <option value=""></option>
                 <option value="Term One">Term 1</option>
-                <option value="Term Two">Term 2</option>
-                <option value="Term Three">Term 3</option>
+                <option value="Term Two" disabled>Term 2</option>
+                <option value="Term Three" disabled>Term 3</option>
               </select>
             </div>
 

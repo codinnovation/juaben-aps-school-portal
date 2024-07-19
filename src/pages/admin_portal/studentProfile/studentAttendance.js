@@ -10,6 +10,13 @@ function StudentAttendance({
   selectedStudent,
 }) {
   const [attendanceData, setAttendanceData] = useState([]);
+  const [term, setTerm] = useState("Term One");
+
+  
+  const handleTermChange = (e) => {
+    setTerm(e.target.value);
+  };
+
 
   const fetchAttendanceData = () => {
     const studentRef = ref(
@@ -20,14 +27,11 @@ function StudentAttendance({
       .then((snapshot) => {
         if (snapshot.exists()) {
           const data = snapshot.val();
-          if (data) {
-            const attendanceArray = Object.values(data);
-            setAttendanceData(attendanceArray);
-          }
+          setAttendanceData(data || {});
         }
       })
       .catch((error) => {
-        console.error("Error fetching attendance data:");
+        console.error("Error fetching attendance data:", error);
       });
   };
 
@@ -64,16 +68,18 @@ function StudentAttendance({
     navigateToComp("studentHomework");
   };
 
-  // Function to split the attendance data into groups of 5
-  const splitAttendanceIntoGroups = (data, groupSize) => {
-    const groupedData = [];
-    for (let i = 0; i < data.length; i += groupSize) {
-      groupedData.push(data.slice(i, i + groupSize));
-    }
-    return groupedData;
-  };
+  
+  const renderAttendanceByDay = (day) => {
+    if (!attendanceData[term]) return null;
 
-  const groupedAttendanceData = splitAttendanceIntoGroups(attendanceData, 5);
+    const dayAttendance = Object.values(attendanceData[term]).filter(
+      (record) => record.day === day
+    );
+
+    return dayAttendance.map((record, index) => (
+      <div key={index}>{`${record.status} - ${record.date}`}</div>
+    ));
+  };
 
   return (
     <>
@@ -140,12 +146,21 @@ function StudentAttendance({
 
         <div className={styles.attendanceContainer}>
           <div className={styles.attendanceBody}>
+          <div className={styles.termSelection}>
+            <label>Select Term:</label>
+            <select value={term} onChange={handleTermChange}>
+              <option value=""></option>
+              <option value="Term One">Term 1</option>
+              <option value="Term Two" disabled>Term 2</option>
+              <option value="Term Three" disabled>Term 3</option>
+            </select>
+          </div>
             <div className={styles.attendanceHeader}>
               <h1>Students Attendance Page - Term one</h1>
             </div>
-
             <div className={styles.attendanceTable}>
-              <table>
+            <table>
+              <thead>
                 <tr>
                   <th>Monday</th>
                   <th>Tuesday</th>
@@ -153,17 +168,18 @@ function StudentAttendance({
                   <th>Thursday</th>
                   <th>Friday</th>
                 </tr>
-                {groupedAttendanceData.map((group, rowIndex) => (
-                  <tr key={rowIndex}>
-                    {group.map((attendance, index) => (
-                      <td
-                        key={index}
-                      >{`${attendance.status}, ${attendance?.day || "No day"} - ${attendance.date}`}</td>
-                    ))}
-                  </tr>
-                ))}
-              </table>
-            </div>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{renderAttendanceByDay("Monday")}</td>
+                  <td>{renderAttendanceByDay("Tuesday")}</td>
+                  <td>{renderAttendanceByDay("Wednesday")}</td>
+                  <td>{renderAttendanceByDay("Thursday")}</td>
+                  <td>{renderAttendanceByDay("Friday")}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           </div>
           <div className={styles.chooseDateContainer}>
             <input type="date" />

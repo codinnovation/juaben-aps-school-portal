@@ -120,8 +120,11 @@
       width: 99%;
    }
    .containerHeader {
-      height: 13vh;
+      height: 10vh;
       border-radius: 4px;
+      position: sticky;
+      top: 0;
+      z-index: 900;
    }
 
    .navContainer {
