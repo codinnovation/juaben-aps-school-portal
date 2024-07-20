@@ -15,6 +15,7 @@ import Logout from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
+import SchoolLogo from "../../../../public/logo2.png";
 
 function Index({ user }) {
   const [openModal, setOpenModal] = useState(false);
@@ -69,47 +70,45 @@ function Index({ user }) {
     <>
       {isButtonClicked && (
         <>
-          <div className={styles.circle_container}>
+          <div className={styles.loadingContainer}>
             <Box sx={{ display: "flex" }}>
               <CircularProgress />
             </Box>
           </div>
         </>
       )}
-      <div className={styles.container}>
-        <div className={styles.container_items}>
-          <div className={styles.container_1}>
+      <div className={styles.firstContainer}>
+        <div className={styles.firstContent}>
+          <div className={styles.schoolLogo}>
             <Image
-              src="/logo2.png"
-              width={100}
-              height={100}
+              src={SchoolLogo}
               alt="thp_logo"
-              className={styles.container_1_image}
+              className={styles.logo}
             />
           </div>
-          <div className={styles.container_2}>
+          <div className={styles.searchInput}>
             <input placeholder="search..." />
             <SearchIcon className={styles.SearchIcon} />
           </div>
           <div
-            className={styles.container_3}
+            className={styles.notificationContainer}
             onClick={() => setOpenNotification(true)}
           >
             <h1>3</h1>
             <NotificationsIcon className={styles.NotificationsIcon} />
           </div>
 
-          <div className={styles.container_4}>
+          <div className={styles.welcomeContainer}>
             <h1>Welcome,</h1>
             <h1>{`${user?.displayName}`}</h1>
           </div>
 
-          <div className={styles.container_5} onClick={handleOpenModal}>
-            <AccountCircleIcon className={styles.container_image} />
+          <div className={styles.userProfile} onClick={handleOpenModal}>
+            <AccountCircleIcon className={styles.userIcon} />
             <KeyboardArrowDownIcon className={styles.KeyboardArrowDownIcon} />
           </div>
 
-          <div className={styles.container_6} onClick={handleLogout}>
+          <div className={styles.logoutContainer} onClick={handleLogout}>
             <Logout />
           </div>
         </div>

@@ -1,8 +1,8 @@
-.container {
+.homeContainer {
    width: 100%;
 }
 
-.container_items {
+.homeContent {
    width: 85%;
    margin: 5% auto;
    display: grid;
@@ -10,24 +10,24 @@
 }
 
 
-.container_1 {
+.recentActivities {
    width: 95%;
    height: 100%;
 }
 
-.container_1_header {
+.recentActivitiesHeader {
    display: flex;
    justify-content: flex-start;
    align-items: center;
 }
 
-.container_1_header h1 {
+.recentActivitiesHeader h1 {
    font-size: 20px;
-   font-family: Helvetica;
+   font-family: sans-serif;
    margin-bottom: 10px;
 }
 
-.container_1_card {
+.recentCard {
    width: 100%;
    height: 20%;
    background-color: #ffffff;
@@ -36,58 +36,63 @@
    align-items: center;
    margin-bottom: 3.5%;
    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+   border-radius: 5px;
 }
 
-.container_1_card:nth-child(2) h1 {
+.recentCard:nth-child(2) h1 {
    width: 10px;
    height: 100%;
    background-color: #0f3834;
+   border-radius: 5px;
 }
 
-.container_1_card:nth-child(3) h1 {
+.recentCard:nth-child(3) h1 {
    width: 10px;
    height: 100%;
+   border-radius: 5px;
    background-color: #d2a114;
 }
 
-.container_1_card:nth-child(4) h1 {
+.recentCard:nth-child(4) h1 {
    width: 10px;
    height: 100%;
+   border-radius: 5px;
    background-color: #0f3834;
 }
 
-.container_1_card:nth-child(5) h1 {
+.recentCard:nth-child(5) h1 {
    width: 10px;
    height: 100%;
    background-color: #d2a114;
+   border-radius: 5px;
 }
 
 
-.container_1_time {
+.recentCardTime {
    margin-left: 4%;
    width: 10%;
 }
 
-.container_1_time h2 {
+.recentCardTime h2 {
    font-size: 16px;
    font-family: Helvetica;
    color: #628c86;
 }
 
-.container_1_time p {
+.recentCardTime p {
    font-size: 13px;
    font-family: Helvetica;
    color: #aeaeae;
 }
 
-.container_1_card .line {
+.recentCard .line {
    background-color: #aeaeae;
    height: 70%;
    width: 1px;
    margin-left: 3%;
 }
 
-.container_1_card_details {
+.recentDetails {
    display: flex;
    justify-content: flex-start;
    align-items: center;
@@ -95,7 +100,7 @@
    width: 100%;
 }
 
-.container_1_card_details_circle {
+.recentCircle {
    background-color: #001f3f;
    width: 50px;
    height: 50px;
@@ -104,24 +109,24 @@
    margin-right: 4%;
 }
 
-.container_1_card_details h3 {
+.recentDetails h3 {
    font-size: 15px;
    font-weight: 100;
-   font-family: Helvetica;
+   font-family: sans-serif;
    color: #333333;
 }
 
 
-.view_all {
+.viewAll {
    display: flex;
    justify-content: center;
    align-items: center;
    margin-top: -1%;
 }
 
-.view_all h1 {
+.viewAll h1 {
    font-size: 15px;
-   font-family: Helvetica;
+   font-family: sans-serif;
 }
 
 
@@ -131,23 +136,23 @@
 
 
 
-.container_2 {
+.pagesContainer {
    width: 100%;
    height: 100%;
 }
 
-.container_2_header h1 {
+.pagesContainerHeader h1 {
    font-size: 20px;
    font-family: Helvetica;
    margin-bottom: 10px;
 }
 
-.container_2_card_container {
+.pagesCardContainer {
    width: 100%;
    height: 100%;
 }
 
-.container_2_card {
+.pagesCard {
    background-color: #fff;
    display: grid;
    grid-template-columns: auto auto auto;
@@ -155,16 +160,17 @@
    height: 16%;
    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
    margin-bottom: 5%;
+   border-radius: 5px;
 }
 
-.container_2_card_circle {
+.pagesCircle {
    display: flex;
    justify-content: flex-start;
    align-items: center;
    margin-left: 5%;
 }
 
-.container_2_card_circle h1 {
+.pagesCircle h1 {
    color: #fff;
    padding: 10px;
    font-size: 15px;
@@ -173,56 +179,56 @@
    font-family: Helvetica;
 }
 
-.container_2_card:nth-child(1) .container_2_card_circle h1 {
+.pagesCard:nth-child(1) .pagesCircle h1 {
    background-color: #0f3834;
    font-family: Helvetica;
 }
 
-.container_2_card:nth-child(2) .container_2_card_circle h1 {
+.pagesCard:nth-child(2) .pagesCircle h1 {
    background-color: #f5a826;
    font-family: Helvetica;
 
 }
 
-.container_2_card:nth-child(3) .container_2_card_circle h1 {
+.pagesCard:nth-child(3) .pagesCircle h1 {
    background-color: #001f3f;
    font-family: Helvetica;
 }
 
-.container_2_card:nth-child(4) .container_2_card_circle h1 {
+.pagesCard:nth-child(4) .pagesCircle h1 {
    background-color: #f5a826;
    font-family: Helvetica;
 }
 
-.container_2_card:nth-child(5) .container_2_card_circle h1 {
+.pagesCard:nth-child(5) .pagesCircle h1 {
    background-color: #001f3f;
    font-family: Helvetica;
 }
 
-.container_2_card:nth-child(6) .container_2_card_circle h1 {
+.pagesCard:nth-child(6) .pagesCircle h1 {
    background-color: #f5a826;
    font-family: Helvetica;
 }
 
-.container_2_card_name {
+.pagesCardName {
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-.container_2_card_name h1 {
+.pagesCardName h1 {
    font-size: 17px;
    font-family: Helvetica;
    font-weight: 100;
 }
 
-.container_2_card_time {
+.pagesCardTime {
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-.container_2_card_time h1 {
+.pagesCardTime h1 {
    font-size: 17px;
    font-family: Helvetica;
    font-weight: 100;
@@ -231,72 +237,70 @@
 
 
 @media (max-width:700px) {
-   .container_items {
-      width: 95%;
-      margin: 12% auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 15%;
+   .homeContent {
+      width: 96%;
+      margin: 10% auto;
+      display: flex;
+      flex-direction: column;
    }
 
-   .container_2_card {
-      display: grid;
-      grid-template-columns: auto auto auto;
-      gap: 10px;
-      height: 25%;
-   }
-
-   .container_1_time h2 {
-      font-size: 10px;
-      font-family: Helvetica;
-      color: #71357b;
-   }
-
-   .container_1_card_details_circle {
+   .pagesContainer {
       display: none;
    }
 
-   .container_1_card .line {
-      height: 70%;
-      width: 1px;
-      margin-left: 4%;
+   .recentActivities {
+      width: 100%;
    }
 
-   .container_1_time p {
-      font-size: 10px;
+   .recentActivitiesHeader h1 {
+      font-size: 1.1em;
    }
 
-
-   .container_1_card_details h3 {
-      font-size: 11px;
-      font-weight: 100;
+   .recentCard {
+      width: 100%;
+      height: 70px;
+      margin-bottom: 5%;
+      padding: 8px;
    }
 
-   .container_1_header h1 {
-      font-size: 16px;
-      font-family: Helvetica;
-      margin-bottom: 10px;
+   .recentCard h1 {
+      display: none;
    }
 
-
-   .container_2_card_circle h1 {
-      font-size: 11px;
+   .recentCardTime {
+      margin-left: 0%;
+      width: 10%;
    }
 
-   .container_2_card_name h1 {
-      font-size: 11px;
+   .recentCardTime h2 {
+      font-size: 0.9em;
+      font-family: sans-serif;
+      color: #f5a826;
    }
 
+   .recentCardTime p {
+      display: none;
+   }
 
-   .container_2_card_time h1 {
-      font-size: 11px;
-      font-family: 100;
+   .recentCard .line {
+      display: none;
    }
-   .container_2_header h1 {
-      font-size: 16px;
-      margin-bottom: 10px;
-      font-family: Helvetica;
+
+   .recentDetails {
+      margin-left: 10%;
    }
-   
+
+   .recentCircle {
+      background-color: #001f3f;
+      width: auto;
+      height: auto;
+      padding: 10px;
+      margin-right: 4%;
+   }
+
+   .recentDetails h3 {
+      font-size: 0.9em;
+      color: #000;
+   }
 
 }
