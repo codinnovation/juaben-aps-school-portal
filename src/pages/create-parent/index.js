@@ -38,6 +38,8 @@ function Index({ user }) {
     fetchData();
   }, []);
 
+  console.log(studentData);
+
   const [createUser, setCreateUser] = useState({
     email: "",
     password: "",
@@ -69,6 +71,7 @@ function Index({ user }) {
       email: createUser.email,
       password: createUser.password,
       studentNumber: createUser.studentNumber,
+      role: `${createUser.studentNumber}`,
     };
 
     try {
@@ -102,7 +105,7 @@ function Index({ user }) {
     <>
       {isButtonClicked && (
         <div className={styles.loadingContainer}>
-          <Box sx={{ display: 'flex' }}>
+          <Box sx={{ display: "flex" }}>
             <CircularProgress />
           </Box>
         </div>
@@ -139,7 +142,7 @@ function Index({ user }) {
                   required
                   name="studentNumber"
                   onChange={handleInputChange}
-                  type="number"
+                  type="text"
                 />
               </div>
 
@@ -177,11 +180,6 @@ function Index({ user }) {
               </button>
             </form>
           </div>
-        </div>
-        <div className={styles.footerContainer}>
-          <p>
-            &copy;{new Date().getFullYear()} - Juaben APS | All Rights Reserved
-          </p>
         </div>
       </div>
       <ToastContainer />

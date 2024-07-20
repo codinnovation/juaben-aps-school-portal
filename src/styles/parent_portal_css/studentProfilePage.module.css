@@ -1,207 +1,179 @@
-.container {
-   width: 100%;
-   height: 100%;
+.profileContainer {
+   width: 77%;
+   margin-left: 20%;
+   margin-top: 2%;
 }
 
-.containerItems {
-   width: 80%;
+.profileContent {
    margin: 0.5% auto;
+   margin-left: 0%;
 }
 
-.containerHeader {
+.profileHeader {
    display: grid;
-   grid-template-columns: 1fr 1fr;
-   height: 15vh;
-   background-color: #191970;
-   border-radius: 20px;
+   grid-template-columns: 1fr auto;
 }
 
-.item1 {
+.profilePageName {
    display: flex;
    justify-content: flex-start;
    align-items: center;
-   margin-left: 15px;
 }
 
-.item1 h1 {
-   font-size: 20px;
-   color: #fff;
+.profilePageName h1 {
+   font-family: sans-serif;
+   font-size: 1.6em;
 }
 
-.navContainer {
+.profileNavigation {
    display: flex;
    justify-content: center;
    align-items: center;
-   margin-right: 15px;
 }
 
-.navContainer button {
-   margin-left: 15px;
-   background-color: #fff;
-   color: #000;
-   width: 150px;
+.profileNavigation button {
+   margin-right: 20px;
+   width: 100px;
    height: 40px;
-   border-radius: 20px;
+   border: none;
+   color: #0f3834;
+   font-weight: 800;
+   font-family: sans-serif;
 }
 
-.menuContainer {
+.menuIconContainer {
    display: none;
 }
 
-
-.profileContainer {
+.profileDetails {
    width: 100%;
-   height: 100%;
-
+   height: auto;
+   margin-top: 5%;
 }
 
 .profileItems {
-   width: 60%;
-   height: 70vh;
-   padding: 10px;
-   margin: 1% auto;
-   border: 1px solid #191970;
-   border-radius: 20px;
-}
-
-.items {
    display: grid;
    grid-template-columns: 1fr 1fr 1fr;
-   margin-top: 2%;
-   gap: 32px;
+   gap: 10%;
 }
 
-.item {
+.profileItems .item {
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+   flex-direction: column;
+}
+
+.profileItems .item h1 {
+   border: 1px solid #0f3834;
    width: 100%;
-   height: 100%;
-}
-
-.item p {
-   font-size: 15px;
-   font-weight: 600;
+   height: 45px;
+   border-radius: 5px;
+   margin-top: 10px;
+   font-size: 1em;
+   display: flex;
+   justify-content: flex-start;
+   padding-left: 10px;
+   align-items: center;
    text-transform: uppercase;
 }
 
-.item h1 {
-   font-size: 15px;
-   font-weight: 100;
-   border: 1px solid #aeaeae;
-   margin-right: 10px;
-   margin-top: 6px;
-   border-radius: 10px;
-   padding: 10px;
+.verifyContainer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 15%;
 }
 
-.formContainer {
+.verifyInput {
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-.inputFields input {
-   width: 150px;
-   height: 45px;
-   border: 1px solid #aeaeae;
-   color: #000;
-   border-radius: 20px;
+.verifyInput input {
+   width: 100%;
    text-align: center;
+   height: 30px;
+   background-color: #0f3834;
+   color: #fff;
+   border: none;
 }
 
-.submitBtn {
+.verifyButton {
    display: flex;
    justify-content: center;
    align-items: center;
+   margin-top: 10px;
 }
 
-.submitBtn button {
-   padding: 5px;
-   margin: 3px;
-   border-radius: 20px;
+.verifyButton button {
+   margin-left: 10px;
+   width: 100%;
+   height: 30px;
 }
 
-@media (max-width: 700px) {
-   .containerItems {
-      width: 99%;
+@media(max-width:700px) {
+   .profileContainer {
+      width: 96%;
+      margin: 0 auto;
    }
 
-   .navContainer {
+   .profileHeader {
+      grid-template-columns: 1fr;
+   }
+
+   .profilePageName h1 {
+      font-size: 1.4em;
+   }
+
+   .profileNavigation {
       display: none;
    }
 
-   .menuContainer {
+   .menuIconContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      margin-top: 6%;
+   }
+
+   .menuIconContainer .link {
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
       align-items: center;
-      color: #fff;
-      margin-right: 10px;
+   }
+
+   .menuIconContainer .icon {
+      font-size: 1.1em;
+   }
+
+   .menuIconContainer h1 {
+      font-size: 1em;
+      font-family: sans-serif;
+   }
+
+   .verifyContainer {
+      display: none;
    }
 
    .profileItems {
-      width: 95%;
-      height: auto;
-   }
-
-   .items {
       grid-template-columns: 1fr 1fr;
-   }
-
-   .item1 {
-      width: 100%;
-   }
-
-   .item1 h1 {
-      font-size: 13px;
-   }
-
-   .item p {
-      font-size: 13px;
-   }
-
-   .item h1 {
-      font-size: 12px;
-   }
-
-   .formContainer {
-      display: none;
+      margin-bottom: 0px;
+      gap: 6%;
    }
 
    .varifyStudentContainer{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      margin-top: 10px;
-   }
-
-   .inputField{
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      margin-top: 15px;
    }
 
    .inputField input{
-      border-radius: 20px;
       height: 30px;
-      border: 2px solid #aeaeae;
-      color: #000;
-   }
-
-   .inputField input::placeholder{
-      padding-left: 10px;
    }
 
    .submitButton{
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 7px;
-   }
-
-   .submitButton button{
-      border-radius: 20px;
-      padding: 7px;
-      background-color: green;
-      color: #fff;
-      border: none;
+      margin-top: 8px;
    }
 }
