@@ -3,8 +3,6 @@
 }
 
 .itemContainer {
-   display: grid;
-   grid-template-columns: 1fr;
    padding-top: 2%;
    width: 85%;
    margin: 0% auto;
@@ -12,23 +10,21 @@
 
 .portalWrapper {
    display: flex;
-   justify-content: flex-start;
+   justify-content: center;
    align-items: center;
    width: 100%;
 }
 
 .arrowContainer {
-   margin-right: 3%;
+   margin: 0%;
 }
 
-.arrowContainerBack {
-   margin-left: 3%;
-}
+
 
 .portalGrid {
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr;
-   width: 90%;
+   width: 100%;
    gap: 5%;
 }
 
@@ -36,10 +32,6 @@
    padding: 30px;
 }
 
-.portalGrid .portalCard:hover {
-   transform: scaleX(1.0);
-   transition: 0.5s ease-in-out;
-}
 
 .portalGrid .portalCard:nth-child(1) {
    width: 100%;
@@ -95,10 +87,9 @@
    color: #f2f2f2f2;
    text-align: center;
    font-size: 25px;
-   font-family: Helvetica;
+   font-family: sans-serif;
 }
 
-/* Media Query */
 
 @media (max-width:700px) {
    .itemContainer {
@@ -106,11 +97,11 @@
    }
 
    .portalGrid {
-      width: 95vw;
+      width: 96%;
       overflow-y: scroll;
-      gap: 6%;
-      margin: 0 auto;
-      grid-template-columns: auto auto auto auto;
+      gap: 3%;
+      margin: 2% auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
    }
 
    .arrowContainer {
@@ -121,40 +112,35 @@
       display: none;
    }
 
-   .portalGrid .portalCard {
-      padding: 20px;
-      width: 100%;
-      height: 100%;
-   }
+
 
    .portalGrid .portalCard:hover {
       transform: scaleX(1.0);
-      transition: 0.5s ease-in-out;
+      transition: 0.2s ease-in-out;
    }
 
    .portalGrid .portalCard:nth-child(1) {
-      width: 100%;
+      width: 130px;
       height: 100%;
       border-radius: 10px;
 
    }
 
    .portalGrid .portalCard:nth-child(2) {
-      width: 100%;
+      width: 130px;
       height: 100%;
       border-radius: 10px;
-
    }
 
    .portalGrid .portalCard:nth-child(3) {
-      width: 100%;
+      width: 130px;
       height: 100%;
       border-radius: 10px;
 
    }
 
    .portalGrid .portalCard:nth-child(4) {
-      width: 100%;
+      width: 130px;
       height: 100%;
       border-radius: 10px;
 
@@ -169,8 +155,9 @@
    .portalGrid .portalCard .portalName h1 {
       color: #f2f2f2f2;
       text-align: center;
-      font-size: 13px;
+      font-size: 1em;
       font-weight: 100;
+      letter-spacing: 0.05em;
    }
 
    .portalGrid .portalCard .portalName {

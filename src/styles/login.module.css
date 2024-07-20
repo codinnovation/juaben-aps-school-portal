@@ -11,7 +11,7 @@
    width: 30%;
    height: 100%;
    box-shadow: 0px 0px 20px #0f3834;
-   margin-top: 10%;
+   margin-top: 0%;
    border-radius: 20px;
 }
 
@@ -59,9 +59,6 @@
    transition: 0.2s ease-in-out;
 }
 
-.authFormInput input:active {
-   transform: scaleX(1.1);
-}
 
 .authFormInput .visibilityIcon {
    position: absolute;
@@ -169,7 +166,7 @@
 @media (max-width:700px) {
    .authItems {
       width: 90%;
-      margin-top: 25%;
+      margin-top: 0%;
    }
 
    .authLogin {
@@ -192,6 +189,10 @@
    .authFormInput input {
       height: 40px;
    }
+   .authForm button:hover {
+      transform: scaleX(1.0);
+   }
+   
 
    .footerContainer p {
       color: #000;

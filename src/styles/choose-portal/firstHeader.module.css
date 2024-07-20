@@ -1,9 +1,9 @@
-.container {
+.firstContainer {
    width: 100%;
    background-color: #fff;
 }
 
-.container_items {
+.firstContent {
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr auto;
    gap: 1%;
@@ -11,21 +11,20 @@
    margin: 0% auto;
 }
 
-.container_1 {
+.schoolLogo {
    display: flex;
    justify-content: flex-start;
    align-items: center;
-
-   padding: 6px;
+   padding: 5px;
 }
 
-.container_1 .container_1_image {
+.schoolLogo .logo {
    width: 25%;
-   height: 90%;
+   height: auto;
 }
 
 
-.container_2 {
+.searchInput {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -33,33 +32,33 @@
    height: 100%;
 }
 
-.container_2 input {
+.searchInput input {
    width: 400px;
    height: 55px;
-   background-color: #f2f2f2f2;
+   background-color: #d8d8d8f2;
    border: none;
-   border-radius: 20px;
+   border-radius: 10px;
    padding-left: 10px;
 }
 
-.container_2 .SearchIcon {
+.searchInput .SearchIcon {
    position: relative;
    margin-left: -10%;
    color: #0f3834;
 }
 
-.container_3 {
+.notificationContainer {
    display: flex;
    justify-content: flex-end;
    align-items: center;
    position: relative;
 }
 
-.container_3 .NotificationsIcon {
+.notificationContainer .NotificationsIcon {
    font-size: 40px;
 }
 
-.container_3 h1 {
+.notificationContainer h1 {
    color: #fff;
    background-color: red;
    border-radius: 50%;
@@ -74,44 +73,44 @@
    font-family: Helvetica;
 }
 
-.container_4 {
+.welcomeContainer {
    display: flex;
    justify-content: center;
    align-items: center;
    width: 100%;
 }
 
-.container_4 h1:nth-child(1) {
+.welcomeContainer h1:nth-child(1) {
    font-size: 18px;
    margin-right: 10px;
    font-family: Helvetica;
 }
 
-.container_4 h1:nth-child(2) {
+.welcomeContainer h1:nth-child(2) {
    font-size: 18px;
-   font-weight: 100;
+   font-weight: 500;
    font-family: Helvetica;
 }
 
-.container_5 {
+.userProfile {
    display: flex;
    justify-content: flex-end;
    align-items: center;
 }
 
-.container_5 .container_image {
-   font-size: 50px;
+.userProfile .userIcon {
+   font-size: 45px;
 }
 
-.container_5 .KeyboardArrowDownIcon {
-   font-size: 60px;
+.userProfile .KeyboardArrowDownIcon {
+   font-size: 40px;
 }
 
-.container_6 {
+.logoutContainer {
    display: none;
 }
 
-.circle_container {
+.loadingContainer {
    display: flex;
    align-items: center;
    justify-content: center;
@@ -123,72 +122,54 @@
    height: 100%;
    background-color: rgba(0, 0, 0, 0.8);
    z-index: 9999;
- }
- 
- .circle {
-   width: 50px;
-   height: 50px;
-   border-radius: 50%;
-   border: 3px solid #fff;
-   border-top-color: transparent;
-   animation: spin 1s linear infinite;
- }
- 
- @keyframes spin {
-   0% { transform: rotate(0deg); }
-   100% { transform: rotate(360deg); }
- }
- 
- .circle_container span {
-   margin-left: 10px;
-   font-size: 20px;
-   color: dodgerblue;
-   font-family: 'metropolis';
- }
+}
+
 
 @media (max-width:700px) {
-   .container_6 {
+   .logoutContainer {
       display: flex;
       justify-content: flex-end;
       align-items: center;
    }
 
-   .container_2 {
+   .searchInput {
       display: none;
    }
 
-   .container_3 {
+   .notificationContainer {
       display: none;
    }
 
-   .container_5 {
+   .userProfile {
       display: none;
    }
 
-   .container_4 {
+   .welcomeContainer {
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
    }
 
-   .container_4 h1:nth-child(1) {
+   .welcomeContainer h1:nth-child(1) {
       font-size: 15px;
-      margin-right: 10px;
+      margin-right: 0px;
    }
 
-   .container_4 h1:nth-child(2) {
-      font-size: 15px;
+   .welcomeContainer h1:nth-child(2) {
+      font-size: 0.8em;
       font-weight: 100;
+      font-weight: 700;
    }
 
-   .container_items {
+   .firstContent {
       grid-template-columns: 1fr 1fr 1fr;
-      width: 90%;
+      width: 96%;
    }
 
-   .container_1 .container_1_image {
-      width: 80%;
-      height: 90%;
+   .schoolLogo .logo {
+      width: 50%;
+      height: auto;
    }
 
 }
