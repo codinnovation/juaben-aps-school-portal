@@ -11,6 +11,10 @@ import StudentHomework from "./studentHomework";
 import StudentFees from "./studentFees";
 import { useRouter } from "next/router";
 import withSession from "@/lib/session";
+import Layout from "../layout";
+import MenuIcon from "@mui/icons-material/Menu";
+import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
+import EventAvailable from "@mui/icons-material/EventAvailable";
 
 function StudentProfilePage({ attendance, user }) {
   const router = useRouter();
@@ -93,14 +97,15 @@ function StudentProfilePage({ attendance, user }) {
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.containerItems}>
-          <div className={styles.containerHeader}>
-            <div className={styles.item1}>
+      <Layout />
+      <div className={styles.profileContainer}>
+        <div className={styles.profileContent}>
+          <div className={styles.profileHeader}>
+            <div className={styles.profilePageName}>
               <h1>Student Profile</h1>
             </div>
 
-            <div className={styles.navContainer}>
+            <div className={styles.profileNavigation}>
               <button onClick={() => naviagteTo("studentProfile")}>
                 Profile
               </button>
@@ -121,19 +126,27 @@ function StudentProfilePage({ attendance, user }) {
               </button>
             </div>
 
-            <div
-              className={styles.menuContainer}
-              onClick={() => setOpenModal(true)}
-            >
-              <Menu />
+            <div className={styles.menuIconContainer}>
+              <div className={styles.link} onClick={() => setOpenModal(true)}>
+                <MenuIcon className={styles.icon} />
+                <h1>Menu</h1>
+              </div>
+
+              <div className={styles.link}>
+                <NotificationAddIcon className={styles.icon} />
+                <h1>Notification</h1>
+              </div>
+
+              <div className={styles.link}>
+                <EventAvailable className={styles.icon} />
+                <h1>Events</h1>
+              </div>
             </div>
           </div>
-        </div>
 
-        {activeComponent === "studentProfile" && (
-          <div className={styles.profileContainer}>
-            <div className={styles.profileItems}>
-              <div className={styles.items}>
+          {activeComponent === "studentProfile" && (
+            <div className={styles.profileDetails}>
+              <div className={styles.profileItems}>
                 <div className={styles.item}>
                   <p>First Name</p>
                   <h1>
@@ -289,33 +302,29 @@ function StudentProfilePage({ attendance, user }) {
                       : ""}
                   </h1>
                 </div>
-
               </div>
             </div>
-            <div className={styles.formContainer}>
-              <div className={styles.inputFieldsContainer}>
-                <form onSubmit={handleVerify}>
-                  <div className={styles.inputFields}>
-                    <input
-                      type="text"
-                      name="StudentNumber"
-                      value={inputData?.StudentNumber || ""}
-                      onChange={handleInputChange}
-                      placeholder="Enter Student Number"
-                    />
-                  </div>
+          )}
+        </div>
+      </div>
 
-                  <div className={styles.submitBtn}>
-                    <button>Submit</button>
-                    <button onClick={() => setToggleVarifiedForm(false)}>
-                      Close
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
+      <div className={styles.verifyContainer}>
+        <form onSubmit={handleVerify}>
+          <div className={styles.verifyInput}>
+            <input
+              type="text"
+              name="StudentNumber"
+              value={inputData?.StudentNumber || ""}
+              onChange={handleInputChange}
+              placeholder="Enter Student Number"
+            />
           </div>
-        )}
+
+          <div className={styles.verifyButton}>
+            <button>Submit</button>
+            <button onClick={() => setToggleVarifiedForm(false)}>Close</button>
+          </div>
+        </form>
       </div>
 
       {activeComponent === "studentAttendance" && (
@@ -354,7 +363,6 @@ function StudentProfilePage({ attendance, user }) {
         />
       )}
 
-
       <Dialog open={openModal} onClose={handleCloseModal}>
         <DialogTitle>{user?.displayName}</DialogTitle>
         <DialogContent>
@@ -371,10 +379,11 @@ function StudentProfilePage({ attendance, user }) {
               <li
                 onClick={() => naviagteTo("studentProfile")}
                 style={{
-                  backgroundColor: "#191970",
+                  backgroundColor: "#0f3834",
                   color: "#fff",
                   padding: "10px",
-                  borderRadius: "20px",
+                  borderRadius: "5px",
+                  fontSize: "0.9em"
                 }}
               >
                 Profile
@@ -382,10 +391,11 @@ function StudentProfilePage({ attendance, user }) {
               <li
                 onClick={() => naviagteTo("studentAttendance")}
                 style={{
-                  backgroundColor: "#191970",
+                  backgroundColor: "#0f3834",
                   color: "#fff",
                   padding: "10px",
-                  borderRadius: "20px",
+                  borderRadius: "5px",
+                  fontSize: "0.9em",
                   marginTop: "10px",
                 }}
               >
@@ -395,11 +405,13 @@ function StudentProfilePage({ attendance, user }) {
               <li
                 onClick={() => naviagteTo("studentClassScore")}
                 style={{
-                  backgroundColor: "#191970",
+                  backgroundColor: "#0f3834",
                   color: "#fff",
                   padding: "10px",
-                  borderRadius: "20px",
+                  borderRadius: "5px",
+                  fontSize: "0.9em",
                   marginTop: "10px",
+
                 }}
               >
                 Class Score
@@ -408,11 +420,13 @@ function StudentProfilePage({ attendance, user }) {
               <li
                 onClick={() => naviagteTo("studentClassTest")}
                 style={{
-                  backgroundColor: "#191970",
+                  backgroundColor: "#0f3834",
                   color: "#fff",
                   padding: "10px",
-                  borderRadius: "20px",
+                  borderRadius: "5px",
+                  fontSize: "0.9em",
                   marginTop: "10px",
+
                 }}
               >
                 Class Test
@@ -421,11 +435,13 @@ function StudentProfilePage({ attendance, user }) {
               <li
                 onClick={() => naviagteTo("studentHomework")}
                 style={{
-                  backgroundColor: "#191970",
+                  backgroundColor: "#0f3834",
                   color: "#fff",
                   padding: "10px",
-                  borderRadius: "20px",
+                  borderRadius: "5px",
+                  fontSize: "0.9em",
                   marginTop: "10px",
+
                 }}
               >
                 Homework
@@ -434,11 +450,13 @@ function StudentProfilePage({ attendance, user }) {
               <li
                 onClick={() => naviagteTo("studentFees")}
                 style={{
-                  backgroundColor: "#191970",
+                  backgroundColor: "#0f3834",
                   color: "#fff",
                   padding: "10px",
-                  borderRadius: "20px",
+                  borderRadius: "5px",
+                  fontSize: "0.9em",
                   marginTop: "10px",
+
                 }}
               >
                 School Fees
@@ -470,7 +488,6 @@ function StudentProfilePage({ attendance, user }) {
 }
 
 export default StudentProfilePage;
-
 
 export const getServerSideProps = withSession(async function ({ req, res }) {
   const user = req.session.get("user");

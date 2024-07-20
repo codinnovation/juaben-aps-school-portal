@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import FirstHeader from "./firstHeading";
 import MainBody from "./mainBody";
 import { useRouter } from "next/router";
-import { auth} from "../../lib/firebase";
 import Head from "next/head";
+import withSession from "@/lib/session";
+import StudentProfilePage from "./studentProfile/studentProfilePage";
 
 function Index() {
   const router = useRouter();
@@ -19,8 +20,7 @@ function Index() {
               content="width=device-width, initial-scale=1"
             />
           </Head>
-          <FirstHeader />
-          <MainBody />
+          <StudentProfilePage />
         </>
  
     </>
@@ -28,3 +28,27 @@ function Index() {
 }
 
 export default Index;
+
+
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user || !user.displayName.startsWith("Parent")) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

@@ -14,7 +14,9 @@ export default withSession(async function handler(req, res) {
         email,
         password
       );
-      await updateProfile(userCredential.user, { displayName: studentNumber });
+      await updateProfile(userCredential.user, {
+        displayName: `Parent${studentNumber}`,
+      });
       await sendEmailVerification(userCredential.user);
 
       const user = {
