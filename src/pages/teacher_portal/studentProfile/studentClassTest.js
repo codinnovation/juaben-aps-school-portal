@@ -143,8 +143,8 @@ function StudentClassScore({ selectedStudent }) {
             <select value={selectedTerm} onChange={(e) => setSelectedTerm(e.target.value)}>
               <option value=""></option>
               <option value="Term 1">Term 1</option>
-              <option value="Term 2">Term 2</option>
-              <option value="Term 3">Term 3</option>
+              <option value="Term 2" disabled>Term 2</option>
+              <option value="Term 3" disabled>Term 3</option>
             </select>
           </div>
 
