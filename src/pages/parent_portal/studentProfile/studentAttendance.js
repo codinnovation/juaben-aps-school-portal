@@ -3,6 +3,8 @@ import styles from "@/styles/parent_portal_css/attendance.module.css";
 
 function StudentAttendance({ varifiedStudent }) {
   const [attendanceData, setAttendanceData] = useState([]);
+  const [term, setTerm] = useState("Term One");
+
 
   useEffect(() => {
     if (varifiedStudent?.length && varifiedStudent[0].attendance) {
