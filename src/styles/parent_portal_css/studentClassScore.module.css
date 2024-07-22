@@ -1,16 +1,16 @@
 .classScoreContainer {
-   width: 100%;
-   height: 100%;
-
+   width: 77%;
+   margin-left: 20%;
+   margin-top: 1%;
 }
 
 .classScoreItems {
-   width: 60%;
+   width: 80%;
    height: 70vh;
    padding: 10px;
    margin: 1% auto;
    border: 1px solid #191970;
-   border-radius: 20px;
+   border-radius: 5px;
 }
 
 .subjectHeader {
@@ -30,38 +30,147 @@
    margin-top: 1.5%;
 }
 
-.scores{
+.scores {
    margin-top: 10px;
    font-weight: 600;
 }
 
-.addScoreBtnContainer{
+.subjName {
+   display: flex;
+   margin-bottom: 10px;
+   justify-content: center;
+   align-items: center;
+}
+
+.subjName span {
+   font-size: 15px;
+   margin-right: 10px;
+   color: orange;
+}
+
+.subjName select {
+   width: 200px;
+   height: 40px;
+   border-radius: 10px;
+}
+
+.subjDate {
+   display: flex;
+   margin-bottom: 10px;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.subjDate span {
+   color: orange;
+   margin-right: 10px;
+   font-size: 15px;
+}
+
+.subjDate input {
+   width: 200px;
+   height: 40px;
+   border-radius: 10px;
+   border: 1px solid #aeaeae;
+}
+
+.subjScore {
+   display: flex;
+   margin-bottom: 10px;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.subjScore span {
+   color: orange;
+   margin-right: 10px;
+   font-size: 15px;
+}
+
+.subjScore input {
+   width: 200px;
+   height: 40px;
+   border-radius: 10px;
+   border: 1px solid #aeaeae;
+}
+
+.addScoreBtnContainer {
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-.addScoreBtnContainer button{
+.addBtn {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+
+.addScoreBtnContainer button {
    width: 150px;
    height: 45px;
    background-color: green;
    color: #fff;
-   border-radius: 20px;
+   border-radius: 5px;
    border: none;
 }
-.addScoreBtnContainer button:nth-child(2){
+
+.addScoreBtnContainer button:nth-child(2) {
    width: 150px;
    height: 45px;
-   background-color: yellow;
-   color: #000;
-   border-radius: 20px;
+   background-color: #000;
+   color: #fff;
+   border-radius: 5px;
    border: none;
    margin-left: 10px;
 }
 
-@media (max-width: 700px){
-   .classScoreItems {
-      width: 80%;
-      height: 75vh;
+@media (max-width: 700px) {
+   .classScoreContainer {
+      width: 99%;
+      margin: 7% auto;
    }
+
+   .classScoreItems {
+      width: 100%;
+      height: 75vh;
+      overflow-y: scroll;
+   }
+
+   .subjectHeader {
+      margin-top: 15px;
+   }
+
+
+   .subjectHeader h1 {
+      font-size: 1em;
+      font-family: sans-serif;
+   }
+
+   .subjectScores p {
+      font-size: 0.9em;
+      font-family: sans-serif;
+   }
+
+   .subjectContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+   }
+
+   .subjectContainer .subjectItem {
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+
+   .subjectContainer .subjectItem h1 {
+      font-size: 0.9em;
+      padding: 5px;
+   }
+
+
+
 }

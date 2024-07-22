@@ -78,53 +78,34 @@
    text-transform: uppercase;
 }
 
-.verifyContainer {
+.loadingContainer {
    display: flex;
-   justify-content: center;
    align-items: center;
-   margin-top: 15%;
-}
-
-.verifyInput {
-   display: flex;
    justify-content: center;
-   align-items: center;
-}
-
-.verifyInput input {
+   flex-direction: column;
+   position: fixed;
+   top: 0;
+   left: 0;
    width: 100%;
-   text-align: center;
-   height: 30px;
-   background-color: #0f3834;
-   color: #fff;
-   border: none;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.8);
+   z-index: 9999;
 }
 
-.verifyButton {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin-top: 10px;
-}
-
-.verifyButton button {
-   margin-left: 10px;
-   width: 100%;
-   height: 30px;
-}
 
 @media(max-width:700px) {
    .profileContainer {
       width: 96%;
-      margin: 0 auto;
+      margin: 0px auto;
    }
 
    .profileHeader {
       grid-template-columns: 1fr;
+      margin-top: 10px;
    }
 
    .profilePageName h1 {
-      font-size: 1.4em;
+      font-size: 1.1em;
    }
 
    .profileNavigation {
@@ -134,7 +115,7 @@
    .menuIconContainer {
       display: grid;
       grid-template-columns: 1fr 1fr auto;
-      margin-top: 6%;
+      margin-top: 8%;
    }
 
    .menuIconContainer .link {
@@ -148,12 +129,8 @@
    }
 
    .menuIconContainer h1 {
-      font-size: 1em;
+      font-size: 0.9em;
       font-family: sans-serif;
-   }
-
-   .verifyContainer {
-      display: none;
    }
 
    .profileItems {
@@ -162,18 +139,36 @@
       gap: 6%;
    }
 
-   .varifyStudentContainer{
-      margin-top: 15px;
+   .profileItems .item p {
+      font-size: 0.95em;
    }
 
-   .inputField input{
-      height: 30px;
+   .profileItems .item h1 {
+      font-size: 0.9em;
+      height: 35px;
    }
 
-   .submitButton{
+   .navLinks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+   }
+
+   .navLinks .links {
+      border: 1px solid #ccc;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 8px;
    }
+
+   .navLinks .links h1 {
+      font-size: 0.9em;
+      padding: 5px;
+   }
+
+   .navLinks .links:nth-child(7){
+      background-color: red;
+      color: #fff;
+   }
+
 }

@@ -6,7 +6,7 @@ import Head from "next/head";
 import withSession from "@/lib/session";
 import StudentProfilePage from "./studentProfile/studentProfilePage";
 
-function Index() {
+function Index({user}) {
   const router = useRouter();
 
   return (
@@ -20,7 +20,7 @@ function Index() {
               content="width=device-width, initial-scale=1"
             />
           </Head>
-          <StudentProfilePage />
+          <StudentProfilePage user={user}/>
         </>
  
     </>
