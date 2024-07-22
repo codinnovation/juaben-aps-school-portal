@@ -10,12 +10,17 @@ import StudentHomework from "./studentHomework";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { auth } from "../../../lib/firebase";
 import withSession from "@/lib/session";
+import { ToastContainer, toast } from "react-toastify";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 
 function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
   const [activeComponent, setActiveComponent] = useState("studentProfile");
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
 
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -23,6 +28,30 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
 
   const naviagteTo = (compName) => {
     setActiveComponent(compName);
+  };
+
+  const handleLogout = async (e) => {
+    setIsButtonClicked(true);
+    try {
+      const response = await fetch("/api/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        toast.success("Logout Successful");
+        router.push("/login");
+        setIsButtonClicked(false);
+      } else {
+        toast.error("Logout Failed");
+        setIsButtonClicked(false);
+      }
+    } catch (error) {
+      toast.error("Error Occurred");
+      setIsButtonClicked(false);
+    }
   };
 
   return (
@@ -181,28 +210,55 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
         <SetExamScores selectedStudent={selectedStudent} />
       )}
 
-      <Dialog
-        open={openModal}
-        onClose={handleCloseModal}
-        className={styles.menuDialogContainer}
-      >
-        <DialogTitle>{user?.user?.displayName}</DialogTitle>
+<Dialog open={openModal} onClose={handleCloseModal}>
+        <DialogTitle>{user?.displayName}</DialogTitle>
         <DialogContent>
-          <div className={styles.menuContainerNav}>
-            <ul>
-              <li onClick={() => naviagteTo("studentProfile")}>Profile</li>
-              <li onClick={() => naviagteTo("studentAttendance")}>
-                Attendance
-              </li>
+          <div className={styles.navLinks}>
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentProfile")}
+            >
+              <h1>Profile</h1>
+            </div>
 
-              <li onClick={() => naviagteTo("studentClassScore")}>
-                Class Score
-              </li>
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentAttendance")}
+            >
+              <h1>Attendance</h1>
+            </div>
 
-              <li onClick={() => naviagteTo("studentClassTest")}>Class Test</li>
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentClassScore")}
+            >
+              <h1>Class Score</h1>
+            </div>
 
-              <li onClick={() => naviagteTo("studentHomework")}>Home Work</li>
-            </ul>
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentClassTest")}
+            >
+              <h1>Class Test</h1>
+            </div>
+
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentHomework")}
+            >
+              <h1>Home Work</h1>
+            </div>
+
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentFees")}
+            >
+              <h1>Fees</h1>
+            </div>
+
+            <div className={styles.links} onClick={handleLogout}>
+              <h1>Logout</h1>
+            </div>
           </div>
         </DialogContent>
       </Dialog>

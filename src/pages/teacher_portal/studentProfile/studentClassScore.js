@@ -14,7 +14,7 @@ function StudentClassScore({ selectedStudent }) {
   const [subjectScores, setSubjectScores] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [chooseSubModal, setChooseSubModal] = useState(false);
-  const [selectedTerm, setSelectedTerm] = useState("");
+  const [selectedTerm, setSelectedTerm] = useState("Term One");
   const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
@@ -142,9 +142,9 @@ function StudentClassScore({ selectedStudent }) {
             <label>Select Term:</label>
             <select value={selectedTerm} onChange={(e) => setSelectedTerm(e.target.value)}>
               <option value=""></option>
-              <option value="Term 1">Term 1</option>
-              <option value="Term 2" disabled>Term 2</option>
-              <option value="Term 3" disabled>Term 3</option>
+              <option value="Term One">Term 1</option>
+              <option value="Term Two" disabled>Term 2</option>
+              <option value="Term Three" disabled>Term 3</option>
             </select>
           </div>
 

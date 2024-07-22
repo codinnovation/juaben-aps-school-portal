@@ -146,6 +146,7 @@
 
    .items{
       grid-template-columns: 1fr 1fr;
+      gap: 20px;
    }
 
    .item1{
@@ -162,6 +163,7 @@
 
    .item h1{
       font-size: 12px;
+      height: 40px;
    }
 
    .backToList{
@@ -173,14 +175,27 @@
       width: 100%;
    }
 
-   .menuContainerNav ul{
-      list-style: none;
+ 
+   .navLinks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
    }
 
-   .menuContainerNav li{
-      background-color: #0b1e1c;
-      margin: 20px;
-      padding: 10px;
+   .navLinks .links {
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+
+   .navLinks .links h1 {
+      font-size: 0.9em;
+      padding: 5px;
+   }
+
+   .navLinks .links:nth-child(7){
+      background-color: red;
       color: #fff;
    }
 }
