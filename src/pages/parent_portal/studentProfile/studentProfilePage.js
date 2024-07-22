@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/parent_portal_css/studentProfilePage.module.css";
-import Menu from "@mui/icons-material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
+import EventAvailable from "@mui/icons-material/EventAvailable";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { ref, get } from "firebase/database";
 import { db } from "../../../lib/firebase";
@@ -12,20 +14,41 @@ import StudentFees from "./studentFees";
 import { useRouter } from "next/router";
 import withSession from "@/lib/session";
 import Layout from "../layout";
-import MenuIcon from "@mui/icons-material/Menu";
-import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
-import EventAvailable from "@mui/icons-material/EventAvailable";
+import { ToastContainer, toast } from "react-toastify";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 
-function StudentProfilePage({ attendance, user }) {
+function StudentProfilePage({ user }) {
   const router = useRouter();
   const [activeComponent, setActiveComponent] = useState("studentProfile");
   const [studentData, setStudentData] = useState([]);
   const [varifiedStudent, setVarifiedStudent] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const [toggleVarifiedForm, setToggleVarifiedForm] = useState(false);
-  const [inputData, setInputData] = useState({
-    StudentNumber: "",
-  });
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
+  const handleLogout = async (e) => {
+    setIsButtonClicked(true);
+    try {
+      const response = await fetch("/api/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        toast.success("Logout Successful");
+        router.push("/login");
+        setIsButtonClicked(false);
+      } else {
+        toast.error("Logout Failed");
+        setIsButtonClicked(false);
+      }
+    } catch (error) {
+      toast.error("Error Occurred");
+      setIsButtonClicked(false);
+    }
+  };
 
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -33,6 +56,7 @@ function StudentProfilePage({ attendance, user }) {
 
   const naviagteTo = (compName) => {
     setActiveComponent(compName);
+    setOpenModal(false);
   };
 
   const hideStudentProfilePage = () => {
@@ -42,6 +66,7 @@ function StudentProfilePage({ attendance, user }) {
   };
 
   useEffect(() => {
+    setIsButtonClicked(true)
     const fetchData = async () => {
       try {
         const dbRef = ref(db, "japsstudents");
@@ -54,49 +79,57 @@ function StudentProfilePage({ attendance, user }) {
             ...value,
           }));
           setStudentData(dataArray);
+          setIsButtonClicked(false)
         } else {
           setStudentData([]);
+          setIsButtonClicked(false)
+
         }
       } catch (error) {
         console.error("Error fetching data:");
         setStudentData([]);
+        setIsButtonClicked(false)
+
       }
     };
 
     fetchData();
   }, []);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setInputData({
-      ...inputData,
-      [name]: value,
-    });
+  const extractNumericPart = (displayName) => {
+    const match = displayName.match(/\d+/); // Regex to find numeric part
+    return match ? match[0] : null;
   };
-
-  const handleVerify = (e) => {
-    e.preventDefault();
-    const verified = studentData.filter((student) => {
-      return student.StudentNumber === inputData.StudentNumber;
-    });
-    setVarifiedStudent(verified);
-    setToggleVarifiedForm(false);
-  };
-
-  useEffect(() => {}, [varifiedStudent]);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setToggleVarifiedForm(true);
-    }, 100);
+    if (user && studentData.length > 0) {
+      const studentNumber = extractNumericPart(user.displayName);
 
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
+      if (studentNumber) {
+        const filteredStudents = studentData.filter(
+          (student) => student.StudentNumber === studentNumber
+        );
+        setVarifiedStudent(filteredStudents);
+      } else {
+        setVarifiedStudent([]);
+      }
+    }
+  }, [user, studentData]);
+
+  const attendanceOfVerifiedStudent = varifiedStudent[0]?.attendance;
+  const classScoreOfVerifiedStudent = varifiedStudent[0]?.ClassScore;
 
   return (
     <>
+      {isButtonClicked && (
+        <>
+          <div className={styles.loadingContainer}>
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
+          </div>
+        </>
+      )}
       <Layout />
       <div className={styles.profileContainer}>
         <div className={styles.profileContent}>
@@ -308,29 +341,10 @@ function StudentProfilePage({ attendance, user }) {
         </div>
       </div>
 
-      <div className={styles.verifyContainer}>
-        <form onSubmit={handleVerify}>
-          <div className={styles.verifyInput}>
-            <input
-              type="text"
-              name="StudentNumber"
-              value={inputData?.StudentNumber || ""}
-              onChange={handleInputChange}
-              placeholder="Enter Student Number"
-            />
-          </div>
-
-          <div className={styles.verifyButton}>
-            <button>Submit</button>
-            <button onClick={() => setToggleVarifiedForm(false)}>Close</button>
-          </div>
-        </form>
-      </div>
-
       {activeComponent === "studentAttendance" && (
         <StudentAttendancecomp
           varifiedStudent={varifiedStudent}
-          attendance={attendance}
+          attendanceOfVerifiedStudent={attendanceOfVerifiedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
         />
       )}
@@ -346,6 +360,7 @@ function StudentProfilePage({ attendance, user }) {
         <StudentClassScore
           varifiedStudent={varifiedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
+          classScoreOfVerifiedStudent={classScoreOfVerifiedStudent}
         />
       )}
 
@@ -366,123 +381,57 @@ function StudentProfilePage({ attendance, user }) {
       <Dialog open={openModal} onClose={handleCloseModal}>
         <DialogTitle>{user?.displayName}</DialogTitle>
         <DialogContent>
-          <div className={styles.menuContainerNav}>
-            <ul
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                alignItems: "center",
-                listStyle: "none",
-              }}
+          <div className={styles.navLinks}>
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentProfile")}
             >
-              <li
-                onClick={() => naviagteTo("studentProfile")}
-                style={{
-                  backgroundColor: "#0f3834",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  fontSize: "0.9em"
-                }}
-              >
-                Profile
-              </li>
-              <li
-                onClick={() => naviagteTo("studentAttendance")}
-                style={{
-                  backgroundColor: "#0f3834",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  fontSize: "0.9em",
-                  marginTop: "10px",
-                }}
-              >
-                Attendance
-              </li>
+              <h1>Profile</h1>
+            </div>
 
-              <li
-                onClick={() => naviagteTo("studentClassScore")}
-                style={{
-                  backgroundColor: "#0f3834",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  fontSize: "0.9em",
-                  marginTop: "10px",
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentAttendance")}
+            >
+              <h1>Attendance</h1>
+            </div>
 
-                }}
-              >
-                Class Score
-              </li>
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentClassScore")}
+            >
+              <h1>Class Score</h1>
+            </div>
 
-              <li
-                onClick={() => naviagteTo("studentClassTest")}
-                style={{
-                  backgroundColor: "#0f3834",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  fontSize: "0.9em",
-                  marginTop: "10px",
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentClassTest")}
+            >
+              <h1>Class Test</h1>
+            </div>
 
-                }}
-              >
-                Class Test
-              </li>
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentHomework")}
+            >
+              <h1>Home Work</h1>
+            </div>
 
-              <li
-                onClick={() => naviagteTo("studentHomework")}
-                style={{
-                  backgroundColor: "#0f3834",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  fontSize: "0.9em",
-                  marginTop: "10px",
+            <div
+              className={styles.links}
+              onClick={() => naviagteTo("studentFees")}
+            >
+              <h1>Fees</h1>
+            </div>
 
-                }}
-              >
-                Homework
-              </li>
-
-              <li
-                onClick={() => naviagteTo("studentFees")}
-                style={{
-                  backgroundColor: "#0f3834",
-                  color: "#fff",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  fontSize: "0.9em",
-                  marginTop: "10px",
-
-                }}
-              >
-                School Fees
-              </li>
-            </ul>
-
-            <div className={styles.varifyStudentContainer}>
-              <form onSubmit={handleVerify}>
-                <div className={styles.inputField}>
-                  <input
-                    type="text"
-                    name="StudentNumber"
-                    value={inputData?.StudentNumber || ""}
-                    onChange={handleInputChange}
-                    placeholder="Enter Student Number"
-                  />
-                </div>
-
-                <div className={styles.submitButton}>
-                  <button type="submit">Submit</button>
-                </div>
-              </form>
+            <div className={styles.links} onClick={handleLogout}>
+              <h1>Logout</h1>
             </div>
           </div>
         </DialogContent>
       </Dialog>
+
+      <ToastContainer />
     </>
   );
 }
@@ -504,9 +453,4 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
     req.session.set("user", user);
     await req.session.save();
   }
-  return {
-    props: {
-      user: user,
-    },
-  };
 });
