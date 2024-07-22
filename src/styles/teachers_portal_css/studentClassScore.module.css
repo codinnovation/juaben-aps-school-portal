@@ -127,34 +127,28 @@
 }
 
 @media (max-width: 700px) {
+   .classScoreContainer {
+      width: 99%;
+      margin: 0% auto;
+   }
+
    .classScoreItems {
-      width: 90%;
-      height: 70vh;
-   }
-
-   .addScoreBtnContainer button {
-      width: 100px;
-      height: 40px;
-   }
-
-   .addScoreBtnContainer button:nth-child(2) {
-      width: 100px;
-      height: 40px;
-      background-color: yellow;
-      color: #000;
-      border-radius: 20px;
-      border: none;
-      margin-left: 10px;
+      width: 100%;
+      height: 80vh;
+      overflow-y: scroll;
    }
 
    .subjectHeader {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      margin-top: 15px;
    }
 
-   .subjectHeader h1{
-      font-size: 13px;
+   .subjectHeader h1 {
+      font-size: 1em;
+   }
+
+   .subjName span {
+      font-size: 15px;
+      margin-right: 10px;
       color: orange;
    }
 
