@@ -6,7 +6,7 @@
 
 .studentFeeContents {
    width: 80%;
-   height: 85vh;
+   height: 70vh;
    padding: 10px;
    margin: 1% auto;
    border: 1px solid #191970;
@@ -14,23 +14,25 @@
 }
 
 .feesHeader {
-   display: grid;
-   grid-template-columns: 1fr auto;
+   display: flex;
+   flex-direction: column;
 }
 
 .totalContainer {
    display: flex;
-   justify-content: flex-start;
+   justify-content: center;
    align-items: center;
+   margin-bottom: 20%;
+   margin-top: 5%;
 }
 
 .totalContainer .icon {
    color: #000;
-   font-size: 2em;
+   font-size: 3em;
 }
 
 .totalContainer h1 {
-   font-size: 1.7em;
+   font-size: 2.3em;
    font-family: sans-serif;
 }
 
@@ -42,28 +44,11 @@
 
 .remainingContainer .icon {
    color: #000;
-   font-size: 2em;
+   font-size: 3em;
 }
 
 .remainingContainer h1 {
-   font-size: 1.7em;
-   font-family: sans-serif;
-}
-
-.paymentHistory {
-   height: 73vh;
-   overflow: scroll;
-   margin-top: 5%;
-}
-
-.paymentHistory .header{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-.paymentHistory .header h1{
-   font-size: 1.5em;
+   font-size: 2.3em;
    font-family: sans-serif;
 }
 
@@ -78,29 +63,28 @@
       height: auto;
    }
 
-   .remainingContainer h1 {
-      font-size: 1em;
-      font-family: sans-serif;
+   .totalContainer {
+      margin-bottom: 20%;
+      margin-top: 5%;
    }
 
-   .remainingContainer .icon {
-      color: #000;
-      font-size: 1.5em;
+   .totalContainer h1 {
+      font-size: 1.8em;
+      font-family: sans-serif;
    }
 
    .totalContainer .icon {
       color: #000;
-      font-size: 1.5em;
+      font-size: 2.5em;
    }
 
-   .totalContainer h1 {
-      font-size: 1em;
-      font-family: sans-serif;
+   .remainingContainer .icon {
+      color: #000;
+      font-size: 2.5em;
    }
 
-   .paymentHistory .header h1{
-      font-size: 1.2em;
+   .remainingContainer h1 {
+      font-size: 1.8em;
       font-family: sans-serif;
    }
-   
 }

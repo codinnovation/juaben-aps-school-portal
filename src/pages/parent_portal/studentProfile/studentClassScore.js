@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "@/styles/parent_portal_css/studentClassScore.module.css";
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 
-function StudentClassScore({
-  varifiedStudent,
-  navigateToComp,
-  classScoreOfVerifiedStudent,
-}) {
+function StudentClassScore({ varifiedStudent, classScoreOfVerifiedStudent }) {
   const [openModal, setOpenModal] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
   const [subjectScores, setSubjectScores] = useState({});
@@ -20,8 +16,8 @@ function StudentClassScore({
 
     if (varifiedStudent[0].Class) {
       if (
-        classScoreOfVerifiedStudent.Class === "K.G 1" ||
-        classScoreOfVerifiedStudent.Class === "K.G 2"
+        varifiedStudent[0].Class === "K.G 1" ||
+        varifiedStudent[0].Class === "K.G 2"
       ) {
         setSubjects([
           "",
@@ -33,8 +29,9 @@ function StudentClassScore({
           "OWOP",
         ]);
       } else if (
-        classScoreOfVerifiedStudent.Class === "Creche" ||
-        classScoreOfVerifiedStudent.Class === "Nursary"
+        varifiedStudent[0]?.Class === "Creche" ||
+        varifiedStudent[0]?.Class === "Nursery 1" ||
+        varifiedStudent[0]?.Class === "Nursery 2"
       ) {
         setSubjects([
           "",

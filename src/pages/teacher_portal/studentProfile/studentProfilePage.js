@@ -7,6 +7,7 @@ import StudentClassTest from "./studentClassTest";
 import StudentExams from "./studentExams";
 import SetExamScores from "./setExamScores";
 import StudentHomework from "./studentHomework";
+import StudentFees from "./studentFees";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { auth } from "../../../lib/firebase";
 import withSession from "@/lib/session";
@@ -20,7 +21,6 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
   const [openModal, setOpenModal] = useState(false);
   const [activeComponent, setActiveComponent] = useState("studentProfile");
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-
 
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -80,9 +80,7 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
               <button onClick={() => naviagteTo("studentHomework")}>
                 Home Work
               </button>
-              <button onClick={() => naviagteTo("studentExams")}>
-                Exams
-              </button>
+              <button onClick={() => naviagteTo("studentFees")}>Fees</button>
             </div>
 
             <div
@@ -210,7 +208,11 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
         <SetExamScores selectedStudent={selectedStudent} />
       )}
 
-<Dialog open={openModal} onClose={handleCloseModal}>
+      {activeComponent === "studentFees" && (
+        <StudentFees selectedStudent={selectedStudent} />
+      )}
+
+      <Dialog open={openModal} onClose={handleCloseModal}>
         <DialogTitle>{user?.displayName}</DialogTitle>
         <DialogContent>
           <div className={styles.navLinks}>

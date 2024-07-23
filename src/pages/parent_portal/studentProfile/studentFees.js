@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/parent_portal_css/studentFee.module.css";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
 function StudentFees({ varifiedStudent }) {
   const [balance, setBalance] = useState(0);
@@ -31,37 +32,26 @@ function StudentFees({ varifiedStudent }) {
 
   return (
     <>
-      {varifiedStudent?.length > 0 ? (
-        <div className={styles.feeContainer}>
-          <div className={styles.feeContainerItems}>
-            <div className={styles.feeContainerHeader}>
-              <h1>School Fees</h1>
+      <div className={styles.studentFeeContainer}>
+        <div className={styles.studentFeeContents}>
+          <div className={styles.feesHeader}>
+            <div className={styles.totalContainer}>
+              <AccountBalanceWalletIcon className={styles.icon} />
+              <h1>{`Total: Ghc1.00`}</h1>
             </div>
+            <div className={styles.remainingContainer}>
+              <AccountBalanceWalletIcon className={styles.icon} />
+              <h1>{`Remaining: Ghc5.00`}</h1>
+            </div>
+          </div>
 
-            <div className={styles.feeContainerBody}>
-              <div className={styles.feeContainerBodyHeader}>
-                <h1>{`Total Fees Ghc${
-                  varifiedStudent[0]?.SchoolFees?.TotalFees || "00.00"
-                }`}</h1>
-                <h1>{`Balance  Ghc${balance || "00.00"}`}</h1>
-              </div>
-
-              <div className={styles.subPaymentContainer}>
-                <h1>Payments History</h1>
-
-                {paymentsList.map((payment, index) => (
-                  <ul key={index}>
-                    <li>{`Ghc ${payment?.AmountOfPayment}`}</li>
-                    <li>{`Date ${payment?.DateOfPayment}`}</li>
-                  </ul>
-                ))}
-              </div>
+          <div className={styles.paymentHistory}>
+            <div className={styles.header}>
+              <h1>Payment History</h1>
             </div>
           </div>
         </div>
-      ) : (
-        <div>Loading...</div>
-      )}
+      </div>
     </>
   );
 }

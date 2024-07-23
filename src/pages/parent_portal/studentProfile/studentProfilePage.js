@@ -118,6 +118,10 @@ function StudentProfilePage({ user }) {
 
   const attendanceOfVerifiedStudent = varifiedStudent[0]?.attendance;
   const classScoreOfVerifiedStudent = varifiedStudent[0]?.ClassScore;
+  const homeWorkfVerifiedStudent = varifiedStudent[0]?.Homework;
+  const classTestVerifiedStudent = varifiedStudent[0]?.ClassTest;
+
+
 
   return (
     <>
@@ -368,6 +372,7 @@ function StudentProfilePage({ user }) {
         <StudentClassTest
           varifiedStudent={varifiedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
+          classTestVerifiedStudent={classTestVerifiedStudent}
         />
       )}
 
@@ -375,6 +380,7 @@ function StudentProfilePage({ user }) {
         <StudentHomework
           varifiedStudent={varifiedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
+          homeWorkfVerifiedStudent={homeWorkfVerifiedStudent}
         />
       )}
 
