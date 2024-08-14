@@ -50,21 +50,43 @@
    font-family: sans-serif;
 }
 
-.paymentHistory {
-   height: 73vh;
-   overflow: scroll;
-   margin-top: 5%;
-}
-
-.paymentHistory .header{
+.paymentHistory{
    display: flex;
    justify-content: center;
    align-items: center;
+   flex-direction: column;
+   margin-top: 5%;
 }
 
-.paymentHistory .header h1{
-   font-size: 1.5em;
-   font-family: sans-serif;
+.paymentHistory h1{
+   font-size: 14px;
+   text-transform: uppercase;
+}
+
+.paymentHistoryFields{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   gap: 30px;
+   margin-top: 2%;
+}
+
+.paymentDate{
+   display: flex;
+   flex-direction: column;
+}
+
+.paymentDate label{
+   margin-bottom: 10px;
+   color: orange;
+   font-size: 15px;
+}
+
+.paymentDate h1{
+   border: 1px solid #aeaeae;
+   border-radius: 10px;
+   padding: 10px;
+   font-size: 15px;
+   font-weight: 100;
 }
 
 @media (max-width: 700px) {
@@ -98,9 +120,11 @@
       font-family: sans-serif;
    }
 
-   .paymentHistory .header h1{
-      font-size: 1.2em;
-      font-family: sans-serif;
+   .paymentHistoryFields{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 30px;
+      margin-top: 2%;
    }
    
 }
