@@ -30,8 +30,6 @@ function Index() {
               <div className={styles.line}></div>
 
               <div className={styles.recentDetails}>
-                <div className={styles.recentCircle}></div>
-
                 <h3>
                   which requires Emotion packages. Use one of the following
                   commands to Use one of the Use one of the....
@@ -50,8 +48,6 @@ function Index() {
               <div className={styles.line}></div>
 
               <div className={styles.recentDetails}>
-                <div className={styles.recentCircle}></div>
-
                 <h3>
                   which requires Emotion packages. Use one of the following
                   commands to Use one of the Use one of the....
@@ -70,8 +66,6 @@ function Index() {
               <div className={styles.line}></div>
 
               <div className={styles.recentDetails}>
-                <div className={styles.recentCircle}></div>
-
                 <h3>
                   which requires Emotion packages. Use one of the following
                   commands to Use one of the Use one of the....
@@ -88,19 +82,12 @@ function Index() {
               </div>
 
               <div className={styles.line}></div>
-
               <div className={styles.recentDetails}>
-                <div className={styles.recentCircle}></div>
 
                 <h3>
                   which requires Emotion packages. Use one of the following
                 </h3>
               </div>
-            </div>
-
-            <div className={styles.viewAll}>
-              <h1>See more</h1>
-              <ExpandMoreIcon />
             </div>
           </div>
 

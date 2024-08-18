@@ -17,6 +17,8 @@ function Index({ user }) {
   const [showPassword, setShowPassword] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [studentData, setStudentData] = useState([]);
+  const [students, setStudents] = useState([]);
+console.log(students)
   const router = useRouter();
 
   useEffect(() => {
@@ -38,7 +40,6 @@ function Index({ user }) {
     fetchData();
   }, []);
 
-  console.log(studentData);
 
   const [createUser, setCreateUser] = useState({
     email: "",
@@ -100,6 +101,7 @@ function Index({ user }) {
       setIsButtonClicked(false);
     }
   };
+
 
   return (
     <>
@@ -170,7 +172,7 @@ function Index({ user }) {
               </div>
 
               <div className={styles.authForgetPassword}>
-                <Link href="/choose_portal" className={styles.link}>
+                <Link href="/choose-portal" className={styles.link}>
                   Choose Another Portal
                 </Link>
               </div>

@@ -3,8 +3,8 @@
 }
 
 .itemContainer {
-   padding-top: 2%;
-   width: 85%;
+   padding-top: 2.5%;
+   width: 80%;
    margin: 0% auto;
 }
 
@@ -15,21 +15,16 @@
    width: 100%;
 }
 
-.arrowContainer {
-   margin: 0%;
-}
-
-
-
 .portalGrid {
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr;
    width: 100%;
-   gap: 5%;
+   gap: 3.5%;
 }
 
 .portalGrid .portalCard {
-   padding: 30px;
+   padding: 35px;
+   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
 
