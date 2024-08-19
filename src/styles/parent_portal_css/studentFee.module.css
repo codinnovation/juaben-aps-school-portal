@@ -1,103 +1,130 @@
-.feeContainer {
-   width: 100%;
-   height: 100%;
-
+.studentFeeContainer {
+   width: 77%;
+   margin-left: 20%;
+   margin-top: 2%;
 }
 
-.feeContainerItems {
-   width: 60%;
-   height: 70vh;
+.studentFeeContents {
+   width: 80%;
+   height: 85vh;
    padding: 10px;
    margin: 1% auto;
    border: 1px solid #191970;
-   border-radius: 20px;
+   border-radius: 5px;
 }
 
-.feeContainerHeader {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-}
-
-.feeContainerHeader h1 {
-   font-size: 20px;
-}
-
-.feeContainerBody{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   margin-top: 1%;
-}
-
-.feeContainerBodyHeader{
+.feesHeader {
    display: grid;
-   grid-template-columns: 1fr 1fr;
+   grid-template-columns: 1fr auto;
+}
+
+.totalContainer {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.totalContainer .icon {
+   color: #000;
+   font-size: 2em;
+}
+
+.totalContainer h1 {
+   font-size: 1.7em;
+   font-family: sans-serif;
+}
+
+.remainingContainer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.remainingContainer .icon {
+   color: #000;
+   font-size: 2em;
+}
+
+.remainingContainer h1 {
+   font-size: 1.7em;
+   font-family: sans-serif;
+}
+
+.paymentHistory{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   margin-top: 5%;
+}
+
+.paymentHistory h1{
+   font-size: 14px;
+   text-transform: uppercase;
+}
+
+.paymentHistoryFields{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
    gap: 30px;
-}
-
-.feeContainerBodyHeader h1{
-   font-size: 20px;
-}
-
-.feeContainerBodyHeader h1:nth-child(2){
-   color: red;
-}
-
-.feeContainerBodyHeader h1:nth-child(1){
-   color: green;
-}
-
-.subPaymentContainer{
    margin-top: 2%;
+}
+
+.paymentDate{
    display: flex;
    flex-direction: column;
 }
 
-.subPaymentContainer h1{
-   font-size: 20px;
+.paymentDate label{
+   margin-bottom: 10px;
+   color: orange;
+   font-size: 15px;
 }
 
-.subPaymentContainer ul{
-   display: flex;
-   margin-top: 4%;
-}
-
-.subPaymentContainer ul li{
-   border: 1px solid orange;
-   display: flex;
-   margin-right: 10px;
-   padding: 10px;
+.paymentDate h1{
+   border: 1px solid #aeaeae;
    border-radius: 10px;
+   padding: 10px;
+   font-size: 15px;
+   font-weight: 100;
 }
 
-@media (max-width: 700px){
-   .feeContainerItems {
-      width: 90%;
-      height: 75vh;
+@media (max-width: 700px) {
+   .studentFeeContainer {
+      width: 99%;
+      margin: 0% auto;
    }
 
-   .feeContainerBodyHeader h1{
-      font-size: 15px;
+   .studentFeeContents {
+      width: 100%;
+      height: auto;
    }
-   .feeContainerBodyHeader{
+
+   .remainingContainer h1 {
+      font-size: 1em;
+      font-family: sans-serif;
+   }
+
+   .remainingContainer .icon {
+      color: #000;
+      font-size: 1.5em;
+   }
+
+   .totalContainer .icon {
+      color: #000;
+      font-size: 1.5em;
+   }
+
+   .totalContainer h1 {
+      font-size: 1em;
+      font-family: sans-serif;
+   }
+
+   .paymentHistoryFields{
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 30px;
+      margin-top: 2%;
    }
-
-   .subPaymentContainer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      margin-top: 10%;
-   }
-
-   .subPaymentContainer h1{
-      font-size: 16px;
-   }
+   
 }
-
