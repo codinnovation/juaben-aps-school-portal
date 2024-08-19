@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import styles from "../../styles/login.module.css";
 import VisibilityOffOutlined from "@mui/icons-material/VisibilityOffOutlined";
@@ -7,14 +7,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { auth } from ".././../lib/firebase";
 
 function LoginForm() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const router = useRouter();
 
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -31,7 +30,6 @@ function LoginForm() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
     setIsSubmitting(true);
 
     let data = {
@@ -49,11 +47,11 @@ function LoginForm() {
       });
 
       if (response.ok) {
-        toast.success("Login successful");
-        setIsSubmitting(false);
+        toast.success(`Welcome   ${userCredentials.email}`);
         router.push("/");
+        setIsSubmitting(false);
       } else {
-        toast.error("Login Failed");
+        toast.error("Login Failed, Enter valid credentials");
         setIsSubmitting(false);
         setUserCredentials({
           email: "",
@@ -63,6 +61,10 @@ function LoginForm() {
     } catch (error) {
       toast.error("Error Occurred");
       setIsSubmitting(false);
+      setUserCredentials({
+        email: "",
+        password: "",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -135,12 +137,11 @@ function LoginForm() {
               </div>
 
               <button type="submit" className={styles.loginButton}>
-                Login
+                Submit
               </button>
             </form>
           </div>
         </div>
-        
       </div>
       <ToastContainer />
       {isSubmitting && (
