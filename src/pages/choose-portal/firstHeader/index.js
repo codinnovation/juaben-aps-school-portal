@@ -6,10 +6,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Dialog, DialogContent, DialogTitle, Button } from "@mui/material";
-import Person2 from "@mui/icons-material/Person2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Menu from "@mui/icons-material/Menu";
 import withSession from "@/lib/session";
 import Logout from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -20,6 +18,7 @@ import SchoolLogo from "../../../../public/logo2.png";
 function Index({ user }) {
   const [openModal, setOpenModal] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
+  console.log(user);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const router = useRouter();
@@ -80,11 +79,7 @@ function Index({ user }) {
       <div className={styles.firstContainer}>
         <div className={styles.firstContent}>
           <div className={styles.schoolLogo}>
-            <Image
-              src={SchoolLogo}
-              alt="thp_logo"
-              className={styles.logo}
-            />
+            <Image src={SchoolLogo} alt="thp_logo" className={styles.logo} />
           </div>
           <div className={styles.searchInput}>
             <input placeholder="search..." />
@@ -108,21 +103,24 @@ function Index({ user }) {
             <KeyboardArrowDownIcon className={styles.KeyboardArrowDownIcon} />
           </div>
 
-          <div className={styles.logoutContainer} onClick={handleLogout}>
-            <Logout />
-          </div>
+         
         </div>
       </div>
 
       <Dialog open={openModal} onClose={handleCloseModal}>
         <DialogContent style={{ display: "flex", flexDirection: "column" }}>
           <Button>Profile</Button>
-          <Button onClick={createTeacherAccount}>
-            Create Account For Teacher
-          </Button>
-          <Button onClick={createParentAccount}>
-            Create Account For Parent
-          </Button>
+          {user.displayName === "Administrator" && (
+            <Button onClick={createTeacherAccount}>
+              Create Account For Teacher
+            </Button>
+          )}
+
+          {user.displayName === "Administrator" && (
+            <Button onClick={createParentAccount}>
+              Create Account For Parent
+            </Button>
+          )}
 
           <Button onClick={handleLogout}>Logout</Button>
         </DialogContent>

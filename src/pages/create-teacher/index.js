@@ -116,7 +116,7 @@ function Index({ user }) {
               </div>
 
               <div className={styles.authFormInput}>
-                <label>Role</label>
+                <label>Class</label>
                 <select
                   value={createUser.role}
                   onChange={handleInputChange}
@@ -164,7 +164,7 @@ function Index({ user }) {
               </div>
 
               <div className={styles.authForgetPassword}>
-                <Link href="/choose_portal" className={styles.link}>
+                <Link href="/choose-portal" className={styles.link}>
                   Choose Another Portal
                 </Link>
               </div>
@@ -174,11 +174,6 @@ function Index({ user }) {
               </button>
             </form>
           </div>
-        </div>
-        <div className={styles.footerContainer}>
-          <p>
-            &copy;{new Date().getFullYear()} - Juaben APS | All Rights Reserved
-          </p>
         </div>
       </div>
       <ToastContainer />

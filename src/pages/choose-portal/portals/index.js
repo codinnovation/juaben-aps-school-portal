@@ -3,9 +3,9 @@ import styles from "../../../styles/choose-portal/portals.module.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowForwardIos";
 import Person2Icon from "@mui/icons-material/Person2";
-import PeopleIcon from "@mui/icons-material/People";
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
-import AddIcon from "@mui/icons-material/Add";
+import PaymentsIcon from '@mui/icons-material/Payments';
 import Link from "next/link";
 
 export default function Index() {
@@ -13,18 +13,13 @@ export default function Index() {
     const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     const newPortal = { abbreviation, portalName, time };
 
-    // Retrieve existing data from localStorage
     const storedPortals = JSON.parse(localStorage.getItem("selectedPortals")) || [];
-
-    // Add the new portal data to the beginning of the array
     const updatedPortals = [newPortal, ...storedPortals];
 
-    // If more than 6 items, remove the oldest
     if (updatedPortals.length > 6) {
       updatedPortals.pop();
     }
 
-    // Save the updated list back to localStorage
     localStorage.setItem("selectedPortals", JSON.stringify(updatedPortals));
   };
 
@@ -59,7 +54,7 @@ export default function Index() {
 
               <div className={styles.portalCard}>
                 <div className={styles.portalIconWrapper}>
-                  <PeopleIcon className={styles.portalIcon} />
+                  <Diversity3Icon className={styles.portalIcon} />
                 </div>
 
                 <div className={styles.portalName}>
@@ -93,7 +88,7 @@ export default function Index() {
 
               <div className={styles.portalCard}>
                 <div className={styles.portalIconWrapper}>
-                  <AddIcon className={styles.portalIcon} />
+                  <PaymentsIcon className={styles.portalIcon} />
                 </div>
 
                 <div className={styles.portalName}>
