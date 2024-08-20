@@ -14,12 +14,11 @@ import { db } from "@/lib/firebase";
 import { ref, get } from "firebase/database";
 
 function Index({ user }) {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [studentData, setStudentData] = useState([]);
   const [students, setStudents] = useState([]);
-console.log(students)
-  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +38,6 @@ console.log(students)
     };
     fetchData();
   }, []);
-
 
   const [createUser, setCreateUser] = useState({
     email: "",
@@ -83,25 +81,45 @@ console.log(students)
         },
         body: JSON.stringify(data),
       });
+      handleAddCreateParentActivity(
+        `${user.displayName} created a new parent account for Student ID: ${createUser.studentNumber} with Parent Email: ${createUser.email}`
+      );
 
       if (response.ok) {
         toast.success("Account created successfully");
-        toast.success(`Email verification sent to ${createUser.email}`);
 
         setTimeout(() => {
-          setIsButtonClicked(false);
+          setIsButtonClicked(true);
           router.push("/login");
         }, 1000);
+        setIsButtonClicked(false);
       } else {
         toast.error("Create Failed");
         setIsButtonClicked(false);
       }
     } catch (error) {
-      toast.error("Error Occurred");
+      console.log("Error occured catcg" + error);
       setIsButtonClicked(false);
     }
   };
 
+  const handleAddCreateParentActivity = (recentDetails) => {
+    const time = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    const newActivity = { recentDetails, time };
+
+    const storedActivity =
+      JSON.parse(localStorage.getItem("japsRecentActivity")) || [];
+    const updatedActivity = [newActivity, ...storedActivity];
+
+    if (updatedActivity.length > 4) {
+      updatedActivity.pop();
+    }
+
+    localStorage.setItem("japsRecentActivity", JSON.stringify(updatedActivity));
+  };
 
   return (
     <>
@@ -114,7 +132,7 @@ console.log(students)
       )}
       <Head>
         <title>Please Sign Up</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       <div className={styles.authContainer}>

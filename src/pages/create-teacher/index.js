@@ -61,6 +61,9 @@ function Index({ user }) {
       if (response.ok) {
         toast.success("Account created successful");
         toast.success(`Email verification sent to ${createUser.email}`);
+        handleAddCreateParentActivity(
+          `${user.displayName} created a new Teacher's account for Class: ${createUser.role} with Email: ${createUser.email}`
+        );
 
         setTimeout(() => {
           setIsButtonClicked(true);
@@ -77,6 +80,24 @@ function Index({ user }) {
     } finally {
       setIsButtonClicked(false);
     }
+  };
+
+  const handleAddCreateParentActivity = (recentDetails) => {
+    const time = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    const newActivity = { recentDetails, time };
+
+    const storedActivity =
+      JSON.parse(localStorage.getItem("japsRecentActivity")) || [];
+    const updatedActivity = [newActivity, ...storedActivity];
+
+    if (updatedActivity.length > 4) {
+      updatedActivity.pop();
+    }
+
+    localStorage.setItem("japsRecentActivity", JSON.stringify(updatedActivity));
   };
 
   return (
