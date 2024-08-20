@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../../styles/admin_portal_css/mainbody.module.css";
-import Calendar from "react-calendar";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import EngineeringIcon from "@mui/icons-material/Engineering";
@@ -15,20 +14,6 @@ function MainBody({ user }) {
   const [date, setDate] = useState(new Date());
   const [currentTime, setCurrentTime] = useState(null);
   const [studentData, setStudentData] = useState([]);
-
-  const tileClassName = ({ date, view }) => {
-    if (view === "month") {
-      const currentDate = new Date();
-      if (
-        date.getDate() === currentDate.getDate() &&
-        date.getMonth() === currentDate.getMonth() &&
-        date.getFullYear() === currentDate.getFullYear()
-      ) {
-        return styles.activeDay;
-      }
-    }
-    return null;
-  };
 
   useEffect(() => {
     const interval = setInterval(() => {

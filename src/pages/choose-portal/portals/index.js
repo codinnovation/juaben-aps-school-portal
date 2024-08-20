@@ -7,6 +7,7 @@ import Diversity3Icon from '@mui/icons-material/Diversity3';
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import PaymentsIcon from '@mui/icons-material/Payments';
 import Link from "next/link";
+import withSession from "@/lib/session";
 
 export default function Index() {
   const handlePortalClick = (abbreviation, portalName) => {
@@ -115,3 +116,27 @@ export default function Index() {
     </>
   );
 }
+
+
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

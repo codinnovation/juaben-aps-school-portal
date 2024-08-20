@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/choose-portal/home-body.module.css";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import withSession from "@/lib/session";
 
 function Index() {
   const [storedPortal, setStoredPortal] = useState([]);
+  const [recentActivities, setRecentActivities] = useState([]);
+
+  useEffect(() => {
+    const activity =
+      JSON.parse(localStorage.getItem("japsRecentActivity")) || [];
+    setRecentActivities(activity);
+  }, []);
 
   useEffect(() => {
     const portals = JSON.parse(localStorage.getItem("selectedPortals")) || [];
@@ -19,76 +26,22 @@ function Index() {
               <h1>Recent Activities</h1>
             </div>
 
-            <div className={styles.recentCard}>
-              <h1></h1>
+            {recentActivities.map((activity, index) => (
+              <div className={styles.recentCard} key={index}>
+                <h1></h1>
 
-              <div className={styles.recentCardTime}>
-                <h2>12:30PM</h2>
-                <p>3 Hours Ago</p>
+                <div className={styles.recentCardTime}>
+                  <h2>{activity?.time}</h2>
+                  <p>3 Hours Ago</p>
+                </div>
+
+                <div className={styles.line}></div>
+
+                <div className={styles.recentDetails}>
+                  <h3>{activity?.recentDetails}</h3>
+                </div>
               </div>
-
-              <div className={styles.line}></div>
-
-              <div className={styles.recentDetails}>
-                <h3>
-                  which requires Emotion packages. Use one of the following
-                  commands to Use one of the Use one of the....
-                </h3>
-              </div>
-            </div>
-
-            <div className={styles.recentCard}>
-              <h1></h1>
-
-              <div className={styles.recentCardTime}>
-                <h2>12:30PM</h2>
-                <p>3 Hours Ago</p>
-              </div>
-
-              <div className={styles.line}></div>
-
-              <div className={styles.recentDetails}>
-                <h3>
-                  which requires Emotion packages. Use one of the following
-                  commands to Use one of the Use one of the....
-                </h3>
-              </div>
-            </div>
-
-            <div className={styles.recentCard}>
-              <h1></h1>
-
-              <div className={styles.recentCardTime}>
-                <h2>12:30PM</h2>
-                <p>3 Hours Ago</p>
-              </div>
-
-              <div className={styles.line}></div>
-
-              <div className={styles.recentDetails}>
-                <h3>
-                  which requires Emotion packages. Use one of the following
-                  commands to Use one of the Use one of the....
-                </h3>
-              </div>
-            </div>
-
-            <div className={styles.recentCard}>
-              <h1></h1>
-
-              <div className={styles.recentCardTime}>
-                <h2>12:30PM</h2>
-                <p>3 Hours Ago</p>
-              </div>
-
-              <div className={styles.line}></div>
-              <div className={styles.recentDetails}>
-
-                <h3>
-                  which requires Emotion packages. Use one of the following
-                </h3>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className={styles.pagesContainer}>
@@ -121,3 +74,26 @@ function Index() {
 }
 
 export default Index;
+
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

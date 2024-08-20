@@ -14,6 +14,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import SchoolLogo from "../../../../public/logo2.png";
+import ProfilePhoto from "../../../../public/profile-photo.jpg";
 
 function Index({ user }) {
   const [openModal, setOpenModal] = useState(false);
@@ -99,11 +100,15 @@ function Index({ user }) {
           </div>
 
           <div className={styles.userProfile} onClick={handleOpenModal}>
-            <AccountCircleIcon className={styles.userIcon} />
+            <Image
+              src={ProfilePhoto}
+              width={900}
+              height={900}
+              alt="profile-photo"
+              className={styles.userPhoto}
+            />
             <KeyboardArrowDownIcon className={styles.KeyboardArrowDownIcon} />
           </div>
-
-         
         </div>
       </div>
 
