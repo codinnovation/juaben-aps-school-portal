@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import withSession from "@/lib/session";
 import CircularProgress from "@mui/material/CircularProgress";
+import { db } from "@/lib/firebase";
+import { push, ref } from "firebase/database";
 
 function Index({ user }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +22,123 @@ function Index({ user }) {
     email: "",
     password: "",
     role: "",
+    subjects: [], // New field to hold selected subjects
   });
+
+  const [teacherClass, setTeacherClass] = useState({
+    "Teacher-K.G 1": [
+      "English Literacy",
+      "Creative Art",
+      "Phonics Writing",
+      "Copy & Picture Reading",
+      "Numeracy",
+    ],
+    "Teacher-K.G 2": [
+      "English Literacy",
+      "Creative Art",
+      "Phonics Writing",
+      "Copy & Picture Reading",
+      "Numeracy",
+    ],
+    "Teacher-Creche": [
+      "Copy & Picture Reading",
+      "Phonics Colouring",
+      "Numeracy",
+      "Phonics Writing",
+    ],
+    "Teacher-Nursery 1": [
+      "Copy & Picture Reading",
+      "Phonics Colouring",
+      "Numeracy",
+      "Phonics Writing",
+    ],
+    "Teacher-Nursery 2": [
+      "Copy & Picture Reading",
+      "Phonics Colouring",
+      "Numeracy",
+      "Phonics Writing",
+    ],
+    "Teacher-Class 1": [
+      "English",
+      "Science",
+      "Creative Art",
+      "RME",
+      "AsanteTWI",
+      "Mathematics",
+      "French",
+      "Computer",
+      "OWOP",
+    ],
+    "Teacher-Class 2": [
+      "English",
+      "Science",
+      "Creative Art",
+      "RME",
+      "AsanteTWI",
+      "Mathematics",
+      "French",
+      "Computer",
+      "OWOP",
+    ],
+    "Teacher-Class 3": [
+      "English",
+      "Science",
+      "Creative Art",
+      "RME",
+      "AsanteTWI",
+      "Mathematics",
+      "French",
+      "Computer",
+      "OWOP",
+    ],
+    "Teacher-Class 4": [
+      "English",
+      "Science",
+      "Creative Art",
+      "RME",
+      "AsanteTWI",
+      "Mathematics",
+      "French",
+      "Computer",
+      "OWOP",
+    ],
+    "Teacher-Class 5": [
+      "English",
+      "Science",
+      "Creative Art",
+      "RME",
+      "AsanteTWI",
+      "Mathematics",
+      "French",
+      "Computer",
+      "OWOP",
+    ],
+    "Teacher-Class 6": [
+      "English",
+      "Science",
+      "Creative Art",
+      "RME",
+      "AsanteTWI",
+      "Mathematics",
+      "French",
+      "Computer",
+      "OWOP",
+    ],
+    "Teacher 1 Subject": ["French", "Computer"],
+  });
+
+  const [subjects, setSubjects] = useState([]);
+
+  useEffect(() => {
+    if (createUser.role) {
+      setSubjects(teacherClass[createUser.role] || []);
+      // Reset selected subjects if the class changes
+      setCreateUser((prevUser) => ({
+        ...prevUser,
+        subjects: [],
+      }));
+    }
+  }, [createUser.role]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +146,20 @@ function Index({ user }) {
       ...prevUser,
       [name]: value,
     }));
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    setCreateUser((prevUser) => {
+      const updatedSubjects = checked
+        ? [...prevUser.subjects, value]
+        : prevUser.subjects.filter((subject) => subject !== value);
+
+      return {
+        ...prevUser,
+        subjects: updatedSubjects,
+      };
+    });
   };
 
   const handleFormSubmit = async (e) => {
@@ -49,6 +181,12 @@ function Index({ user }) {
       role: createUser.role,
     };
 
+    let teacherData = {
+      email: createUser.email,
+      password: createUser.password,
+      role: createUser.role,
+      subjects: createUser.subjects,
+    };
     try {
       const response = await fetch("/api/create_user", {
         method: "POST",
@@ -59,7 +197,7 @@ function Index({ user }) {
       });
 
       if (response.ok) {
-        toast.success("Account created successful");
+        toast.success("Account created successfully");
         toast.success(`Email verification sent to ${createUser.email}`);
         handleAddCreateParentActivity(
           `${user.displayName} created a new Teacher's account for Class: ${createUser.role} with Email: ${createUser.email}`
@@ -70,6 +208,10 @@ function Index({ user }) {
           router.push("/login");
         }, 1000);
         setIsButtonClicked(false);
+
+        const newTeacherRef = push(ref(db, "usersTeachers"), teacherData);
+        const newTeacherKey = newTeacherRef.key;
+        return newTeacherKey;
       } else {
         toast.error("Create Failed");
         setIsButtonClicked(false);
@@ -141,25 +283,38 @@ function Index({ user }) {
                 <select
                   value={createUser.role}
                   onChange={handleInputChange}
-                  placeholder="role"
                   name="role"
                   id="role"
                 >
-                  <option></option>
-                  <option value=""></option>
-                  <option value="Teacher-Creche">Teacher - Creche</option>
-                  <option value="Teacher-Nursery-1">Teacher - Nursery 1</option>
-                  <option value="Teacher-Nursery-2">Teacher - Nursery 2</option>
-                  <option value="Teacher-K.G 1">Teacher - K.G 1</option>
-                  <option value="Teacher-K.G 1">Teacher - K.G 2</option>
-                  <option value="Teacher-Class-1">Teacher - Class 1</option>
-                  <option value="Teacher-Class-2">Teacher - Class 2</option>
-                  <option value="Teacher-Class-3">Teacher - Class 3</option>
-                  <option value="Teacher-Class-4">Teacher - Class 4</option>
-                  <option value="Teacher-Class-5">Teacher - Class 5</option>
-                  <option value="Teacher-Class-6">Teacher - Class 6</option>
+                  <option value="" disabled>
+                    Select Class
+                  </option>
+                  {Object.keys(teacherClass).map((classKey) => (
+                    <option key={classKey} value={classKey}>
+                      {classKey}
+                    </option>
+                  ))}
                 </select>
               </div>
+
+              {createUser.role && (
+                <div className={styles.checkboxContainer}>
+                  <div>
+                    {subjects.map((subject, index) => (
+                      <div key={index}>
+                        <input
+                          type="checkbox"
+                          id={`subject-${index}`}
+                          value={subject}
+                          checked={createUser.subjects.includes(subject)}
+                          onChange={handleCheckboxChange}
+                        />
+                        <label htmlFor={`subject-${index}`}>{subject}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div className={styles.authFormInput}>
                 <label>Password</label>
