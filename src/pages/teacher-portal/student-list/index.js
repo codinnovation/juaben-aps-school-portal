@@ -24,6 +24,7 @@ import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
 import EventAvailable from "@mui/icons-material/EventAvailable";
 
 function StudentList() {
+  const router = useRouter();
   const [studentProfilePageView, setStudentProfilePageView] = useState(false);
   const [studentListView, setStudentListView] = useState(true);
   const [studentData, setStudentData] = useState([]);
@@ -33,8 +34,8 @@ function StudentList() {
   const [studentsPerPage, setStudentsPerPage] = useState(13);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [user, setUser] = useState(null);
+  const [usersTeachers, setUsersTeachers] = useState([]);
 
-  console.log(user);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -84,7 +85,35 @@ function StudentList() {
     setStudentsPerPage(Number(e.target.value));
   };
 
-  const router = useRouter();
+  useEffect(() => {
+    const fetchTeacherClass = async () => {
+      if (user?.email) {
+        // Check if the user is fetched and has an email
+        try {
+          const dbRef = ref(db, "usersTeachers");
+          const response = await get(dbRef);
+          const data = response.val();
+
+          if (data && typeof data === "object") {
+            const dataArray = Object.entries(data).map(([key, value]) => ({
+              key,
+              ...value,
+            }));
+
+            const filteredTeachers = dataArray.filter(
+              (teacher) => teacher.email === user.email
+            );
+
+            setUsersTeachers(filteredTeachers);
+          }
+        } catch (error) {
+          console.error("Error fetching teacher class data:", error);
+        }
+      }
+    };
+
+    fetchTeacherClass();
+  }, [user]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,24 +128,30 @@ function StudentList() {
             ...value,
           }));
 
-          const teacherClass = user?.displayName
-            ?.replace("Teacher-", "")
-            .replace("-", " ");
-          const filteredStudents = dataArray.filter(
-            (student) => student.Class === teacherClass
-          );
-          setStudentData(filteredStudents);
+          // Check if the teacher has classes to teach
+          if (usersTeachers.length > 0 && usersTeachers[0].classToTeach) {
+            const classesToTeach = usersTeachers[0].classToTeach;
+
+            // Filter students based on the classes the teacher is assigned to teach
+            const filteredStudents = dataArray.filter((student) =>
+              classesToTeach.includes(student.Class)
+            );
+
+            setStudentData(filteredStudents); // Store the filtered students
+          } else {
+            setStudentData(["No Classes To Teach"]); // If no classToTeach is available, set empty array
+          }
         } else {
-          setStudentData([]);
+          setStudentData([]); // If no data available, set empty array
         }
       } catch (error) {
-        console.error("Error fetching data:");
+        console.error("Error fetching student data:", error);
         setStudentData([]);
       }
     };
 
     fetchData();
-  }, [user]);
+  }, [usersTeachers]);
 
   const showStudentProfilePage = (rowData) => {
     setSelectedStudent(rowData);
@@ -131,10 +166,10 @@ function StudentList() {
 
   const searchForStudent = studentData.filter(
     (student) =>
-      student.FirstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.MiddleName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.LastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.StudentNumber.toLowerCase().includes(searchQuery.toLowerCase())
+      student.FirstName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      student.MiddleName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      student.LastName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      student.StudentNumber?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const indexOfLastStudent = currentPage * studentsPerPage;
@@ -182,12 +217,12 @@ function StudentList() {
 
             <div className={styles.link}>
               <NotificationAddIcon className={styles.icon} />
-             <h1>Notification</h1> 
+              <h1>Notification</h1>
             </div>
 
             <div className={styles.link}>
               <EventAvailable className={styles.icon} />
-             <h1>Events</h1> 
+              <h1>Events</h1>
             </div>
           </div>
           <div className={styles.tableContainer}>
@@ -291,6 +326,8 @@ function StudentList() {
         <StudentProfilePageComponent
           hideStudentProfilePage={hideStudentProfilePage}
           selectedStudent={selectedStudent}
+          user={user}
+          usersTeachers={usersTeachers}
         />
       )}
     </Layout>

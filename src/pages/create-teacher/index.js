@@ -22,109 +22,63 @@ function Index({ user }) {
     email: "",
     password: "",
     role: "",
-    subjects: [], // New field to hold selected subjects
+    subjects: [],
+    classToTeach: [],
   });
 
+  const availableClasses = [
+    "Class 1",
+    "Class 2",
+    "Class 3",
+    "Class 4",
+    "Class 5",
+    "Class 6",
+  ];
+
   const [teacherClass, setTeacherClass] = useState({
-    "Teacher-K.G 1": [
+    "K.G 1 Teacher": [
       "English Literacy",
       "Creative Art",
       "Phonics Writing",
       "Copy & Picture Reading",
       "Numeracy",
     ],
-    "Teacher-K.G 2": [
+    "K.G 2 Teacher": [
       "English Literacy",
       "Creative Art",
       "Phonics Writing",
       "Copy & Picture Reading",
       "Numeracy",
     ],
-    "Teacher-Creche": [
+    "Creche Teacher": [
       "Copy & Picture Reading",
       "Phonics Colouring",
       "Numeracy",
       "Phonics Writing",
     ],
-    "Teacher-Nursery 1": [
+    "Nursery 1 Teacher": [
+      "Copy & Picture Reading",
+      "Phonics Colouring",
+      "Numeracy", 
+      "Phonics Writing",
+    ],
+    "Nursery 2 Teacher": [
       "Copy & Picture Reading",
       "Phonics Colouring",
       "Numeracy",
       "Phonics Writing",
     ],
-    "Teacher-Nursery 2": [
-      "Copy & Picture Reading",
-      "Phonics Colouring",
-      "Numeracy",
-      "Phonics Writing",
-    ],
-    "Teacher-Class 1": [
+    "Subject-Teacher": [
       "English",
-      "Science",
-      "Creative Art",
-      "RME",
-      "AsanteTWI",
       "Mathematics",
-      "French",
-      "Computer",
-      "OWOP",
-    ],
-    "Teacher-Class 2": [
-      "English",
-      "Science",
-      "Creative Art",
+      "Natural Science",
+      "ICT",
+      "Asante Twi",
       "RME",
-      "AsanteTWI",
-      "Mathematics",
+      "Creative Arts",
       "French",
-      "Computer",
-      "OWOP",
+      "History",
     ],
-    "Teacher-Class 3": [
-      "English",
-      "Science",
-      "Creative Art",
-      "RME",
-      "AsanteTWI",
-      "Mathematics",
-      "French",
-      "Computer",
-      "OWOP",
-    ],
-    "Teacher-Class 4": [
-      "English",
-      "Science",
-      "Creative Art",
-      "RME",
-      "AsanteTWI",
-      "Mathematics",
-      "French",
-      "Computer",
-      "OWOP",
-    ],
-    "Teacher-Class 5": [
-      "English",
-      "Science",
-      "Creative Art",
-      "RME",
-      "AsanteTWI",
-      "Mathematics",
-      "French",
-      "Computer",
-      "OWOP",
-    ],
-    "Teacher-Class 6": [
-      "English",
-      "Science",
-      "Creative Art",
-      "RME",
-      "AsanteTWI",
-      "Mathematics",
-      "French",
-      "Computer",
-      "OWOP",
-    ],
-    "Teacher 1 Subject": ["French", "Computer"],
   });
 
   const [subjects, setSubjects] = useState([]);
@@ -183,9 +137,9 @@ function Index({ user }) {
 
     let teacherData = {
       email: createUser.email,
-      password: createUser.password,
       role: createUser.role,
       subjects: createUser.subjects,
+      classToTeach: createUser.classToTeach,
     };
     try {
       const response = await fetch("/api/create_user", {
@@ -299,6 +253,7 @@ function Index({ user }) {
 
               {createUser.role && (
                 <div className={styles.checkboxContainer}>
+                  <h3>Select Subject to Teach</h3>
                   <div>
                     {subjects.map((subject, index) => (
                       <div key={index}>
@@ -310,6 +265,39 @@ function Index({ user }) {
                           onChange={handleCheckboxChange}
                         />
                         <label htmlFor={`subject-${index}`}>{subject}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {createUser.role === "Subject-Teacher" && (
+                <div className={styles.checkboxContainer}>
+                  <h3>Select Classes to Teach</h3>
+                  <div>
+                    {availableClasses.map((className, index) => (
+                      <div key={index}>
+                        <input
+                          type="checkbox"
+                          id={`class-${index}`}
+                          value={className}
+                          checked={createUser.classToTeach.includes(className)}
+                          onChange={(e) => {
+                            const { value, checked } = e.target;
+                            setCreateUser((prevUser) => {
+                              const updatedClasses = checked
+                                ? [...prevUser.classToTeach, value]
+                                : prevUser.classToTeach.filter(
+                                    (cls) => cls !== value
+                                  );
+                              return {
+                                ...prevUser,
+                                classToTeach: updatedClasses,
+                              };
+                            });
+                          }}
+                        />
+                        <label htmlFor={`class-${index}`}>{className}</label>
                       </div>
                     ))}
                   </div>

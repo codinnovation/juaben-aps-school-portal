@@ -16,7 +16,12 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 
-function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
+function StudentProfilePage({
+  selectedStudent,
+  hideStudentProfilePage,
+  user,
+  usersTeachers,
+}) {
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
   const [activeComponent, setActiveComponent] = useState("studentProfile");
@@ -193,7 +198,10 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
       )}
 
       {activeComponent === "studentClassScore" && (
-        <StudentClassScore selectedStudent={selectedStudent} />
+        <StudentClassScore
+          selectedStudent={selectedStudent}
+          usersTeachers={usersTeachers}
+        />
       )}
 
       {activeComponent === "studentClassTest" && (
