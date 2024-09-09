@@ -3,8 +3,6 @@ import styles from "../../../styles/teachers_portal_css/side-bar.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import PeopleIcon from "@mui/icons-material/People";
-import PaymentIcon from "@mui/icons-material/Payment";
 import { auth } from "../../../lib/firebase";
 import EventAvailable from "@mui/icons-material/EventAvailable";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -14,29 +12,16 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Dashboard from "@mui/icons-material/Dashboard";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
+
 
 function Sidebar() {
+  const router = useRouter();
   const [userProfile, setUserProfile] = useState(false);
   const [user, setUser] = useState(null);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-
-  const router = useRouter();
-
-  const openUserProfile = () => {
-    setUserProfile(true);
-  };
 
   const closeUserProfile = () => {
     setUserProfile(false);
@@ -123,7 +108,7 @@ function Sidebar() {
                   className={styles.container_items_4_icon}
                 />
                 <Link
-                  href="/teacher_portal/notification/"
+                  href="/teacher-portal/notification/"
                   className={styles.link}
                 >
                   Teacher&apos;s Notification
@@ -133,7 +118,7 @@ function Sidebar() {
               <div className={styles.container_items_4_link}>
                 <EventAvailable className={styles.container_items_4_icon} />
                 <Link
-                  href="/teacher_portal/events/"
+                  href="/teacher-portal/events/"
                   className={styles.link}
                 >
                   Events

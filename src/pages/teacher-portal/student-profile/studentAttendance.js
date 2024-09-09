@@ -81,17 +81,17 @@ function StudentAttendance({ selectedStudent }) {
     setTerm(e.target.value);
   };
 
-    // Helper function to get the abbreviated status
-    const getAbbreviatedStatus = (status) => {
-      switch (status) {
-        case "Present":
-          return "P";
-        case "Absent":
-          return "A";
-        default:
-          return "";
-      }
-    };
+  // Helper function to get the abbreviated status
+  const getAbbreviatedStatus = (status) => {
+    switch (status) {
+      case "Present":
+        return "P";
+      case "Absent":
+        return "A";
+      default:
+        return "";
+    }
+  };
 
   const renderAttendanceByDay = (day) => {
     if (!attendanceData[term]) return null;
@@ -101,7 +101,9 @@ function StudentAttendance({ selectedStudent }) {
     );
 
     return dayAttendance.map((record, index) => (
-      <div key={index}>{`${getAbbreviatedStatus(record.status)} = ${record.date}`}</div>
+      <div key={index}>{`${getAbbreviatedStatus(record.status)} = ${
+        record.date
+      }`}</div>
     ));
   };
 
@@ -148,6 +150,7 @@ function StudentAttendance({ selectedStudent }) {
         </div>
 
         <div className={styles.addBtn}>
+          <button onClick={() => setOpenModal(true)}>Add Attendance</button>
         </div>
       </div>
 
