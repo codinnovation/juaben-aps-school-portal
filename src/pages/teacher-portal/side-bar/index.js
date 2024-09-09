@@ -98,7 +98,7 @@ function Sidebar() {
 
           <div className={styles.container_items_2}>
             <Link
-              href="/teacher_portal/"
+              href="/teacher-portal/"
               className={styles.link}
             >
               Teacher&apos;s Portal

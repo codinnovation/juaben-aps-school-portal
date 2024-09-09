@@ -9,14 +9,18 @@ import SetExamScores from "./setExamScores";
 import StudentHomework from "./studentHomework";
 import StudentFees from "./studentFees";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
-import { auth } from "../../../lib/firebase";
 import withSession from "@/lib/session";
 import { ToastContainer, toast } from "react-toastify";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 
-function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
+function StudentProfilePage({
+  selectedStudent,
+  hideStudentProfilePage,
+  user,
+  usersTeachers,
+}) {
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
   const [activeComponent, setActiveComponent] = useState("studentProfile");
@@ -30,7 +34,7 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
     setActiveComponent(compName);
   };
 
-  const handleLogout = async (e) => {
+  const handleLogout = async () => {
     setIsButtonClicked(true);
     try {
       const response = await fetch("/api/logout", {
@@ -56,6 +60,15 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
 
   return (
     <>
+      {isButtonClicked && (
+        <>
+          <div className={styles.loadingContainer}>
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
+          </div>
+        </>
+      )}
       <div className={styles.container}>
         <div className={styles.containerItems}>
           <div className={styles.containerHeader}>
@@ -193,7 +206,10 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
       )}
 
       {activeComponent === "studentClassScore" && (
-        <StudentClassScore selectedStudent={selectedStudent} />
+        <StudentClassScore
+          selectedStudent={selectedStudent}
+          usersTeachers={usersTeachers}
+        />
       )}
 
       {activeComponent === "studentClassTest" && (
@@ -264,6 +280,7 @@ function StudentProfilePage({ selectedStudent, hideStudentProfilePage, user }) {
           </div>
         </DialogContent>
       </Dialog>
+      <ToastContainer />
     </>
   );
 }

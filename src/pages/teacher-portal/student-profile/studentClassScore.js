@@ -5,7 +5,7 @@ import { db } from "../../../lib/firebase";
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 
-function StudentClassScore({ selectedStudent }) {
+function StudentClassScore({ selectedStudent, usersTeachers }) {
   const [showAddScoreModal, setShowAddScoreModal] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
   const [subjectScore, setSubjectScore] = useState(0);
@@ -45,16 +45,15 @@ function StudentClassScore({ selectedStudent }) {
       ]);
     } else {
       setSubjects([
-        "",
         "English",
-        "Science",
-        "Creative Art",
-        "RME",
-        "AsanteTWI",
         "Mathematics",
+        "Natural Science",
+        "ICT",
+        "Asante Twi",
+        "RME",
+        "Creative Arts",
         "French",
-        "Computer",
-        "OWOP",
+        "History",
       ]);
     }
   }, [selectedStudent?.Class]);
@@ -125,11 +124,13 @@ function StudentClassScore({ selectedStudent }) {
 
   const renderSubjectScores = (term, subject) => {
     if (subjectScores[term] && subjectScores[term][subject]) {
-      return Object.values(subjectScores[term][subject]).map((scoreObj, index) => (
-        <div key={index} className={styles.scores}>{`Date: ${
-          scoreObj.date
-        } - Score: ${scoreObj.score} out of ${scoreObj?.outOf || "0"}`}</div>
-      ));
+      return Object.values(subjectScores[term][subject]).map(
+        (scoreObj, index) => (
+          <div key={index} className={styles.scores}>{`Date: ${
+            scoreObj.date
+          } - Score: ${scoreObj.score} out of ${scoreObj?.outOf || "0"}`}</div>
+        )
+      );
     }
     return <div>No scores available for this subject</div>;
   };
@@ -140,11 +141,18 @@ function StudentClassScore({ selectedStudent }) {
         <div className={styles.classScoreItems}>
           <div className={styles.termSelection}>
             <label>Select Term:</label>
-            <select value={selectedTerm} onChange={(e) => setSelectedTerm(e.target.value)}>
+            <select
+              value={selectedTerm}
+              onChange={(e) => setSelectedTerm(e.target.value)}
+            >
               <option value=""></option>
               <option value="Term One">Term 1</option>
-              <option value="Term Two" disabled>Term 2</option>
-              <option value="Term Three" disabled>Term 3</option>
+              <option value="Term Two" disabled>
+                Term 2
+              </option>
+              <option value="Term Three" disabled>
+                Term 3
+              </option>
             </select>
           </div>
 

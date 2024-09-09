@@ -9,11 +9,9 @@ async function handler(req, res) {
     user = req.session.get("user");
 
     res.status(200).json({ user });
-    console.log(user);
   } else {
     res.status(401).json({
-      isLoggedIn: false,
-      isTwoFACompleted: false,
+      user: null,
     });
   }
 }
