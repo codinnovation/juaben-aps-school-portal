@@ -232,7 +232,38 @@
   cursor: pointer;
 }
 
+.mobileAddScore {
+  display: none;
+}
+
 @media (max-width: 700px) {
+  .mobileAddScore {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 35%;
+    padding-left: 10px;
+  }
+
+  .addScoreBtnContainer {
+    display: none;
+  }
+
+  .mobileAddScore .addContainer {
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    margin-top: 15px;
+    color: #fff;
+  }
+
+  .mobileAddScore .addContainer h1 {
+    font-size: 0.8em;
+  }
+
   .classScoreContainer {
     width: 99%;
     margin: 0% auto;
@@ -240,21 +271,68 @@
 
   .classScoreItems {
     width: 100%;
-    height: 80vh;
-    overflow-y: scroll;
+    height: 100%;
+    padding: 10px;
+  }
+
+  .termSelection label {
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+
+  .termSelection select {
+    margin-left: 5px;
+    width: 100px;
+    height: 25px;
   }
 
   .subjectHeader {
-    margin-top: 15px;
+    margin-top: 20px;
   }
 
   .subjectHeader h1 {
+    font-size: 0.8em;
+    text-align: center;
+  }
+
+  .subjectScores {
+    height: 100%;
+    margin-top: 0px;
+  }
+
+  .scoresContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .scoresContainer h1:nth-child(1) {
+    font-size: 0.8em;
+  }
+
+  .scoresContainer h1:nth-child(2) {
+    font-size: 0.8em;
+  }
+
+  .scoresContainer button {
+    height: 35px;
+    font-size: 0.8em;
+    width: 100%;
+  }
+
+  .chooseSubjectContainer {
+    transform: translate(-50%, -50%);
+    width: 300px;
+    top: 50%;
+    position: fixed;
+  }
+
+  .chooseSubjectContainer h2 {
     font-size: 1em;
   }
 
-  .subjName span {
-    font-size: 15px;
-    margin-right: 10px;
-    color: orange;
+  .buttonContent button {
+    height: 40px;
   }
 }

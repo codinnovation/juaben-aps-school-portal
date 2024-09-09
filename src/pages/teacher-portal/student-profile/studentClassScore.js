@@ -4,6 +4,8 @@ import { ref, get, push, set } from "firebase/database";
 import { db } from "../../../lib/firebase";
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
+import AddIcon from "@mui/icons-material/Add";
+import PanToolAltIcon from "@mui/icons-material/PanToolAlt";
 
 function StudentClassScore({ selectedStudent, usersTeachers }) {
   const [showAddScoreModal, setShowAddScoreModal] = useState(false);
@@ -207,6 +209,23 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
           <div className={styles.subjectScores}>
             <p>{renderSubjectScores(selectedTerm, selectedSubject)}</p>
           </div>
+        </div>
+
+        <div className={styles.mobileAddScore}>
+          <div
+            className={styles.addContainer}
+            onClick={() => setChooseSubject(true)}
+          >
+            <PanToolAltIcon className={styles.icon} />
+            <h1> Subject</h1>
+          </div>
+          <div
+            className={styles.addContainer}
+            onClick={() => setOpenModal(true)}
+          >
+            <AddIcon className={styles.icon} />
+            <h1> Score</h1>
+          </div>{" "}
         </div>
       </div>
       <div className={styles.addScoreBtnContainer}>
