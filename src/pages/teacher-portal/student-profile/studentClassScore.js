@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/teachers_portal_css/studentClassScore.module.css";
-import { ref, get, push } from "firebase/database";
+import { ref, get, push, set } from "firebase/database";
 import { db } from "../../../lib/firebase";
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,9 +13,15 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
   const [subjectDate, setSubjectDate] = useState("");
   const [subjectScores, setSubjectScores] = useState({});
   const [openModal, setOpenModal] = useState(false);
-  const [chooseSubModal, setChooseSubModal] = useState(false);
+  const [chooseSubject, setChooseSubject] = useState(false);
   const [selectedTerm, setSelectedTerm] = useState("Term One");
   const [subjects, setSubjects] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [editSubject, setEditSubject] = useState("");
+  const [editScoreId, setEditScoreId] = useState(null);
+  const [editScore, setEditScore] = useState(0);
+  const [editOutOfScore, setEditOutOfScore] = useState(0);
+  const [editDate, setEditDate] = useState("");
 
   useEffect(() => {
     if (
@@ -62,13 +68,9 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
     setOpenModal(false);
   };
 
-  const handleCloseSubModal = () => {
-    setChooseSubModal(false);
-  };
-
   const selectSubject = (subject) => {
     setSelectedSubject(subject);
-    handleCloseSubModal();
+    setChooseSubject(false);
   };
 
   const addSubjectScores = () => {
@@ -99,6 +101,42 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
       });
   };
 
+  const handleEditScore = (term, subject, scoreId) => {
+    const score = subjectScores[term][subject][scoreId];
+    setEditSubject(subject);
+    setEditScoreId(scoreId);
+    setEditScore(score.score);
+    setEditOutOfScore(score.outOf);
+    setEditDate(score.date);
+    setEditMode(true);
+  };
+
+  const updateSubjectScore = () => {
+    if (!editDate || !editScoreId) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    const scoreRef = ref(
+      db,
+      `/japsstudents/${selectedStudent.key}/ClassScore/${selectedTerm}/${editSubject}/${editScoreId}`
+    );
+
+    set(scoreRef, {
+      score: editScore,
+      date: editDate,
+      outOf: editOutOfScore,
+    })
+      .then(() => {
+        setEditMode(false);
+        fetchSubjectScores();
+        toast.success("Score updated successfully");
+      })
+      .catch((error) => {
+        console.error("Error updating subject score:", error);
+      });
+  };
+
   const fetchSubjectScores = () => {
     const studentRef = ref(
       db,
@@ -124,11 +162,17 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
 
   const renderSubjectScores = (term, subject) => {
     if (subjectScores[term] && subjectScores[term][subject]) {
-      return Object.values(subjectScores[term][subject]).map(
-        (scoreObj, index) => (
-          <div key={index} className={styles.scores}>{`Date: ${
-            scoreObj.date
-          } - Score: ${scoreObj.score} out of ${scoreObj?.outOf || "0"}`}</div>
+      return Object.entries(subjectScores[term][subject]).map(
+        ([scoreId, scoreObj], index) => (
+          <div key={scoreId} className={styles.scoresContainer}>
+            <h1>Date: {scoreObj.date}</h1>
+            <h1>
+              Scored: {scoreObj.score} out of {scoreObj.outOf || "0"}
+            </h1>
+            <button onClick={() => handleEditScore(term, subject, scoreId)}>
+              Edit
+            </button>
+          </div>
         )
       );
     }
@@ -146,12 +190,12 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
               onChange={(e) => setSelectedTerm(e.target.value)}
             >
               <option value=""></option>
-              <option value="Term One">Term 1</option>
+              <option value="Term One">Term One</option>
               <option value="Term Two" disabled>
-                Term 2
+                Term Two
               </option>
               <option value="Term Three" disabled>
-                Term 3
+                Term Three
               </option>
             </select>
           </div>
@@ -167,7 +211,7 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
       </div>
       <div className={styles.addScoreBtnContainer}>
         <button onClick={() => setOpenModal(true)}>Add Scores</button>
-        <button onClick={() => setChooseSubModal(true)}>Choose Subject</button>
+        <button onClick={() => setChooseSubject(true)}>Choose Subject</button>
       </div>
 
       <Dialog open={openModal} onClose={handleCloseModal}>
@@ -219,27 +263,66 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={chooseSubModal} onClose={handleCloseSubModal}>
-        <DialogTitle>Choose Subject</DialogTitle>
-        <DialogContent>
-          <ul style={{ listStyle: "none" }}>
+      {chooseSubject && (
+        <>
+          <div className={styles.chooseSubjectContainer}>
+            <h2>Choose The Subject</h2>
+
             {subjects.map((subject) => (
-              <li key={subject} style={{ margin: "10px", width: "100%" }}>
-                <button
-                  onClick={() => selectSubject(subject)}
-                  style={{ height: "40px" }}
-                >
+              <div className={styles.buttonContent} key={subject}>
+                <button onClick={() => selectSubject(subject)}>
                   {subject}
                 </button>
-              </li>
+              </div>
             ))}
-          </ul>
 
-          <div className={styles.closeContainer}>
-            <IconButton onClick={handleCloseSubModal}>Close</IconButton>
+            <div className={styles.closeButton}>
+              <button onClick={() => setChooseSubject(false)}>Hide</button>
+            </div>
+          </div>
+        </>
+      )}
+
+      <Dialog open={editMode} onClose={() => setEditMode(false)}>
+        <DialogTitle>Edit Score</DialogTitle>
+        <DialogContent>
+          <div className={styles.subjName}>
+            <span>Subject</span>
+            <input type="text" value={editSubject} readOnly />
+          </div>
+
+          <div className={styles.subjDate}>
+            <span>Date</span>
+            <input
+              type="date"
+              value={editDate}
+              onChange={(e) => setEditDate(e.target.value)}
+            />
+          </div>
+          <div className={styles.subjScore}>
+            <span>Score</span>
+            <input
+              type="number"
+              value={editScore}
+              onChange={(e) => setEditScore(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.subjScore}>
+            <span>Out of</span>
+            <input
+              type="number"
+              value={editOutOfScore}
+              onChange={(e) => setEditOutOfScore(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.addBtn}>
+            <IconButton onClick={updateSubjectScore}>Update</IconButton>
           </div>
         </DialogContent>
       </Dialog>
+
       <ToastContainer />
     </>
   );

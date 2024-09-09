@@ -69,10 +69,10 @@ function StudentProfilePage({
           </div>
         </>
       )}
-      <div className={styles.container}>
-        <div className={styles.containerItems}>
-          <div className={styles.containerHeader}>
-            <div className={styles.item1}>
+      <div className={styles.profilePageContainer}>
+        <div className={styles.profilePageContent}>
+          <div className={styles.profilePageHeader}>
+            <div className={styles.profileName}>
               <h1>{`Profile - ${selectedStudent?.FirstName} ${selectedStudent?.LastName}`}</h1>
             </div>
 

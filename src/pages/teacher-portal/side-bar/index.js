@@ -113,7 +113,7 @@ function Sidebar() {
             <div className={styles.container_items_4_items}>
               <div className={styles.container_items_4_link}>
                 <Dashboard className={styles.container_items_4_icon} />
-                <Link href="/" className={styles.link}>
+                <Link href="/teacher-portal" className={styles.link}>
                   Dashboard
                 </Link>{" "}
               </div>

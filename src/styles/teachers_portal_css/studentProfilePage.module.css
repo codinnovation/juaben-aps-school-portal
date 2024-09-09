@@ -1,217 +1,220 @@
-.container {
-   width: 77%;
-   margin-left: 20%;
-   margin-top: 2%;
+.profilePageContainer {
+  width: 77%;
+  margin-left: 20%;
+  margin-top: 2%;
 }
 
-.containerItems {
-   width: 80%;
-   margin: 1% auto;
+.profilePageContent {
+  width: 100%;
+  margin: 0% auto;
 }
 
-.containerHeader {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   height: 15vh;
-   background-color: #0b1e1c;
+.profilePageHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 11vh;
+  background-color: #0b1e1c;
 }
 
-.item1 {
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-   margin-left: 15px;
+.profileName {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 15px;
 }
 
-.item1 h1 {
-   font-size: 20px;
-   color: #fff;
+.profileName h1 {
+  font-size: 1.1em;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .navContainer {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
 }
 
 .navContainer button {
-   margin-left: 15px;
-   background-color: #fff;
-   color: #000;
-   width: 115px;
-   height: 50px;
+  margin-left: 15px;
+  background-color: #fff;
+  color: #000;
+  width: 115px;
+  height: 50px;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .menuContainer {
-   display: none;
+  display: none;
 }
 
-
 .profileContainer {
-   width: 100%;
-   height: 100%;
-
+  width: 100%;
+  height: 100%;
 }
 
 .profileItems {
-   width: 70%;
-   height: auto;
-   padding: 10px;
-   margin: 1% auto;
+  width: 70%;
+  height: auto;
+  padding: 10px;
+  margin: 1% auto;
 }
 
 .items {
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   margin-top: 2%;
-   gap: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 2%;
+  gap: 32px;
 }
 
 .item {
-   width: 100%;
-   height: 100%;
-   margin-bottom: 10px;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 15px;
 }
 
 .item p {
-   font-size: 15px;
-   font-weight: 600;
-   text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .item h1 {
-   font-size: 15px;
-   width: 100%;
-   height: 60px;
-   font-weight: 100;
-   border: 1px solid #aeaeae;
-   margin-right: 10px;
-   margin-top: 6px;
-   border-radius: 5px;
-   padding: 10px;
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-   text-transform: uppercase;
+  font-size: 15px;
+  width: 100%;
+  height: 60px;
+  font-weight: 100;
+  border: 1px solid #aeaeae;
+  margin-right: 10px;
+  margin-top: 6px;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-transform: uppercase;
 }
 
 .backToList {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
 }
 
 .backToList button {
-   width: 150px;
-   height: 50px;
-   background-color: #0b1e1c;
-   color: #fff;
-   border: none;
+  width: 150px;
+  height: 50px;
+  background-color: #0b1e1c;
+  color: #fff;
+  border: none;
 }
 
 .loadingContainer {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: rgba(0, 0, 0, 0.8);
-   z-index: 9999;
- }
- 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
 
 @media (max-width: 700px) {
-   .container{
-      width: 100%;
-      margin-left: 0%;
-      margin-top: 0%;
-   }
-   .containerItems {
-      width: 99%;
-   }
-   .containerHeader {
-      height: 10vh;
-      border-radius: 4px;
-      position: sticky;
-      top: 0;
-      z-index: 900;
-   }
+  .profilePageContainer {
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 0%;
+  }
+  .profilePageContent {
+    width: 99%;
+  }
+  .profilePageHeader {
+    height: 10vh;
+    border-radius: 4px;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+  }
 
-   .navContainer {
-      display: none;
-   }
+  .profileName h1 {
+    font-size: 0.8em;
+  }
 
-   .menuContainer {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      color: #fff;
-      margin-right: 10px;
-   }
+  .navContainer {
+    display: none;
+  }
 
-   .profileItems{
-      width: 95%;
-      height: auto;
-   }
+  .menuContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #fff;
+    margin-right: 10px;
+  }
 
-   .items{
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-   }
+  .profileItems {
+    width: 95%;
+    height: auto;
+  }
 
-   .item1{
-      width: 100%;
-   }
+  .items {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
 
-   .item1 h1{
-      font-size: 13px;
-   }
+  .item1 {
+    width: 100%;
+  }
 
-   .item p{
-      font-size: 13px;
-   }
+  .item1 h1 {
+    font-size: 13px;
+  }
 
-   .item h1{
-      font-size: 12px;
-      height: 40px;
-   }
+  .item p {
+    font-size: 13px;
+  }
 
-   .backToList{
-      margin-bottom: 2px;
-   }
+  .item h1 {
+    font-size: 12px;
+    height: 40px;
+  }
 
- 
-   .menuContainerNav{
-      width: 100%;
-   }
+  .backToList {
+    margin-bottom: 2px;
+  }
 
- 
-   .navLinks {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-   }
+  .menuContainerNav {
+    width: 100%;
+  }
 
-   .navLinks .links {
-      border: 1px solid #ccc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-   }
+  .navLinks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
 
-   .navLinks .links h1 {
-      font-size: 0.9em;
-      padding: 5px;
-   }
+  .navLinks .links {
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-   .navLinks .links:nth-child(7){
-      background-color: red;
-      color: #fff;
-   }
+  .navLinks .links h1 {
+    font-size: 0.9em;
+    padding: 5px;
+  }
+
+  .navLinks .links:nth-child(7) {
+    background-color: red;
+    color: #fff;
+  }
 }
