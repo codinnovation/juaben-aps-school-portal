@@ -8,7 +8,7 @@
 }
 
 .authItems {
-  width: 30%;
+  width: 25%;
   height: 100%;
   box-shadow: 0px 0px 20px #0f3834;
   margin-top: 0%;
@@ -17,47 +17,48 @@
 
 .authLogin {
   margin: 10% auto;
-  width: 50%;
+  width: 60%;
 }
 
 .authLogin h2 {
-  font-size: 20px;
-  font-family: serif;
+  font-size: 1.6em;
+  font-family: sans-serif;
   text-align: center;
 }
 
 .authForm {
-  width: 50%;
-  margin: 7% auto;
+  width: 60%;
+  margin: 12% auto;
 }
 
 .authFormInput {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 10%;
+  margin-bottom: 8%;
   position: relative;
 }
 
 .authFormInput label {
   color: #230035;
-  font-size: 18px;
-  font-family: serif;
+  font-size: 1.2em;
+  font-family: sans-serif;
 }
 
 .authFormInput input,
 .authFormInput select {
   width: 100%;
-  height: 45px;
+  height: 65px;
   border-radius: 5px;
   border: 1px solid #000;
   display: flex;
   padding-left: 10px;
   color: #230035;
-  font-family: serif;
+  font-family: sans-serif;
   font-weight: 600;
   letter-spacing: 0.5px;
   transition: 0.2s ease-in-out;
+  margin-top: 8px;
 }
 
 .checkboxContainer {
@@ -65,7 +66,7 @@
   margin-bottom: 20px;
 }
 
-.checkboxContent{
+.checkboxContent {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0px;
@@ -93,10 +94,10 @@
 
 .authForm button {
   width: 100%;
-  height: 45px;
+  height: 55px;
   background-color: #0f3834;
   color: #fff;
-  font-family: serif;
+  font-family: sans-serif;
   font-size: 20px;
   transition: 0.4s ease-in-out;
   border-radius: 5px;
@@ -119,8 +120,9 @@
 }
 
 .authForgetPassword a {
-  font-size: 13px;
+  font-size: 1em;
   cursor: pointer;
+  font-family: sans-serif;
 }
 
 .footerContainer {
@@ -176,7 +178,7 @@
 
 @media (max-width: 700px) {
   .authItems {
-    width: 90%;
+    width: 80%;
     margin-top: 0%;
   }
 
@@ -186,7 +188,7 @@
   }
 
   .authLogin h2 {
-    font-size: 17px;
+    font-size: 1.2em;
   }
 
   .authForm {
@@ -195,11 +197,11 @@
 
   .authFormInput label {
     color: #000;
-    font-size: 14px;
+    font-size: 1em;
   }
 
   .authFormInput input {
-    height: 55px;
+    height: 50px;
   }
   .authForm button:hover {
     transform: scaleX(1);

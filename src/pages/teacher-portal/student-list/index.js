@@ -8,18 +8,11 @@ import StudentProfilePageComponent from "../student-profile/studentProfilePage";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Layout from "../layout";
 import { useRouter } from "next/router";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import Paper from "@mui/material/Paper";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import AddIcon from "@mui/icons-material/Add";
-import Dashboard from "@mui/icons-material/Dashboard";
-import NotificationAdd from "@mui/icons-material/NotificationAdd";
-import EventIcon from "@mui/icons-material/Event";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import withSession from "@/lib/session";
-import MenuIcon from "@mui/icons-material/Menu";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
 import EventAvailable from "@mui/icons-material/EventAvailable";
 
@@ -35,7 +28,6 @@ function StudentList() {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [user, setUser] = useState(null);
   const [usersTeachers, setUsersTeachers] = useState([]);
-
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -117,6 +109,7 @@ function StudentList() {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsButtonClicked(true)
       try {
         const dbRef = ref(db, "japsstudents");
         const response = await get(dbRef);
@@ -138,15 +131,19 @@ function StudentList() {
             );
 
             setStudentData(filteredStudents); // Store the filtered students
+            setIsButtonClicked(false)
           } else {
             setStudentData(["No Classes To Teach"]); // If no classToTeach is available, set empty array
+            setIsButtonClicked(false)
           }
         } else {
           setStudentData([]); // If no data available, set empty array
+          setIsButtonClicked(false)
         }
       } catch (error) {
         console.error("Error fetching student data:", error);
         setStudentData([]);
+        setIsButtonClicked(false)
       }
     };
 
@@ -188,8 +185,9 @@ function StudentList() {
       {isButtonClicked && (
         <>
           <div className={styles.circle_container}>
-            <div className={styles.circle}></div>
-            <span>Logging out...</span>
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
           </div>
         </>
       )}
