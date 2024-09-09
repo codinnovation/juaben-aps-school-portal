@@ -6,7 +6,7 @@ import { sendEmailVerification } from "firebase/auth";
 
 export default withSession(async function handler(req, res) {
   if (req.method === "POST") {
-    const { email, password, role } = req.body;
+    const { email, password, displayName } = req.body;
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -14,7 +14,7 @@ export default withSession(async function handler(req, res) {
         email,
         password
       );
-      await updateProfile(userCredential.user, { displayName: role });
+      await updateProfile(userCredential.user, { displayName: displayName });
       await sendEmailVerification(userCredential.user);
 
       const user = {

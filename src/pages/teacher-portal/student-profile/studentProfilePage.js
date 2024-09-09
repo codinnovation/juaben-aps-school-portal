@@ -9,7 +9,6 @@ import SetExamScores from "./setExamScores";
 import StudentHomework from "./studentHomework";
 import StudentFees from "./studentFees";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
-import { auth } from "../../../lib/firebase";
 import withSession from "@/lib/session";
 import { ToastContainer, toast } from "react-toastify";
 import Box from "@mui/material/Box";
@@ -35,7 +34,7 @@ function StudentProfilePage({
     setActiveComponent(compName);
   };
 
-  const handleLogout = async (e) => {
+  const handleLogout = async () => {
     setIsButtonClicked(true);
     try {
       const response = await fetch("/api/logout", {
@@ -61,6 +60,15 @@ function StudentProfilePage({
 
   return (
     <>
+      {isButtonClicked && (
+        <>
+          <div className={styles.loadingContainer}>
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
+          </div>
+        </>
+      )}
       <div className={styles.container}>
         <div className={styles.containerItems}>
           <div className={styles.containerHeader}>
@@ -272,6 +280,7 @@ function StudentProfilePage({
           </div>
         </DialogContent>
       </Dialog>
+      <ToastContainer />
     </>
   );
 }

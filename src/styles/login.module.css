@@ -61,8 +61,14 @@
 }
 
 .checkboxContainer {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
+}
+
+.checkboxContent{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px;
 }
 
 .authFormInput .visibilityIcon {

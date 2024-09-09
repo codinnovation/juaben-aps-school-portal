@@ -21,12 +21,16 @@ function Index({ user }) {
   const [createUser, setCreateUser] = useState({
     email: "",
     password: "",
-    role: "",
+    classMaster: "",
     subjects: [],
     classToTeach: [],
+    assignedClass: "",
   });
 
   const availableClasses = [
+    "Creche",
+    "K.G 1",
+    "K.G 2",
     "Class 1",
     "Class 2",
     "Class 3",
@@ -59,7 +63,7 @@ function Index({ user }) {
     "Nursery 1 Teacher": [
       "Copy & Picture Reading",
       "Phonics Colouring",
-      "Numeracy", 
+      "Numeracy",
       "Phonics Writing",
     ],
     "Nursery 2 Teacher": [
@@ -84,15 +88,15 @@ function Index({ user }) {
   const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
-    if (createUser.role) {
-      setSubjects(teacherClass[createUser.role] || []);
+    if (createUser.assignedClass) {
+      setSubjects(teacherClass[createUser.assignedClass] || []);
       // Reset selected subjects if the class changes
       setCreateUser((prevUser) => ({
         ...prevUser,
         subjects: [],
       }));
     }
-  }, [createUser.role]);
+  }, [createUser.assignedClass]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -125,22 +129,24 @@ function Index({ user }) {
       setIsButtonClicked(false);
       setTimeout(() => {
         router.push("/login");
-      }, 200);
+      }, 1000);
       return;
     }
 
     let data = {
       email: createUser.email,
       password: createUser.password,
-      role: createUser.role,
+      displayName: `${createUser.classMaster} Teacher`,
     };
 
     let teacherData = {
       email: createUser.email,
-      role: createUser.role,
+      displayName: `${createUser.classMaster} Teacher`,
       subjects: createUser.subjects,
       classToTeach: createUser.classToTeach,
+      assignedClass: createUser.assignedClass,
     };
+
     try {
       const response = await fetch("/api/create_user", {
         method: "POST",
@@ -154,25 +160,21 @@ function Index({ user }) {
         toast.success("Account created successfully");
         toast.success(`Email verification sent to ${createUser.email}`);
         handleAddCreateParentActivity(
-          `${user.displayName} created a new Teacher's account for Class: ${createUser.role} with Email: ${createUser.email}`
+          `${user.displayName} created a new Teacher's account for Class: ${createUser.assignedClass} with Email: ${createUser.email}`
         );
 
         setTimeout(() => {
-          setIsButtonClicked(true);
           router.push("/login");
         }, 1000);
-        setIsButtonClicked(false);
 
         const newTeacherRef = push(ref(db, "usersTeachers"), teacherData);
         const newTeacherKey = newTeacherRef.key;
         return newTeacherKey;
       } else {
         toast.error("Create Failed");
-        setIsButtonClicked(false);
       }
     } catch (error) {
       toast.error("Error Occurred");
-      setIsButtonClicked(false);
     } finally {
       setIsButtonClicked(false);
     }
@@ -199,13 +201,11 @@ function Index({ user }) {
   return (
     <>
       {isButtonClicked && (
-        <>
-          <div className={styles.loadingContainer}>
-            <Box sx={{ display: "flex" }}>
-              <CircularProgress />
-            </Box>
-          </div>
-        </>
+        <div className={styles.loadingContainer}>
+          <Box sx={{ display: "flex" }}>
+            <CircularProgress />
+          </Box>
+        </div>
       )}
       <Head>
         <title>Please Sign Up</title>
@@ -223,7 +223,7 @@ function Index({ user }) {
               <div className={styles.authFormInput}>
                 <label>Email</label>
                 <input
-                  type="text"
+                  type="email"
                   id="email"
                   name="email"
                   required
@@ -233,12 +233,39 @@ function Index({ user }) {
               </div>
 
               <div className={styles.authFormInput}>
+                <label>Class Master</label>
+                <select
+                  type="text"
+                  id="classMaster"
+                  name="classMaster"
+                  required
+                  value={createUser.classMaster}
+                  onChange={handleInputChange}
+                >
+                  <option value="" disabled>
+                    Select
+                  </option>
+                  <option value="Nursery 1">Nursery 1</option>
+                  <option value="Nursery 2">Nursery 2</option>
+                  <option value="Creche">Creche</option>
+                  <option value="K.G 1">K. G 1</option>
+                  <option value="K.G 2">K. G 2</option>
+                  <option value="Class 1">Class 1</option>
+                  <option value="Class 2">Class 2</option>
+                  <option value="Class 3">Class 3</option>
+                  <option value="Class 4">Class 4</option>
+                  <option value="Class 5">Class 5</option>
+                  <option value="Class 6">Class 6</option>
+                </select>
+              </div>
+
+              <div className={styles.authFormInput}>
                 <label>Class</label>
                 <select
-                  value={createUser.role}
+                  value={createUser.assignedClass}
                   onChange={handleInputChange}
-                  name="role"
-                  id="role"
+                  name="assignedClass"
+                  id="assignedClass"
                 >
                   <option value="" disabled>
                     Select Class
@@ -251,57 +278,63 @@ function Index({ user }) {
                 </select>
               </div>
 
-              {createUser.role && (
-                <div className={styles.checkboxContainer}>
-                  <h3>Select Subject to Teach</h3>
-                  <div>
-                    {subjects.map((subject, index) => (
-                      <div key={index}>
-                        <input
-                          type="checkbox"
-                          id={`subject-${index}`}
-                          value={subject}
-                          checked={createUser.subjects.includes(subject)}
-                          onChange={handleCheckboxChange}
-                        />
-                        <label htmlFor={`subject-${index}`}>{subject}</label>
-                      </div>
-                    ))}
+              {createUser.assignedClass && (
+                <>
+                  <div className={styles.checkboxContainer}>
+                    <h3>Select Subject to Teach</h3>
+                    <div className={styles.checkboxContent}>
+                      {subjects.map((subject, index) => (
+                        <div key={index}>
+                          <input
+                            type="checkbox"
+                            id={`subject-${index}`}
+                            value={subject}
+                            checked={createUser.subjects.includes(subject)}
+                            onChange={handleCheckboxChange}
+                          />
+                          <label htmlFor={`subject-${index}`}>{subject}</label>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
 
-              {createUser.role === "Subject-Teacher" && (
-                <div className={styles.checkboxContainer}>
-                  <h3>Select Classes to Teach</h3>
-                  <div>
-                    {availableClasses.map((className, index) => (
-                      <div key={index}>
-                        <input
-                          type="checkbox"
-                          id={`class-${index}`}
-                          value={className}
-                          checked={createUser.classToTeach.includes(className)}
-                          onChange={(e) => {
-                            const { value, checked } = e.target;
-                            setCreateUser((prevUser) => {
-                              const updatedClasses = checked
-                                ? [...prevUser.classToTeach, value]
-                                : prevUser.classToTeach.filter(
-                                    (cls) => cls !== value
-                                  );
-                              return {
-                                ...prevUser,
-                                classToTeach: updatedClasses,
-                              };
-                            });
-                          }}
-                        />
-                        <label htmlFor={`class-${index}`}>{className}</label>
+                  {createUser.assignedClass && (
+                    <div className={styles.checkboxContainer}>
+                      <h3>Select Class(es) to Teach</h3>
+                      <div className={styles.checkboxContent}>
+                        {availableClasses.map((className, index) => (
+                          <div key={index}>
+                            <input
+                              type="checkbox"
+                              id={`class-${index}`}
+                              value={className}
+                              checked={createUser.classToTeach.includes(
+                                className
+                              )}
+                              onChange={(e) => {
+                                const { value, checked } = e.target;
+                                setCreateUser((prevUser) => {
+                                  const updatedClasses = checked
+                                    ? [...prevUser.classToTeach, value]
+                                    : prevUser.classToTeach.filter(
+                                        (cls) => cls !== value
+                                      );
+                                  return {
+                                    ...prevUser,
+                                    classToTeach: updatedClasses,
+                                  };
+                                });
+                              }}
+                            />
+                            <label htmlFor={`class-${index}`}>
+                              {className}
+                            </label>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </div>
+                  )}
+                </>
               )}
 
               <div className={styles.authFormInput}>
