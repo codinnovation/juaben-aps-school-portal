@@ -10,22 +10,12 @@
 
 .containerHeader{
    display: grid;
-   grid-template-columns: 1fr auto;
+   grid-template-columns: 1fr;
 }
+
 
 .containerHeader h1:nth-child(1){
-   font-size: 20px;
-   display: flex;
-   justify-content: flex-start;
-   align-content: center;
-   text-transform: uppercase;
-   color: green;
-   font-weight: 600;
-   padding: 10px;
-}
-
-.containerHeader h1:nth-child(2){
-   font-size: 20px;
+   font-size: 1.1em;
    display: flex;
    justify-content: flex-end;
    align-content: center;

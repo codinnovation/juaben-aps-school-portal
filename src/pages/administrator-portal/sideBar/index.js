@@ -148,15 +148,7 @@ function Sidebar() {
                 </Link>
               </div>
 
-              <div className={styles.linkContent}>
-                <PaymentIcon className={styles.linkIcon} />
-                <Link
-                  href="/administrator-portal/set-student-fees/"
-                  className={styles.link}
-                >
-                  Student&apos;s Fees
-                </Link>
-              </div>
+  
 
               <div className={styles.linkContent}>
                 <EventAvailable className={styles.linkIcon} />

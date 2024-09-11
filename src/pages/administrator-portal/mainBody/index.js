@@ -3,17 +3,108 @@ import styles from "../../../styles/admin_portal_css/mainbody.module.css";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import EngineeringIcon from "@mui/icons-material/Engineering";
-import AccessTime from "@mui/icons-material/AccessTime";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import Link from "next/link";
 import { db } from "../../../lib/firebase";
 import { ref, get } from "firebase/database";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import withSession from "@/lib/session";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MainBody({ user }) {
   const [date, setDate] = useState(new Date());
   const [currentTime, setCurrentTime] = useState(null);
   const [studentData, setStudentData] = useState([]);
+  const [openCreateEvent, setOpenCreateEvent] = useState(false);
+  const [openCreateParentNotification, setOpenCreateParentNotification] =
+    useState(false);
+  const [openCreateTeacerNotification, setOpenCreateTeacerNotification] =
+    useState(false);
+  const [eventData, setEventData] = useState({
+    EventName: "",
+    EventVenue: "",
+    StartDate: "",
+    EndDate: "",
+    EventDescription: "",
+  });
+
+  const [notificationData, setNotificationData] = useState({
+    TitleNotification: "",
+    DateNotification: "",
+    MessageNotification: "",
+  });
+
+  const [teacherNotification, setTeacherNotification] = useState({
+    TitleNotification: "",
+    DateNotification: "",
+    MessageNotification: "",
+  });
+
+  const handleTeacherNotificationSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const newNotification = push(
+        ref(db, "TeacherssNotification"),
+        teacherNotification
+      );
+      setSuccessModal("Notification Added Successfully");
+      router.push("/administrator-portal/teacherNotification");
+      const newNotificationkey = newNotification.key;
+      return newNotificationkey;
+    } catch (error) {
+      console.log("Error adding notification to Teachers");
+    }
+    setShowSuccessModal(true);
+  };
+
+  const hanldeInputTeacherChange = (e) => {
+    const { name, value } = e.target;
+    setTeacherNotification({
+      ...teacherNotification,
+      [name]: value,
+    });
+  };
+
+  const handleNotificationSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const newNotification = push(
+        ref(db, "parentsNotification"),
+        notificationData
+      );
+      toast.success("Sent Successfully");
+      setOpenCreateParentNotification(false);
+
+      const newNotificationkey = newNotification.key;
+      return newNotificationkey;
+    } catch (error) {
+      toast.error("Error Sending Notification to Parents");
+    }
+  };
+
+  const hanldeInputChange = (e) => {
+    const { name, value } = e.target;
+    setNotificationData({
+      ...notificationData,
+      [name]: value,
+    });
+  };
+
+  const handleCreateEvent = async (e) => {
+    try {
+      const newEvent = push(ref(db, "createEvents"), eventData);
+      toast.success("Event Created successful");
+      const newEventKey = newEvent.newEventKey;
+      setOpenCreateEvent(false);
+      toast.success("Event Created successful");
+      return newEventKey;
+    } catch (error) {
+      toast.error("Error creating event");
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -90,19 +181,17 @@ function MainBody({ user }) {
     <>
       <div className={styles.mainbodyContainer}>
         <div className={styles.mainbodyBoxes}>
-          <div className={styles.box}>
-            <div className={styles.boxIcon}>
-              <AccessTime />
+          <Link
+            href="/administrator-portal/set-student-fees/"
+            style={{ textDecoration: "none" }}
+          >
+            <div className={styles.box}>
+              <div className={styles.boxIcon}>
+                <AttachMoneyIcon />
+              </div>
+              <div className={styles.boxDes}>Student fees</div>
             </div>
-            <div className={styles.boxDes}>
-              {" "}
-              {`${
-                currentTime
-                  ? currentTime.toLocaleTimeString([], { hour12: true })
-                  : "Loading Time..."
-              } - ${formattedDate}`}{" "}
-            </div>
-          </div>
+          </Link>
 
           <Link
             href="/administrator-portal/register-non-staff/"
@@ -128,35 +217,38 @@ function MainBody({ user }) {
             </div>
           </Link>
 
+          <Link href="" style={{ color: "white", textDecoration: "none" }}>
+            <div
+              className={styles.box}
+              onClick={() => setOpenCreateParentNotification(true)}
+            >
+              <div className={styles.boxIcon}>
+                <NotificationsActiveIcon />
+              </div>
+              <div className={styles.boxDes}>Create Notification - Parents</div>
+            </div>
+          </Link>
+
           <Link
-            href="/administrator-portal/notifications/notificationParents"
+            href=""
+            onClick={() => setOpenCreateTeacerNotification(true)}
             style={{ color: "white", textDecoration: "none" }}
           >
             <div className={styles.box}>
               <div className={styles.boxIcon}>
                 <NotificationsActiveIcon />
               </div>
-              <div className={styles.boxDes}>Notification for Parents</div>
-            </div>
-          </Link>
-
-          <Link
-            href="/administrator-portal/notifications/notificationTeacher"
-            style={{ color: "white", textDecoration: "none" }}
-          >
-            <div className={styles.box}>
-              <div className={styles.boxIcon}>
-                <NotificationsActiveIcon />
+              <div className={styles.boxDes}>
+                Create Notification - Teachers
               </div>
-              <div className={styles.boxDes}>Notification for Teachers</div>
             </div>
           </Link>
 
-          <Link
-            href="/administrator-portal/create-event/"
-            style={{ color: "white", textDecoration: "none" }}
-          >
-            <div className={styles.box}>
+          <Link style={{ color: "white", textDecoration: "none" }} href="">
+            <div
+              className={styles.box}
+              onClick={() => setOpenCreateEvent(true)}
+            >
               <div className={styles.boxIcon}>
                 <EventAvailableIcon />
               </div>
@@ -183,17 +275,213 @@ function MainBody({ user }) {
             <h1>{`${femalePercentage.toFixed(2)}% female student`}</h1>
           </div>
         </div>
-
-        <div className={styles.last_container}>
-          <div className={styles.last_container_header}>
-            <h1>Administrator Activities</h1>
-          </div>
-
-          <div className={styles.last_container_items}>
-            <div></div>
-          </div>
-        </div>
       </div>
+
+      {openCreateEvent && (
+        <>
+          <div className={styles.createEventContainer}>
+            <div className={styles.createEventContent}>
+              <h1 onClick={() => setOpenCreateEvent(false)}>Hide</h1>
+
+              <div className={styles.inputFormContainer}>
+                <form onSubmit={handleCreateEvent}>
+                  <div className={styles.inputFieldGrid}>
+                    <div className={styles.field}>
+                      <label>Event Name</label>
+                      <input
+                        placeholder="Event Name"
+                        name="Event Name"
+                        value={eventData.EventName}
+                        onChange={(e) =>
+                          setEventData({
+                            ...eventData,
+                            EventName: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+
+                    <div className={styles.field}>
+                      <label>Event Venue</label>
+                      <input
+                        placeholder="Event Venue"
+                        name="Event Venue"
+                        value={eventData.EventVenue}
+                        onChange={(e) =>
+                          setEventData({
+                            ...eventData,
+                            EventVenue: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+
+                    <div className={styles.field}>
+                      <input
+                        placeholder="Event Start Date"
+                        name="Start Date"
+                        value={eventData.StartDate}
+                        type="date"
+                        onChange={(e) =>
+                          setEventData({
+                            ...eventData,
+                            StartDate: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+
+                    <div className={styles.field}>
+                      <label>End Date</label>
+                      <input
+                        placeholder="Event End Date"
+                        name="End Date"
+                        value={eventData.EndDate}
+                        type="date"
+                        onChange={(e) =>
+                          setEventData({
+                            ...eventData,
+                            EndDate: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.inputFieldNoGrid}>
+                    <label> Description</label>
+                    <textarea
+                      value={eventData.EventDescription}
+                      name="Event Description"
+                      onChange={(e) =>
+                        setEventData({
+                          ...eventData,
+                          EventDescription: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+
+                  <div className={styles.submitButton}>
+                    <button type="submit">Create</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {openCreateParentNotification && (
+        <>
+          <div className={styles.createEventContainer}>
+            <div className={styles.createEventContent}>
+              <h1 onClick={() => setOpenCreateParentNotification(false)}>
+                Hide
+              </h1>
+
+              <div className={styles.inputFormContainer}>
+                <form onSubmit={handleNotificationSubmit}>
+                  <div className={styles.inputFieldGrid}>
+                    <div className={styles.field}>
+                      <label>Title</label>
+                      <input
+                        placeholder="Title"
+                        type="text"
+                        name="TitleNotification"
+                        value={notificationData.TitleNotification}
+                        onChange={hanldeInputChange}
+                      />
+                    </div>
+
+                    <div className={styles.field}>
+                      <label> Date</label>
+                      <input
+                        placeholder="date"
+                        type="date"
+                        name="DateNotification"
+                        value={notificationData.DateNotification}
+                        onChange={hanldeInputChange}
+                      />
+                    </div>
+
+                    <div className={styles.inputFieldNoGrid}>
+                      <label> Message</label>
+                      <textarea
+                        placeholder="message"
+                        type="text"
+                        name="MessageNotification"
+                        value={notificationData.MessageNotification}
+                        onChange={hanldeInputChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.submitButton}>
+                    <button type="submit">Create</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {openCreateTeacerNotification && (
+        <>
+          <div className={styles.createEventContainer}>
+            <div className={styles.createEventContent}>
+              <h1 onClick={() => setOpenCreateTeacerNotification(false)}>
+                Hide
+              </h1>
+
+              <div className={styles.inputFormContainer}>
+                <form onSubmit={handleTeacherNotificationSubmit}>
+                  <div className={styles.inputFieldGrid}>
+                    <div className={styles.field}>
+                      <label>Title</label>
+                      <input
+                        placeholder="Title"
+                        type="text"
+                        name="TitleNotification"
+                        value={teacherNotification.TitleNotification}
+                        onChange={hanldeInputTeacherChange}
+                      />
+                    </div>
+
+                    <div className={styles.field}>
+                      <label> Date</label>
+                      <input
+                        placeholder="date"
+                        type="date"
+                        name="DateNotification"
+                        value={teacherNotification.DateNotification}
+                        onChange={hanldeInputTeacherChange}
+                      />
+                    </div>
+
+                    <div className={styles.inputFieldNoGrid}>
+                      <label> Message</label>
+                      <textarea
+                        placeholder="message"
+                        type="text"
+                        name="MessageNotification"
+                        value={teacherNotification.MessageNotification}
+                        onChange={hanldeInputTeacherChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.submitButton}>
+                    <button type="submit">Create</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+      <ToastContainer />
     </>
   );
 }

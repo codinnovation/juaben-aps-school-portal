@@ -5,9 +5,9 @@ import { auth, db } from "../../../lib/firebase";
 import { ref } from "firebase/database";
 import { get } from "firebase/database";
 import StudentProfilePageComponent from "../student-profile/studentProfilePage";
-import SearchIcon from "@mui/icons-material/SearchOutlined";
 import Layout from "../layout";
 import { useRouter } from "next/router";
+import withSession from "@/lib/session";
 
 function StudentList() {
   const [studentProfilePageView, setStudentProfilePageView] = useState(false);
@@ -204,3 +204,27 @@ function StudentList() {
 }
 
 export default StudentList;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user || user?.displayName !== "Administrator") {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  auth.signOut();
+
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+
+  return {
+    props: {
+      user: user,
+    },
+  };
+});
