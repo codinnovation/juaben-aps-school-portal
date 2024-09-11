@@ -11,8 +11,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function RegistrationForm() {
-  const [formSection, setFormSection] = useState(1);
   const router = useRouter();
+  const [formSection, setFormSection] = useState(1);
 
   const generateRandomStudentNumber = () => {
     const randomNumber = Math.floor(100000 + Math.random() * 900000);
@@ -238,7 +238,6 @@ function RegistrationForm() {
         <div className={styles.container}>
           <div className={styles.containerItems}>
             <div className={styles.containerHeader}>
-              <h1>Admit Student</h1>
               <h1 onClick={handleCloseForm}>Exit</h1>
             </div>
 
@@ -295,6 +294,8 @@ function RegistrationForm() {
           </div>
         </div>
         <ToastContainer />
+
+   
       </Layout>
     </>
   );

@@ -13,14 +13,8 @@ function Index() {
   const [eventsContainer, setEventsContainer] = useState([]);
   const [selectedNote, setSelectedNote] = useState(null);
   const [open, setOpen] = useState(false);
-
   const router = useRouter();
 
-  function navigateToCreateEvent() {
-    router.push({
-      pathname: "/administrator-portal/create-event",
-    });
-  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,7 +57,6 @@ function Index() {
           <div className={styles.containerItems}>
             <div className={styles.containerHeader}>
               <h1>View Event</h1>
-              <h1 onClick={navigateToCreateEvent}>Create Event</h1>
             </div>
           </div>
 
