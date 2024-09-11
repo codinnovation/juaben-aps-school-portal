@@ -5,7 +5,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowForwardIos";
 import Person2Icon from "@mui/icons-material/Person2";
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
-import PaymentsIcon from '@mui/icons-material/Payments';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import Link from "next/link";
 import withSession from "@/lib/session";
 
@@ -89,7 +89,7 @@ export default function Index() {
 
               <div className={styles.portalCard}>
                 <div className={styles.portalIconWrapper}>
-                  <PaymentsIcon className={styles.portalIcon} />
+                  <AttachMoneyIcon className={styles.portalIcon} />
                 </div>
 
                 <div className={styles.portalName}>

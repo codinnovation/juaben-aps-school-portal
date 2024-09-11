@@ -37,6 +37,16 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
   const router = useRouter();
 
   const addPaymentOfFee = async () => {
+    if (
+      !editPaymentData.editPaymentDate ||
+      !editPaymentData.editPaymentAmount ||
+      !editPaymentData.editSemesterFee ||
+      !editPaymentData.editMadeBy ||
+      !editPaymentData.editBy
+    ) {
+      toast.error("Please fill all the fields");
+      return;
+    }
     const studentRef = ref(
       db,
       `/japsstudents/${selectedStudent.key}/SchoolFees/Payments`
@@ -189,8 +199,6 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
                   onChange={(e) => setPaymentAmount(e.target.value)}
                   required
                 />
-
-            
 
                 <input
                   placeholder="Made By"

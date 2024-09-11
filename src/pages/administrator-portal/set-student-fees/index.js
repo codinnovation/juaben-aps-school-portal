@@ -102,15 +102,12 @@ function Index() {
   return (
     <>
       <Layout>
-        <div className={styles.container}>
-          <div className={styles.containerItems}>
-            <div className={styles.containerHeader}>
-              <h1>Set Student Fees</h1>
-            </div>
-
-            <div className={styles.containerBody}>
+        <div className={styles.setFeesContainer}>
+          <div className={styles.setFeesContent}>
+          
+            <div className={styles.feeBody}>
               <form onSubmit={updateFeeValues}>
-                <div className={styles.items}>
+                <div className={styles.feeBodyItems}>
                   {variousClasses.map((classItem, index) => (
                     <div className={styles.item} key={index}>
                       <div className={styles.itemName}>

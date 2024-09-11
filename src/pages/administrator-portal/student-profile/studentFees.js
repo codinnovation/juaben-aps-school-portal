@@ -12,34 +12,6 @@ function StudentFees({
   const [paymentHistoryArray, setPaymentHistoryArray] = useState([]);
   const [balanceFee, setBalanceFee] = useState();
 
-  const navigateToStudentProfilePage = () => {
-    navigateToComp("studentProfile");
-  };
-
-  const navigateToStudentGuardian = () => {
-    navigateToComp("studentGuardian");
-  };
-
-  const navigateToStudentAttendance = () => {
-    navigateToComp("studentAttendance");
-  };
-
-  const navigateToStudentClassScore = () => {
-    navigateToComp("studentClassScore");
-  };
-
-  const navigateToStudentHealth = () => {
-    navigateToComp("studentHealth");
-  };
-
-  const navigateToStudentClassTest = () => {
-    navigateToComp("studentClassTest");
-  };
-
-  const navigateToStudentHomework = () => {
-    navigateToComp("studentHomework");
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -56,13 +28,11 @@ function StudentFees({
             ...value,
           }));
 
-          // Calculate the total payment amount
           const totalPayment = dataArray.reduce(
             (acc, payment) => acc + (payment.AmountOfPayment || 0),
             0
           );
 
-          // Set the balance fee by subtracting total payment from TotalFees
           setBalanceFee(selectedStudent?.SchoolFees?.TotalFees - totalPayment);
 
           setPaymentHistoryArray(dataArray);
@@ -83,66 +53,6 @@ function StudentFees({
   return (
     <>
       <div className={styles.studentProfilePageContainer}>
-        <div className={styles.navigationContainer}>
-          <div className={styles.studentPhoto}>
-            <Image
-              src="/student5651.jpg"
-              width={200}
-              height={150}
-              alt="student_image"
-            />
-          </div>
-          <div className={styles.stundentName}>
-          <h1>{`${selectedStudent?.FirstName || ""} ${
-                selectedStudent?.MiddleName || ""
-              } ${selectedStudent?.LastName || ""} `}</h1>
-          </div>
-
-          <div className={styles.studentNavLinks}>
-            <ul>
-              <li>
-                <button onClick={navigateToStudentProfilePage}>
-                  Student Profile
-                </button>
-              </li>
-              <li>
-                <button onClick={navigateToStudentHealth}>
-                  Student Health
-                </button>
-              </li>
-
-              <li>
-                <button onClick={navigateToStudentGuardian}>
-                  Student Guardian
-                </button>
-              </li>
-              <li>
-                <button onClick={navigateToStudentAttendance}>
-                  Attendance
-                </button>
-              </li>
-
-              <li>
-                <button onClick={navigateToStudentClassScore}>
-                  Class Scores
-                </button>
-              </li>
-
-              <li>
-                <button onClick={navigateToStudentClassTest}>Class Test</button>
-              </li>
-
-              <li>
-                <button onClick={navigateToStudentHomework}>Home work</button>
-              </li>
-            </ul>
-          </div>
-
-          <div className={styles.backToList}>
-            <button onClick={hideStudentProfilePage}>Back To List</button>
-          </div>
-        </div>
-
         <div className={styles.studentFeesContainer}>
           <div className={styles.studentFeesHeader}>
             <div className={styles.header1}>

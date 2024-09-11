@@ -1,162 +1,163 @@
 .feeContainer {
-   width: 80%;
-   height: 100%;
-   margin-left: 20%;
-
+  width: 77%;
+  margin-left: 20%;
+  margin-top: 1%;
 }
 
 .feeContainerItems {
-   width: 70%;
-   height: 100%;
-   padding: 10px;
-   margin: 1% auto;
-   border: 1px solid #191970;
-   border-radius: 20px;
+  width: 100%;
+  padding: 10px;
+  margin: 1% auto;
+  border: 1px solid #191970;
+  border-radius: 10px;
 }
 
 .feeContainerHeader {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .feeContainerHeader h1 {
-   font-size: 20px;
+  font-size: 20px;
 }
 
 .feeContainerBody {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1%;
 }
 
 .feeContainerBodyHeader {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   gap: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 500px;
 }
 
 .feeContainerBodyHeader h1 {
-   font-size: 20px;
+  font-size: 20px;
 }
 
 .feeContainerBodyHeader h1:nth-child(2) {
-   color: red;
+  color: red;
 }
 
 .feeContainerBodyHeader h1:nth-child(1) {
-   color: green;
+  color: green;
 }
 
 .addPaymentContainer {
-   margin-top: 2%;
+  margin-top: 2%;
 }
 
 .field {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .field input {
-   margin-top: 10px;
-   width: 300px;
-   height: 40px;
-   border-radius: 10px;
-   border: 1px solid #aeaeae;
-   padding-left: 10px;
+  margin-top: 20px;
+  width: 500px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid #aeaeae;
+  padding-left: 10px;
 }
 
-.submitBtn{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin-top: 10px;
+.submitBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.submitBtn button{
-   background-color: orange;
-   border: none;
-   padding: 10px;
-   width: 100px;
-   border-radius: 10px;
+.submitBtn button {
+  background-color: #0b1e1c;
+  border: none;
+  padding: 10px;
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  color: #fff;
 }
 
-.paymentsList{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   margin-top: 1%;
-
+.paymentsList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1%;
 }
 
-.paymentHistory{
-   width: 100%;
-   display: flex;
-   align-items: center;
-   flex-direction: column;
-   margin-top: 2%;
-   height: 42vh;
-   overflow-y: scroll;
-   scrollbar-width: thin;
+.paymentHistory {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2%;
 }
 
-.paymentHistory h1{
-   font-size: 15px;
+.paymentHistory h1 {
+  font-size: 15px;
 }
 
-.paymentHistoryFields{
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-   gap: 30px;
-   margin-top: 2%;
+.paymentHistoryFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 30px;
+  margin-top: 2%;
 }
 
-.paymentDate{
-   display: flex;
-   flex-direction: column;
+.paymentDate {
+  display: flex;
+  flex-direction: column;
 }
 
-.paymentDate label{
-   margin-bottom: 10px;
-   color: orange;
-   font-size: 14px;
+.paymentDate label {
+  margin-bottom: 10px;
+  color: orange;
+  font-size: 1em;
 }
 
-.paymentDate h1, .paymentDate input{
-   border: 1px solid #aeaeae;
-   border-radius: 10px;
-   padding: 8px;
-   font-size: 15px;
-   font-weight: 100;
-   width: 100%;
-   font-size: 14px;
+.paymentDate h1,
+.paymentDate input {
+  border: 1px solid #aeaeae;
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 15px;
+  font-weight: 100;
+  width: 100%;
+  height: 55px;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.paymentActions{
-   display: flex;
-   justify-content: center;
-   align-items: center;
+.paymentActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.paymentActions button{
-   width: 100px;
-   background-color: #aeaeae;
-   border: none;
-   font-weight: 900;
-   height: 40px;
-   padding: 10px;
-   margin: 10px;
+.paymentActions button {
+  width: 100px;
+  background-color: #aeaeae;
+  border: none;
+  font-weight: 900;
+  height: 40px;
+  padding: 10px;
+  margin: 10px;
 }
 
 @media (max-width: 700px) {
-   .feeContainerItems {
-      width: 80%;
-      height: 75vh;
-   }
+  .feeContainerItems {
+    width: 80%;
+    height: 75vh;
+  }
 }

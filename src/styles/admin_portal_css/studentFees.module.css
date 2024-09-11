@@ -1,171 +1,112 @@
 .studentProfilePageContainer {
-   display: grid;
-   grid-template-columns: 1fr 3fr;
-   position: absolute;
-   width: 76%;
-   top: 10;
-   right: 0;
-   margin: 3% 4%;
+  width: 77%;
+  margin-left: 20%;
+  margin-top: 1%;
 }
 
-.navigationContainer {
-   width: 250px;
-   height: 700px;
-   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
-   background-color: #fff;
-   margin-right: 5px;
-   border-radius: 20px;
+.studentFeesContainer {
+  width: 100%;
+  height: 100%;
 }
 
-.studentPhoto {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+.studentFeesHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 2%;
 }
 
-.stundentName {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+.header1 {
+  display: flex;
+  flex-direction: column;
 }
 
-.stundentName h1 {
-   font-size: 13px;
-   text-transform: uppercase;
-   letter-spacing: 1px;
-   text-align: center;
+.header1 label {
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
-.studentNavLinks {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin-top: 10px;
+.header1 h1 {
+  border: 1px solid #aeaeae;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  width: 250px;
+  text-align: center;
 }
 
-.studentNavLinks ul {
-   list-style: none;
+.header2 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
 }
 
-.studentNavLinks ul li {
-   margin-top: 10px;
-   text-transform: uppercase;
+.header2 h1 {
+  border: 1px solid #aeaeae;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  width: 250px;
+  text-align: center;
 }
 
-.studentNavLinks ul li button {
-   width: 200px;
-   height: 50px;
-   border-radius: 10px;
-   border: none;
-   cursor: pointer;
-   text-transform: uppercase;
-   text-align: left;
-   padding: 10px;
-   font-size: 12px;
+.header2 label {
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.paymentHistory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2%;
 }
 
-.studentNavLinks ul li button:hover {
-   color: #4070f4;
-   cursor: pointer;
+.paymentHistory h1 {
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.backToList {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin-top: 20%;
+.paymentHistoryFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 30px;
+  margin-top: 2%;
 }
 
-.backToList button {
-   width: 140px;
-   height: 40px;
-   border-radius: 6px;
-   background: royalblue;
-   color: #fff;
-   outline: none;
-   border: none;
-   cursor: pointer;
+.paymentDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
-.studentFeesContainer{
-   width: 100%;
-   height: 100%;
+.paymentDate label {
+  margin-bottom: 10px;
+  color: orange;
+  font-size: 15px;
 }
 
-.studentFeesHeader{
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   gap: 30px;
-}
-
-.header1{
-   display: flex;
-   flex-direction: column;
-}
-
-.header1 label{
-   font-size: 12px;
-   text-transform: uppercase;
-   margin-bottom: 7px;
-}
-
-
-.header1 h1{
-   border: 1px solid #aeaeae;
-   border-radius: 10px;
-   padding: 10px;
-   font-size: 12px;
-   text-transform: uppercase;
-}
-
-.header2 h1{
-   border: 1px solid #aeaeae;
-   border-radius: 10px;
-   padding: 10px;
-   font-size: 12px;
-   text-transform: uppercase;
-}
-
-.header2 label{
-   font-size: 12px;
-   text-transform: uppercase;
-   margin-bottom: 7px;
-}
-.paymentHistory{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   margin-top: 5%;
-}
-
-.paymentHistory h1{
-   font-size: 14px;
-   text-transform: uppercase;
-}
-
-.paymentHistoryFields{
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-   gap: 30px;
-   margin-top: 2%;
-}
-
-.paymentDate{
-   display: flex;
-   flex-direction: column;
-}
-
-.paymentDate label{
-   margin-bottom: 10px;
-   color: orange;
-   font-size: 15px;
-}
-
-.paymentDate h1{
-   border: 1px solid #aeaeae;
-   border-radius: 10px;
-   padding: 10px;
-   font-size: 15px;
-   font-weight: 100;
+.paymentDate h1 {
+  border: 1px solid #aeaeae;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1.1em;
+  font-weight: 100;
+  width: 200px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -17,7 +17,6 @@ function StudentList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [studentsPerPage, setStudentsPerPage] = useState(13);
-  const [searchInputClicked, setSearchInputClicked] = useState(false);
 
   const handlePerPageChange = (e) => {
     setStudentsPerPage(Number(e.target.value));
@@ -89,24 +88,14 @@ function StudentList() {
       </Head>
       {studentListView && (
         <div className={styles.studentListContainer}>
-          <div
-            className={styles.searchStudent}
-            onClick={() => setSearchInputClicked(true)}
-          >
-            <span>Search</span>
-            <SearchIcon />
-
-            {searchInputClicked && (
-              <>
-                <div className={styles.searchInputContainer}>
-                  <input
-                    placeholder="Search for a student"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-              </>
-            )}
+          <div className={styles.searchStudent}>
+            <div className={styles.searchInputContainer}>
+              <input
+                placeholder="Search for a student"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
           </div>
           <div className={styles.tableContainer}>
             <div className={styles.tableHeader}>

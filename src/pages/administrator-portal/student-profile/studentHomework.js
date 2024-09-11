@@ -115,96 +115,10 @@ function StudentClassScore({
     return <div style={{fontSize: '13px'}}>No scores available for this subject</div>;
   };
 
-  const navigateToStudentProfilePage = () => {
-    navigateToComp("studentProfile");
-  };
-
-  const navigateToStudentAttendance = () => {
-    navigateToComp("studentAttendance");
-  };
-
-  const navigateToStudentFees = () => {
-    navigateToComp("studentFees");
-  };
-
-  const navigateToStudentGuardian = () => {
-    navigateToComp("studentGuardian");
-  };
-
-  const navigateToStudentHealth = () => {
-    navigateToComp("studentHealth");
-  };
-
-  const navigateToStudentClassTest = () => {
-    navigateToComp("studentClassTest");
-  };
-
-  const navigateToStudentClassScore = () => {
-    navigateToComp("studentClassScore");
-  };
-
   return (
     <>
       <div className={styles.studentProfilePageContainer}>
-        <div className={styles.firstBox}>
-          <div className={styles.studentPhoto}>
-            <Image
-              src="/student5651.jpg"
-              width={200}
-              height={150}
-              alt="student_image"
-            />
-          </div>
-          <div className={styles.stundentName}>
-            <h1>{`${selectedStudent?.FirstName || ""} ${
-              selectedStudent?.MiddleName || ""
-            } ${selectedStudent?.LastName || ""}`}</h1>
-          </div>
-
-          <div className={styles.studentNavLinks}>
-            <ul>
-              <li>
-                <button onClick={navigateToStudentProfilePage}>
-                  Profile Page
-                </button>
-              </li>
-
-              <li>
-                <button onClick={navigateToStudentHealth}>
-                  Student Health
-                </button>
-              </li>
-
-              <li>
-                <button onClick={navigateToStudentGuardian}>
-                  Student Guardian
-                </button>
-              </li>
-
-              <li>
-                <button onClick={navigateToStudentAttendance}>
-                  Attendance
-                </button>
-              </li>
-
-              <li>
-                <button onClick={navigateToStudentFees}>Fees</button>
-              </li>
-
-              <li>
-                <button onClick={navigateToStudentClassTest}>Class Test</button>
-              </li>
-
-              <li>
-                <button onClick={navigateToStudentClassScore}>Class Score</button>
-              </li>
-            </ul>
-          </div>
-
-          <div className={styles.backToList}>
-            <button onClick={hideStudentProfilePage}>Back To List</button>
-          </div>
-        </div>
+     
 
         <div className={styles.Formcontainer}>
           <div className={styles.classScoreTable}>

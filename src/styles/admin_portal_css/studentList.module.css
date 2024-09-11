@@ -1,7 +1,6 @@
 .studentListContainer {
    width: 77%;
    margin-left: 20%;
-   margin-top: 2%;
 }
 
 .searchStudent{
@@ -9,14 +8,12 @@
    justify-content: flex-end;
    align-items: center;
    margin-bottom: 1%;
-   cursor: pointer;
 }
 
 .searchInputContainer{
    display: flex;
    justify-content: center;
    align-items: center;
-   position: absolute;
 }
 
 .searchInputContainer input{
