@@ -17,7 +17,7 @@ function StudentList({ user }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [studentsPerPage, setStudentsPerPage] = useState(13);
 
-  console.log(user)
+  console.log(user);
 
   const handlePerPageChange = (e) => {
     setStudentsPerPage(Number(e.target.value));
@@ -83,7 +83,6 @@ function StudentList({ user }) {
 
   const totalPages = Math.ceil(searchForStudent.length / studentsPerPage);
 
-
   return (
     <>
       <Layout>
@@ -130,64 +129,66 @@ function StudentList({ user }) {
                 </div>
 
                 <div className={styles.navigation}>
-                <button
-                  onClick={() =>
-                    setCurrentPage((prevPage) =>
-                      prevPage > 1 ? prevPage - 1 : prevPage
-                    )
-                  }
-                >
-                  Prev
-                </button>
-                {Array.from(
-                  {
-                    length: totalPages,
-                  },
-                  (_, i) =>
-                    i < 3 || i === totalPages - 1 ? (
-                      <p
-                        key={i + 1}
-                        onClick={() => paginate(i + 1)}
-                        className={
-                          currentPage === i + 1 ? styles.currentPage : ""
-                        }
-                      >
-                        {i + 1}
-                      </p>
-                    ) : i === 3 ? (
-                      <span key="ellipsis">...</span>
-                    ) : null
-                )}
-                <button
-                  onClick={() =>
-                    setCurrentPage((prevPage) =>
-                      prevPage < totalPages ? prevPage + 1 : prevPage
-                    )
-                  }
-                >
-                  Next
-                </button>
-              </div>
-
+                  <button
+                    onClick={() =>
+                      setCurrentPage((prevPage) =>
+                        prevPage > 1 ? prevPage - 1 : prevPage
+                      )
+                    }
+                  >
+                    Prev
+                  </button>
+                  {Array.from(
+                    {
+                      length: totalPages,
+                    },
+                    (_, i) =>
+                      i < 3 || i === totalPages - 1 ? (
+                        <p
+                          key={i + 1}
+                          onClick={() => paginate(i + 1)}
+                          className={
+                            currentPage === i + 1 ? styles.currentPage : ""
+                          }
+                        >
+                          {i + 1}
+                        </p>
+                      ) : i === 3 ? (
+                        <span key="ellipsis">...</span>
+                      ) : null
+                  )}
+                  <button
+                    onClick={() =>
+                      setCurrentPage((prevPage) =>
+                        prevPage < totalPages ? prevPage + 1 : prevPage
+                      )
+                    }
+                  >
+                    Next
+                  </button>
+                </div>
 
                 <div className={styles.displayNumRow}>
-                <select value={studentsPerPage} onChange={handlePerPageChange}>
-                  <option value={13}>13</option>
-                  <option value={20}>20</option>
-                  <option value={30}>30</option>
-                  <option value={40}>40</option>
-                  <option value={50}>50</option>
-                  <option value={60}>60</option>
-                  <option value={70}>70</option>
-                  <option value={80}>80</option>
-                  <option value={90}>90</option>
-                  <option value={100}>100</option>
-                  <option value={150}>150</option>
-                  <option value={200}>200</option>
-                  <option value={300}>300</option>
-                  <option value={400}>400</option>
-                </select>
-              </div>
+                  <select
+                    value={studentsPerPage}
+                    onChange={handlePerPageChange}
+                  >
+                    <option value={13}>13</option>
+                    <option value={20}>20</option>
+                    <option value={30}>30</option>
+                    <option value={40}>40</option>
+                    <option value={50}>50</option>
+                    <option value={60}>60</option>
+                    <option value={70}>70</option>
+                    <option value={80}>80</option>
+                    <option value={90}>90</option>
+                    <option value={100}>100</option>
+                    <option value={150}>150</option>
+                    <option value={200}>200</option>
+                    <option value={300}>300</option>
+                    <option value={400}>400</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -209,9 +210,7 @@ export default StudentList;
 
 export const getServerSideProps = withSession(async function ({ req, res }) {
   const user = req.session.get("user");
-  if (
-    !user ||
-    user?.displayName !== "Administrator"  ) {
+  if (!user || !user || !user.displayName.includes("Accountant")) {
     return {
       redirect: {
         destination: "/login",

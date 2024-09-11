@@ -28,7 +28,7 @@ export default Index;
 
 export const getServerSideProps = withSession(async function ({ req, res }) {
   const user = req.session.get("user");
-  if (!user || user?.displayName !== "Administrator") {
+  if (!user || !user.displayName.includes("Accountant")) {
     return {
       redirect: {
         destination: "/login",

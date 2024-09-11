@@ -256,6 +256,7 @@ function Index({ user }) {
                   <option value="Class 4">Class 4</option>
                   <option value="Class 5">Class 5</option>
                   <option value="Class 6">Class 6</option>
+                  <option value="Accountant">Accountant</option>
                 </select>
               </div>
 
