@@ -8,7 +8,7 @@ import StudentHomework from "./studentHomework";
 import StudentClassTest from "./studentClassTest";
 import UpdateForm from "../update-student";
 import { db } from "../../../lib/firebase";
-import {  ref, remove } from "firebase/database";
+import { ref, remove } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -28,7 +28,6 @@ function StudentProfilePage({
   const [activeComponent, setActiveComponent] = useState("studentProfile");
   const [toggleUpdateForm, setToggleUpdateForm] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-
 
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -94,7 +93,6 @@ function StudentProfilePage({
             </div>
             <div
               className={styles.menuContainer}
-              onClick={() => setOpenModal(true)}
             >
               <Menu />
             </div>
@@ -184,7 +182,7 @@ function StudentProfilePage({
             <div className={styles.backToList}>
               <button onClick={hideStudentProfilePage}>Back To List</button>
               <button onClick={showUpdateForm}>Edit Profile</button>
-              <button onClick={handleRemoveStudent}>Remove Student</button>
+              <button onClick={() => setOpenModal(true)}>Remove Student</button>
             </div>
           </div>
         )}
@@ -224,7 +222,6 @@ function StudentProfilePage({
           selectedStudent={selectedStudent}
         />
       )}
-
 
       {activeComponent === "studentClassScore" && (
         <StudentClassScore

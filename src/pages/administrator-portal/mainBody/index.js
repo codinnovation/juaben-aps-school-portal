@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import styles from "../../../styles/admin_portal_css/mainbody.module.css";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
@@ -11,8 +12,14 @@ import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import withSession from "@/lib/session";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PeopleIcon from "@mui/icons-material/People";
+import EventAvailable from "@mui/icons-material/EventAvailable";
+import LogoutIcon from "@mui/icons-material/Logout";
+import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
+
 
 function MainBody({ user }) {
+  const router = useRouter();
   const [date, setDate] = useState(new Date());
   const [currentTime, setCurrentTime] = useState(null);
   const [studentData, setStudentData] = useState([]);
@@ -274,6 +281,43 @@ function MainBody({ user }) {
           >
             <h1>{`${femalePercentage.toFixed(2)}% female student`}</h1>
           </div>
+        </div>
+      </div>
+
+      <div className={styles.mobileSideMenu}>
+        <div
+          className={styles.sideMenu}
+          onClick={() => router.push("/administrator-portal/student-list")}
+        >
+          <PeopleIcon />
+          <h1>Student&apos;s List</h1>
+        </div>
+
+        <div className={styles.sideMenu}>
+          <PeopleIcon />
+          <h1>Teacher&apos;s List</h1>
+        </div>
+
+        <div className={styles.sideMenu}>
+          <PeopleIcon />
+          <h1>Non T List</h1>
+        </div>
+
+        <div className={styles.sideMenu}>
+          <NotificationAddIcon />
+          <h1>P. Notification</h1>
+        </div>
+        <div className={styles.sideMenu}>
+          <NotificationAddIcon />
+          <h1>T. Notification</h1>
+        </div>
+        <div className={styles.sideMenu}>
+          <EventAvailable />
+          <h1>Event</h1>
+        </div>
+        <div className={styles.sideMenuLogout}>
+          <LogoutIcon />
+          <h1>Logout</h1>
         </div>
       </div>
 

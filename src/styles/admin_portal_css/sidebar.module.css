@@ -1,142 +1,137 @@
 .sideBarContainer {
-   background-color: #0b1e1c;
-   height: 100%;
-   position: fixed;
-   width: 17%;
-   top: 0;
+  background-color: #0b1e1c;
+  height: 100%;
+  position: fixed;
+  width: 17%;
+  top: 0;
 }
 
 .sideBarContents {
-   padding: 20px;
+  padding: 20px;
 }
 
 .sideBarLogoContainer {
-   width: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin-top: 1%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
 }
 
 .logoContainer .logo {
-   width: auto;
-   height: auto;
+  width: auto;
+  height: auto;
 }
-
 
 .createContainer {
-   margin-top: 20%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  margin-top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.createContainer .link{
-   font-size: 16px;
-   color: #fff;
-   margin-left: 5px;
-   font-weight: 600;
-   cursor: pointer;
-   text-decoration: none;
+.createContainer .link {
+  font-size: 16px;
+  color: #fff;
+  margin-left: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .createContainer .addIcon {
-   color: #fff;
+  color: #fff;
 }
 
-
 .lineContainer {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
 }
 
 .lineContainer .hr {
-   width: 90%;
+  width: 90%;
 }
 
-
 .linkContainer {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   margin-top: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 25%;
 }
 
 .linkContent {
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-   margin-bottom: 21%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 21%;
 }
 
 .linkContent .linkIcon {
-   color: #aeaeae;
+  color: #aeaeae;
 }
 
 .linkContent .link {
-   font-size: 16px;
-   color: #aeaeae;
-   margin-left: 5px;
-   font-weight: 100;
-   cursor: pointer;
-   text-decoration: none;
+  font-size: 16px;
+  color: #aeaeae;
+  margin-left: 5px;
+  font-weight: 100;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .linkContent:active {
-   color: red;
+  color: red;
 }
 
-
-
-
 .container_items_5 {
-   display: flex;
-   position: fixed;
-   top: 94%;
-   justify-content: center;
-   align-items: center;
-   left: 4.3%;
-   color: #aeaeae;
-   cursor: pointer;
+  display: flex;
+  position: fixed;
+  top: 94%;
+  justify-content: center;
+  align-items: center;
+  left: 4.3%;
+  color: #aeaeae;
+  cursor: pointer;
 }
 
 .container_items_5 h1 {
-   font-size: 18px;
-   color: #aeaeae;
-   margin-left: 5px;
-   font-family: Helvetica;
+  font-size: 18px;
+  color: #aeaeae;
+  margin-left: 5px;
+  font-family: Helvetica;
 }
 
-
-
-
 .userProfileContainer {
-   display: flex;
-   justify-content: flex-start;
-   margin-top: 38%;
-   margin-left: 1%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 38%;
+  margin-left: 1%;
 }
 
 .userProfileBox {
-   width: 250px;
-   background-color: #fff;
-   position: absolute;
-   border-radius: 10px;
+  width: 250px;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 10px;
 }
 
 .buttonLinks .item {
-   font-size: 14px;
-   font-family: 'metropolis';
+  font-size: 14px;
+  font-family: "metropolis";
 }
 
-
 .loadingContainer {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
- }
- 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media (max-width: 700px) {
+  .sideBarContainer {
+    display: none;
+  }
+}
