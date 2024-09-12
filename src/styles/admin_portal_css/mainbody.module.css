@@ -212,13 +212,99 @@
   border-radius: 5px;
 }
 
+.mobileSideMenu {
+  display: none;
+}
+
 @media (max-width: 700px) {
-  .mainbodyBoxes .box {
-    width: 90%;
+  .mobileSideMenu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 25%;
+    padding-left: 10px;
+  }
+
+  .sideMenu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+  }
+
+  .sideMenu h1 {
+    font-size: 0.8em;
+    margin-left: 10px;
+  }
+
+  .sideMenuLogout {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: red;
+  }
+
+  .sideMenuLogout h1 {
+    font-size: 0.8em;
+    font-weight: 700;
+  }
+
+  .mainbodyContainer {
+    width: 95%;
+    margin: 0 auto;
+    
   }
 
   .mainbodyBoxes {
-    margin-left: 19%;
-    grid-template-columns: 1fr;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .mainbodyBoxes .box {
+    width: 100%;
+    margin: 5% auto;
+    height: 30vh;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .boxIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+  }
+
+  .boxDes {
+    font-size: 0.8em;
+    text-align: center;
+  }
+
+  .studentPercentage {
+    margin-left: 0%;
+    margin-top: 5.5%;
+    margin-bottom: 2%;
+  }
+
+  .malePercentage {
+    background-color: #f1efef;
+    border-radius: 5px;
+    width: 100%;
+    height: 12vh;
+  }
+
+  .femalePercentage {
+    width: 100%;
+    height: 12vh;
   }
 }
