@@ -22,12 +22,11 @@ function StudentClassScore({ selectedStudent }) {
     ) {
       setSubjects([
         "",
-        "English Literacy",
-        "Creative Art",
-        "Phonics Writing",
-        "Copy & Picture Reading",
+        "Literature",
         "Numeracy",
-        "OWOP",
+        "Creative Arts",
+        "Writing Skills",
+        "Computing",
       ]);
     } else if (
       selectedStudent?.Class === "Creche" ||
@@ -36,22 +35,24 @@ function StudentClassScore({ selectedStudent }) {
     ) {
       setSubjects([
         "",
-        "Copy & Picture Reading",
-        "Phonics Colouring",
+        "Colour & Scribbling",
+        "Read & Colour ABC",
         "Numeracy",
-        "Phonics Writing",
+        "Copy & Picture"
       ]);
     } else {
       setSubjects([
+        "",
         "English",
+        "Int. Science",
         "Mathematics",
-        "Natural Science",
-        "ICT",
-        "Asante Twi",
-        "RME",
-        "Creative Arts",
+        "Computing",
+        "Writing Skills",
         "French",
+        "R. M. E",
         "History",
+        "Creative Arts",
+        "Asante TWI"
       ]);
     }
   }, [selectedStudent?.Class]);

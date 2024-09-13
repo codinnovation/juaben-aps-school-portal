@@ -3,8 +3,8 @@ import Head from "next/head";
 import styles from "@/styles/admin_portal_css/studentProfilePage.module.css";
 import StudentAttendancecomp from "./studentAttendance";
 import StudentFeesComp from "./studentFees";
-import StudentClassScore from "./studentClassScore";
-import StudentHomework from "./studentHomework";
+import StudentClassScore from "./individualTest";
+import StudentHomework from "./groupWork";
 import StudentClassTest from "./studentClassTest";
 import UpdateForm from "../update-student";
 import { db } from "../../../lib/firebase";
@@ -78,14 +78,18 @@ function StudentProfilePage({
                 Attendance
               </button>
               <button onClick={() => navigateToComp("studentClassScore")}>
-                Class Score
+                Individual Test
               </button>
               <button onClick={() => navigateToComp("studentClassTest")}>
                 Class Test
               </button>
 
+              <button onClick={() => navigateToComp("studentClassTest")}>
+                Group Work
+              </button>
+
               <button onClick={() => navigateToComp("studentHomework")}>
-                Home Work
+                Project Work
               </button>
               <button onClick={() => navigateToComp("studentFees")}>
                 Fees
