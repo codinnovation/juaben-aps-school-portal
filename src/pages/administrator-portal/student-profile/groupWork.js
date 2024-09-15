@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../../styles/admin_portal_css/studentClassScore.module.css";
-import Image from "next/image";
+import styles from "../../../styles/admin_portal_css/individual-test.module.css";
 import { ref, get } from "firebase/database";
 import { db } from "../../../lib/firebase";
-import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
+import PanToolAltIcon from "@mui/icons-material/PanToolAlt";
 
-function StudentClassScore({
-  hideStudentProfilePage,
-  navigateToComp,
-  selectedStudent,
-}) {
+function GroupWork({ selectedStudent }) {
+  const [selectedSubject, setSelectedSubject] = useState("");
   const [subjectScores, setSubjectScores] = useState({});
-  const [subjects, setSubjects] = useState([]);
+  const [chooseSubject, setChooseSubject] = useState(false);
+  const [selectedTerm, setSelectedTerm] = useState("Term One");
+  const [subjects, setSubjects] = useState({});
 
   useEffect(() => {
     if (
@@ -20,142 +18,157 @@ function StudentClassScore({
     ) {
       setSubjects([
         "",
-        "English Literacy",
-        "Creative Art",
-        "Phonics Writing",
-        "Copy & Picture Reading",
+        "Literature",
         "Numeracy",
-        "OWOP",
+        "Creative Arts",
+        "Writing Skills",
+        "Computing",
       ]);
     } else if (
       selectedStudent?.Class === "Creche" ||
-      selectedStudent?.Class === "Nursary 1" ||
-      selectedStudent?.Class === "Nursary 2"
+      selectedStudent?.Class === "Nursery 1" ||
+      selectedStudent?.Class === "Nursery 2"
     ) {
       setSubjects([
         "",
-        "Copy & Picuture Reading",
-        "Phonics Colouring",
+        "Colour & Scribbling",
+        "Read & Colour ABC",
         "Numeracy",
-        "Phonics Writing",
+        "Copy & Picture"
       ]);
     } else {
       setSubjects([
         "",
         "English",
-        "Science",
-        "Creative Art",
-        "RME",
-        "AsanteTWI",
+        "Int. Science",
         "Mathematics",
+        "Computing",
+        "Writing Skills",
         "French",
-        "Computer",
-        "OWOP",
+        "R. M. E",
+        "History",
+        "Creative Arts",
+        "Asante TWI"
       ]);
     }
   }, [selectedStudent?.Class]);
-  const [showSubjectSelectionModal, setShowSubjectSelectionModal] =
-    useState(false);
-  const [selectedSubject, setSelectedSubject] = useState("");
-
-  const openSubjectSelectionModal = () => {
-    setShowSubjectSelectionModal(true);
-  };
-
-  const closeSubjectSelectionModal = () => {
-    setShowSubjectSelectionModal(false);
-  };
 
   const selectSubject = (subject) => {
     setSelectedSubject(subject);
-    closeSubjectSelectionModal();
+    setChooseSubject(false);
   };
 
-  const fetchSubjectScores = () => {
-    const studentRef = ref(
-      db,
-      `/japsstudents/${selectedStudent.key}/Homework`
-    );
-    get(studentRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          setSubjectScores(snapshot.val());
-        } else {
-          setSubjectScores({});
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching subject scores:");
-      });
-  };
+
 
   useEffect(() => {
+    const fetchSubjectScores = () => {
+      const studentRef = ref(
+        db,
+        `/japsstudents/${selectedStudent.key}/groupwork`
+      );
+      get(studentRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            setSubjectScores(snapshot.val());
+          } else {
+            setSubjectScores({});
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching subject scores:", error);
+        });
+    };
     fetchSubjectScores();
-  }, []);
+  }, [selectedStudent.key]);
 
-  // {`Date: ${scoreObj.date} - Score: ${scoreObj.score}`}
-  const renderSubjectScores = (subject) => {
-    if (subjectScores[subject]) {
-      return Object.values(subjectScores[subject]).map((scoreObj, index) => (
-        <div key={index} className={styles.scoreContainer}>
-          <div className={styles.scoreItems}>
-            <div className={styles.item}>
-              <label>Date</label>
-              <h1>{`${scoreObj.date}`}</h1>
-            </div>
-            
-            <div className={styles.item}>
-              <label>Score</label>
-              <h1>{`${scoreObj.score} / ${scoreObj?.outOf}`}</h1>
-            </div>
+  const renderSubjectScores = (term, subject) => {
+    if (subjectScores[term] && subjectScores[term][subject]) {
+      return Object.entries(subjectScores[term][subject]).map(
+        ([scoreId, scoreObj], index) => (
+          <div key={scoreId} className={styles.scoresContainer}>
+            <h1>Date: {scoreObj.date}</h1>
+            <h1>
+              Scored: {scoreObj.score} out of {scoreObj.outOf || "0"}
+            </h1>
+            <button
+              onClick={() => handleEditScore(term, subject, scoreId)}
+              disabled
+            >
+              Edit
+            </button>
           </div>
-        </div>
-      ));
+        )
+      );
     }
-    return <div style={{fontSize: '13px'}}>No scores available for this subject</div>;
+    return <div>No scores available for this subject</div>;
   };
 
   return (
     <>
-      <div className={styles.studentProfilePageContainer}>
-     
-
-        <div className={styles.Formcontainer}>
-          <div className={styles.classScoreTable}>
-            <div className={styles.subjectHeader}>
-              <h1>{`Homework - ${selectedSubject}`}</h1>
-            </div>
-
-            <div className={styles.subjectScores}>
-              <p>{renderSubjectScores(selectedSubject)}</p>
-            </div>
+      <div className={styles.classScoreContainer}>
+        <div className={styles.classScoreItems}>
+          <div className={styles.termSelection}>
+            <label>Select Term:</label>
+            <select
+              value={selectedTerm}
+              onChange={(e) => setSelectedTerm(e.target.value)}
+            >
+              <option value=""></option>
+              <option value="Term One">Term One</option>
+              <option value="Term Two" disabled>
+                Term Two
+              </option>
+              <option value="Term Three" disabled>
+                Term Three
+              </option>
+            </select>
           </div>
 
-          <div className={styles.addScoreBtnContainer}>
-            <button onClick={openSubjectSelectionModal}>Choose Subject</button>
+          <div className={styles.subjectHeader}>
+            <h1>{`Group Work - ${selectedTerm} - ${selectedSubject}`}</h1>
+          </div>
+
+          <div className={styles.subjectScores}>
+            <p>{renderSubjectScores(selectedTerm, selectedSubject)}</p>
           </div>
         </div>
+
+        <div className={styles.mobileAddScore}>
+          <div
+            className={styles.addContainer}
+            onClick={() => setChooseSubject(true)}
+          >
+            <PanToolAltIcon className={styles.icon} />
+            <h1> Subject</h1>
+          </div>
+
+        </div>
       </div>
-      <Dialog
-        open={showSubjectSelectionModal}
-        onClose={closeSubjectSelectionModal}
-      >
-        <DialogTitle>Select a Subject</DialogTitle>
-        <DialogContent>
-          <ul>
+      <div className={styles.addScoreBtnContainer}>
+        <button onClick={() => setChooseSubject(true)}>Choose Subject</button>
+      </div>
+
+      {chooseSubject && (
+        <>
+          <div className={styles.chooseSubjectContainer}>
+            <h2>Choose The Subject</h2>
+
             {subjects.map((subject) => (
-              <li key={subject} style={{margin:'5px'}}>
-                <button onClick={() => selectSubject(subject)} style={{padding:'10px'}}>
+              <div className={styles.buttonContent} key={subject}>
+                <button onClick={() => selectSubject(subject)}>
                   {subject}
                 </button>
-              </li>
+              </div>
             ))}
-          </ul>
-          <IconButton onClick={closeSubjectSelectionModal}>Close</IconButton>
-        </DialogContent>
-      </Dialog>
+
+            <div className={styles.closeButton}>
+              <button onClick={() => setChooseSubject(false)}>Hide</button>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }
 
-export default StudentClassScore;
+export default GroupWork;

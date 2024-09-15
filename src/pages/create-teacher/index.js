@@ -96,7 +96,7 @@ function Index({ user }) {
         subjects: [],
       }));
     }
-  }, [createUser.assignedClass]);
+  }, [createUser.assignedClass, teacherClass]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

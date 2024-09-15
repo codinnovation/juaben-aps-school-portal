@@ -5,8 +5,8 @@
 }
 
 .studentFeesContainer {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .studentFeesHeader {
@@ -22,7 +22,7 @@
 }
 
 .header1 label {
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -31,11 +31,11 @@
 .header1 h1 {
   border: 1px solid #aeaeae;
   border-radius: 10px;
-  padding: 20px;
-  font-size: 1.5em;
+  padding: 15px;
+  font-size: 1em;
   text-transform: uppercase;
   font-family: sans-serif;
-  width: 250px;
+  width: 180px;
   text-align: center;
 }
 
@@ -49,20 +49,21 @@
 .header2 h1 {
   border: 1px solid #aeaeae;
   border-radius: 10px;
-  padding: 20px;
-  font-size: 1.5em;
+  padding: 15px;
+  font-size: 1em;
   text-transform: uppercase;
   font-family: sans-serif;
-  width: 250px;
+  width: 180px;
   text-align: center;
 }
 
 .header2 label {
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 10px;
 }
+
 .paymentHistory {
   display: flex;
   justify-content: center;
@@ -95,16 +96,15 @@
 .paymentDate label {
   margin-bottom: 10px;
   color: orange;
-  font-size: 15px;
+  font-size: 1em;
 }
 
 .paymentDate h1 {
   border: 1px solid #aeaeae;
   border-radius: 10px;
-  padding: 10px;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 100;
-  width: 200px;
+  width: 180px;
   height: 60px;
   display: flex;
   align-items: center;

@@ -9,21 +9,25 @@
 }
 
 .attendanceBody {
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
+
 
 .attendanceHeader {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1%;
-  margin-bottom: 10px;
+  margin-top: 2%;
+  margin-bottom: 15px;
 }
 
 .attendanceHeader h1 {
   font-size: 1.2em;
   font-family: sans-serif;
   font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .attendanceName {
@@ -43,31 +47,22 @@
   border: 1px solid #dddddd;
   text-align: left;
   padding: 10px;
-  font-size: 1em;
-  font-weight: 600;
+  font-size: 0.9em;
+  font-weight: 100;
+  font-family: sans-serif;
+  text-align: center;
 }
 
 .attendanceTable th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-  color: orange;
   font-size: 1em;
+  color: #0b1e1c;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .attendanceTable tr:nth-child(even) {
   background-color: #dddddd;
-}
-
-.chooseDateContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.chooseDateContainer input {
-  width: 200px;
-  height: 40px;
-  border-radius: 20px;
-  text-align: center;
 }

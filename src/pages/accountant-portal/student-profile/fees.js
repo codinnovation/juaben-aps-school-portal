@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react"; // <-- Import useRef
 import styles from "../../../styles/accountant_portal/studentFees.module.css";
 import { ref, push, get, set } from "firebase/database";
 import { db } from "../../../lib/firebase";
@@ -6,18 +6,20 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
-import withSession from "@/lib/session";
 
 function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
+  const router = useRouter();
   const [paymentAmount, setPaymentAmount] = useState("");
   const [paymentDate, setPaymentDate] = useState("");
-  const [semesterFee, setSemesterFee] = useState("Term 1");
+  const [semesterFee, setSemesterFee] = useState("Term One");
   const [by, setBy] = useState(user?.email);
   const [madeBy, setMadeBy] = useState("");
   const [balanceFee, setBalanceFee] = useState(0);
   const [paymentList, setPaymentList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [openReceipt, setOpenReceipt] = useState(false);
   const [editPaymentId, setEditPaymentId] = useState(null);
+  const receiptRef = useRef(null); // <-- Add this line to store receipt reference
   const [editPaymentData, setEditPaymentData] = useState({
     editPaymentDate: "",
     editPaymentAmount: "",
@@ -34,19 +36,17 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
     setOpenModal(false);
   };
 
-  const router = useRouter();
+  const validateFields = () => {
+    if (!paymentDate || !paymentAmount || !semesterFee || !madeBy) {
+      toast.error("Please fill all the fields");
+      return false;
+    }
+    return true;
+  };
 
   const addPaymentOfFee = async () => {
-    if (
-      !editPaymentData.editPaymentDate ||
-      !editPaymentData.editPaymentAmount ||
-      !editPaymentData.editSemesterFee ||
-      !editPaymentData.editMadeBy ||
-      !editPaymentData.editBy
-    ) {
-      toast.error("Please fill all the fields");
-      return;
-    }
+    if (!validateFields()) return;
+
     const studentRef = ref(
       db,
       `/japsstudents/${selectedStudent.key}/SchoolFees/Payments`
@@ -62,13 +62,13 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
 
     try {
       await push(studentRef, newPaymentOfFees);
-
+      handleCloseModal()
       const updatedBalance = balanceFee - parseInt(paymentAmount);
       setBalanceFee(updatedBalance);
       toast.success(
         `Payment made for Ghc${paymentAmount} - ${selectedStudent?.FirstName}`
       );
-      router.push("/account_portal");
+      setOpenReceipt(true);
     } catch (error) {
       console.error("Error adding payment:", error);
     }
@@ -152,10 +152,135 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
     };
 
     fetchData();
-
-    const fetchInterval = setInterval(fetchData, 1000);
-    return () => clearInterval(fetchInterval);
   }, [selectedStudent]);
+
+  const printReceipt = () => {
+    const printWindow = window.open("", "PRINT", "height=400,width=600");
+
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Payment Receipt</title>
+          <style>
+            .receiptContainer {
+              background-color: #fff;
+              width: auto;
+              height: auto;
+              border-radius: 5px;
+              padding: 20px;
+            }
+            .receiptHeader {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+            }
+            .receiptHeader h1 {
+              font-family: sans-serif;
+              font-size: 1.5em;
+            }
+            .schName {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              margin-top: 3%;
+            }
+            .schName h1 {
+              font-size: 1.3em;
+              font-family: serif;
+            }
+            .receiptInformation {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 20px;
+              margin-top: 5%;
+            }
+            .receiptInformation .info {
+              display: flex;
+              justify-content: center;
+              align-items: flex-start;
+              flex-direction: column;
+              margin-bottom: 10%;
+            }
+            .receiptInformation .info label {
+              font-size: 0.9em;
+              color: #797878;
+              font-weight: 100;
+              text-transform: uppercase;
+            }
+            .receiptInformation .info h1 {
+              font-size: 1.3em;
+              font-family: serif;
+              font-weight: 100;
+              margin-top: 5px;
+            }
+            .receiptButton {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+            }
+            .receiptButton button {
+              width: 100px;
+              height: 50px;
+              margin: 10px;
+              background-color: #000;
+              color: #fff;
+              font-size: 1.1em;
+              font-family: sans-serif;
+              border: none;
+              border-radius: 5px;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="receiptContainer">
+            <div class="receiptHeader">
+              <h1>Payment Receipt</h1>
+            </div>
+            <div class="schName">
+              <h1>NANA AKOSUA AKYAMAA || ADVENTIST PREPARATORY SCHOOL</h1>
+            </div>
+            <div class="receiptInformation">
+              <div class="info">
+                <label>Student Name</label>
+                <h1>${selectedStudent?.FirstName || ""} ${selectedStudent?.MiddleName || ""} ${selectedStudent?.LastName || ""}</h1>
+              </div>
+              <div class="info">
+                <label>Date</label>
+                <h1>${paymentDate}</h1>
+              </div>
+              <div class="info">
+                <label>Amount Paid</label>
+                <h1>Ghc ${paymentAmount}</h1>
+              </div>
+              <div class="info">
+                <label>Balance amount</label>
+                <h1>Ghc ${balanceFee}</h1>
+              </div>
+              <div class="info">
+                <label>Term</label>
+                <h1>${semesterFee}</h1>
+              </div>
+              <div class="info">
+                <label>Paid By</label>
+                <h1>${madeBy}</h1>
+              </div>
+              <div class="info">
+                <label>Received by</label>
+                <h1>${by}</h1>
+              </div>
+            </div>
+          </div>
+        </body>
+      </html>
+    `);
+
+    printWindow.document.close(); // Close the document stream
+    printWindow.focus(); // Focus on the new window
+    printWindow.print(); // Trigger the print dialog
+    printWindow.close(); // Close the window after printing
+  };
+
+
 
   return (
     <>
@@ -170,14 +295,12 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
 
           <div className={styles.feeContainerBody}>
             <div className={styles.feeContainerBodyHeader}>
-              <h1>{`Total Fees: ${
-                selectedStudent?.SchoolFees?.TotalFees || 0
-              }`}</h1>
-              <h1>{`Remaining: ${
-                balanceFee >= 0
-                  ? `Ghc ${balanceFee} (-)`
-                  : `Ghc ${balanceFee} (+)`
-              }`}</h1>
+              <h1>{`Total Fees: ${selectedStudent?.SchoolFees?.TotalFees || 0
+                }`}</h1>
+              <h1>{`Remaining: ${balanceFee >= 0
+                ? `Ghc ${balanceFee} (-)`
+                : `Ghc ${balanceFee} (+)`
+                }`}</h1>
             </div>
 
             <div className={styles.addPaymentContainer}>
@@ -211,7 +334,7 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
 
                 <input
                   placeholder="Received by"
-                  value={`${user?.email} - ${user?.displayName}` || "No User"}
+                  value={`${user?.email || "no user"} `}
                   disabled
                   name="by"
                   type="text"
@@ -358,8 +481,55 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
           <Button onClick={handleCloseModal}>No</Button>
         </DialogContent>
       </Dialog>
-
       <ToastContainer />
+
+      {openReceipt && (
+        <>
+          <div className={styles.receiptContainer} ref={receiptRef}> {/* Add ref here */}
+            <div className={styles.receiptHeader}>
+              <h1>Payment Receipt</h1>
+            </div>
+            <div className={styles.schName}>
+              <h1>NANA AKOSUA AKYAMAA || ADVENTIST PREPARATORY SCHOOL</h1>
+            </div>
+            <div className={styles.receiptInformation}>
+              <div className={styles.info}>
+                <label>Student Name</label>
+                <h1>{`${selectedStudent?.FirstName || ""} ${selectedStudent?.MiddleName || ""} ${selectedStudent?.LastName || ""}`}</h1>
+              </div>
+              <div className={styles.info}>
+                <label>Date</label>
+                <h1>{paymentDate}</h1>
+              </div>
+              <div className={styles.info}>
+                <label>Amount Paid</label>
+                <h1>{`Ghc ${paymentAmount}`}</h1>
+              </div>
+              <div className={styles.info}>
+                <label>Balance amount</label>
+                <h1>{`Ghc ${balanceFee}`}</h1>
+              </div>
+              <div className={styles.info}>
+                <label>Term</label>
+                <h1>{semesterFee}</h1>
+              </div>
+              <div className={styles.info}>
+                <label>Paid By</label>
+                <h1>{madeBy}</h1>
+              </div>
+              <div className={styles.info}>
+                <label>Received by</label>
+                <h1>{by}</h1>
+              </div>
+            </div>
+            <div className={styles.receiptButton}>
+              <button onClick={() => setOpenReceipt(false)}>Cancel</button>
+              <button onClick={printReceipt}>Print</button> {/* Add print button */}
+            </div>
+          </div>
+        </>
+      )}
+
     </>
   );
 }

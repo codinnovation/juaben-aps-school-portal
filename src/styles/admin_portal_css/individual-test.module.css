@@ -5,11 +5,10 @@
 }
 
 .classScoreItems {
-  width: 100%;
+  width: 80%;
   height: auto;
   padding: 20px;
   margin: 1% auto;
-  border: 1px solid #191970;
   border-radius: 5px;
 }
 
@@ -20,7 +19,7 @@
 }
 
 .termSelection label {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: sans-serif;
 }
 
@@ -30,17 +29,18 @@
   justify-content: center;
   align-items: center;
   width: 100px;
-  height: 30px;
+  height: 40px;
 }
 
 .subjectHeader {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .subjectHeader h1 {
-  font-size: 1.4em;
+  font-size: 1.1em;
   text-transform: uppercase;
 }
 
@@ -164,22 +164,13 @@
 
 .addScoreBtnContainer button {
   width: 150px;
-  height: 45px;
-  background-color: green;
+  height: 50px;
+  background-color: #0b1e1c;
   color: #fff;
-  border-radius: 5px;
   border: none;
+  margin-left: 20px;
 }
 
-.addScoreBtnContainer button:nth-child(2) {
-  width: 150px;
-  height: 45px;
-  background-color: #000;
-  color: #fff;
-  border-radius: 5px;
-  border: none;
-  margin-left: 10px;
-}
 
 .chooseSubjectContainer {
   width: 500px;

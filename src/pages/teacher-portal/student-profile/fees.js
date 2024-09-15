@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../../styles/admin_portal_css/studentFees.module.css";
+import styles from "../../../styles/teachers_portal_css/studentFees.module.css";
 import { db } from "../../../lib/firebase";
 import { ref, push, get } from "firebase/database";
-import Image from "next/image";
 
-function StudentFees({
-  hideStudentProfilePage,
-  navigateToComp,
-  selectedStudent,
-}) {
+function StudentFees({ selectedStudent}) {
   const [paymentHistoryArray, setPaymentHistoryArray] = useState([]);
   const [balanceFee, setBalanceFee] = useState();
 
@@ -48,7 +43,7 @@ function StudentFees({
     };
 
     fetchData();
-  }, []);
+  }, [selectedStudent?.SchoolFees?.TotalFees, selectedStudent.key]);
 
   return (
     <>

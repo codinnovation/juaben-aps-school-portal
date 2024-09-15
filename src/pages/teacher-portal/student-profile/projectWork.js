@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "@/styles/teachers_portal_css/studentClassScore.module.css";
+import styles from "@/styles/teachers_portal_css/individual-test.module.css";
 import { ref, get, push, set } from "firebase/database";
 import { db } from "../../../lib/firebase";
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import AddIcon from "@mui/icons-material/Add";
 import PanToolAltIcon from "@mui/icons-material/PanToolAlt";
 
-function StudentClassScore({ selectedStudent, usersTeachers }) {
+function ProjectWork({ selectedStudent, usersTeachers }) {
   const [showAddScoreModal, setShowAddScoreModal] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
   const [subjectScore, setSubjectScore] = useState(0);
@@ -32,12 +32,11 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
     ) {
       setSubjects([
         "",
-        "English Literacy",
-        "Creative Art",
-        "Phonics Writing",
-        "Copy & Picture Reading",
+        "Literature",
         "Numeracy",
-        "OWOP",
+        "Creative Arts",
+        "Writing Skills",
+        "Computing",
       ]);
     } else if (
       selectedStudent?.Class === "Creche" ||
@@ -46,25 +45,28 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
     ) {
       setSubjects([
         "",
-        "Copy & Picture Reading",
-        "Phonics Colouring",
+        "Colour & Scribbling",
+        "Read & Colour ABC",
         "Numeracy",
-        "Phonics Writing",
+        "Copy & Picture"
       ]);
     } else {
       setSubjects([
+        "",
         "English",
+        "Int. Science",
         "Mathematics",
-        "Natural Science",
-        "ICT",
-        "Asante Twi",
-        "RME",
-        "Creative Arts",
+        "Computing",
+        "Writing Skills",
         "French",
+        "R. M. E",
         "History",
+        "Creative Arts",
+        "Asante TWI"
       ]);
     }
   }, [selectedStudent?.Class]);
+
 
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -83,7 +85,7 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
 
     const scoreRef = ref(
       db,
-      `/japsstudents/${selectedStudent.key}/ClassScore/${selectedTerm}/${selectedSubject}`
+      `/japsstudents/${selectedStudent.key}/projectwork/${selectedTerm}/${selectedSubject}`
     );
     push(scoreRef, {
       score: subjectScore,
@@ -121,7 +123,7 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
 
     const scoreRef = ref(
       db,
-      `/japsstudents/${selectedStudent.key}/ClassScore/${selectedTerm}/${editSubject}/${editScoreId}`
+      `/japsstudents/${selectedStudent.key}/projectwork/${selectedTerm}/${editSubject}/${editScoreId}`
     );
 
     set(scoreRef, {
@@ -139,28 +141,28 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
       });
   };
 
-  const fetchSubjectScores = () => {
-    const studentRef = ref(
-      db,
-      `/japsstudents/${selectedStudent.key}/ClassScore`
-    );
-    get(studentRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          setSubjectScores(snapshot.val());
-        } else {
-          setSubjectScores({});
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching subject scores:", error);
-      });
-  };
+
 
   useEffect(() => {
-    fetchSubjectScores();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const fetchSubjectScores = () => {
+      const studentRef = ref(
+        db,
+        `/japsstudents/${selectedStudent.key}/projectwork`
+      );
+      get(studentRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            setSubjectScores(snapshot.val());
+          } else {
+            setSubjectScores({});
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching subject scores:", error);
+        });
+    };
+    fetchSubjectScores()
+  }, [selectedStudent.key]);
 
   const renderSubjectScores = (term, subject) => {
     if (subjectScores[term] && subjectScores[term][subject]) {
@@ -203,7 +205,7 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
           </div>
 
           <div className={styles.subjectHeader}>
-            <h1>{`Class Exercise - ${selectedTerm} - ${selectedSubject}`}</h1>
+            <h1>{`Project Work - ${selectedSubject}`}</h1>
           </div>
 
           <div className={styles.subjectScores}>
@@ -347,4 +349,4 @@ function StudentClassScore({ selectedStudent, usersTeachers }) {
   );
 }
 
-export default StudentClassScore;
+export default ProjectWork;

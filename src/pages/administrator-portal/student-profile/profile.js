@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import styles from "@/styles/admin_portal_css/studentProfilePage.module.css";
-import StudentAttendancecomp from "./studentAttendance";
-import StudentFeesComp from "./studentFees";
-import StudentClassScore from "./individualTest";
-import StudentHomework from "./groupWork";
-import StudentClassTest from "./studentClassTest";
+import styles from "@/styles/admin_portal_css/profile.module.css";
 import UpdateForm from "../update-student";
+import Attendance from './attendance';
+import ClassTest from './classTest';
+import Fees from './fees';
+import GroupWork from './groupWork'
+import IndividualTest from "./individualTest";
+import ProjectWork from "./projectWork";
 import { db } from "../../../lib/firebase";
 import { ref, remove } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,7 +17,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  IconButton,
 } from "@mui/material";
 import Menu from "@mui/icons-material/Menu";
 
@@ -25,7 +25,7 @@ function StudentProfilePage({
   selectedStudent,
   attendance,
 }) {
-  const [activeComponent, setActiveComponent] = useState("studentProfile");
+  const [activeComponent, setActiveComponent] = useState("profile");
   const [toggleUpdateForm, setToggleUpdateForm] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -71,28 +71,28 @@ function StudentProfilePage({
             </div>
 
             <div className={styles.navContainer}>
-              <button onClick={() => navigateToComp("studentProfile")}>
+              <button onClick={() => navigateToComp("profile")}>
                 Profile
               </button>
-              <button onClick={() => navigateToComp("studentAttendance")}>
+              <button onClick={() => navigateToComp("attendance")}>
                 Attendance
               </button>
-              <button onClick={() => navigateToComp("studentClassScore")}>
+              <button onClick={() => navigateToComp("fees")}>
+                Fees
+              </button>
+              <button onClick={() => navigateToComp("individualTest")}>
                 Individual Test
               </button>
-              <button onClick={() => navigateToComp("studentClassTest")}>
-                Class Test
-              </button>
 
-              <button onClick={() => navigateToComp("studentClassTest")}>
+              <button onClick={() => navigateToComp("groupWork")}>
                 Group Work
               </button>
 
-              <button onClick={() => navigateToComp("studentHomework")}>
+              <button onClick={() => navigateToComp("projectWork")}>
                 Project Work
               </button>
-              <button onClick={() => navigateToComp("studentFees")}>
-                Fees
+              <button onClick={() => navigateToComp("classTest")}>
+                Class Test
               </button>
             </div>
             <div
@@ -103,7 +103,7 @@ function StudentProfilePage({
           </div>
         </div>
 
-        {activeComponent === "studentProfile" && (
+        {activeComponent === "profile" && (
           <div className={styles.profileContainer}>
             <div className={styles.profileItems}>
               <div className={styles.items}>
@@ -210,8 +210,8 @@ function StudentProfilePage({
         </DialogContent>
       </Dialog>
 
-      {activeComponent === "studentAttendance" && (
-        <StudentAttendancecomp
+      {activeComponent === "attendance" && (
+        <Attendance
           navigateToComp={navigateToComp}
           selectedStudent={selectedStudent}
           attendance={attendance}
@@ -219,31 +219,39 @@ function StudentProfilePage({
         />
       )}
 
-      {activeComponent === "studentFees" && (
-        <StudentFeesComp
+      {activeComponent === "fees" && (
+        <Fees
           navigateToComp={navigateToComp}
           hideStudentProfilePage={hideStudentProfilePage}
           selectedStudent={selectedStudent}
         />
       )}
 
-      {activeComponent === "studentClassScore" && (
-        <StudentClassScore
+      {activeComponent === "individualTest" && (
+        <IndividualTest
           navigateToComp={navigateToComp}
           selectedStudent={selectedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
         />
       )}
 
-      {activeComponent === "studentClassTest" && (
-        <StudentClassTest
+      {activeComponent === "classTest" && (
+        <ClassTest
           navigateToComp={navigateToComp}
           selectedStudent={selectedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
         />
       )}
-      {activeComponent === "studentHomework" && (
-        <StudentHomework
+
+      {activeComponent === "groupWork" && (
+        <GroupWork
+          navigateToComp={navigateToComp}
+          selectedStudent={selectedStudent}
+          hideStudentProfilePage={hideStudentProfilePage}
+        />
+      )}
+      {activeComponent === "projectWork" && (
+        <ProjectWork
           navigateToComp={navigateToComp}
           selectedStudent={selectedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
