@@ -12,27 +12,28 @@ function StudentAttendance({ selectedStudent }) {
     setTerm(e.target.value);
   };
 
-  const fetchAttendanceData = () => {
-    const studentRef = ref(
-      db,
-      `/japsstudents/${selectedStudent.key}/attendance`
-    );
-    get(studentRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          setAttendanceData(data || {});
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching attendance data:", error);
-      });
-  };
-
-  // Use useEffect to fetch attendance data on component load
   useEffect(() => {
-    fetchAttendanceData();
-  }, []);
+    const fetchAttendanceData = () => {
+      const studentRef = ref(
+        db,
+        `/japsstudents/${selectedStudent.key}/attendance`
+      );
+      get(studentRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            setAttendanceData(data || {});
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching attendance data:", error);
+        });
+    };
+    fetchAttendanceData()
+  }, [, selectedStudent.key])
+
+
+
 
   const renderAttendanceByDay = (day) => {
     if (!attendanceData[term]) return null;
@@ -65,7 +66,7 @@ function StudentAttendance({ selectedStudent }) {
               </select>
             </div>
             <div className={styles.attendanceHeader}>
-              <h1>Students Attendance Page - Term one</h1>
+              <h1>Student&apos;s Attendance</h1>
             </div>
             <div className={styles.attendanceTable}>
               <table>
@@ -89,9 +90,6 @@ function StudentAttendance({ selectedStudent }) {
                 </tbody>
               </table>
             </div>
-          </div>
-          <div className={styles.chooseDateContainer}>
-            <input type="date" />
           </div>
         </div>
       </div>

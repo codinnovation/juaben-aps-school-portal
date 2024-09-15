@@ -5,7 +5,7 @@ import { ref } from "firebase/database";
 import { get } from "firebase/database";
 import Layout from "../layout";
 import { useRouter } from "next/router";
-import StudentFees from "../student-profile/studentFees";
+import StudentFees from "../student-profile/fees";
 import withSession from "@/lib/session";
 
 function StudentList({ user }) {

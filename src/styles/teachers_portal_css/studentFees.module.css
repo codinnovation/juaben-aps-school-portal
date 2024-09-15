@@ -1,90 +1,113 @@
-.studentFeeContainer {
+.studentProfilePageContainer {
    width: 77%;
    margin-left: 20%;
-   margin-top: 2%;
-}
-
-.studentFeeContents {
+   margin-top: 1%;
+ }
+ 
+ .studentFeesContainer {
    width: 80%;
-   height: 70vh;
-   padding: 10px;
-   margin: 1% auto;
-   border: 1px solid #191970;
-   border-radius: 5px;
-}
-
-.feesHeader {
+   margin: 0 auto;
+ }
+ 
+ .studentFeesHeader {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 30px;
+   margin-top: 2%;
+ }
+ 
+ .header1 {
    display: flex;
    flex-direction: column;
-}
-
-.totalContainer {
+ }
+ 
+ .header1 label {
+   font-size: 0.9em;
+   font-weight: 700;
+   text-transform: uppercase;
+   margin-bottom: 10px;
+ }
+ 
+ .header1 h1 {
+   border: 1px solid #aeaeae;
+   border-radius: 10px;
+   padding: 15px;
+   font-size: 1em;
+   text-transform: uppercase;
+   font-family: sans-serif;
+   width: 180px;
+   text-align: center;
+ }
+ 
+ .header2 {
+   display: flex;
+   justify-content: flex-end;
+   align-items: flex-end;
+   flex-direction: column;
+ }
+ 
+ .header2 h1 {
+   border: 1px solid #aeaeae;
+   border-radius: 10px;
+   padding: 15px;
+   font-size: 1em;
+   text-transform: uppercase;
+   font-family: sans-serif;
+   width: 180px;
+   text-align: center;
+ }
+ 
+ .header2 label {
+   font-size: 0.9em;
+   font-weight: 700;
+   text-transform: uppercase;
+   margin-bottom: 10px;
+ }
+ 
+ .paymentHistory {
    display: flex;
    justify-content: center;
    align-items: center;
-   margin-bottom: 20%;
-   margin-top: 5%;
-}
-
-.totalContainer .icon {
-   color: #000;
-   font-size: 3em;
-}
-
-.totalContainer h1 {
-   font-size: 2.3em;
-   font-family: sans-serif;
-}
-
-.remainingContainer {
+   flex-direction: column;
+   margin-top: 2%;
+ }
+ 
+ .paymentHistory h1 {
+   font-size: 1em;
+   font-weight: 700;
+   text-transform: uppercase;
+ }
+ 
+ .paymentHistoryFields {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   gap: 30px;
+   margin-top: 2%;
+ }
+ 
+ .paymentDate {
    display: flex;
-   justify-content: center;
+   flex-direction: column;
    align-items: center;
-}
-
-.remainingContainer .icon {
-   color: #000;
-   font-size: 3em;
-}
-
-.remainingContainer h1 {
-   font-size: 2.3em;
-   font-family: sans-serif;
-}
-
-@media (max-width: 700px) {
-   .studentFeeContainer {
-      width: 99%;
-      margin: 0% auto;
-   }
-
-   .studentFeeContents {
-      width: 100%;
-      height: auto;
-   }
-
-   .totalContainer {
-      margin-bottom: 20%;
-      margin-top: 5%;
-   }
-
-   .totalContainer h1 {
-      font-size: 1.8em;
-      font-family: sans-serif;
-   }
-
-   .totalContainer .icon {
-      color: #000;
-      font-size: 2.5em;
-   }
-
-   .remainingContainer .icon {
-      color: #000;
-      font-size: 2.5em;
-   }
-
-   .remainingContainer h1 {
-      font-size: 1.8em;
-      font-family: sans-serif;
-   }
-}
+   justify-content: center;
+   width: 100%;
+ }
+ 
+ .paymentDate label {
+   margin-bottom: 10px;
+   color: orange;
+   font-size: 1em;
+ }
+ 
+ .paymentDate h1 {
+   border: 1px solid #aeaeae;
+   border-radius: 10px;
+   font-size: 1em;
+   font-weight: 100;
+   width: 180px;
+   height: 60px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+ 

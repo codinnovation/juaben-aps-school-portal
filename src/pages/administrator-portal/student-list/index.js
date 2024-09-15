@@ -4,7 +4,7 @@ import styles from "../../../styles/admin_portal_css/studentList.module.css";
 import { auth, db } from "../../../lib/firebase";
 import { ref } from "firebase/database";
 import { get } from "firebase/database";
-import StudentProfilePageComponent from "../student-profile/studentProfilePage";
+import StudentProfilePageComponent from "../student-profile/profile";
 import Layout from "../layout";
 import { useRouter } from "next/router";
 import withSession from "@/lib/session";

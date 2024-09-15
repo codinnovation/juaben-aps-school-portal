@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../../styles/admin_portal_css/studentClassScore.module.css";
-import { ref, get, push, set } from "firebase/database";
+import styles from "../../../styles/admin_portal_css/individual-test.module.css";
+import { ref, get } from "firebase/database";
 import { db } from "../../../lib/firebase";
-import { ToastContainer, toast } from "react-toastify";
-import AddIcon from "@mui/icons-material/Add";
 import PanToolAltIcon from "@mui/icons-material/PanToolAlt";
 
-function StudentClassScore({ selectedStudent }) {
+function IndividualTest({ selectedStudent }) {
   const [selectedSubject, setSelectedSubject] = useState("");
   const [subjectScores, setSubjectScores] = useState({});
-  const [openModal, setOpenModal] = useState(false);
   const [chooseSubject, setChooseSubject] = useState(false);
   const [selectedTerm, setSelectedTerm] = useState("Term One");
   const [subjects, setSubjects] = useState({});
@@ -21,12 +18,11 @@ function StudentClassScore({ selectedStudent }) {
     ) {
       setSubjects([
         "",
-        "English Literacy",
-        "Creative Art",
-        "Phonics Writing",
-        "Copy & Picture Reading",
+        "Literature",
         "Numeracy",
-        "OWOP",
+        "Creative Arts",
+        "Writing Skills",
+        "Computing",
       ]);
     } else if (
       selectedStudent?.Class === "Creche" ||
@@ -35,22 +31,24 @@ function StudentClassScore({ selectedStudent }) {
     ) {
       setSubjects([
         "",
-        "Copy & Picture Reading",
-        "Phonics Colouring",
+        "Colour & Scribbling",
+        "Read & Colour ABC",
         "Numeracy",
-        "Phonics Writing",
+        "Copy & Picture"
       ]);
     } else {
       setSubjects([
+        "",
         "English",
+        "Int. Science",
         "Mathematics",
-        "Natural Science",
-        "ICT",
-        "Asante Twi",
-        "RME",
-        "Creative Arts",
+        "Computing",
+        "Writing Skills",
         "French",
+        "R. M. E",
         "History",
+        "Creative Arts",
+        "Asante TWI"
       ]);
     }
   }, [selectedStudent?.Class]);
@@ -60,27 +58,28 @@ function StudentClassScore({ selectedStudent }) {
     setChooseSubject(false);
   };
 
-  const fetchSubjectScores = () => {
-    const studentRef = ref(
-      db,
-      `/japsstudents/${selectedStudent.key}/ClassTest`
-    );
-    get(studentRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          setSubjectScores(snapshot.val());
-        } else {
-          setSubjectScores({});
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching subject scores:", error);
-      });
-  };
+
 
   useEffect(() => {
+    const fetchSubjectScores = () => {
+      const studentRef = ref(
+        db,
+        `/japsstudents/${selectedStudent.key}/individualTest`
+      );
+      get(studentRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            setSubjectScores(snapshot.val());
+          } else {
+            setSubjectScores({});
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching subject scores:", error);
+        });
+    };
     fetchSubjectScores();
-  }, []);
+  }, [selectedStudent.key]);
 
   const renderSubjectScores = (term, subject) => {
     if (subjectScores[term] && subjectScores[term][subject]) {
@@ -126,7 +125,7 @@ function StudentClassScore({ selectedStudent }) {
           </div>
 
           <div className={styles.subjectHeader}>
-            <h1>{`Class Test - ${selectedTerm} - ${selectedSubject}`}</h1>
+            <h1>{`Individual Test - ${selectedTerm} - ${selectedSubject}`}</h1>
           </div>
 
           <div className={styles.subjectScores}>
@@ -142,19 +141,10 @@ function StudentClassScore({ selectedStudent }) {
             <PanToolAltIcon className={styles.icon} />
             <h1> Subject</h1>
           </div>
-          <div
-            className={styles.addContainer}
-            onClick={() => setOpenModal(true)}
-          >
-            <AddIcon className={styles.icon} />
-            <h1> Score</h1>
-          </div>{" "}
+
         </div>
       </div>
       <div className={styles.addScoreBtnContainer}>
-        <button onClick={() => setOpenModal(true)} disabled>
-          Add Scores
-        </button>
         <button onClick={() => setChooseSubject(true)}>Choose Subject</button>
       </div>
 
@@ -177,10 +167,8 @@ function StudentClassScore({ selectedStudent }) {
           </div>
         </>
       )}
-
-      <ToastContainer />
     </>
   );
 }
 
-export default StudentClassScore;
+export default IndividualTest;

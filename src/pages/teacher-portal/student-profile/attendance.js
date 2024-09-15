@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import styles from "@/styles/teachers_portal_css/attendance.module.css";
-import { ref, get, push } from "firebase/database";
-import { db } from "../../../lib/firebase";
-import { Dialog, DialogContent, DialogTitle } from "@mui/material";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import styles from '@/styles/teachers_portal_css/attendance.module.css';
+import { ref, get, push } from 'firebase/database';
+import { db } from '../../../lib/firebase';
+import { Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
 
-function StudentAttendance({ selectedStudent }) {
-  const [date, setDate] = useState("");
-  const [status, setStatus] = useState("");
-  const [term, setTerm] = useState("Term One");
+function Attendance({ selectedStudent }) {
+  const [date, setDate] = useState('');
+  const [status, setStatus] = useState('');
+  const [term, setTerm] = useState('Term One');
   const [attendanceData, setAttendanceData] = useState({});
   const [openModal, setOpenModal] = useState(false);
 
@@ -16,40 +16,33 @@ function StudentAttendance({ selectedStudent }) {
     setOpenModal(false);
   };
 
-  const fetchAttendanceData = () => {
-    const studentRef = ref(
-      db,
-      `/japsstudents/${selectedStudent.key}/attendance`
-    );
-    get(studentRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          setAttendanceData(data || {});
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching attendance data:", error);
-      });
-  };
-
   useEffect(() => {
-    fetchAttendanceData();
-  }, [selectedStudent]);
+    const fetchAttendanceData = () => {
+      const studentRef = ref(db, `/japsstudents/${selectedStudent.key}/attendance`);
+      get(studentRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            setAttendanceData(data || {});
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching attendance data:', error);
+        });
+    };
+    fetchAttendanceData()
+  }, [selectedStudent.key]);
 
   const addAttendance = () => {
     if (!term) {
-      toast.error("Please select a term");
+      toast.error('Please select a term');
       return;
     }
 
-    const termRef = ref(
-      db,
-      `/japsstudents/${selectedStudent.key}/attendance/${term}`
-    );
+    const termRef = ref(db, `/japsstudents/${selectedStudent.key}/attendance/${term}`);
 
     const dateObj = new Date(date);
-    const options = { weekday: "long" };
+    const options = { weekday: 'long' };
     const day = dateObj.toLocaleDateString(undefined, options);
 
     const newAttendance = {
@@ -62,10 +55,10 @@ function StudentAttendance({ selectedStudent }) {
       .then(() => {
         fetchAttendanceData();
         handleCloseModal();
-        toast.success("Attendance added successfully");
+        toast.success('Attendance added successfully');
       })
       .catch((error) => {
-        toast.error("Error adding attendance");
+        toast.error('Error adding attendance');
       });
   };
 
@@ -84,26 +77,22 @@ function StudentAttendance({ selectedStudent }) {
   // Helper function to get the abbreviated status
   const getAbbreviatedStatus = (status) => {
     switch (status) {
-      case "Present":
-        return "P";
-      case "Absent":
-        return "A";
+      case 'Present':
+        return 'P';
+      case 'Absent':
+        return 'A';
       default:
-        return "";
+        return '';
     }
   };
 
   const renderAttendanceByDay = (day) => {
     if (!attendanceData[term]) return null;
 
-    const dayAttendance = Object.values(attendanceData[term]).filter(
-      (record) => record.day === day
-    );
+    const dayAttendance = Object.values(attendanceData[term]).filter((record) => record.day === day);
 
     return dayAttendance.map((record, index) => (
-      <div key={index}>{`${getAbbreviatedStatus(record.status)} = ${
-        record.date
-      }`}</div>
+      <div key={index}>{`${getAbbreviatedStatus(record.status)} = ${record.date}`}</div>
     ));
   };
 
@@ -138,11 +127,11 @@ function StudentAttendance({ selectedStudent }) {
               </thead>
               <tbody>
                 <tr>
-                  <td>{renderAttendanceByDay("Monday")}</td>
-                  <td>{renderAttendanceByDay("Tuesday")}</td>
-                  <td>{renderAttendanceByDay("Wednesday")}</td>
-                  <td>{renderAttendanceByDay("Thursday")}</td>
-                  <td>{renderAttendanceByDay("Friday")}</td>
+                  <td>{renderAttendanceByDay('Monday')}</td>
+                  <td>{renderAttendanceByDay('Tuesday')}</td>
+                  <td>{renderAttendanceByDay('Wednesday')}</td>
+                  <td>{renderAttendanceByDay('Thursday')}</td>
+                  <td>{renderAttendanceByDay('Friday')}</td>
                 </tr>
               </tbody>
             </table>
@@ -201,4 +190,4 @@ function StudentAttendance({ selectedStudent }) {
   );
 }
 
-export default StudentAttendance;
+export default Attendance;

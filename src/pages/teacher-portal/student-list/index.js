@@ -4,7 +4,7 @@ import styles from "../../../styles/teachers_portal_css/studentList.module.css";
 import { auth, db } from "../../../lib/firebase";
 import { ref } from "firebase/database";
 import { get } from "firebase/database";
-import StudentProfilePageComponent from "../student-profile/studentProfilePage";
+import Profile from "../student-profile/profile";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Layout from "../layout";
 import { useRouter } from "next/router";
@@ -321,7 +321,7 @@ function StudentList() {
       <ToastContainer />
 
       {studentProfilePageView && (
-        <StudentProfilePageComponent
+        <Profile
           hideStudentProfilePage={hideStudentProfilePage}
           selectedStudent={selectedStudent}
           user={user}
