@@ -41,47 +41,63 @@ function Index({ user }) {
 
   const [teacherClass, setTeacherClass] = useState({
     "K.G 1 Teacher": [
-      "English Literacy",
-      "Creative Art",
-      "Phonics Writing",
-      "Copy & Picture Reading",
       "Numeracy",
+      "Language & Literacy",
+      "Computing",
+      "Creative Arts",
+      "Literacy Writing",
+      "Handwriting",
+      "Numeracy Writing",
+      "Colour Work"
     ],
     "K.G 2 Teacher": [
-      "English Literacy",
-      "Creative Art",
-      "Phonics Writing",
-      "Copy & Picture Reading",
       "Numeracy",
+      "Language & Literacy",
+      "Computing",
+      "Creative Arts",
+      "Literacy Writing",
+      "Handwriting",
+      "Numeracy Writing",
+      "Colour Work"
     ],
     "Creche Teacher": [
-      "Copy & Picture Reading",
-      "Phonics Colouring",
+      "Scribbling & Colour",
       "Numeracy",
-      "Phonics Writing",
+      "Language & Literacy",
+      "Picture Reading",
+      "Scribbling Work",
+      "Numeracy Reading & Writing",
+      "Literacy Reading & Writing"
     ],
     "Nursery 1 Teacher": [
-      "Copy & Picture Reading",
-      "Phonics Colouring",
+      "Scribbling & Colour",
       "Numeracy",
-      "Phonics Writing",
+      "Language & Literacy",
+      "Picture Reading",
+      "Scribbling Work",
+      "Numeracy Reading & Writing",
+      "Literacy Reading & Writing"
     ],
     "Nursery 2 Teacher": [
-      "Copy & Picture Reading",
-      "Phonics Colouring",
+      "Scribbling & Colour",
       "Numeracy",
-      "Phonics Writing",
+      "Language & Literacy",
+      "Picture Reading",
+      "Scribbling Work",
+      "Numeracy Reading & Writing",
+      "Literacy Reading & Writing"
     ],
     "Subject-Teacher": [
-      "English",
-      "Mathematics",
-      "Natural Science",
-      "ICT",
-      "Asante Twi",
-      "RME",
-      "Creative Arts",
       "French",
+      "Mathematics",
       "History",
+      "English Language",
+      "Science",
+      "Writing Skills",
+      "Creative Arts",
+      "Ghanaian Language",
+      "Religious & Moral Education",
+      "Computing"
     ],
   });
 
@@ -90,7 +106,7 @@ function Index({ user }) {
   useEffect(() => {
     if (createUser.assignedClass) {
       setSubjects(teacherClass[createUser.assignedClass] || []);
-      // Reset selected subjects if the class changes
+
       setCreateUser((prevUser) => ({
         ...prevUser,
         subjects: [],
@@ -318,8 +334,8 @@ function Index({ user }) {
                                   const updatedClasses = checked
                                     ? [...prevUser.classToTeach, value]
                                     : prevUser.classToTeach.filter(
-                                        (cls) => cls !== value
-                                      );
+                                      (cls) => cls !== value
+                                    );
                                   return {
                                     ...prevUser,
                                     classToTeach: updatedClasses,
