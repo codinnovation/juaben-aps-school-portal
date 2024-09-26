@@ -6,7 +6,7 @@ export default function withSession(handler) {
     cookieName: "juaben_school_sms",
 
     cookieOptions: {
-      maxAge: 1200,
+      maxAge: 10800,
       secure: process.env.NODE_ENV === "production" ? true : false,
       httpOnly: true,
     },

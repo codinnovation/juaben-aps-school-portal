@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import styles from "../../../styles/admin_portal_css/teachers.module.css";
+import TeacherProfileComponent from '../../../pages/administrator-portal/teacher-profile';
 import { auth, db } from "../../../lib/firebase";
 import { ref } from "firebase/database";
 import { get } from "firebase/database";
@@ -11,6 +13,8 @@ import SearchIcon from "@mui/icons-material/SearchOutlined";
 function StudentList() {
   const [teacherListView, setTeacherListView] = useState(true);
   const [teachersData, setTeacherData] = useState([]);
+  const [selectedTeacher, setSelectedTeacher] = useState("")
+  const [teacherProfileView, setTeacherProfileView] = useState(false)
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [teachersPerPage, setTeachersPerPage] = useState(10);
@@ -49,6 +53,19 @@ function StudentList() {
     fetchData();
   }, []);
 
+
+  const showTeacherProfile = (rowData) => {
+    setSelectedTeacher(rowData)
+    setTeacherListView(false)
+    setTeacherProfileView(true)
+  }
+
+  const hideTeacherProfile = () => {
+    setSelectedTeacher("");
+    setTeacherListView(true);
+    setTeacherProfileView(false)
+  }
+
   const searchForTeacher = teachersData.filter(
     (teacher) =>
       teacher.FirstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -68,27 +85,33 @@ function StudentList() {
   return (
     <>
       <Layout>
+        <Head>
+          <title>Juaben APS - Teacher&apos;s List</title>
+          <meta name="description" content="Juaben APS School Management System" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/logo2.png" />
+        </Head>
         {teacherListView && (
           <div className={styles.teacherListContainer}>
-              <div
-            className={styles.searchTeacher}
-            onClick={() => setSearchInputClicked(true)}
-          >
-            <span>Search</span>
-            <SearchIcon />
+            <div
+              className={styles.searchTeacher}
+              onClick={() => setSearchInputClicked(true)}
+            >
+              <span>Search</span>
+              <SearchIcon />
 
-            {searchInputClicked && (
-              <>
-                <div className={styles.searchInputContainer}>
-                  <input
-                    placeholder="Search for a Teacher"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-              </>
-            )}
-          </div>
+              {searchInputClicked && (
+                <>
+                  <div className={styles.searchInputContainer}>
+                    <input
+                      placeholder="Search for a Teacher"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
             <div className={styles.tableContainer}>
               <div className={styles.tableHeader}>
                 <h1>First Name</h1>
@@ -102,7 +125,8 @@ function StudentList() {
               </div>
 
               {currentTeachers.map((student, index) => (
-                <div className={styles.tableColumn} key={index}>
+                <div className={styles.tableColumn} key={index}
+                  onClick={() => showTeacherProfile(student)}>
                   <h1>{student.FirstName}</h1>
                   <h1>{student.MiddleName}</h1>
                   <h1>{student.LastName}</h1>
@@ -154,7 +178,7 @@ function StudentList() {
                     onClick={() =>
                       setCurrentPage((prevPage) =>
                         prevPage <
-                        Math.ceil(searchForStudent.length / teachersPerPage)
+                          Math.ceil(searchForStudent.length / teachersPerPage)
                           ? prevPage + 1
                           : prevPage
                       )
@@ -177,6 +201,11 @@ function StudentList() {
               </div>
             </div>
           </div>
+        )}
+
+        {teacherProfileView && (
+          <TeacherProfileComponent hideTeacherProfile={hideTeacherProfile}
+            selectedTeacher={selectedTeacher} />
         )}
       </Layout>
     </>

@@ -110,12 +110,19 @@ function RegistrationForm() {
         label: "Gender",
         name: "Gender",
         placeholder: "Teacher Gender",
+        type: "select",
+        options: [
+          "",
+          "Male",
+          "Female",
+        ],
       },
 
       {
         label: "Date Of Appointment",
         name: "DateOfAppointment",
         placeholder: "Date Of Appointment",
+        type: "date"
       },
       {
         label: "Qualification",

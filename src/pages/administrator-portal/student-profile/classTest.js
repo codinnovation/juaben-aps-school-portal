@@ -18,11 +18,14 @@ function ClassTest({ selectedStudent }) {
     ) {
       setSubjects([
         "",
-        "Literature",
         "Numeracy",
-        "Creative Arts",
-        "Writing Skills",
+        "Language & Literacy",
         "Computing",
+        "Creative Arts",
+        "Literacy Writing",
+        "Handwriting",
+        "Numeracy Writing",
+        "Colour Work"
       ]);
     } else if (
       selectedStudent?.Class === "Creche" ||
@@ -31,28 +34,30 @@ function ClassTest({ selectedStudent }) {
     ) {
       setSubjects([
         "",
-        "Colour & Scribbling",
-        "Read & Colour ABC",
+        "Scribbling & Colour",
         "Numeracy",
-        "Copy & Picture"
+        "Language & Literacy",
+        "Picture Reading",
+        "Scribbling Work",
+        "Numeracy Reading & Writing",
+        "Literacy Reading & Writing"
       ]);
     } else {
       setSubjects([
         "",
-        "English",
-        "Int. Science",
-        "Mathematics",
-        "Computing",
-        "Writing Skills",
         "French",
-        "R. M. E",
+        "Mathematics",
         "History",
+        "English Language",
+        "Science",
+        "Writing Skills",
         "Creative Arts",
-        "Asante TWI"
+        "Ghanaian Language",
+        "Religious & Moral Education",
+        "Computing"
       ]);
     }
   }, [selectedStudent?.Class]);
-
   const selectSubject = (subject) => {
     setSelectedSubject(subject);
     setChooseSubject(false);

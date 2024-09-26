@@ -9,7 +9,7 @@ function Home({ user }) {
     <>
       <Head>
         <title>Juaben APS - School Management System</title>
-        <meta name="description" content="Cod Innovations" />
+        <meta name="description" content="Juaben APS School Management System" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo2.png" />
       </Head>
