@@ -31,6 +31,8 @@ function Index({ user }) {
     "Creche",
     "K.G 1",
     "K.G 2",
+    "Nursery 1",
+    "Nursery 2",
     "Class 1",
     "Class 2",
     "Class 3",

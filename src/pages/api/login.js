@@ -14,12 +14,11 @@ export default withSession(async function handler(req, res) {
       );
 
       const user = {
-        id: userCredential.user.uid,
         email: userCredential.user.email,
         displayName: userCredential.user.displayName,
+        emailVerified: userCredential.user.emailVerified
       };
 
-      //store the user data in session
       req.session.set("user", user);
       await req.session.save();
 

@@ -15,6 +15,7 @@ function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
@@ -48,6 +49,7 @@ function LoginForm() {
 
       if (response.ok) {
         toast.success(`Welcome   ${userCredentials.email}`);
+        console.log(userCredentials.user)
         router.push("/");
         setIsSubmitting(false);
       } else {
