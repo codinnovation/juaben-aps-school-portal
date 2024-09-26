@@ -36,7 +36,7 @@ function RegistrationForm() {
         const newStudentRef = push(ref(db, "japsteachers"), formData);
         const newStudentKey = newStudentRef.key;
         toast.success(`Teacher admitted`);
-        router.push("/administrator-portal/teacher-list");
+        router.push("/administrator-portal/teachers-list");
         return newStudentKey;
       } catch (error) {
         console.error("Error submitting Teacher:");
