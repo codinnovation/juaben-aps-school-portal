@@ -29,6 +29,8 @@ function StudentList() {
   const [user, setUser] = useState(null);
   const [usersTeachers, setUsersTeachers] = useState([]);
 
+  console.log(studentData);
+
   useEffect(() => {
     const fetchUser = async () => {
       try {

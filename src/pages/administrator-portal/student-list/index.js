@@ -19,6 +19,8 @@ function StudentList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [studentsPerPage, setStudentsPerPage] = useState(13);
 
+  console.log(studentData)
+
   const handlePerPageChange = (e) => {
     setStudentsPerPage(Number(e.target.value));
   };
