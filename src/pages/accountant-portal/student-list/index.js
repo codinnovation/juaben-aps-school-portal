@@ -15,7 +15,7 @@ function StudentList({ user }) {
   const [selectedStudent, setSelectedStudent] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [studentsPerPage, setStudentsPerPage] = useState(13);
+  const [studentsPerPage, setStudentsPerPage] = useState(12);
 
   console.log(user);
 
@@ -48,9 +48,6 @@ function StudentList({ user }) {
     };
 
     fetchData();
-
-    const fetchInterval = setInterval(fetchData, 1000);
-    return () => clearInterval(fetchInterval);
   }, []);
 
   const showStudentProfilePage = (rowData) => {

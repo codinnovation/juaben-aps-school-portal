@@ -1,13 +1,71 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Layout from "./layout";
 import { useRouter } from "next/router";
-import { auth } from "../../lib/firebase";
+import { auth, db } from "../../lib/firebase";
 import MainBody from "../accountant-portal/mainBody";
 import withSession from "@/lib/session";
+import { ref } from "firebase/database";
+import { get } from "firebase/database";
+
 
 function Index({ user }) {
   const router = useRouter();
+  const [studentData, setStudentData] = useState([]);
+  const [teachersData, setTeachersData] = useState([])
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const dbRef = ref(db, "japsstudents");
+        const response = await get(dbRef);
+        const data = response.val();
+
+        if (data && typeof data === "object") {
+          const dataArray = Object.entries(data).map(([key, value]) => ({
+            key,
+            ...value,
+          }));
+          setStudentData(dataArray);
+        } else {
+          setStudentData([]);
+        }
+      } catch (error) {
+        console.error("Error fetching data:");
+        setStudentData([]);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const dbRef = ref(db, "usersTeachers");
+        const response = await get(dbRef);
+        const data = response.val();
+
+        if (data && typeof data === "object") {
+          const dataArray = Object.entries(data).map(([key, value]) => ({
+            key,
+            ...value,
+          }));
+          setTeachersData(dataArray);
+        } else {
+          setTeachersData([]);
+        }
+      } catch (error) {
+        console.error("Error fetching data:");
+        setTeachersData([]);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
 
   return (
     <>
@@ -18,7 +76,7 @@ function Index({ user }) {
         <link rel="icon" href="/logo2.png" />
       </Head>
       <Layout>
-        <MainBody user={user} />
+        <MainBody user={user} studentData={studentData} teachersData={teachersData} />
       </Layout>
     </>
   );
