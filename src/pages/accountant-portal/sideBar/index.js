@@ -106,7 +106,7 @@ function Sidebar() {
                 <NotificationsActiveIcon className={styles.icon} />
                 <Link href="/">P. Notification</Link>
               </div>
-              
+
 
               <div className={styles.linkContainer}>
                 <CampaignIcon className={styles.icon} />
@@ -118,7 +118,7 @@ function Sidebar() {
           </div>
 
           <div className={styles.contentTwo}>
-            <div className={styles.signOutButton}>
+            <div className={styles.signOutButton} onClick={handleLogout}>
               <LockIcon className={styles.icon} />
               <h1>Sign Out</h1>
             </div>
