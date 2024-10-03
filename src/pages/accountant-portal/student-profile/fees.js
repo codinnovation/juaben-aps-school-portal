@@ -19,7 +19,7 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
   const [openModal, setOpenModal] = useState(false);
   const [openReceipt, setOpenReceipt] = useState(false);
   const [editPaymentId, setEditPaymentId] = useState(null);
-  const receiptRef = useRef(null); // <-- Add this line to store receipt reference
+  const receiptRef = useRef(null);
   const [editPaymentData, setEditPaymentData] = useState({
     editPaymentDate: "",
     editPaymentAmount: "",
@@ -298,8 +298,8 @@ function StudentFees({ selectedStudent, hideStudentProfilePage, user }) {
               <h1>{`Total Fees: ${selectedStudent?.SchoolFees?.TotalFees || 0
                 }`}</h1>
               <h1>{`Remaining: ${balanceFee >= 0
-                ? `Ghc ${balanceFee} (-)`
-                : `Ghc ${balanceFee} (+)`
+                ? ` ${balanceFee} (-)`
+                : ` ${balanceFee} (+)`
                 }`}</h1>
             </div>
 
