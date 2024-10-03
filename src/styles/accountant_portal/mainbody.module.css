@@ -1,125 +1,117 @@
 .mainbodyContainer {
-   width: 100%;
-   margin-top: 3%;
+  width: 83%;
+  margin-left: 17%;
+  background-color: #eeeeee;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90vh;
+  padding: 15px;
 }
 
-.mainbodyBoxes {
-   margin-left: 19%;
+.mainbodyContent {
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 2.2%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5%;
+  height: 100%;
+}
+
+.boxContainer {
+  height: 20vh;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.boxContainer .header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.boxContainer .header .icon {
+  color: orange;
+  font-size: 2em;
+}
+
+.boxContainer:nth-child(2) .header .icon {
+  color: red;
+}
+
+.boxContainer:nth-child(3) .header .icon {
+  color: #2196f3;
+}
+
+.boxContainer:nth-child(4) .header .icon {
+  color: green;
+}
+
+.boxContainer .header .headerWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.boxContainer .header .headerWrapper h1 {
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+
+.boxContainer .header .headerWrapper p {
+  font-size: 1.3em;
+}
+
+.bottomText {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.bottomText .icon {
+  color: #2196f3;
+  margin-right: 10px;
+}
+
+.bottomText p {
+  font-size: 1em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+
+.secondContent {
+   width: 95%;
+   margin: 0 auto;
    display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-}
+   grid-template-columns: 1fr;
+   gap: 5%;
+   height: 100%;
+ }
+ 
 
-.mainbodyBoxes .box {
-   background-color: #0b1e1c;
-   margin: 0;
-   width: 90%;
-   height: 55vh;
-   border-radius: 10px;
-   color: aliceblue;
-   margin-top: 10px;
-   transition: transform 0.3s ease-in-out;
-   box-shadow: 0.9s ease-in-out;
+ .chartContainer{
+   padding: 10px;
    display: flex;
    justify-content: center;
    align-items: center;
-}
-
-.mainbodyBoxes .box:hover {
-   transform: scale(1.05);
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-
-.boxIcon {
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-   margin: 1%;
-}
-
-.boxDes {
-   display: flex;
-   justify-content: flex-end;
-   align-items: center;
-   font-size: 18px;
-   color: orange;
-   text-transform: uppercase;
-}
-
-
-
-
-.PaymentIcon {
-   font-size: 90px;
-   margin: 10px;
-}
-
-.paySchoolFee {
-   font-size: 18px;
-   font-weight: 700;
-   float: right;
-   margin: 0px 10px;
-}
-
-.EventIcon {
-   font-size: 90px;
-   margin: 10px;
-}
-
-.upcomingEvent {
-   font-size: 18px;
-   font-weight: 700;
-   float: right;
-   margin: 0px 10px;
-}
-
-.DirectionsBusIcon {
-   font-size: 90px;
-   margin: 10px;
-}
-
-.transport {
-   font-size: 18px;
-   font-weight: 700;
-   float: right;
-   margin: 0px 10px;
-}
-
-
-.calenderContainer {
-   margin-left: 19%;
-   border: 1px solid #ddd;
-   border-radius: 8px;
-   width: 80%;
-   margin-top: 3%;
-   box-shadow: 0 0 21px rgba(0, 0, 0, 0.9);
-   height: 230px;
-
-}
-
-.activeDay {
-   color: red;
-   font-weight: 700;
-   line-height: 30px;
-   width: 80%;
-   font-size: 30px;
-}
-
-.calendar {
-   font-size: 25px;
+   flex-direction: column;
    background-color: #fff;
-   border: 1px solid #ccc;
    border-radius: 10px;
-   height: 100%;
-}
+ }
 
-@media (max-width: 700px) {
-   .mainbodyBoxes .box {
-      width: 90%;
-   }
+ .chartContainer .header h1{
+   font-size: 1.1em;
+   color: red;
+ }
 
-   .mainbodyBoxes {
-      margin-left: 19%;
-      grid-template-columns: 1fr;
-   }
-}
+ .lineChart{
+   width: 100px;
+   height: 900px;
+   padding: 10px;
+ }
