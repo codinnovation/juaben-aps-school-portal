@@ -15,7 +15,6 @@ import Menu from "@mui/icons-material/Menu";
 
 function StudentProfilePage({ hideTeacherProfile, selectedTeacher, }) {
   const [activeComponent, setActiveComponent] = useState("profile");
-  const [toggleUpdateForm, setToggleUpdateForm] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
   const handleCloseModal = () => {
@@ -127,7 +126,7 @@ function StudentProfilePage({ hideTeacherProfile, selectedTeacher, }) {
               fontFamily: "sans-serif",
             }}
           >
-            <Button onClick={handleRemoveStudent}>Yes</Button>
+            <Button>Yes</Button>
             <Button onClick={handleCloseModal}>No</Button>
           </ul>
         </DialogContent>
