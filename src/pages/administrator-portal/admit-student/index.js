@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "../../../styles/admin_portal_css/studentRegister.module.css";
 import Head from "next/head";
 import "firebase/database";
-import { db} from "../../../lib/firebase";
+import { db } from "../../../lib/firebase";
 import { push, ref } from "firebase/database";
 import { useRouter } from "next/router";
 import Layout from "../layout";
@@ -61,7 +61,6 @@ function RegistrationForm() {
         router.push("/administrator-portal/student-list");
         return newStudentKey;
       } catch (error) {
-        console.error("Error submitting Student:");
         toast.error("Error occured in addmiting student");
       }
     }
@@ -203,7 +202,7 @@ function RegistrationForm() {
         label: "Student NHIS Id No",
         name: "NHISno",
         placeholder: "Student NHIS Number",
-        type:"text",
+        type: "text",
       },
 
       {
@@ -217,7 +216,7 @@ function RegistrationForm() {
         label: "Student Former School",
         name: "FormerSchool",
         placeholder: "Student Former School",
-        type:"text",
+        type: "text",
       },
 
       {
@@ -294,8 +293,6 @@ function RegistrationForm() {
           </div>
         </div>
         <ToastContainer />
-
-   
       </Layout>
     </>
   );

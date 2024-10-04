@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/admin_portal_css/setStudentFee.module.css";
 import Layout from "../layout";
-import { db, auth } from "../../../lib/firebase";
+import { db } from "../../../lib/firebase";
 import { ref, update, get } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Index() {
   const [studentData, setStudentData] = useState([]);
-  const [classValues, setClassValues] = useState({}); // Object to store class values
+  const [classValues, setClassValues] = useState({}); 
   const [variousClasses, setVariousClasses] = useState([
     "Creche",
     "Nursery 1",
@@ -88,7 +88,6 @@ function Index() {
   };
 
   useEffect(() => {
-    // Set initial class values based on existing data
     const initialClassValues = {};
     variousClasses.forEach((className) => {
       const student = studentData.find((student) => student.Class === className && student.SchoolFees);

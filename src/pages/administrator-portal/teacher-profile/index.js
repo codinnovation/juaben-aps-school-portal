@@ -26,23 +26,6 @@ function StudentProfilePage({ hideTeacherProfile, selectedTeacher, }) {
     setActiveComponent(compName);
   };
 
-  const showUpdateForm = () => {
-    setToggleUpdateForm(true);
-  };
-
-  const closeUpdateForm = () => {
-    setToggleUpdateForm(false);
-  };
-
-  const handleRemoveStudent = async () => {
-    try {
-      await remove(ref(db, `japsteachers/${selectedTeacher.key}`));
-      toast.success(`Teacher ${selectedTeacher.key} removed successfully`);
-      hideTeacherProfile();
-    } catch (error) {
-      console.error("Error deleting note:");
-    }
-  };
 
   return (
     <>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../../styles/admin_portal_css/studentFees.module.css";
 import { db } from "../../../lib/firebase";
-import { ref, push, get } from "firebase/database";
+import { ref, get } from "firebase/database";
 
 function StudentFees({ selectedStudent}) {
   const [paymentHistoryArray, setPaymentHistoryArray] = useState([]);

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "../../../styles/admin_portal_css/studentUpdate.module.css";
 import Head from "next/head";
 import "firebase/database";
-import { auth, db } from "../../../lib/firebase";
+import {  db } from "../../../lib/firebase";
 import { ref, set } from "firebase/database";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";

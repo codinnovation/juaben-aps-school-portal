@@ -39,7 +39,6 @@ function RegistrationForm() {
         router.push("/administrator-portal/teachers-list");
         return newStudentKey;
       } catch (error) {
-        console.error("Error submitting Teacher:");
         toast.error("Error occured in addmiting Teacher");
       }
     }

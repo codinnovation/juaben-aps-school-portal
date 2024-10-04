@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Head from "next/head";
 import MainBody from "./mainBody";
 import Layout from "./layout";
-import { useRouter } from "next/router";
 import { auth } from "../../lib/firebase";
 import withSession from "@/lib/session";
 
 function Index({ user }) {
-  const router = useRouter();
 
   return (
     <>

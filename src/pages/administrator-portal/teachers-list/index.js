@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import styles from "../../../styles/admin_portal_css/teachers.module.css";
 import TeacherProfileComponent from '../../../pages/administrator-portal/teacher-profile';
-import { auth, db } from "../../../lib/firebase";
+import {  db } from "../../../lib/firebase";
 import { ref } from "firebase/database";
 import { get } from "firebase/database";
 import Layout from "../layout";
