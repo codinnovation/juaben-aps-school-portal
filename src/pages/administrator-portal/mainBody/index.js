@@ -16,18 +16,20 @@ import PeopleIcon from "@mui/icons-material/People";
 import EventAvailable from "@mui/icons-material/EventAvailable";
 import LogoutIcon from "@mui/icons-material/Logout";
 import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+
 
 
 function MainBody({ user }) {
   const router = useRouter();
-  const [date, setDate] = useState(new Date());
-  const [currentTime, setCurrentTime] = useState(null);
   const [studentData, setStudentData] = useState([]);
   const [openCreateEvent, setOpenCreateEvent] = useState(false);
   const [openCreateParentNotification, setOpenCreateParentNotification] =
     useState(false);
   const [openCreateTeacerNotification, setOpenCreateTeacerNotification] =
     useState(false);
+
+
   const [eventData, setEventData] = useState({
     EventName: "",
     EventVenue: "",
@@ -113,21 +115,6 @@ function MainBody({ user }) {
     }
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  const formattedDate = date.toLocaleDateString(undefined, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -152,9 +139,6 @@ function MainBody({ user }) {
     };
 
     fetchData();
-
-    const fetchInterval = setInterval(fetchData, 1000);
-    return () => clearInterval(fetchInterval);
   }, []);
 
   const getGenderPercentage = () => {
@@ -174,15 +158,12 @@ function MainBody({ user }) {
 
   const { malePercentage, femalePercentage } = getGenderPercentage();
 
-  const getBackgroundColor = (percentage) => {
-    if (percentage >= 75) {
-      return "green";
-    } else if (percentage >= 50) {
-      return "lightgreen";
-    } else {
-      return "orange";
-    }
-  };
+  const data = [
+    { name: "Female", uv: femalePercentage },
+    { name: "Male", uv: malePercentage }
+  ]
+
+
 
   return (
     <>
@@ -265,22 +246,14 @@ function MainBody({ user }) {
         </div>
 
         <div className={styles.studentPercentage}>
-          <div
-            className={styles.malePercentage}
-            style={{
-              backgroundColor: getBackgroundColor(malePercentage),
-            }}
-          >
-            <h1>{`${malePercentage.toFixed(2)}% male student`}</h1>
-          </div>
-          <div
-            className={styles.femalePercentage}
-            style={{
-              backgroundColor: getBackgroundColor(femalePercentage),
-            }}
-          >
-            <h1>{`${femalePercentage.toFixed(2)}% female student`}</h1>
-          </div>
+          <LineChart width={1500} height={300} data={data}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="uv" stroke="#f5a826" />
+          </LineChart>
         </div>
       </div>
 
