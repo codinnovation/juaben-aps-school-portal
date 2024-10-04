@@ -1,7 +1,7 @@
 .profilePageContainer {
   width: 77%;
   margin-left: 20%;
-  margin-top: 1%;
+  margin-top: 5px;
 }
 
 .profilePageContent {
@@ -75,7 +75,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin-top: 2%;
-  gap: 32px;
+  gap: 30px;
 }
 
 .item {

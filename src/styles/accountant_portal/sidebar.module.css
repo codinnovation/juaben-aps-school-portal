@@ -53,13 +53,13 @@
   font-size: 1.1em;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 100;
-  color: #0f3834;
+  color: #000;
 }
 
 .contentTwo {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .signOutButton {
@@ -67,7 +67,7 @@
   justify-content: flex-start;
   align-items: center;
   background-color: #f5a826;
-  padding: 20px;
+  padding: 15px;
   color: #fff;
   border-radius: 7px;
   width: 100%;
