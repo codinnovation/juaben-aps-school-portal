@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../../styles/accountant_portal/sidebar.module.css";
+import styles from "../../../styles/admin_portal_css/sidebar.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import LogoImage from '../../../../public/logo2.png';
@@ -83,7 +83,7 @@ function Sidebar() {
           <div className={styles.contentOne}>
             <div className={styles.logoContainer}>
               <Image src={LogoImage} width={900} height={900} alt="" />
-              <h1>Accountant Portal</h1>
+              <h1>Administrator Portal</h1>
             </div>
 
             <div className={styles.sidebarLinks}>
@@ -109,18 +109,18 @@ function Sidebar() {
 
               <div className={styles.linkContainer}>
                 <NotificationsNoneIcon className={styles.icon} />
-                <Link href="/">T. Notification</Link>
+                <Link href="/administrator-portal/teachers-notifications">T. Notification</Link>
               </div>
 
               <div className={styles.linkContainer}>
                 <NotificationsActiveIcon className={styles.icon} />
-                <Link href="/">P. Notification</Link>
+                <Link href="/administrator-portal/parent-notifications">P. Notification</Link>
               </div>
 
 
               <div className={styles.linkContainer}>
                 <CampaignIcon className={styles.icon} />
-                <Link href="/">Events</Link>
+                <Link href="/administrator-portal/events">Events</Link>
               </div>
 
 

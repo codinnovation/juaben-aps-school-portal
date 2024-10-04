@@ -53,13 +53,14 @@
   font-size: 1.1em;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 100;
-  color: #0f3834;
+  color: #000;
 }
 
 .contentTwo {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: flex-start;
+  margin-top: 100%;
 }
 
 .signOutButton {
@@ -78,8 +79,9 @@
 }
 
 .signOutButton h1 {
-  font-size: 1.1em;
+  font-size: 1em;
   font-family: sans-serif;
+  font-weight: 100;
 }
 
 .loadingContainer {
@@ -87,4 +89,10 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+@media(max-width:700px){
+  .sidebarContainer{
+    display: none;
+  }
 }
