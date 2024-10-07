@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Head from 'next/head'
 import styles from "../../../styles/admin_portal_css/nonstafflist.module.css";
-import { auth, db } from "../../../lib/firebase";
+import {  db } from "../../../lib/firebase";
 import { ref } from "firebase/database";
 import { get } from "firebase/database";
 import Layout from "../layout";
-import { useRouter } from "next/router";
 
 function StudentList() {
-  const [teacherProfilePageView, setTeacherProfilePageView] = useState(false);
   const [teacherListView, setTeacherListView] = useState(true);
   const [teachersData, setTeacherData] = useState([]);
-  const [selectedTeacher, setSelectedTeacher] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [teachersPerPage, setTeachersPerPage] = useState(10);
@@ -19,8 +16,6 @@ function StudentList() {
   const handlePerPageChange = (e) => {
     setStudentsPerPage(Number(e.target.value));
   };
-
-  const router = useRouter();
 
 
   useEffect(() => {

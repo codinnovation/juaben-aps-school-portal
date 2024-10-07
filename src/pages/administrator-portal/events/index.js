@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../../styles/admin_portal_css/event_avai.module.css";
 import Layout from "../layout";
-import { useRouter } from "next/router";
 import { db } from "../../../lib/firebase";
 import { get, ref } from "firebase/database";
 import Modal from "@mui/material/Modal";
@@ -13,7 +12,6 @@ function Index() {
   const [eventsContainer, setEventsContainer] = useState([]);
   const [selectedNote, setSelectedNote] = useState(null);
   const [open, setOpen] = useState(false);
-  const router = useRouter();
 
 
   useEffect(() => {
@@ -33,7 +31,6 @@ function Index() {
           setEventsContainer([]);
         }
       } catch (error) {
-        console.error("Error fetching data:");
         setEventsContainer([]);
       }
     };

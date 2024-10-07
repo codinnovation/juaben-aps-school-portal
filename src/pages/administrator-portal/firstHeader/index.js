@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { auth } from "../../../lib/firebase";
 import { useRouter } from "next/router";
 import styles from "../../../styles/admin_portal_css/firstHeading.module.css";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
@@ -14,7 +13,7 @@ import Box from "@mui/material/Box";
 import Logout from "@mui/icons-material/Logout";
 
 
-function FirstHeading({ user }) {
+function FirstHeading() {
   const router = useRouter();
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 

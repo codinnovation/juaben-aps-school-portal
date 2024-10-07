@@ -15,7 +15,6 @@ import Menu from "@mui/icons-material/Menu";
 
 function StudentProfilePage({ hideTeacherProfile, selectedTeacher, }) {
   const [activeComponent, setActiveComponent] = useState("profile");
-  const [toggleUpdateForm, setToggleUpdateForm] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
   const handleCloseModal = () => {
@@ -26,23 +25,6 @@ function StudentProfilePage({ hideTeacherProfile, selectedTeacher, }) {
     setActiveComponent(compName);
   };
 
-  const showUpdateForm = () => {
-    setToggleUpdateForm(true);
-  };
-
-  const closeUpdateForm = () => {
-    setToggleUpdateForm(false);
-  };
-
-  const handleRemoveStudent = async () => {
-    try {
-      await remove(ref(db, `japsteachers/${selectedTeacher.key}`));
-      toast.success(`Teacher ${selectedTeacher.key} removed successfully`);
-      hideTeacherProfile();
-    } catch (error) {
-      console.error("Error deleting note:");
-    }
-  };
 
   return (
     <>
@@ -144,7 +126,7 @@ function StudentProfilePage({ hideTeacherProfile, selectedTeacher, }) {
               fontFamily: "sans-serif",
             }}
           >
-            <Button onClick={handleRemoveStudent}>Yes</Button>
+            <Button>Yes</Button>
             <Button onClick={handleCloseModal}>No</Button>
           </ul>
         </DialogContent>

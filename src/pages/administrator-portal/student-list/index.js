@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import withSession from "@/lib/session";
 
 function StudentList() {
-  const router = useRouter();
   const [studentProfilePageView, setStudentProfilePageView] = useState(false);
   const [studentListView, setStudentListView] = useState(true);
   const [studentData, setStudentData] = useState([]);

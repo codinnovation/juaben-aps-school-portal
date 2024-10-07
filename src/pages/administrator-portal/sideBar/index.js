@@ -4,53 +4,21 @@ import Link from "next/link";
 import Image from "next/image";
 import LogoImage from '../../../../public/logo2.png';
 import { useRouter } from "next/router";
-import PeopleIcon from "@mui/icons-material/People";
-import PaymentIcon from "@mui/icons-material/Payment";
-import { auth } from "../../../lib/firebase";
-import EventAvailable from "@mui/icons-material/EventAvailable";
 import LockIcon from '@mui/icons-material/Lock';
-import LogoutIcon from "@mui/icons-material/Logout";
-import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import SchoolIcon from '@mui/icons-material/School';
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import Dashboard from "@mui/icons-material/Dashboard";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
 
 function Sidebar() {
-  const [userProfile, setUserProfile] = useState(false);
-  const [user, setUser] = useState(null);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-
   const router = useRouter();
 
-  const openUserProfile = () => {
-    setUserProfile(true);
-  };
-
-  const closeUserProfile = () => {
-    setUserProfile(false);
-  };
-
-  const goToThpDashboard = async () => {
-    router.push("/");
-  };
 
   const handleLogout = async (e) => {
     setIsButtonClicked(true);
@@ -122,8 +90,6 @@ function Sidebar() {
                 <CampaignIcon className={styles.icon} />
                 <Link href="/administrator-portal/events">Events</Link>
               </div>
-
-
             </div>
           </div>
 

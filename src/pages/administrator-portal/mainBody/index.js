@@ -63,7 +63,6 @@ function MainBody({ user }) {
       const newNotificationkey = newNotification.key;
       return newNotificationkey;
     } catch (error) {
-      console.log("Error adding notification to Teachers");
     }
     setShowSuccessModal(true);
   };
@@ -133,7 +132,6 @@ function MainBody({ user }) {
           setStudentData([]);
         }
       } catch (error) {
-        console.error("Error fetching data:");
         setStudentData([]);
       }
     };

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/admin_portal_css/studentAttendance.module.css";
-import Image from "next/image";
 import { ref, get } from "firebase/database";
 import { db } from "../../../lib/firebase";
 
