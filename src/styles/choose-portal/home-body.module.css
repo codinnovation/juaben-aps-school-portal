@@ -1,290 +1,267 @@
 .homeContainer {
-   width: 100%;
+  width: 100%;
 }
 
 .homeContent {
-   width: 80%;
-   margin: 3% auto;
-   display: grid;
-   grid-template-columns: 3.5fr 1fr;
+  width: 80%;
+  margin: 3% auto;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 3%;
 }
 
-
 .recentActivities {
-   width: 95%;
-   height: 100%;
+  width: 95%;
+  height: 100%;
 }
 
 .recentActivitiesHeader {
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .recentActivitiesHeader h1 {
-   font-size: 20px;
-   font-family: sans-serif;
-   margin-bottom: 10px;
+  font-size: 20px;
+  font-family: sans-serif;
+  margin-bottom: 10px;
 }
 
 .recentCard {
-   width: 100%;
-   height: 90px;
-   background-color: #ffffff;
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-   margin-bottom: 3.5%;
-   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-   border-radius: 5px;
+  width: 100%;
+  height: 83px;
+  background-color: #00000031;
+  box-shadow: 0px 0px 20px #ffffff1f;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 3%;
+  border-radius: 5px;
 }
 
-.recentCard:nth-child(2) h1 {
-   width: 20px;
-   height: 100%;
-   background-color: #0f3834;
-   border-radius: 5px;
+.recentCard h1 {
+  width: 10px;
+  height: 100%;
+  background-color: #0f3834;
+  border-radius: 5px;
 }
-
-.recentCard:nth-child(3) h1 {
-   width: 20px;
-   height: 100%;
-   border-radius: 5px;
-   background-color: #d2a114;
-}
-
-.recentCard:nth-child(4) h1 {
-   width: 20px;
-   height: 100%;
-   border-radius: 5px;
-   background-color: #0f3834;
-}
-
-.recentCard:nth-child(5) h1 {
-   width: 20px;
-   height: 100%;
-   background-color: #d2a114;
-   border-radius: 5px;
-}
-
 
 .recentCardTime {
-   margin-left: 4%;
-   width: 10%;
+  margin-left: 4%;
+  width: 10%;
 }
 
 .recentCardTime h2 {
-   font-size: 15px;
-   color: #628c86;
+  font-size: 1em;
+  color: #ccc;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .recentCardTime p {
-   font-size: 13px;
-   color: #aeaeae;
+  font-size: 0.8em;
+  color: #ccc;
+  margin-top: 4px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .recentCard .line {
-   background-color: #aeaeae;
-   height: 70%;
-   width: 1px;
-   margin-left: 3%;
+  background-color: #ccc;
+  height: 70%;
+  width: 1px;
+  margin-left: 3%;
 }
 
 .recentDetails {
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-   margin-left: 5%;
-   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 5%;
+  width: 100%;
 }
 
 .recentDetails h3 {
-   font-size: 15px;
-   font-weight: 100;
-   font-family: sans-serif;
-   color: #333333;
+  font-size: 1em;
+  font-weight: 100;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: #ccc;
 }
 
-
-
 .pagesContainer {
-   width: 100%;
-   height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .pagesContainerHeader h1 {
-   font-size: 20px;
-   font-family: Helvetica;
-   margin-bottom: 10px;
+  font-size: 20px;
+  font-family: Helvetica;
+  margin-bottom: 10px;
 }
 
 .pagesCardContainer {
-   width: 100%;
-   height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .pagesCard {
-   background-color: #fff;
-   display: grid;
-   grid-template-columns: auto auto auto;
-   gap: 10px;
-   height: 71px;
-   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-   margin-bottom: 5%;
-   border-radius: 5px;
+  background-color: #00000031;
+  box-shadow: 0px 0px 20px #ffffff1f;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  height: auto;
+  padding: 15px;
+  margin-top: 3.5%;
+  border-radius: 5px;
 }
 
 .pagesCircle {
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-   margin-left: 5%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 5%;
 }
 
 .pagesCircle h1 {
-   color: #fff;
-   padding: 10px;
-   font-size: 14px;
-   border-radius: 50%;
-   font-weight: 100;
-   font-family: sans-serif;
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 50%;
+  font-weight: 100;
+  font-family: sans-serif;
 }
 
 .pagesCard:nth-child(1) .pagesCircle h1 {
-   background-color: #0f3834;
-   font-family: Helvetica;
+  background-color: #0f3834;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .pagesCard:nth-child(2) .pagesCircle h1 {
-   background-color: #f5a826;
-   font-family: Helvetica;
-
+  background-color: #f5a826;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .pagesCard:nth-child(3) .pagesCircle h1 {
-   background-color: #001f3f;
-   font-family: Helvetica;
+  background-color: #001f3f;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .pagesCard:nth-child(4) .pagesCircle h1 {
-   background-color: #f5a826;
-   font-family: Helvetica;
+  background-color: #f5a826;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .pagesCard:nth-child(5) .pagesCircle h1 {
-   background-color: #001f3f;
-   font-family: Helvetica;
+  background-color: #001f3f;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .pagesCard:nth-child(6) .pagesCircle h1 {
-   background-color: #f5a826;
-   font-family: Helvetica;
+  background-color: #f5a826;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .pagesCardName {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pagesCardName h1 {
-   font-size: 15.5px;
-   font-family: sans-serif;
-   font-weight: 100;
+  font-size: 1em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 100;
+  color: #ccc;
 }
 
 .pagesCardTime {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pagesCardTime h1 {
-   font-size: 15.5px;
-   font-family: Helvetica;
-   font-weight: 100;
+  font-size: 0.9em;
+  color: #ccc;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 100;
 }
 
+@media (max-width: 700px) {
+  .homeContent {
+    width: 96%;
+    margin: 10% auto;
+    display: flex;
+    flex-direction: column;
+  }
 
+  .recentActivities {
+    width: 100%;
+  }
 
-@media (max-width:700px) {
-   .homeContent {
-      width: 96%;
-      margin: 10% auto;
-      display: flex;
-      flex-direction: column;
-   }
+  .recentActivitiesHeader h1 {
+    font-size: 1em;
+  }
 
+  .recentCard {
+    width: 100%;
+    height: 70px;
+    margin-bottom: 5%;
+    padding: 8px;
+  }
 
-   .recentActivities {
-      width: 100%;
-   }
+  .recentCard h1 {
+    display: none;
+  }
 
-   .recentActivitiesHeader h1 {
-      font-size: 1em;
-   }
+  .recentCardTime {
+    margin-left: 0.5%;
+    width: 10%;
+  }
 
-   .recentCard {
-      width: 100%;
-      height: 70px;
-      margin-bottom: 5%;
-      padding: 8px;
-   }
+  .recentCardTime h2 {
+    font-size: 0.85em;
+    font-family: sans-serif;
+    color: #f5a826;
+  }
 
-   .recentCard h1 {
-      display: none;
-   }
+  .recentCardTime p {
+    font-size: 9px;
+  }
 
-   .recentCardTime {
-      margin-left: 0.5%;
-      width: 10%;
-   }
+  .recentCard .line {
+    display: none;
+  }
 
-   .recentCardTime h2 {
-      font-size: 0.85em;
-      font-family: sans-serif;
-      color: #f5a826;
-   }
+  .recentDetails {
+    margin-left: 10%;
+  }
 
-   .recentCardTime p {
-      font-size: 9px;
-   }
+  .recentCircle {
+    background-color: #001f3f;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin-right: 4%;
+  }
 
-   .recentCard .line {
-      display: none;
-   }
+  .recentDetails h3 {
+    font-size: 0.8em;
+    color: #000;
+  }
 
-   .recentDetails {
-      margin-left: 10%;
-   }
+  .pagesContainerHeader h1 {
+    font-size: 1em;
+  }
 
-   .recentCircle {
-      background-color: #001f3f;
-      width: auto;
-      height: auto;
-      padding: 10px;
-      margin-right: 4%;
-   }
+  .pagesCard {
+    padding: 10px;
+  }
 
-   .recentDetails h3 {
-      font-size: 0.8em;
-      color: #000;
-   }
+  .pagesCardName h1 {
+    font-size: 0.8em;
+  }
 
-   .pagesContainerHeader h1 {
-      font-size: 1em;
-   }
-
-   .pagesCard {
-      padding: 10px;
-   }
-
-   .pagesCardName h1 {
-      font-size: 0.8em;
-   }
-
-   .pagesCardTime h1 {
-      font-size: 0.8em;
-   }
-
+  .pagesCardTime h1 {
+    font-size: 0.8em;
+  }
 }

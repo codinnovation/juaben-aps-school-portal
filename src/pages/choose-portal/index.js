@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import styles from "../../styles/portals.module.css";
+import styles from "../../styles/choose-portal/index.module.css";
 import withSession from "@/lib/session";
 import FirstHeader from "./firstHeader";
 import Portals from "./portals";
@@ -15,12 +15,10 @@ function Index({ user }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className={styles.container}>
-        <div className={styles.container_items}>
-          <FirstHeader user={user} />
-          <Portals user={user} />
-          <HomeBody user={user} />
-        </div>
+      <div className={styles.choosePortalContainer}>
+        <FirstHeader user={user} />
+        <Portals user={user} />
+        <HomeBody user={user} />
       </div>
     </>
   );
@@ -28,24 +26,24 @@ function Index({ user }) {
 
 export default Index;
 
-export const getServerSideProps = withSession(async function ({ req, res }) {
-  const user = req.session.get("user");
-  if (!user) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
+// export const getServerSideProps = withSession(async function ({ req, res }) {
+//   const user = req.session.get("user");
+//   if (!user) {
+//     return {
+//       redirect: {
+//         destination: "/login",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  if (user) {
-    req.session.set("user", user);
-    await req.session.save();
-  }
-  return {
-    props: {
-      user: user,
-    },
-  };
-});
+//   if (user) {
+//     req.session.set("user", user);
+//     await req.session.save();
+//   }
+//   return {
+//     props: {
+//       user: user,
+//     },
+//   };
+// });
