@@ -88,13 +88,13 @@ function LoginForm() {
     <>
       <Head>
         <title>Please Sign In</title>
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/logo2.png" />
       </Head>
 
       <div className={styles.authContainer}>
         <div className={styles.authItems}>
           <div className={styles.authLogin}>
-            <h2>Login to your account</h2>
+            <h2>Login</h2>
           </div>
 
           <div className={styles.authForm}>
@@ -108,6 +108,7 @@ function LoginForm() {
                   required
                   value={userCredentials.email}
                   onChange={handleInputChange}
+                  placeholder="example@gmail.com"
                 />
               </div>
 
@@ -139,7 +140,7 @@ function LoginForm() {
               </div>
 
               <button type="submit" className={styles.loginButton}>
-                Submit
+                Log me in
               </button>
             </form>
           </div>
