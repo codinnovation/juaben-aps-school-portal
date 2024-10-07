@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import styles from "../../styles/login.module.css";
+import styles from "../../styles/create-teacher.module.css";
 import VisibilityOffOutlined from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { ToastContainer, toast } from "react-toastify";
@@ -233,7 +233,7 @@ function Index({ user }) {
       <div className={styles.authContainer}>
         <div className={styles.authItems}>
           <div className={styles.authLogin}>
-            <h2>Create an account for Teacher</h2>
+            <h2>Create Teacher</h2>
           </div>
 
           <div className={styles.authForm}>
