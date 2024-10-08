@@ -1,7 +1,8 @@
 .sidebarContainer {
-  background-color: #fff;
+  background-color: #131022;
   height: 100vh;
-  width: 17%;
+  border-right: 1px solid #545454;
+  width: 15%;
   position: fixed;
   top: 0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
@@ -10,89 +11,110 @@
 .sidebarContent {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  padding: 10px;
-  width: 75%;
-  margin: 0 auto;
+  padding: 15px;
 }
 
-.logoContainer {
+.schoolLogo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.iconContainer {
+  color: #c2c2c2;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  flex-direction: column;
+  cursor: pointer;
 }
 
-.logoContainer img {
-  width: 40%;
+.schoolLogo img {
+  width: 55%;
   height: auto;
 }
 
-.logoContainer h1 {
-  font-size: 1.1em;
-  margin-top: 10px;
-  font-family: sans-serif;
+.schoolName {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.sidebarLinks {
-  padding: 10px;
-  margin: 0 auto;
+.schoolName h1 {
+  color: #c2c2c2;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+.createStudent {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 50px;
+  height: 50px;
+  background-color: #62616930;
+  border-radius: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.createStudent .icon {
+  color: #c2c2c2;
+  margin-right: 10px;
+}
+
+.createStudent h1 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  color: #c2c2c2;
+}
+
+.navigationLinkContainer {
+  margin-top: 50px;
 }
 
 .linkContainer {
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
   align-items: center;
-  margin-top: 20%;
+  margin-top: 50px;
+  cursor: pointer;
 }
 
 .linkContainer .icon {
-  margin-right: 10px;
+  color: #c2c2c2;
+}
+.linkContainer .icon2 {
+  color: #c99b2c;
 }
 
-.linkContainer a {
-  font-size: 1.1em;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: 100;
-  color: #000;
-}
-
-.contentTwo {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 100%;
-}
-
-.signOutButton {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: #f5a826;
-  padding: 20px;
-  color: #fff;
-  border-radius: 7px;
-  width: 100%;
-}
-
-.signOutButton .icon {
-  margin-right: 10px;
-}
-
-.signOutButton h1 {
+.linkContainer h1 {
+  color: #c2c2c2;
   font-size: 1em;
-  font-family: sans-serif;
-  font-weight: 100;
+  font-weight: 300;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.loadingContainer {
+.secondContent{
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  height: auto;
 }
 
-@media(max-width:700px){
-  .sidebarContainer{
-    display: none;
-  }
+.logoutContainer{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logoutContainer .icon{
+  margin-right: 10px;
+  color: #c2c2c2;
+}
+.logoutContainer h1{
+  font-size: 1em;
+  color: #c2c2c2;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
