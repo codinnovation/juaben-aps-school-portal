@@ -73,10 +73,10 @@ function Index({ user }) {
           </Box>
         </div>
       )}
-      <motion.div 
-        className={styles.firstContainer} 
-        initial={{ opacity: 0, y: -20 }} 
-        animate={{ opacity: 1, y: 0 }} 
+      <motion.div
+        className={styles.firstContainer}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
         <div className={styles.firstContent}>
@@ -97,7 +97,7 @@ function Index({ user }) {
 
           <div className={styles.welcomeContainer}>
             <h1>Welcome,</h1>
-            <h1>{`${user?.displayName}`}</h1>
+            <h1>{`${user?.displayName || "Administrator"}`}</h1>
           </div>
 
           <div className={styles.userProfile} onClick={handleOpenModal}>

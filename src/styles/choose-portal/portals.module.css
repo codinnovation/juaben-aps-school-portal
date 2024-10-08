@@ -1,9 +1,13 @@
 .mainContainer {
   width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3%;
 }
 
 .itemContainer {
-  padding-top: 2.5%;
   width: 80%;
   margin: 0% auto;
 }
