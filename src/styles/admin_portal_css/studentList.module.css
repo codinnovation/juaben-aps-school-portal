@@ -1,10 +1,9 @@
 .studentListContainer {
-   width: 83%;
-   margin-left: 17%;
-   margin-top: 0;
-   height: 90vh;
+   width: 85%;
+   margin-left: 15%;
+   height: 82vh;
+   padding: 5px;
    background-color: #eeeeee;
-   padding: 15px;
 }
 
 .searchStudent{
@@ -12,7 +11,7 @@
    justify-content: flex-end;
    align-items: center;
    margin-bottom: 1%;
-   padding-top: 0;
+   padding-top: 10px;
    cursor: pointer;
 }
 
@@ -32,14 +31,13 @@
 .tableHeader {
    width: 100%;
    margin: 0 auto;
-   height: 7vh;
+   height: auto;
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-   background-color: #0b1e1c;
 }
 
 .tableHeader h1 {
-   color: #fff;
+   color: #000;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -52,7 +50,7 @@
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
    margin-top:5px;
-   padding: 10.5px;
+   height: 5.3vh;
    width: 100%;
    margin: 10px auto;
    background-color:#e7e7e7;

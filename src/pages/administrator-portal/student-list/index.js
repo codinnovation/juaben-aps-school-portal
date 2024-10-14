@@ -6,7 +6,6 @@ import { ref } from "firebase/database";
 import { get } from "firebase/database";
 import StudentProfilePageComponent from "../student-profile/profile";
 import Layout from "../layout";
-import { useRouter } from "next/router";
 import withSession from "@/lib/session";
 
 function StudentList() {
@@ -16,9 +15,7 @@ function StudentList() {
   const [selectedStudent, setSelectedStudent] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [studentsPerPage, setStudentsPerPage] = useState(12);
-
-  console.log(studentData)
+  const [studentsPerPage, setStudentsPerPage] = useState(10);
 
   const handlePerPageChange = (e) => {
     setStudentsPerPage(Number(e.target.value));

@@ -1,15 +1,17 @@
 .classScoreContainer {
-  width: 77%;
-  margin-left: 20%;
-  margin-top: 1%;
+  width: 85%;
+  margin-left: 15%;
+  z-index: 900;
+  position: absolute;
 }
 
 .classScoreItems {
   width: 80%;
   height: auto;
   padding: 20px;
-  margin: 1% auto;
+  margin: 0% auto;
   border-radius: 5px;
+  margin-top: 10%;
 }
 
 .termSelection {
@@ -108,51 +110,12 @@
   border-radius: 10px;
 }
 
-.subjDate {
-  display: flex;
-  margin-bottom: 10px;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.subjDate span {
-  color: orange;
-  margin-right: 10px;
-  font-size: 15px;
-}
-
-.subjDate input {
-  width: 200px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #aeaeae;
-}
-
-.subjScore {
-  display: flex;
-  margin-bottom: 10px;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.subjScore span {
-  color: orange;
-  margin-right: 10px;
-  font-size: 15px;
-}
-
-.subjScore input {
-  width: 200px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #aeaeae;
-}
 
 .addScoreBtnContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10%;
+  margin-left: 50%;
   margin-bottom: 1%;
 }
 
