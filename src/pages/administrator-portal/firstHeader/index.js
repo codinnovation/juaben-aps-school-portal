@@ -1,57 +1,16 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
+import React from "react";
 import styles from "../../../styles/admin_portal_css/firstHeading.module.css";
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import SettingsIcon from '@mui/icons-material/Settings';
-import ProfilePhoto from '../../../../public/profile-photo (1).jpg'
 import withSession from "@/lib/session";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import EventIcon from '@mui/icons-material/Event';
-import Dashboard from "@mui/icons-material/Dashboard";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import Logout from "@mui/icons-material/Logout";
-import Image from "next/image";
 import PersonIcon from '@mui/icons-material/Person';
 
-function FirstHeading() {
-  const router = useRouter();
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-
-
-  const handleLogout = async (e) => {
-    setIsButtonClicked(true);
-    try {
-      const response = await fetch("/api/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        toast.success("Logout Successful");
-        router.push("/login");
-        setIsButtonClicked(false);
-      } else {
-        toast.error("Logout Failed");
-        setIsButtonClicked(false);
-      }
-    } catch (error) {
-      toast.error("Error Occurred");
-      setIsButtonClicked(false);
-    }
-  };
-  ;
-
+function FirstHeading({setSearchQuery, searchQuery}) {
   return (
     <>
       <div className={styles.firstHeaderContainer}>
         <div className={styles.firstHeaderContent}>
           <div className={styles.searchContainer}>
-            <input placeholder="Search" />
+            <input placeholder="Search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
           </div>
 
           <div className={styles.profileContainer}>

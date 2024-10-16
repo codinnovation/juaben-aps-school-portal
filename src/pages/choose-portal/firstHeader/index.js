@@ -9,8 +9,6 @@ import { Dialog, DialogContent, DialogTitle, Button } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import withSession from "@/lib/session";
-import Logout from "@mui/icons-material/Logout";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import SchoolLogo from "../../../../public/logo2.png";
@@ -19,7 +17,6 @@ import ProfilePhoto from "../../../../public/profile-photo.jpg";
 function Index({ user }) {
   const [openModal, setOpenModal] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
-  console.log(user);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const router = useRouter();

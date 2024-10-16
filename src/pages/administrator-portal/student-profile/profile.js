@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Head from "next/head";
 import styles from "@/styles/admin_portal_css/profile.module.css";
 import DriverPhoto from '../../../../public/2042096.webp'
-import UpdateForm from "../update-student";
 import Attendance from './attendance';
 import ClassTest from './classTest';
 import Fees from './fees';

@@ -30,6 +30,7 @@
 .field label{
    margin-bottom: 10px;
    font-size: 14px;
+   color: #aeaeae;
 }
 
 .field input{
@@ -38,6 +39,7 @@
    border: 1px solid #313131;
    background: none;
    padding: 10px;
+   color: #aeaeae;
 }
 
 .field select{

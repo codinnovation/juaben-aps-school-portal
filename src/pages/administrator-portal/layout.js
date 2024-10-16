@@ -3,11 +3,11 @@ import FirstHeading from "./firstHeader";
 import Sidebar from "./sideBar"
 import SecondHeader from './secondHeader'
 
-function Layout({ children }) {
+function Layout({ children, searchQuery, setSearchQuery }) {
   return (
     <div>
       <Sidebar />
-      <FirstHeading />
+      <FirstHeading searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <SecondHeader />
       {children}
     </div>

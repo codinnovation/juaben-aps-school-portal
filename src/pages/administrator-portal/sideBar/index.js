@@ -1,63 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../../styles/admin_portal_css/sidebar.module.css";
 import Image from "next/image";
 import LogoImage from '../../../../public/logo2.png';
 import { useRouter } from "next/router";
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import PeopleIcon from '@mui/icons-material/People';
-import Dashboard from "@mui/icons-material/Dashboard";
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 
 function Sidebar() {
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const router = useRouter();
-
-
-  const handleLogout = async (e) => {
-    setIsButtonClicked(true);
-    try {
-      const response = await fetch("/api/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        toast.success("Logout Successful");
-        router.push("/login");
-        setIsButtonClicked(false);
-      } else {
-        toast.error("Logout Failed");
-        setIsButtonClicked(false);
-      }
-    } catch (error) {
-      toast.error("Error Occurred");
-      setIsButtonClicked(false);
-    }
-  };
+  const router = useRouter()
 
   return (
     <>
-      {isButtonClicked && (
-        <>
-          <div className={styles.loadingContainer}>
-            <Box sx={{ display: "flex" }}>
-              <CircularProgress />
-            </Box>
-          </div>
-        </>
-      )}
       <div className={styles.sidebarContainer}>
         <div className={styles.sidebarContent}>
           <div className={styles.firstContent}>
@@ -65,7 +26,7 @@ function Sidebar() {
             <div className={styles.schoolLogo}>
               <Image src={LogoImage} width={900} height={900} alt="" />
               <div className={styles.iconContainer}>
-                <ExitToAppIcon className={styles.icon} onClick={handleLogout} />
+                <DashboardIcon className={styles.icon} onClick={() => router.push('/administrator-portal/')} />
               </div>
             </div>
 
@@ -127,11 +88,16 @@ function Sidebar() {
                 <h1>Events</h1>
                 <ArrowRightIcon className={styles.icon2} />
               </div>
+
+              <div className={styles.linkContainer} onClick={() => router.push("/administrator-portal/set-student-fees")}>
+                <AttachMoneyIcon className={styles.icon} />
+                <h1>Fees</h1>
+                <ArrowRightIcon className={styles.icon2} />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }
