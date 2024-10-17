@@ -47,7 +47,7 @@ function Sidebar() {
                 <ArrowRightIcon className={styles.icon2} />
               </div>
 
-              <div className={styles.linkContainer} >
+              <div className={styles.linkContainer} onClick={() => router.push("/administrator-portal/register-non-staff")}>
                 <PeopleIcon className={styles.icon} />
                 <h1>Add Non-staff</h1>
                 <ArrowRightIcon className={styles.icon2} />
@@ -59,31 +59,31 @@ function Sidebar() {
                 <ArrowRightIcon className={styles.icon2} />
               </div>
 
-              <div className={styles.linkContainer}>
+              <div className={styles.linkContainer} onClick={() => router.push('/administrator-portal/teachers-list')}>
                 <PeopleOutlineIcon className={styles.icon} />
                 <h1>Teacher&apos;s List</h1>
                 <ArrowRightIcon className={styles.icon2} />
               </div>
 
-              <div className={styles.linkContainer}>
+              <div className={styles.linkContainer} onClick={() => router.push('/administrator-portal/non-staff-list')}>
                 <PeopleOutlineIcon className={styles.icon} />
                 <h1>Non-Staff List</h1>
                 <ArrowRightIcon className={styles.icon2} />
               </div>
 
-              <div className={styles.linkContainer}>
+              <div className={styles.linkContainer} onClick={() => router.push("/administrator-portal/teachers-notifications")}>
                 <NotificationsNoneIcon className={styles.icon} />
                 <h1>T Notifications</h1>
                 <ArrowRightIcon className={styles.icon2} />
               </div>
 
-              <div className={styles.linkContainer}>
+              <div className={styles.linkContainer} onClick={() => router.push('/administrator-portal/parent-notifications')}>
                 <NotificationsIcon className={styles.icon} />
                 <h1>P Notifications</h1>
                 <ArrowRightIcon className={styles.icon2} />
               </div>
 
-              <div className={styles.linkContainer}>
+              <div className={styles.linkContainer} onClick={() => router.push('/administrator-portal/events')}>
                 <EmojiEventsIcon className={styles.icon} />
                 <h1>Events</h1>
                 <ArrowRightIcon className={styles.icon2} />

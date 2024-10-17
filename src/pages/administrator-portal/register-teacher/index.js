@@ -162,10 +162,6 @@ function RegistrationForm() {
         </Head>
         <div className={styles.container}>
           <div className={styles.containerItems}>
-            <div className={styles.containerHeader}>
-              <h1>Admit Teacher</h1>
-              <h1 onClick={handleCloseForm}>Exit</h1>
-            </div>
 
             <div className={styles.inputFieldsContainer}>
               <form onSubmit={handleFormSubmit}>
