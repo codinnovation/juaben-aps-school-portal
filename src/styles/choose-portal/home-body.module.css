@@ -1,251 +1,154 @@
 .homeContainer {
   width: 100%;
-  height: auto;
-  padding-top: 2%;
+  height: 60vh;
 }
 
 .homeContent {
-  width: 80%;
+  width: 70%;
+  height: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 3%;
 }
 
-.recentActivities {
-  width: 95%;
-  height: 100%;
-}
-
-.recentActivitiesHeader {
+.activitiesHeader {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.recentActivitiesHeader h1 {
-  font-size: 1.1em;
-  font-family: sans-serif;
-  margin-bottom: 10px;
-  color: cc;
+.activitiesHeader .icon {
+  color: #c99b2c;
 }
 
-.recentCard {
-  width: 100%;
-  height: 83px;
-  background-color: #00000031;
-  box-shadow: 0px 0px 20px #ffffff1f;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 3%;
-  border-radius: 5px;
-}
-
-.recentCard h1 {
-  width: 10px;
-  height: 100%;
-  background-color: #0f3834;
-  border-radius: 5px;
-}
-
-.recentCardTime {
-  margin-left: 4%;
-  width: 10%;
-}
-
-.recentCardTime h2 {
+.activitiesHeader h1 {
   font-size: 1em;
-  color: #ccc;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-
-.recentCardTime p {
-  font-size: 0.8em;
-  color: #ccc;
-  margin-top: 4px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-
-.recentCard .line {
-  background-color: #ccc;
-  height: 55%;
-  width: 1px;
-  margin-left: 3%;
-}
-
-.recentDetails {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: 5%;
-  width: 100%;
-}
-
-.recentDetails h3 {
-  font-size: 1em;
-  font-weight: 100;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: #ccc;
-}
-
-.pagesContainer {
-  width: 100%;
-  height: 100%;
-}
-
-.pagesContainerHeader h1 {
-  font-size: 20px;
-  font-family: Helvetica;
-  margin-bottom: 10px;
-  color: #ccc;
-}
-
-.pagesCardContainer {
-  width: 100%;
-  height: 100%;
-}
-
-.pagesCard {
-  background-color: #00000031;
-  box-shadow: 0px 0px 20px #ffffff1f;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 10px;
-  height: auto;
-  padding: 15px;
-  margin-top: 3.5%;
-  border-radius: 5px;
-}
-
-.pagesCircle {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: 5%;
-}
-
-.pagesCircle h1 {
   color: #fff;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 50%;
-  font-weight: 100;
+  margin-left: 5px;
   font-family: sans-serif;
 }
 
-.pagesCard:nth-child(1) .pagesCircle h1 {
-  background-color: #0f3834;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+.activityBoxContainer {
+  margin-top: 4%;
 }
 
-.pagesCard:nth-child(2) .pagesCircle h1 {
-  background-color: #f5a826;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+.activityBox {
+  width: 100%;
+  border: 1px solid #545454;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 5fr;
+  border-radius: 10px;
+  margin-top: 25px;
 }
 
-.pagesCard:nth-child(3) .pagesCircle h1 {
-  background-color: #001f3f;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+.timeContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.pagesCard:nth-child(4) .pagesCircle h1 {
-  background-color: #f5a826;
+.timeContainer p {
+  color: #fff;
+  font-size: 0.9em;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  color: #c99b2c;
 }
 
-.pagesCard:nth-child(5) .pagesCircle h1 {
-  background-color: #001f3f;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+.activityBox .line {
+  height: 60px;
+  width: 0.5px;
+  border: 0.5px solid #646464;
 }
 
-.pagesCard:nth-child(6) .pagesCircle h1 {
-  background-color: #f5a826;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+.activityDescription {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 }
 
-.pagesCardName {
+.activityDescription p {
+  color: #fff;
+  font-weight: 100;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 0.9em;
+}
+
+.recentpageHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.recentpageHeader .icon {
+  color: #c99b2c;
+}
+
+.recentpageHeader h1 {
+  font-size: 1em;
+  color: #fff;
+  margin-left: 5px;
+  font-family: sans-serif;
+}
+
+.recentBoxContainer {
+  margin-top: 4%;
+}
+
+.recentBox {
+  width: 100%;
+  height: auto;
+  border: 1px solid #545454;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-radius: 10px;
+  margin-top: 25px;
+}
+
+.recentpageName {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.recentpageName h1 {
+  color: #ccc;
+  background-color: #cccccc3c;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 1.3em;
+  height: 60px;
+  width: 60px;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.pagesCardName h1 {
+.recentBoxName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recentBoxName h1 {
+  font-size: 1em;
+  color: #fff;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.recentBoxTime {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.recentBoxTime p {
+  color: #c99b2c;
   font-size: 1em;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: 100;
-  color: #ccc;
-}
-
-.pagesCardTime {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.pagesCardTime h1 {
-  font-size: 0.9em;
-  color: #ccc;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: 100;
-}
-
-@media (max-width: 700px) {
-  .homeContent {
-    width: 96%;
-    margin: 3% auto;
-    grid-template-columns: 1fr;
-    gap: 3%;
-  }
-
-  .recentActivities {
-    width: 100%;
-  }
-
-  .recentActivitiesHeader h1 {
-    font-size: 1em;
-  }
-
-  .recentCard {
-    width: 100%;
-    height: 80px;
-    padding: 5px;
-  }
-
-  .recentCard h1 {
-    display: none;
-  }
-
-  .recentCardTime {
-    margin-left: 0%;
-    width: 20%;
-  }
-  .recentCardTime h2 {
-    font-size: 0.7em;
-  }
-
-  .recentDetails {
-    margin-left: 3%;
-  }
-  
-  .recentDetails h3 {
-    font-size: 0.7em;
-  }
-
-  .pagesContainerHeader h1 {
-    font-size: 1em;
-  }
-
-  .pagesCard {
-    background-color: #00000031;
-    box-shadow: 0px 0px 20px #ffffff1f;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 10px;
-    height: auto;
-    padding: 10px;
-    margin-top: 3.5%;
-    border-radius: 5px;
-  }
-  
 }

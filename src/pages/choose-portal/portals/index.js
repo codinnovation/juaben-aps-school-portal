@@ -5,8 +5,12 @@ import Diversity3Icon from '@mui/icons-material/Diversity3';
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import Link from "next/link";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+import MoneyIcon from '@mui/icons-material/Money';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import SchoolIcon from '@mui/icons-material/School';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import withSession from "@/lib/session";
-import { motion } from 'framer-motion';
 
 export default function Index() {
   const handlePortalClick = (abbreviation, portalName) => {
@@ -23,109 +27,69 @@ export default function Index() {
     localStorage.setItem("selectedPortals", JSON.stringify(updatedPortals));
   };
 
-  // Animation variants
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
 
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.itemContainer}>
-        <div className={styles.portalWrapper}>
-          <div className={styles.portalGrid}>
-            {/* Administrator Portal */}
-            <motion.div
-              className={styles.portalCard}
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.3 }}
-            >
-              <div className={styles.portalIconWrapper}>
-                <Person2Icon className={styles.portalIcon} />
-              </div>
-              <div className={styles.portalName}>
-                <Link
-                  href="/administrator-portal"
-                  passHref
-                  className={styles.portalLink}
-                  onClick={() => handlePortalClick("AP", "Administrator Portal")}
-                >
-                  <h1>Administrator Portal</h1>
-                </Link>
-              </div>
-            </motion.div>
+    <div className={styles.portalContainer}>
+      <div className={styles.portalContent}>
+        <div className={styles.portalBox}>
+          <div className={styles.portalName}>
+            <AdminPanelSettingsIcon className={styles.icon} />
+            <div className={styles.name}>
+              <h1>Administrator&apos;s </h1>
+              <h1>Portal</h1>
+            </div>
+          </div>
 
-            {/* Teacher's Portal */}
-            <motion.div
-              className={styles.portalCard}
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.3, delay: 0.1 }}
-            >
-              <div className={styles.portalIconWrapper}>
-                <Diversity3Icon className={styles.portalIcon} />
-              </div>
-              <div className={styles.portalName}>
-                <Link
-                  href="/teacher-portal"
-                  passHref
-                  className={styles.portalLink}
-                  onClick={() => handlePortalClick("TP", "Teacher's Portal")}
-                >
-                  <h1>Teacher&apos;s Portal</h1>
-                </Link>
-              </div>
-            </motion.div>
+          <div className={styles.clickContainer}>
+            <h1>Click Now</h1>
+            <ArrowRightIcon className={styles.icon} />
+          </div>
+        </div>
 
-            {/* Parent's Portal */}
-            <motion.div
-              className={styles.portalCard}
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.3, delay: 0.2 }}
-            >
-              <div className={styles.portalIconWrapper}>
-                <ConnectWithoutContactIcon className={styles.portalIcon} />
-              </div>
-              <div className={styles.portalName}>
-                <Link
-                  href="/parent-portal"
-                  passHref
-                  className={styles.portalLink}
-                  onClick={() => handlePortalClick("PP", "Parent's Portal")}
-                >
-                  <h1>Parent&apos;s Portal</h1>
-                </Link>
-              </div>
-            </motion.div>
 
-            {/* Accountant Portal */}
-            <motion.div
-              className={styles.portalCard}
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.3, delay: 0.3 }}
-            >
-              <div className={styles.portalIconWrapper}>
-                <AttachMoneyIcon className={styles.portalIcon} />
-              </div>
-              <div className={styles.portalName}>
-                <Link
-                  href="/accountant-portal"
-                  passHref
-                  className={styles.portalLink}
-                  onClick={() => handlePortalClick("AP", "Accountant Portal")}
-                >
-                  <h1>Accountant Portal</h1>
-                </Link>
-              </div>
-            </motion.div>
+        <div className={styles.portalBox}>
+          <div className={styles.portalName}>
+            <SchoolIcon className={styles.icon} />
+            <div className={styles.name}>
+              <h1>Teacher&apos;s </h1>
+              <h1>Portal</h1>
+            </div>
+          </div>
 
+          <div className={styles.clickContainer}>
+            <h1>Click Now</h1>
+            <ArrowRightIcon className={styles.icon} />
+          </div>
+        </div>
+
+
+        <div className={styles.portalBox}>
+          <div className={styles.portalName}>
+            <MoneyIcon className={styles.icon} />
+            <div className={styles.name}>
+              <h1>Accountant&apos;s </h1>
+              <h1>Portal</h1>
+            </div>
+          </div>
+
+          <div className={styles.clickContainer}>
+            <h1>Click Now</h1>
+            <ArrowRightIcon className={styles.icon} />
+          </div>
+        </div>
+
+        <div className={styles.portalBox}>
+          <div className={styles.portalName}>
+            <SupervisorAccountIcon className={styles.icon} />
+            <div className={styles.name}>
+              <h1>Parent&apos;s </h1>
+              <h1>Portal</h1>
+            </div>
+          </div>
+
+          <div className={styles.clickContainer}>
+            <h1>Click Now</h1>
+            <ArrowRightIcon className={styles.icon} />
           </div>
         </div>
       </div>

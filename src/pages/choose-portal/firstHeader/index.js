@@ -12,33 +12,15 @@ import withSession from "@/lib/session";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import SchoolLogo from "../../../../public/logo2.png";
-import ProfilePhoto from "../../../../public/profile-photo2.png";
-import { motion } from 'framer-motion';
+import PersonIcon from '@mui/icons-material/Person';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Index({ user }) {
-  const [openModal, setOpenModal] = useState(false);
-  const [openNotification, setOpenNotification] = useState(false);
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-
   const router = useRouter();
-
-  const createTeacherAccount = () => {
-    setIsButtonClicked(true);
-    router.push("/create-teacher");
-  };
-
-  const createParentAccount = () => {
-    setIsButtonClicked(true);
-    router.push("/create-parent");
-  };
-
-  const handleOpenModal = () => {
-    setOpenModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [openProfileModal, setOpenProfileModal] = useState(false)
 
   const handleLogout = async (e) => {
     setIsButtonClicked(true);
@@ -64,6 +46,16 @@ function Index({ user }) {
     }
   };
 
+  const handleNotificationClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(!open); // Toggle modal visibility
+  };
+
+  const handleOpenProfileModal = (e) => {
+    setAnchorEl(e.currentTarget)
+    setOpenProfileModal(!openProfileModal)
+  }
+
   return (
     <>
       {isButtonClicked && (
@@ -73,81 +65,77 @@ function Index({ user }) {
           </Box>
         </div>
       )}
-      <motion.div
-        className={styles.firstContainer}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className={styles.firstContent}>
-          <div className={styles.schoolLogo}>
-            <Image src={SchoolLogo} alt="thp_logo" className={styles.logo} />
-          </div>
-          <div className={styles.searchInput}>
-            <input placeholder="search..." />
-            <SearchIcon className={styles.SearchIcon} />
-          </div>
-          <div
-            className={styles.notificationContainer}
-            onClick={() => setOpenNotification(true)}
-          >
-            <h1>3</h1>
-            <NotificationsIcon className={styles.NotificationsIcon} />
+
+      <div className={styles.firstHeaderContainer}>
+        <div className={styles.firstHeaderContent}>
+          <div className={styles.logoContainer}>
+            <Image src={SchoolLogo} width={900} height={900} alt="" />
           </div>
 
-          <div className={styles.welcomeContainer}>
-            <h1>Welcome,</h1>
-            <h1>{`${user?.displayName || "Administrator"}`}</h1>
+          <div className={styles.searchContainer}>
+            <input placeholder="Search..." />
           </div>
 
-          <div className={styles.userProfile} onClick={handleOpenModal}>
-            <Image
-              src={ProfilePhoto}
-              width={900}
-              height={900}
-              alt="profile-photo"
-              className={styles.userPhoto}
-            />
-            <KeyboardArrowDownIcon className={styles.KeyboardArrowDownIcon} />
+          <div className={styles.profileContainer}>
+            <div className={styles.notificationContainer} onClick={handleNotificationClick}>
+              <NotificationsIcon className={styles.icon} />
+              <h1>2</h1>
+            </div>
+
+            <div className={styles.profilePhoto} onClick={handleOpenProfileModal}>
+              <PersonIcon className={styles.icon} />
+            </div>
+
+            <div className={styles.logoutContainer} onClick={handleLogout}>
+              <LogoutIcon className={styles.icon} />
+            </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
-      <Dialog open={openModal} onClose={handleCloseModal}>
-        <DialogContent style={{ display: "flex", flexDirection: "column" }}>
-          <Button component={motion.button} whileHover={{ scale: 1.05 }}>
-            Profile
-          </Button>
-          {user?.displayName === "Administrator" && (
-            <Button component={motion.button} whileHover={{ scale: 1.05 }} onClick={createTeacherAccount}>
-              Create Account For Teacher
-            </Button>
-          )}
-
-          {user?.displayName === "Administrator" && (
-            <Button component={motion.button} whileHover={{ scale: 1.05 }} onClick={createParentAccount}>
-              Create Account For Parent
-            </Button>
-          )}
-
-          <Button component={motion.button} whileHover={{ scale: 1.05 }} onClick={handleLogout}>
-            Logout
-          </Button>
-        </DialogContent>
-      </Dialog>
-
+      {/* Notification Modal */}
       <Dialog
-        open={openNotification}
-        onClose={() => setOpenNotification(false)}
+        open={open}
+        onClose={() => setOpen(false)}
+        anchorEl={anchorEl}
+        PaperProps={{
+          style: {
+            position: 'absolute',
+            top: anchorEl ? anchorEl.getBoundingClientRect().bottom : '50px',
+            left: anchorEl ? anchorEl.getBoundingClientRect().left : '0px',
+            margin: '0',
+          },
+        }}
       >
         <DialogContent>
-          <li>This is an example of notifications</li>
-          <li>This is an example of notifications</li>
-          <li>This is an example of notifications</li>
-          <li>This is an example of notifications</li>
-          <li>This is an example of notifications</li>
+          <h3>Notifications</h3>
+          <p>You have 2 new notifications.</p>
+          <p>You have 2 new notifications.</p>
+          <p>You have 2 new notifications.</p>
         </DialogContent>
       </Dialog>
+
+
+      {/* Profile Modal */}
+      <Dialog
+        open={openProfileModal}
+        onClose={() => setOpenProfileModal(false)}
+        anchorEl={anchorEl}
+        PaperProps={{
+          style: {
+            position: 'absolute',
+            top: anchorEl ? anchorEl.getBoundingClientRect().bottom : '50px',
+            left: anchorEl ? anchorEl.getBoundingClientRect().left : '0px',
+            margin: '0',
+          },
+        }}
+      >
+        <DialogContent>
+          <button>Create Teacher&apos;s Account</button>
+          <button>Create Parents&apos;s Account</button>
+        </DialogContent>
+      </Dialog>
+
       <ToastContainer />
     </>
   );
