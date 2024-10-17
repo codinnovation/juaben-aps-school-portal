@@ -1,107 +1,103 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../../styles/admin_portal_css/sidebar.module.css";
-import Link from "next/link";
 import Image from "next/image";
 import LogoImage from '../../../../public/logo2.png';
 import { useRouter } from "next/router";
-import LockIcon from '@mui/icons-material/Lock';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import CampaignIcon from '@mui/icons-material/Campaign';
-import SchoolIcon from '@mui/icons-material/School';
-import Dashboard from "@mui/icons-material/Dashboard";
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import PeopleIcon from '@mui/icons-material/People';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 
 function Sidebar() {
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const router = useRouter();
-
-
-  const handleLogout = async (e) => {
-    setIsButtonClicked(true);
-    try {
-      const response = await fetch("/api/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        toast.success("Logout Successful");
-        router.push("/login");
-        setIsButtonClicked(false);
-      } else {
-        toast.error("Logout Failed");
-        setIsButtonClicked(false);
-      }
-    } catch (error) {
-      toast.error("Error Occurred");
-      setIsButtonClicked(false);
-    }
-  };
+  const router = useRouter()
 
   return (
     <>
       <div className={styles.sidebarContainer}>
         <div className={styles.sidebarContent}>
-          <div className={styles.contentOne}>
-            <div className={styles.logoContainer}>
+          <div className={styles.firstContent}>
+
+            <div className={styles.schoolLogo}>
               <Image src={LogoImage} width={900} height={900} alt="" />
-              <h1>Administrator Portal</h1>
+              <div className={styles.iconContainer}>
+                <DashboardIcon className={styles.icon} onClick={() => router.push('/administrator-portal/')} />
+              </div>
             </div>
 
-            <div className={styles.sidebarLinks}>
-              <div className={styles.linkContainer}>
-                <Dashboard className={styles.icon} />
-                <Link href="/administrator-portal">Dashboard</Link>
+            <div className={styles.schoolName}>
+              <h1>Nana Akosua Akyamaah || Preparatory School</h1>
+            </div>
+
+            <div className={styles.createStudent} onClick={() => router.push("/administrator-portal/admit-student")}>
+              <AddCircleIcon className={styles.icon} />
+              <h1>Add Student</h1>
+            </div>
+
+            <div className={styles.navigationLinkContainer}>
+
+              <div className={styles.linkContainer} onClick={() => router.push("/administrator-portal/register-teacher")}>
+                <PeopleIcon className={styles.icon} />
+                <h1>Add Teacher</h1>
+                <ArrowRightIcon className={styles.icon2} />
+              </div>
+
+              <div className={styles.linkContainer} >
+                <PeopleIcon className={styles.icon} />
+                <h1>Add Non-staff</h1>
+                <ArrowRightIcon className={styles.icon2} />
+              </div>
+
+              <div className={styles.linkContainer} onClick={() => router.push("/administrator-portal/student-list")}>
+                <PeopleIcon className={styles.icon} />
+                <h1>Student&apos;s List</h1>
+                <ArrowRightIcon className={styles.icon2} />
               </div>
 
               <div className={styles.linkContainer}>
-                <AddCircleIcon className={styles.icon} />
-                <Link href="/administrator-portal/admit-student">Create Student</Link>
+                <PeopleOutlineIcon className={styles.icon} />
+                <h1>Teacher&apos;s List</h1>
+                <ArrowRightIcon className={styles.icon2} />
               </div>
 
               <div className={styles.linkContainer}>
-                <SchoolIcon className={styles.icon} />
-                <Link href="/administrator-portal/student-list">Student&apos;s List</Link>
-              </div>
-
-              <div className={styles.linkContainer}>
-                <SchoolIcon className={styles.icon} />
-                <Link href="/administrator-portal/teachers-list">Teacher&apos;s List</Link>
+                <PeopleOutlineIcon className={styles.icon} />
+                <h1>Non-Staff List</h1>
+                <ArrowRightIcon className={styles.icon2} />
               </div>
 
               <div className={styles.linkContainer}>
                 <NotificationsNoneIcon className={styles.icon} />
-                <Link href="/administrator-portal/teachers-notifications">T. Notification</Link>
+                <h1>T Notifications</h1>
+                <ArrowRightIcon className={styles.icon2} />
               </div>
 
               <div className={styles.linkContainer}>
-                <NotificationsActiveIcon className={styles.icon} />
-                <Link href="/administrator-portal/parent-notifications">P. Notification</Link>
+                <NotificationsIcon className={styles.icon} />
+                <h1>P Notifications</h1>
+                <ArrowRightIcon className={styles.icon2} />
               </div>
-
 
               <div className={styles.linkContainer}>
-                <CampaignIcon className={styles.icon} />
-                <Link href="/administrator-portal/events">Events</Link>
+                <EmojiEventsIcon className={styles.icon} />
+                <h1>Events</h1>
+                <ArrowRightIcon className={styles.icon2} />
               </div>
-            </div>
-          </div>
 
-          <div className={styles.contentTwo}>
-            <div className={styles.signOutButton} onClick={handleLogout}>
-              <LockIcon className={styles.icon} />
-              <h1>Sign Out</h1>
+              <div className={styles.linkContainer} onClick={() => router.push("/administrator-portal/set-student-fees")}>
+                <AttachMoneyIcon className={styles.icon} />
+                <h1>Fees</h1>
+                <ArrowRightIcon className={styles.icon2} />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

@@ -58,6 +58,7 @@ function ClassTest({ selectedStudent }) {
       ]);
     }
   }, [selectedStudent?.Class]);
+
   const selectSubject = (subject) => {
     setSelectedSubject(subject);
     setChooseSubject(false);
