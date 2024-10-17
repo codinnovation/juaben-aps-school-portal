@@ -177,6 +177,20 @@ function MainBody({ user }) {
     { name: "Male", uv: malePercentage }
   ]
 
+  const getGenderCounts = () => {
+    const totalStudents = studentData.length;
+    const maleStudents = studentData.filter(
+      (student) => student.Gender === "Male"
+    ).length;
+    const femaleStudents = studentData.filter(
+      (student) => student.Gender === "Female"
+    ).length;
+
+    return { maleStudents, femaleStudents, totalStudents };
+  };
+
+  const { maleStudents, femaleStudents } = getGenderCounts();
+
 
 
   return (
@@ -208,7 +222,7 @@ function MainBody({ user }) {
               <div className={styles.boxHeader}>
                 <PeopleIcon className={styles.icon} />
                 <div className={styles.descriptions}>
-                  <p>{femalePercentage}</p>
+                  <p>{femalePercentage}%</p>
                   <h1>Female Students</h1>
                 </div>
               </div>
@@ -216,8 +230,8 @@ function MainBody({ user }) {
               <div className={styles.lineContainer}></div>
 
               <div className={styles.activePeople}>
-                <p>Total Students</p>
-                <h1>{studentData?.length}</h1>
+                <p>Total Female</p>
+                <h1>{femaleStudents}</h1>
               </div>
 
 
@@ -227,7 +241,7 @@ function MainBody({ user }) {
               <div className={styles.boxHeader}>
                 <PeopleIcon className={styles.icon} />
                 <div className={styles.descriptions}>
-                  <p>{malePercentage}</p>
+                  <p>{malePercentage}%</p>
                   <h1>Male Students</h1>
                 </div>
               </div>
@@ -235,8 +249,8 @@ function MainBody({ user }) {
               <div className={styles.lineContainer}></div>
 
               <div className={styles.activePeople}>
-                <p>Total Students</p>
-                <h1>{studentData?.length}</h1>
+                <p>Total Male</p>
+                <h1>{maleStudents}</h1>
               </div>
 
             </div>
