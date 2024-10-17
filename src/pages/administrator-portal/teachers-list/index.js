@@ -158,7 +158,7 @@ function StudentList() {
                     onClick={() =>
                       setCurrentPage((prevPage) =>
                         prevPage <
-                          Math.ceil(searchForStudent.length / teachersPerPage)
+                          Math.ceil(searchForTeacher.length / teachersPerPage)
                           ? prevPage + 1
                           : prevPage
                       )
