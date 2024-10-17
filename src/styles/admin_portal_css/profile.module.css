@@ -61,7 +61,7 @@
 
 .profileNavigation .link {
   background-color: #fff;
-  width: 120px;
+  width: 150px;
   height: 50px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
@@ -70,7 +70,7 @@
 .profileNavigation .activeLink {
   background-color: #000;
   color: #fff;
-  width: 120px;
+  width: 150px;
   height: 50px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
@@ -84,6 +84,7 @@
   font-size: 0.9em;
   color: #000;
   font-family: sans-serif;
+  text-transform: uppercase;
 }
 
 .driverAccountProfile {
@@ -117,6 +118,7 @@
   font-family: Helvetica;
   font-weight: 700;
   color: #250035;
+  text-transform: uppercase;
 }
 
 .driverName .driverActive {
@@ -162,7 +164,7 @@
 
 .editContainer .edit p {
   font-size: 16px;
-  font-family: Helvetica;
+  font-family: sans-serif;
   font-weight: 700;
 }
 
@@ -214,23 +216,24 @@
 
 .fieldContainer .field label {
   color: rgba(130, 130, 130, 1);
-  font-family: Helvetica;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 0.9em;
   font-weight: 400;
 }
 
 .fieldContainer .field h1 {
-  font-family: Helvetica;
+  font-family: sans-serif;
   font-size: 0.9em;
   height: 40px;
   margin-top: 10px;
   font-weight: 700;
-  color: #250035;
+  color: #000;
+  text-transform: uppercase;
 }
 
 .fieldContainer .field input {
-  font-family: Helvetica;
-  color: #250035;
+  font-family: sans-serif;
+  color: #000;
   font-size: 0.9em;
   margin-top: 20px;
   font-weight: 700;
@@ -240,6 +243,7 @@
   padding-left: 5px;
   border-radius: 5px;
   background: none;
+  text-transform: uppercase;
 }
 
 .fieldContainer .field input:focus {

@@ -41,13 +41,13 @@ function Sidebar() {
 
             <div className={styles.navigationLinkContainer}>
 
-              <div className={styles.linkContainer}>
+              <div className={styles.linkContainer} onClick={() => router.push("/administrator-portal/register-teacher")}>
                 <PeopleIcon className={styles.icon} />
                 <h1>Add Teacher</h1>
                 <ArrowRightIcon className={styles.icon2} />
               </div>
 
-              <div className={styles.linkContainer}>
+              <div className={styles.linkContainer} >
                 <PeopleIcon className={styles.icon} />
                 <h1>Add Non-staff</h1>
                 <ArrowRightIcon className={styles.icon2} />

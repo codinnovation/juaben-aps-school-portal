@@ -11,7 +11,7 @@
   padding: 20px;
   margin: 0% auto;
   border-radius: 5px;
-  margin-top: 10%;
+  margin-top: 6%;
 }
 
 .termSelection {
@@ -21,7 +21,7 @@
 }
 
 .termSelection label {
-  font-size: 1.1em;
+  font-size: 1em;
   font-family: sans-serif;
 }
 
@@ -42,8 +42,9 @@
 }
 
 .subjectHeader h1 {
-  font-size: 1.1em;
+  font-size: 0.9em;
   text-transform: uppercase;
+  color: #000;
 }
 
 .subjectScores {
@@ -62,7 +63,7 @@
 }
 
 .scoresContainer h1:nth-child(1) {
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 100;
   display: flex;
   justify-content: flex-start;
@@ -71,13 +72,12 @@
 }
 
 .scoresContainer h1:nth-child(2) {
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 100;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   font-family: sans-serif;
-
 }
 
 .scoresContainer button {
@@ -99,7 +99,7 @@
 }
 
 .subjName span {
-  font-size: 15px;
+  font-size: 1em;
   margin-right: 10px;
   color: orange;
 }
@@ -110,13 +110,19 @@
   border-radius: 10px;
 }
 
-
 .addScoreBtnContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 50%;
-  margin-bottom: 1%;
+}
+
+.addScoreBtnContainer button {
+  width: 10%;
+  height: 50px;
+  border: none;
+  color: #000;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .addBtn {
@@ -125,18 +131,9 @@
   align-items: center;
 }
 
-.addScoreBtnContainer button {
-  width: 150px;
-  height: 50px;
-  background-color: #0b1e1c;
-  color: #fff;
-  border: none;
-  margin-left: 20px;
-}
-
-
 .chooseSubjectContainer {
   width: 500px;
+  z-index: 900;
   height: auto;
   background-color: #0b1e1c;
   position: absolute;

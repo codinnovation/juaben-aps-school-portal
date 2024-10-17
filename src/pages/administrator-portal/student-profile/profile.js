@@ -240,7 +240,7 @@ function StudentProfilePage({
                       onChange={handleInputChange}
                     />
                   ) : (
-                    <h1>{selectedStudent?.LastName || "No Last Name"}</h1>
+                    <h1>{selectedStudent?.MiddleName || "No Last Name"}</h1>
                   )}
                 </div>
 
