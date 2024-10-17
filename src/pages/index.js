@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import withSession from "@/lib/session";
 
 function Home({ user }) {
+
   return (
     <>
       <Head>

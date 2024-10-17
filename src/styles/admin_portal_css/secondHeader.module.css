@@ -1,0 +1,78 @@
+.secondHeaderContainer {
+  width: 85%;
+  background-color: #131022;
+  margin-left: 15%;
+  padding-top: 10px;
+  height: 10vh;
+}
+
+.secondHeaderContent {
+  width: 95%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+}
+
+.dashboardName {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.dashboardName h1 {
+  color: #fff;
+  font-size: 1.3em;
+  font-family: sans-serif;
+}
+
+.dashboardName p {
+  color: #919191;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.studentInfoContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.studentInfoContainer h1:nth-child(1) {
+  background-color: #c99b2c;
+  color: #fff;
+  font-size: 1em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 100;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.studentInfoContainer h1:nth-child(2) {
+  background-color: #c2c2c2;
+  color: #000;
+  font-size: 1em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 100;
+  padding: 10px;
+  margin-left: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}

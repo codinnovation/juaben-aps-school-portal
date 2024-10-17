@@ -1,35 +1,19 @@
 .container{
    width: 85%;
    margin-left: 15%;
+   height: 82vh;
+   background-color: #131022;
 }
 
 .containerItems{
-   width: 85%;
+   width: 95%;
    margin: 0% auto;
-}
-
-.containerHeader{
-   display: grid;
-   grid-template-columns: 1fr;
-}
-
-
-.containerHeader h1:nth-child(1){
-   font-size: 1.1em;
-   display: flex;
-   justify-content: flex-end;
-   align-content: center;
-   text-transform: uppercase;
-   color: #f5a826;
-   font-weight: 600;
-   padding: 10px;
-   border-radius: 10px;
-   cursor: pointer;
+   padding-top: 5px;
 }
 
 .inputFieldsContainer{
-   width: 60%;
-   margin: 4% auto;
+   width: 55%;
+   margin: 0% auto;
 }
 
 .inputFields{
@@ -46,19 +30,23 @@
 .field label{
    margin-bottom: 10px;
    font-size: 14px;
+   color: #aeaeae;
 }
 
 .field input{
    height: 70px;
    border-radius: 10px;
-   border: 1px solid #aeaeae;
+   border: 1px solid #313131;
+   background: none;
    padding: 10px;
+   color: #aeaeae;
 }
 
 .field select{
    height: 70px;
    border-radius: 10px;
-   border: 1px solid #aeaeae;
+   border: 1px solid #313131;
+   background: none;
    padding: 10px;
 }
 

@@ -1,12 +1,14 @@
 .studentProfilePageContainer {
-  width: 77%;
-  margin-left: 20%;
-  margin-top: 1%;
+  width: 85%;
+  margin-left: 15%;
+  z-index: 900;
+  position: absolute;
 }
 
 .studentFeesContainer {
   width: 80%;
   margin: 0 auto;
+  margin-top: 10%;
 }
 
 .studentFeesHeader {
