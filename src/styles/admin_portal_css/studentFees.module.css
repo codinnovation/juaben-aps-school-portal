@@ -3,12 +3,12 @@
   margin-left: 15%;
   z-index: 900;
   position: absolute;
+  margin-top: 13%;
 }
 
 .studentFeesContainer {
   width: 80%;
   margin: 0 auto;
-  margin-top: 10%;
 }
 
 .studentFeesHeader {
