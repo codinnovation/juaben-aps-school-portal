@@ -131,7 +131,7 @@ function ProjectWork({ selectedStudent }) {
           </div>
 
           <div className={styles.subjectHeader}>
-            <h1>{`Project Work - ${selectedTerm} - ${selectedSubject}`}</h1>
+            <h1>{`Project Work - ${selectedSubject}`}</h1>
           </div>
 
           <div className={styles.subjectScores}>
@@ -149,10 +149,11 @@ function ProjectWork({ selectedStudent }) {
           </div>
 
         </div>
+        <div className={styles.addScoreBtnContainer}>
+          <button onClick={() => setChooseSubject(true)}>Choose Subject</button>
+        </div>
       </div>
-      <div className={styles.addScoreBtnContainer}>
-        <button onClick={() => setChooseSubject(true)}>Choose Subject</button>
-      </div>
+
 
       {chooseSubject && (
         <>

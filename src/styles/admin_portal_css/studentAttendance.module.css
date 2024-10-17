@@ -3,13 +3,13 @@
   margin-left: 15%;
   z-index: 900;
   position: absolute;
+  margin-top: 14%;
 }
 
 .attendanceBody {
   width: 80%;
   margin: 0 auto;
   height: 100%;
-  margin-top: 10%;
 }
 
 .attendanceHeader {
