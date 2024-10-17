@@ -1,275 +1,135 @@
 .mainbodyContainer {
-  width: 100%;
-  margin-top: 0;
-  height: 90vh;
-  background-color: #eeeeee;
-  padding-top: 0%;
+  width: 85%;
+  height: 82vh;
+  background-color: #131022;
+  margin-left: 15%;
+  padding-top: 10px;
 }
 
-.mainbodyBoxes {
-  margin-left: 19%;
+.mainbodyContent {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.boxesContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 30px;
 }
 
-.mainbodyBoxes .box {
-  background-color: #0f3834;
-  margin: 0;
-  width: 90%;
-  height: 25vh;
+.boxesContainer .box {
+  height: auto;
+  box-shadow: 0px 0px 5px #545454;
   border-radius: 10px;
-  color: aliceblue;
-  margin-top: 10px;
-  transition: transform 0.3s ease-in-out;
-  box-shadow: 0.9s ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 20px;
 }
 
-.mainbodyBoxes .box:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.boxIcon {
+.box .boxHeader {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 2%;
 }
 
-.boxDes {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-family: sans-serif;
-  color: orange;
-  text-transform: uppercase;
-  font-size: 1.2em;
+.box .boxHeader .icon {
+  color: #000;
+  font-size: 3em;
+  background-color: #c2c2c2;
+  margin-right: 15px;
 }
 
-.PaymentIcon {
-  font-size: 90px;
-  margin: 10px;
-}
-
-.paySchoolFee {
-  font-size: 18px;
-  font-weight: 700;
-  float: right;
-  margin: 0px 10px;
-}
-
-.EventIcon {
-  font-size: 90px;
-  margin: 10px;
-}
-
-.upcomingEvent {
-  font-size: 18px;
-  font-weight: 700;
-  float: right;
-  margin: 0px 10px;
-}
-
-.DirectionsBusIcon {
-  font-size: 90px;
-  margin: 10px;
-}
-
-.studentPercentage {
-  margin-left: 14%;
-  margin-top: 1.5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 1%;
-}
-
-
-.createEventContainer {
-  width: 100%;
-  height: 100%;
-}
-
-.createEventContent {
-  width: 500px;
-  height: auto;
-  background-color: #0b1e1c;
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-20%, -50%);
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 0px 10000px rgba(0, 0, 0, 0.5);
-  background-color: #fff;
-}
-
-.createEventContent h1 {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-size: 1.2em;
-  font-family: sans-serif;
-  cursor: pointer;
-}
-
-.inputFormContainer {
-  margin-top: 3%;
-}
-
-.inputFieldGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.inputFieldGrid .field {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.inputFieldGrid .field input {
-  width: 100%;
-  height: 50px;
-  margin-top: 10px;
-  border: 1px solid #a9a9a9;
-  padding-left: 15px;
-  border-radius: 5px;
-}
-
-.inputFieldNoGrid {
+.box .boxHeader .descriptions {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
 }
 
-.inputFieldNoGrid label {
-  margin-bottom: 10px;
+.box .boxHeader .descriptions p {
+  color: #c2c2c2;
+  margin-bottom: 5px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.inputFieldNoGrid textarea {
-  height: 150px;
-  padding: 10px;
-  border: 1px solid #a9a9a9;
+.box .boxHeader .descriptions h1 {
+  color: #c2c2c2;
+  font-size: 1em;
+  font-family: sans-serif;
 }
 
-.submitButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.lineContainer {
+  border-bottom: 1px solid #404040;
   margin-top: 30px;
 }
 
-.submitButton button {
-  width: 120px;
-  height: 50px;
-  background-color: #0f3834;
-  color: #fff;
-  font-size: 1.1em;
+.activePeople {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+.activePeople p {
+  color: #c2c2c2;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.activePeople h1 {
+  color: #c99b2c;
   font-family: sans-serif;
-  border: none;
+  font-size: 1em;
+}
+
+.bottomContainer {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.bottomContainer .box:nth-child(1) {
+  width: 100%;
+  height: 35vh;
+  box-shadow: 0px 0px 4px #545454;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.mobileSideMenu {
-  display: none;
+.bottomContainer .box .calendar {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #d0d0d0;
+  color: #131022;
 }
 
-@media (max-width: 700px) {
-  .mobileSideMenu {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 0;
-    top: 25%;
-    padding-left: 10px;
-  }
+.bottomContainer .box:nth-child(2) {
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 0px 4px #545454;
+  border-radius: 5px;
+  padding: 10px;
+}
 
-  .sideMenu {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    padding: 10px;
-  }
+.boxHeader {
+  display: flex;
+}
 
-  .sideMenu h1 {
-    font-size: 0.8em;
-    margin-left: 10px;
-  }
+.boxHeader h1 {
+  font-size: 1em;
+  color: #c99b2c;
+}
 
-  .sideMenuLogout {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: red;
-  }
+.listContainer {
+  margin-top: 20px;
+}
 
-  .sideMenuLogout h1 {
-    font-size: 0.8em;
-    font-weight: 700;
-  }
-
-  .mainbodyContainer {
-    width: 95%;
-    margin: 0 auto;
-    
-  }
-
-  .mainbodyBoxes {
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .mainbodyBoxes .box {
-    width: 100%;
-    margin: 5% auto;
-    height: 30vh;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .boxIcon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2%;
-  }
-
-  .boxDes {
-    font-size: 0.8em;
-    text-align: center;
-  }
-
-  .studentPercentage {
-    margin-left: 0%;
-    margin-top: 5.5%;
-    margin-bottom: 2%;
-  }
-
-  .malePercentage {
-    background-color: #f1efef;
-    border-radius: 5px;
-    width: 100%;
-    height: 12vh;
-  }
-
-  .femalePercentage {
-    width: 100%;
-    height: 12vh;
-  }
+.listContainer h1 {
+  color: #c2c2c2;
+  font-size: 1em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 100;
+  margin-top: 20px;
 }

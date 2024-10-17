@@ -18,7 +18,6 @@ function StudentList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [teachersPerPage, setTeachersPerPage] = useState(10);
-  const [searchInputClicked, setSearchInputClicked] = useState(false);
 
 
   const handlePerPageChange = (e) => {
@@ -93,25 +92,6 @@ function StudentList() {
         </Head>
         {teacherListView && (
           <div className={styles.teacherListContainer}>
-            <div
-              className={styles.searchTeacher}
-              onClick={() => setSearchInputClicked(true)}
-            >
-              <span>Search</span>
-              <SearchIcon />
-
-              {searchInputClicked && (
-                <>
-                  <div className={styles.searchInputContainer}>
-                    <input
-                      placeholder="Search for a Teacher"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                  </div>
-                </>
-              )}
-            </div>
             <div className={styles.tableContainer}>
               <div className={styles.tableHeader}>
                 <h1>First Name</h1>
@@ -178,7 +158,7 @@ function StudentList() {
                     onClick={() =>
                       setCurrentPage((prevPage) =>
                         prevPage <
-                          Math.ceil(searchForStudent.length / teachersPerPage)
+                          Math.ceil(searchForTeacher.length / teachersPerPage)
                           ? prevPage + 1
                           : prevPage
                       )

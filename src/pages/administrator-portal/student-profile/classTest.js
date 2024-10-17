@@ -58,6 +58,7 @@ function ClassTest({ selectedStudent }) {
       ]);
     }
   }, [selectedStudent?.Class]);
+
   const selectSubject = (subject) => {
     setSelectedSubject(subject);
     setChooseSubject(false);
@@ -148,10 +149,11 @@ function ClassTest({ selectedStudent }) {
           </div>
 
         </div>
+        <div className={styles.addScoreBtnContainer}>
+          <button onClick={() => setChooseSubject(true)}>Choose Subject</button>
+        </div>
       </div>
-      <div className={styles.addScoreBtnContainer}>
-        <button onClick={() => setChooseSubject(true)}>Choose Subject</button>
-      </div>
+
 
       {chooseSubject && (
         <>

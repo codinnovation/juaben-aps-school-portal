@@ -1,146 +1,124 @@
 .studentListContainer {
-   width: 83%;
-   margin-left: 17%;
-   margin-top: 0;
-   height: 90vh;
-   background-color: #eeeeee;
-   padding: 15px;
+  width: 85%;
+  margin-left: 15%;
+  height: 82vh;
+  padding: 5px;
+  background-color: #131022;
 }
 
-.searchStudent{
-   display: flex;
-   justify-content: flex-end;
-   align-items: center;
-   margin-bottom: 1%;
-   padding-top: 0;
-   cursor: pointer;
+.tableContainer {
+  margin-top: 2%;
 }
-
-
-.searchStudent span{
-   font-weight: 700;
-}
-
-.searchStudent input{
-   width: 350px;
-   height: 50px;
-   border-radius: 5px;
-   border: 1px solid #ccc;
-   padding-left: 10px;
-}
-
 .tableHeader {
-   width: 100%;
-   margin: 0 auto;
-   height: 7vh;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-   background-color: #0b1e1c;
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .tableHeader h1 {
-   color: #fff;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   font-size: 15px;
-   text-transform: uppercase;
-   font-family: sans-serif;
+  color: #ffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-family: sans-serif;
 }
 
 .tableColumn {
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-   margin-top:5px;
-   padding: 10.5px;
-   width: 100%;
-   margin: 10px auto;
-   background-color:#e7e7e7;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 5px;
+  height: 5.8vh;
+  width: 100%;
+  margin: 10px auto;
+  border: 1px solid #545454;
 }
 
 .tableColumn h1 {
-   color: #000;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   font-size: 13px;
-   font-weight: 100;
-   padding: 3px;
-   font-family: sans-serif;
+  color: #aeaeae;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7em;
+  font-weight: 100;
+  padding: 3px;
+  font-family: sans-serif;
+  text-transform:uppercase;
 }
 
-.tableColumn h1:nth-child(6){
-   color: #f5a826;
+.tableColumn h1:nth-child(6) {
+  color: #f5a826;
 }
-
 
 .paginationContainer {
-   width: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin-top: 20px;
-   border-radius: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  border-radius: 50px;
 }
 
 .paginationItems {
-   display: grid;
-   grid-template-columns: 1fr 8fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
 }
 
 .totalMembers {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .totalMembers h1 {
-   font-size: 15px;
-   color: #f5a826;
+  font-size: 15px;
+  color: #f5a826;
 }
 
-
 .totalMembers p {
-   margin-right: 5px;
-   color: #001f3f;
+  margin-right: 5px;
+  color: #aeaeae;
 }
 
 .navigation {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.navigation p{
-   background-color: #001f3f;
-   width: 30px;
-   height: 30px;
-   color: #fff;
-   justify-content: center;
-   align-items: center;
-   display: flex;
-   font-weight: 700;
-   margin: 5px;
-   border-radius: 50%;
+.navigation p {
+  background-color: #001f3f;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-weight: 700;
+  margin: 5px;
+  border-radius: 50%;
 }
 
 .navigation button {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 40px;
-   max-width: 80px;
-   width: 100%;
-   border: none;
-   outline: none;
-   color: #fff;
-   border-radius: 5px;
-   background-color: #f5a826;
-   transition: all 0.3s linear;
-   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  max-width: 80px;
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #f5a826;
+  transition: all 0.3s linear;
+  cursor: pointer;
 }
 
 .displayNumRow {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

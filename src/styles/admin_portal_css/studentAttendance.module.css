@@ -1,18 +1,16 @@
-.studentProfilePageContainer {
-  width: 77%;
-  margin-left: 20%;
-  margin-top: 1%;
-}
-
 .attendanceContainer {
-  width: 100%;
+  width: 85%;
+  margin-left: 15%;
+  z-index: 900;
+  position: absolute;
+  margin-top: 14%;
 }
 
 .attendanceBody {
   width: 80%;
   margin: 0 auto;
+  height: 100%;
 }
-
 
 .attendanceHeader {
   display: flex;
