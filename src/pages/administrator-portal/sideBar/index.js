@@ -59,7 +59,7 @@ function Sidebar() {
                 <ArrowRightIcon className={styles.icon2} />
               </div>
 
-              <div className={styles.linkContainer}>
+              <div className={styles.linkContainer} onClick={() => router.push('/administrator-portal/teachers-list')}>
                 <PeopleOutlineIcon className={styles.icon} />
                 <h1>Teacher&apos;s List</h1>
                 <ArrowRightIcon className={styles.icon2} />
