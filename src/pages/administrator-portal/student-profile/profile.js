@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import styles from "@/styles/admin_portal_css/profile.module.css";
-import DriverPhoto from '../../../../public/2042096.webp'
+import DriverPhoto from '../../../../public/studentprofile.avif'
 import Attendance from './attendance';
 import ClassTest from './classTest';
 import Fees from './fees';
@@ -171,25 +171,18 @@ function StudentProfilePage({
           </div>
 
           <div className={styles.driverAccountProfile}>
-            <div className={styles.driverPhotoContainer}>
-              <div className={styles.driverPhoto}>
-                <Image
-                  src={DriverPhoto}
-                  alt="driver-profile"
-                  className={styles.image}
-                />
-              </div>
-
-              <div className={styles.driverName}>
-                <h1>{`${selectedStudent?.FirstName} ${selectedStudent?.LastName}`}</h1>
-                <div className={styles.driverActive}>
-                  <p
-                    className={isActive ? styles.active : styles.inactive}
-                  ></p>{" "}
-                  <p>{isActive ? "Active" : "Inactive"}</p>
-                </div>
-              </div>
+            <div className={styles.driverPhoto}>
+              <Image
+                src={DriverPhoto}
+                alt="driver-profile"
+                className={styles.image}
+              />
             </div>
+
+            <div className={styles.driverName}>
+              <h1>{`${selectedStudent?.FirstName} ${selectedStudent?.LastName}`}</h1>
+            </div>
+
 
             <div className={styles.editContainer}>
               <div

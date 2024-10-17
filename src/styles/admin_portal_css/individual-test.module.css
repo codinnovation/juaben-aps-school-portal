@@ -3,6 +3,8 @@
   margin-left: 15%;
   z-index: 900;
   position: absolute;
+  margin-top: 13%;
+
 }
 
 .classScoreItems {
@@ -11,7 +13,6 @@
   padding: 20px;
   margin: 0% auto;
   border-radius: 5px;
-  margin-top: 6%;
 }
 
 .termSelection {
