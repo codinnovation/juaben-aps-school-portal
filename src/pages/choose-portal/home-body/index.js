@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/choose-portal/home-body.module.css";
+import LocalActivityIcon from '@mui/icons-material/LocalActivity';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import withSession from "@/lib/session";
-import { motion } from 'framer-motion';
 
 function Index() {
   const [storedPortal, setStoredPortal] = useState([]);
@@ -22,68 +23,54 @@ function Index() {
     <>
       <div className={styles.homeContainer}>
         <div className={styles.homeContent}>
-          <motion.div
-            className={styles.recentActivities}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <div className={styles.recentActivitiesHeader}>
+          <div className={styles.activitiesContainer}>
+            <div className={styles.activitiesHeader}>
+              <LocalActivityIcon className={styles.icon} />
               <h1>Recent Activities</h1>
             </div>
 
-            {recentActivities.slice(0, 4).map((activity, index) => (
-              <motion.div
-                className={styles.recentCard}
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className={styles.recentCardTime}>
-                  <h2>{activity?.time}</h2>
-                  <p>3 Hours Ago</p>
+            <div className={styles.activityBoxContainer}>
+              {recentActivities.slice(0, 5).map((page, index) => (
+                <div className={styles.activityBox} key={index}>
+                  <div className={styles.timeContainer}>
+                    <p>{page?.time}</p>
+                  </div>
+
+                  <hr className={styles.line} />
+
+                  <div className={styles.activityDescription}>
+                    <p>{page?.recentDetails}</p>
+                  </div>
                 </div>
+              ))}
 
-                <div className={styles.line}></div>
-
-                <div className={styles.recentDetails}>
-                  <h3>{activity?.recentDetails}</h3>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className={styles.pagesContainer}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <div className={styles.pagesContainerHeader}>
-              <h1>Frequently Accessed Pages</h1>
             </div>
 
-            <div className={styles.pagesCardContainer}>
-              {storedPortal.map((portal, index) => (
-                <motion.div
-                  className={styles.pagesCard}
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className={styles.pagesCircle}>
-                    <h1>{portal?.abbreviation}</h1>
+          </div>
+          <div className={styles.recentpageContainer}>
+            <div className={styles.recentpageHeader}>
+              <AutoStoriesIcon className={styles.icon} />
+              <h1>Frequent Pages</h1>
+            </div>
+
+            <div className={styles.recentBoxContainer}>
+              {storedPortal.slice(0, 5).map((page, index) => (
+                <div className={styles.recentBox} key={index}>
+                  <div className={styles.recentpageName}>
+                    <h1>{page?.abbreviation}</h1>
                   </div>
 
-                  <div className={styles.pagesCardName}>
-                    <h1>{portal?.portalName}</h1>
+                  <div className={styles.recentBoxName}>
+                    <h1>{page?.portalName}</h1>
                   </div>
 
-                  <div className={styles.pagesCardTime}>
-                    <h1>{portal?.time}</h1>
+                  <div className={styles.recentBoxTime}>
+                    <p>{page?.time}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </>
