@@ -96,25 +96,31 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.secondContent{
+.secondContent {
   display: flex;
   align-items: center;
   height: auto;
 }
 
-.logoutContainer{
+.logoutContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
 }
 
-.logoutContainer .icon{
+.logoutContainer .icon {
   margin-right: 10px;
   color: #c2c2c2;
 }
-.logoutContainer h1{
+.logoutContainer h1 {
   font-size: 1em;
   color: #c2c2c2;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+@media (max-width: 600px) {
+  .sidebarContainer {
+    display: none;
+  }
 }

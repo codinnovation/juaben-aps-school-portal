@@ -47,9 +47,9 @@
   color: #c2c2c2;
 }
 
-.academicYear h1{
+.academicYear h1 {
   font-size: 1em;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 100;
 }
 
@@ -67,4 +67,58 @@
   padding: 5px;
   border: 1px solid #636262;
   border-radius: 50%;
+}
+
+.schoolLogoContainer {
+  display: none;
+}
+
+.profilePhoto .icon2 {
+  font-size: 2.5em;
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .firstHeaderContainer {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+  }
+
+  .firstHeaderContent {
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 5px;
+  }
+
+  .schoolLogoContainer {
+    display: flex;
+  }
+
+  .schoolLogoContainer img {
+    width: 50%;
+    height: auto;
+  }
+
+  .searchContainer input {
+    width: 100%;
+    height: 45px;
+  }
+
+  .academicYear {
+    display: none;
+  }
+
+  .profilePhoto .icon {
+    display: none;
+  }
+
+  .profilePhoto .icon2 {
+    font-size: 2.5em;
+    display: flex;
+    color: #cdcccc;
+    padding: 5px;
+  }
 }
