@@ -5,7 +5,7 @@
   justify-content: center;
   min-height: 100vh;
   width: auto;
-  background: linear-gradient(to right, #c99b2c, #005c56);
+  background-color: #131022;
 }
 
 .authItems {
@@ -14,8 +14,7 @@
   padding: 10px;
   margin-top: 0%;
   border-radius: 20px;
-  background-color: #ffffff31;
-  box-shadow: 0px 0px 20px #ffffff1f;
+  box-shadow: 0px 0px 20px #545454;
 }
 
 .authLogin {
@@ -509,7 +508,7 @@
 /*=============Mobile / Iphones / Smartphones 320 - 480 x 480 - 896 ======*/
 @media (min-width: 320px) and (max-width: 480px) and (min-height: 480px) and (max-height: 896px) {
   .authItems {
-    width: 80%;
+    width: 85%;
     padding: 8px;
   }
 
