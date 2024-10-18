@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/choose-portal/home-body.module.css";
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import withSession from "@/lib/session";
 
 function Index() {
@@ -48,7 +49,7 @@ function Index() {
           </div>
           <div className={styles.recentpageContainer}>
             <div className={styles.recentpageHeader}>
-              <LocalActivityIcon className={styles.icon} />
+              <AutoStoriesIcon className={styles.icon} />
               <h1>Frequent Pages</h1>
             </div>
 

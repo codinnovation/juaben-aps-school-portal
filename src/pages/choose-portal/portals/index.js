@@ -1,10 +1,6 @@
 import React from "react";
+import { useRouter } from "next/router";
 import styles from "../../../styles/choose-portal/portals.module.css";
-import Person2Icon from "@mui/icons-material/Person2";
-import Diversity3Icon from '@mui/icons-material/Diversity3';
-import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import Link from "next/link";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import MoneyIcon from '@mui/icons-material/Money';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
@@ -12,7 +8,9 @@ import SchoolIcon from '@mui/icons-material/School';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import withSession from "@/lib/session";
 
+
 export default function Index() {
+  const router = useRouter();
   const handlePortalClick = (abbreviation, portalName) => {
     const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     const newPortal = { abbreviation, portalName, time };
@@ -40,7 +38,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className={styles.clickContainer}>
+          <div className={styles.clickContainer} onClick={() => handlePortalClick("AP", "Administrator Portal", router.push("/administrator-portal"))}>
             <h1>Click Now</h1>
             <ArrowRightIcon className={styles.icon} />
           </div>
@@ -56,7 +54,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className={styles.clickContainer}>
+          <div className={styles.clickContainer} onClick={() => handlePortalClick("TP", "Teacher's Portal", router.push("/teacher-portal"))}>
             <h1>Click Now</h1>
             <ArrowRightIcon className={styles.icon} />
           </div>
@@ -72,7 +70,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className={styles.clickContainer}>
+          <div className={styles.clickContainer} onClick={() => handlePortalClick("AC", "Accountant Portal", router.push("/accountant-portal"))}>
             <h1>Click Now</h1>
             <ArrowRightIcon className={styles.icon} />
           </div>
@@ -87,7 +85,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className={styles.clickContainer}>
+          <div className={styles.clickContainer} onClick={() => handlePortalClick("PP", "Parent Portal", router.push("/parent-portal"))}>
             <h1>Click Now</h1>
             <ArrowRightIcon className={styles.icon} />
           </div>

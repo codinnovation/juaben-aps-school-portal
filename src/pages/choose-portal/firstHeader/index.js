@@ -131,8 +131,8 @@ function Index({ user }) {
         }}
       >
         <DialogContent>
-          <button>Create Teacher&apos;s Account</button>
-          <button>Create Parents&apos;s Account</button>
+          <button onClick={() => router.push("/create-teacher")}>Create Teacher&apos;s Account</button>
+          <button onClick={() => router.push('/create-parent')}>Create Parents&apos;s Account</button>
         </DialogContent>
       </Dialog>
 

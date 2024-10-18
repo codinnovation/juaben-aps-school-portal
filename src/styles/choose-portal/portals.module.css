@@ -51,6 +51,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
 }
 
 .clickContainer .icon {
@@ -62,4 +63,44 @@
   color: #ccc;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 800;
+}
+
+@media (max-width: 600px) {
+  .portalContent {
+    width: 90%;
+    overflow-x: scroll;
+    display: flex;
+    padding: 5px;
+  }
+
+  .portalBox {
+    width: 190%;
+    height: auto;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .portalName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .portalName .icon {
+    color: #c99b2c;
+    font-size: 1.5em;
+  }
+
+  .portalName .name h1 {
+    font-size: 1em;
+  }
+
+  .portalName .name h1:nth-child(2) {
+    display: none;
+  }
+
+  .clickContainer h1 {
+    font-size: 0.8em;
+    font-weight: 400;
+  }
 }

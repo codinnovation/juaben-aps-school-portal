@@ -152,3 +152,49 @@
   font-size: 1em;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+
+@media (max-width: 600px) {
+  .homeContent{
+    width: 90%;
+    gap: 0;
+    grid-template-columns: 1fr;
+    padding-top: 10px;
+  }
+
+  .activitiesHeader h1 {
+    font-size: 0.8em;
+  }
+
+  .activityBoxContainer {
+    margin-top: 0%;
+  }
+
+  .activityBox {
+    padding: 8px;
+    grid-template-columns: 1fr 1fr 4fr;
+    margin-top: 10px;
+    height: 75px;
+  }
+
+  .timeContainer p {
+    color: #fff;
+    font-size: 0.75em;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    color: #c99b2c;
+  }
+  
+  .activityBox .line {
+    height: 100%;
+  }
+
+  .activityDescription p {
+    color: #fff;
+    font-weight: 100;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 0.8em;
+  }
+
+  .recentpageContainer{
+    display: none;
+  }
+}

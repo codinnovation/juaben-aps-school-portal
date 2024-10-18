@@ -38,12 +38,12 @@
 
 .searchContainer input {
   width: 100%;
-  height: 60px;
+  height: 70px;
   border: 1px solid #545454;
   background: none;
   padding-left: 15px;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 20px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
@@ -64,9 +64,11 @@
 
 .notificationContainer {
   position: relative;
-  display: inline-block;
   color: #fff;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .notificationContainer .icon {
@@ -132,4 +134,39 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 9999;
+}
+
+@media (max-width: 600px) {
+  .firstHeaderContent {
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+  }
+
+  .searchContainer {
+    display: none;
+  }
+
+  .logoContainer img {
+    width: 35%;
+    height: auto;
+  }
+
+  .notificationContainer .icon {
+    font-size: 2.1em;
+  }
+
+  .notificationContainer h1 {
+    font-size: 0.9em;
+    font-weight: 100;
+  }
+
+  .profilePhoto .icon {
+    color: #fff;
+    font-size: 2.1em;
+  }
+
+  .logoutContainer .icon {
+    font-size: 2.1em;
+  }
+  
 }
