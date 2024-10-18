@@ -129,7 +129,90 @@
 .listContainer h1 {
   color: #c2c2c2;
   font-size: 1em;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 100;
   margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .mainbodyContainer {
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+    padding-top: 20px;
+  }
+
+  .boxesContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .boxesContainer .box {
+    height: auto;
+    box-shadow: 0px 0px 5px #545454;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  .box .boxHeader .icon {
+    font-size: 2em;
+    margin-right: 8px;
+    color: #c99b2c;
+    background: none;
+  }
+
+  .box .boxHeader .descriptions p {
+    font-size: 0.8em;
+    margin-bottom: 5px;
+  }
+
+  .box .boxHeader .descriptions h1 {
+    color: #c2c2c2;
+    font-size: 0.8em;
+  }
+
+  .lineContainer {
+    margin-top: 15px;
+  }
+
+  .activePeople {
+    margin-top: 15px;
+  }
+
+  .activePeople p {
+    font-size: 0.8em;
+    margin-bottom: 5px;
+  }
+  
+  .activePeople h1 {
+    color: #c2c2c2;
+    font-size: 0.8em;
+  }
+
+  .bottomContainer {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .bottomContainer .box:nth-child(1) {
+    width: 100%;
+    height: auto;
+  }
+
+  .boxHeader h1 {
+    font-size: 0.9em;
+    color: #c99b2c;
+  }
+  
+  .listContainer {
+    margin-top: 10px;
+  }
+
+  .listContainer h1 {
+    font-size: 0.85em;
+    margin-top: 10px;
+  }
 }
