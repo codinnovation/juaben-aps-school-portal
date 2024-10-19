@@ -122,33 +122,37 @@
     padding: 5px;
   }
 
-  .menuContainer{
+  .menuContainer {
     width: 40%;
     height: 100vh;
     top: 0;
     left: 0;
     z-index: 900;
     position: fixed;
-    background-color: #ccc;
+    background-color: #000;
   }
 
-  .menuContent{
+  .menuContent {
     padding: 10px;
     padding-top: 20px;
     display: flex;
     flex-direction: column;
   }
 
-  .menuContent a{
-    font-size: 1em;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: #000;
-    font-weight: 700;
-    background-color: #6c6c6c55;
-    width: 100%;
-    padding: 11px;
-    margin-top: 20px;
-    text-decoration: none;
-    border-radius: 6px;
+  .link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .link .icon{
+    color: #c99b2c;
+    font-size: 1.4em;
+  }
+
+  .link h1{
+    color: #ccc;
+    font-size: 0.85em;
   }
 }

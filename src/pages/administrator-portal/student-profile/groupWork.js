@@ -3,8 +3,10 @@ import styles from "../../../styles/admin_portal_css/individual-test.module.css"
 import { ref, get } from "firebase/database";
 import { db } from "../../../lib/firebase";
 import PanToolAltIcon from "@mui/icons-material/PanToolAlt";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
-function GroupWork({ selectedStudent }) {
+
+function IndividualTest({ selectedStudent, hideStudentProfilePage }) {
   const [selectedSubject, setSelectedSubject] = useState("");
   const [subjectScores, setSubjectScores] = useState({});
   const [chooseSubject, setChooseSubject] = useState(false);
@@ -111,46 +113,111 @@ function GroupWork({ selectedStudent }) {
 
   return (
     <>
-      <div className={styles.classScoreContainer}>
-        <div className={styles.classScoreItems}>
-          <div className={styles.termSelection}>
-            <label>Select Term:</label>
-            <select
-              value={selectedTerm}
-              onChange={(e) => setSelectedTerm(e.target.value)}
+      <div className={styles.profileContainer}>
+        <div className={styles.profileContent}>
+          <div className={styles.profileHeader}>
+            <div className={styles.backButton}>
+              <div
+                className={styles.button}
+                onClick={hideStudentProfilePage}
+              >
+                <KeyboardDoubleArrowLeftIcon className={styles.icon} />
+                <h1>Back</h1>
+              </div>
+            </div>
+          </div>
+          <div className={styles.profileNavigation}>
+            <div
+              className={`${styles.link} `}
+              onClick={() => navigateToComp("profile")}
             >
-              <option value=""></option>
-              <option value="Term One">Term One</option>
-              <option value="Term Two" disabled>
-                Term Two
-              </option>
-              <option value="Term Three" disabled>
-                Term Three
-              </option>
-            </select>
-          </div>
+              <h1 className={styles.h1}>Profile</h1>
+            </div>
 
-          <div className={styles.subjectHeader}>
-            <h1>{`Group Work - ${selectedSubject}`}</h1>
-          </div>
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("attendance")}
+            >
+              <h1 className={styles.h1}>Attendance</h1>
+            </div>
 
-          <div className={styles.subjectScores}>
-            <p>{renderSubjectScores(selectedTerm, selectedSubject)}</p>
-          </div>
-        </div>
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("fees")}
+            >
+              <h1 className={styles.h1}>Fees</h1>
+            </div>
 
-        <div className={styles.mobileAddScore}>
-          <div
-            className={styles.addContainer}
-            onClick={() => setChooseSubject(true)}
-          >
-            <PanToolAltIcon className={styles.icon} />
-            <h1> Subject</h1>
-          </div>
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("individualTest")}
+            >
+              <h1 className={styles.h1}>Individual Test</h1>
+            </div>
 
-        </div>
-        <div className={styles.addScoreBtnContainer}>
-          <button onClick={() => setChooseSubject(true)}>Choose Subject</button>
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("groupWork")}
+            >
+              <h1 className={styles.h1}>Group Work</h1>
+            </div>
+
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("projectWork")}
+            >
+              <h1 className={styles.h1}>Project Work</h1>
+            </div>
+
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("classTest")}
+            >
+              <h1 className={styles.h1}>Class Test</h1>
+            </div>
+          </div>
+          <div className={styles.classScoreContainer}>
+            <div className={styles.classScoreItems}>
+              <div className={styles.termSelection}>
+                <label>Select Term:</label>
+                <select
+                  value={selectedTerm}
+                  onChange={(e) => setSelectedTerm(e.target.value)}
+                >
+                  <option value=""></option>
+                  <option value="Term One">Term One</option>
+                  <option value="Term Two" disabled>
+                    Term Two
+                  </option>
+                  <option value="Term Three" disabled>
+                    Term Three
+                  </option>
+                </select>
+              </div>
+
+              <div className={styles.subjectHeader}>
+                <h1>{`Individual Test - ${selectedSubject}`}</h1>
+              </div>
+
+              <div className={styles.subjectScores}>
+                <p>{renderSubjectScores(selectedTerm, selectedSubject)}</p>
+              </div>
+            </div>
+
+            <div className={styles.mobileAddScore}>
+              <div
+                className={styles.addContainer}
+                onClick={() => setChooseSubject(true)}
+              >
+                <PanToolAltIcon className={styles.icon} />
+                <h1> Subject</h1>
+              </div>
+
+            </div>
+            <div className={styles.addScoreBtnContainer}>
+              <button onClick={() => setChooseSubject(true)}>Choose Subject</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -172,10 +239,11 @@ function GroupWork({ selectedStudent }) {
               <button onClick={() => setChooseSubject(false)}>Hide</button>
             </div>
           </div>
+
         </>
       )}
     </>
   );
 }
 
-export default GroupWork;
+export default IndividualTest;

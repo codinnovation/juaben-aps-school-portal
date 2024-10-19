@@ -7,6 +7,8 @@
 }
 
 .tableContainer {
+  width: 95%;
+  margin: 0 auto;
   margin-top: 2%;
 }
 
@@ -122,6 +124,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.isLoadingContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  z-index: 900;
+  top: 50%;
+  left: 50%;
 }
 
 @media (max-width: 600px) {

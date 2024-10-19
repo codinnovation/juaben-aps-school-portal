@@ -105,109 +105,109 @@ function StudentProfilePage({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className={styles.profileContainer}>
-        <div className={styles.profileContent}>
-          <div className={styles.profileHeader}>
-            <div className={styles.backButton}>
-              <div
-                className={styles.button}
-                onClick={hideStudentProfilePage}
-              >
-                <KeyboardDoubleArrowLeftIcon className={styles.icon} />
-                <h1>Back</h1>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.profileNavigation}>
-            <div
-              className={`${styles.link} ${activeComponent === "profile" ? styles.activeLink : ""}`}
-              onClick={() => navigateToComp("profile")}
-            >
-              <h1 className={styles.h1}>Profile</h1>
-            </div>
-
-            <div
-              className={`${styles.link} ${activeComponent === "attendance" ? styles.activeLink : ""}`}
-              onClick={() => navigateToComp("attendance")}
-            >
-              <h1 className={styles.h1}>Attendance</h1>
-            </div>
-
-            <div
-              className={`${styles.link} ${activeComponent === "fees" ? styles.activeLink : ""}`}
-              onClick={() => navigateToComp("fees")}
-            >
-              <h1 className={styles.h1}>Fees</h1>
-            </div>
-
-            <div
-              className={`${styles.link} ${activeComponent === "individualTest" ? styles.activeLink : ""}`}
-              onClick={() => navigateToComp("individualTest")}
-            >
-              <h1 className={styles.h1}>Individual Test</h1>
-            </div>
-
-            <div
-              className={`${styles.link} ${activeComponent === "groupWork" ? styles.activeLink : ""}`}
-              onClick={() => navigateToComp("groupWork")}
-            >
-              <h1 className={styles.h1}>Group Work</h1>
-            </div>
-
-            <div
-              className={`${styles.link} ${activeComponent === "projectWork" ? styles.activeLink : ""}`}
-              onClick={() => navigateToComp("projectWork")}
-            >
-              <h1 className={styles.h1}>Project Work</h1>
-            </div>
-
-            <div
-              className={`${styles.link} ${activeComponent === "classTest" ? styles.activeLink : ""}`}
-              onClick={() => navigateToComp("classTest")}
-            >
-              <h1 className={styles.h1}>Class Test</h1>
-            </div>
-          </div>
-
-          <div className={styles.driverAccountProfile}>
-            <div className={styles.driverPhoto}>
-              <Image
-                src={DriverPhoto}
-                alt="driver-profile"
-                className={styles.image}
-              />
-            </div>
-
-            <div className={styles.driverName}>
-              <h1>{`${selectedStudent?.FirstName} ${selectedStudent?.LastName}`}</h1>
-            </div>
-
-
-            <div className={styles.editContainer}>
-              <div
-                className={styles.edit}
-                onClick={() => setEditMode(!editMode)}
-              >
-                <EditIcon className={styles.editIcon} />
-                <p>Edit</p>
-              </div>
-
-              <div className={styles.saveChangesButton}>
-                <button
-                  className={editMode ? styles.saveChangesButtonActive : ""}
-                  disabled={editMode ? false : true}
-                  onClick={handleUpdateStudent}
+      {activeComponent === "profile" && (
+        <div className={styles.profileContainer}>
+          <div className={styles.profileContent}>
+            <div className={styles.profileHeader}>
+              <div className={styles.backButton}>
+                <div
+                  className={styles.button}
+                  onClick={hideStudentProfilePage}
                 >
-                  Save Changes
-                </button>
+                  <KeyboardDoubleArrowLeftIcon className={styles.icon} />
+                  <h1>Back</h1>
+                </div>
               </div>
             </div>
-          </div>
 
-          {activeComponent === "profile" && (
+            <div className={styles.profileNavigation}>
+              <div
+                className={`${styles.link} ${activeComponent === "profile" ? styles.activeLink : ""}`}
+                onClick={() => navigateToComp("profile")}
+              >
+                <h1 className={styles.h1}>Profile</h1>
+              </div>
 
-            <div className={styles.driverInformationContainer}>
+              <div
+                className={`${styles.link} ${activeComponent === "attendance" ? styles.activeLink : ""}`}
+                onClick={() => navigateToComp("attendance")}
+              >
+                <h1 className={styles.h1}>Attendance</h1>
+              </div>
+
+              <div
+                className={`${styles.link} ${activeComponent === "fees" ? styles.activeLink : ""}`}
+                onClick={() => navigateToComp("fees")}
+              >
+                <h1 className={styles.h1}>Fees</h1>
+              </div>
+
+              <div
+                className={`${styles.link} ${activeComponent === "individualTest" ? styles.activeLink : ""}`}
+                onClick={() => navigateToComp("individualTest")}
+              >
+                <h1 className={styles.h1}>Individual Test</h1>
+              </div>
+
+              <div
+                className={`${styles.link} ${activeComponent === "groupWork" ? styles.activeLink : ""}`}
+                onClick={() => navigateToComp("groupWork")}
+              >
+                <h1 className={styles.h1}>Group Work</h1>
+              </div>
+
+              <div
+                className={`${styles.link} ${activeComponent === "projectWork" ? styles.activeLink : ""}`}
+                onClick={() => navigateToComp("projectWork")}
+              >
+                <h1 className={styles.h1}>Project Work</h1>
+              </div>
+
+              <div
+                className={`${styles.link} ${activeComponent === "classTest" ? styles.activeLink : ""}`}
+                onClick={() => navigateToComp("classTest")}
+              >
+                <h1 className={styles.h1}>Class Test</h1>
+              </div>
+            </div>
+
+            <div className={styles.studentProfile}>
+              <div className={styles.studentPhoto}>
+                <Image
+                  src={DriverPhoto}
+                  alt="driver-profile"
+                  className={styles.image}
+                />
+              </div>
+
+              <div className={styles.studentName}>
+                <h1>{`${selectedStudent?.FirstName} ${selectedStudent?.LastName}`}</h1>
+              </div>
+
+
+              <div className={styles.editContainer}>
+                <div
+                  className={styles.edit}
+                  onClick={() => setEditMode(!editMode)}
+                >
+                  <EditIcon className={styles.editIcon} />
+                  <p>Edit</p>
+                </div>
+
+                <div className={styles.saveChangesButton}>
+                  <button
+                    className={editMode ? styles.saveChangesButtonActive : ""}
+                    disabled={editMode ? false : true}
+                    onClick={handleUpdateStudent}
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
+            <div className={styles.studentInfoContainer}>
               <div className={styles.fieldContainer}>
                 <div className={styles.field}>
                   <label>First Name</label>
@@ -496,10 +496,9 @@ function StudentProfilePage({
 
               </div>
             </div>
-          )}
-
+          </div>
         </div>
-      </div>
+      )}
 
       <Dialog open={openModal} onClose={handleCloseModal}>
         <DialogTitle

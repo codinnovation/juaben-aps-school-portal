@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/admin_portal_css/studentAttendance.module.css";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import { ref, get } from "firebase/database";
 import { db } from "../../../lib/firebase";
 
-function StudentAttendance({ selectedStudent }) {
+function StudentAttendance({ selectedStudent, hideStudentProfilePage,navigateToComp }) {
   const [attendanceData, setAttendanceData] = useState([]);
   const [term, setTerm] = useState("Term One");
 
@@ -48,45 +49,110 @@ function StudentAttendance({ selectedStudent }) {
 
   return (
     <>
-      <div className={styles.attendanceContainer}>
-        <div className={styles.attendanceBody}>
-          <div className={styles.termSelection}>
-            <label>Select Term:</label>
-            <select value={term} onChange={handleTermChange}>
-              <option value=""></option>
-              <option value="Term One">Term One</option>
-              <option value="Term Two" disabled>
-                Term 2
-              </option>
-              <option value="Term Three" disabled>
-                Term 3
-              </option>
-            </select>
+      <div className={styles.profileContainer}>
+        <div className={styles.profileContent}>
+          <div className={styles.profileHeader}>
+            <div className={styles.backButton}>
+              <div
+                className={styles.button}
+                onClick={hideStudentProfilePage}
+              >
+                <KeyboardDoubleArrowLeftIcon className={styles.icon} />
+                <h1>Back</h1>
+              </div>
+            </div>
           </div>
-          <div className={styles.attendanceHeader}>
-            <h1>Student&apos;s Attendance</h1>
+          <div className={styles.profileNavigation}>
+            <div
+              className={`${styles.link} `}
+              onClick={() => navigateToComp("profile")}
+            >
+              <h1 className={styles.h1}>Profile</h1>
+            </div>
+
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("attendance")}
+            >
+              <h1 className={styles.h1}>Attendance</h1>
+            </div>
+
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("fees")}
+            >
+              <h1 className={styles.h1}>Fees</h1>
+            </div>
+
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("individualTest")}
+            >
+              <h1 className={styles.h1}>Individual Test</h1>
+            </div>
+
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("groupWork")}
+            >
+              <h1 className={styles.h1}>Group Work</h1>
+            </div>
+
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("projectWork")}
+            >
+              <h1 className={styles.h1}>Project Work</h1>
+            </div>
+
+            <div
+              className={`${styles.link}`}
+              onClick={() => navigateToComp("classTest")}
+            >
+              <h1 className={styles.h1}>Class Test</h1>
+            </div>
           </div>
-          <div className={styles.attendanceTable}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Monday</th>
-                  <th>Tuesday</th>
-                  <th>Wednesday</th>
-                  <th>Thursday</th>
-                  <th>Friday</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{renderAttendanceByDay("Monday")}</td>
-                  <td>{renderAttendanceByDay("Tuesday")}</td>
-                  <td>{renderAttendanceByDay("Wednesday")}</td>
-                  <td>{renderAttendanceByDay("Thursday")}</td>
-                  <td>{renderAttendanceByDay("Friday")}</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className={styles.attendanceContainer}>
+            <div className={styles.attendanceBody}>
+              <div className={styles.termSelection}>
+                <label>Select Term:</label>
+                <select value={term} onChange={handleTermChange}>
+                  <option value=""></option>
+                  <option value="Term One">Term One</option>
+                  <option value="Term Two" disabled>
+                    Term 2
+                  </option>
+                  <option value="Term Three" disabled>
+                    Term 3
+                  </option>
+                </select>
+              </div>
+              <div className={styles.attendanceHeader}>
+                <h1>Student&apos;s Attendance</h1>
+              </div>
+              <div className={styles.attendanceTable}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Monday</th>
+                      <th>Tuesday</th>
+                      <th>Wednesday</th>
+                      <th>Thursday</th>
+                      <th>Friday</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{renderAttendanceByDay("Monday")}</td>
+                      <td>{renderAttendanceByDay("Tuesday")}</td>
+                      <td>{renderAttendanceByDay("Wednesday")}</td>
+                      <td>{renderAttendanceByDay("Thursday")}</td>
+                      <td>{renderAttendanceByDay("Friday")}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

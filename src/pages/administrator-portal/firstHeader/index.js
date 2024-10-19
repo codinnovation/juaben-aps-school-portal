@@ -8,8 +8,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import Image from "next/image";
 import SchoolImage from '../../../../public/logo2.png';
 import Link from "next/link";
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { useRouter } from "next/router";
+
 
 function FirstHeading({ setSearchQuery, searchQuery }) {
+  const router = useRouter()
   const [openMenuContainer, setOpenMenuContainer] = useState(false);
 
   return (
@@ -56,9 +60,56 @@ function FirstHeading({ setSearchQuery, searchQuery }) {
         <>
           <div className={styles.menuContainer}>
             <div className={styles.menuContent}>
-            <Link href="/administrator-portal/">Dashboard</Link>
-              <Link href="/administrator-portal/student-list">Student List</Link>
-              <Link href="/administrator-portal/teachers-list">Teacher&apos;s List</Link>
+              <div className={styles.link} onClick={() => router.push("/administrator-portal/")}>
+                <ArrowRightIcon className={styles.icon} />
+                <h1>Dashboard</h1>
+              </div>
+
+              <div className={styles.link} onClick={() => router.push("/administrator-portal/register-teacher")}>
+                <ArrowRightIcon className={styles.icon} />
+                <h1>Add Teacher</h1>
+              </div>
+
+              <div className={styles.link} onClick={() => router.push("/administrator-portal/register-non-staff")}>
+                <ArrowRightIcon className={styles.icon} />
+                <h1>Add Non-Staff</h1>
+              </div>
+
+
+              <div className={styles.link} onClick={() => router.push("/administrator-portal/student-list")}>
+                <ArrowRightIcon className={styles.icon} />
+                <h1>Student&apos;s List</h1>
+              </div>
+
+              <div className={styles.link} onClick={() => router.push("/administrator-portal/teachers-list")}>
+                <ArrowRightIcon className={styles.icon} />
+                <h1>Teacher&apos;s List</h1>
+              </div>
+
+              <div className={styles.link} onClick={() => router.push("/administrator-portal/non-staff-list")}>
+                <ArrowRightIcon className={styles.icon} />
+                <h1>Non-staff List</h1>
+              </div>
+
+              <div className={styles.link} onClick={() => router.push("/administrator-portal/teachers-notifications")}>
+                <ArrowRightIcon className={styles.icon} />
+                <h1>T Notifications</h1>
+              </div>
+
+              <div className={styles.link} onClick={() => router.push("/administrator-portal/parents-notifications")}>
+                <ArrowRightIcon className={styles.icon} />
+                <h1>P Notifications</h1>
+              </div>
+
+              <div className={styles.link} onClick={() => router.push("/administrator-portal/events")}>
+                <ArrowRightIcon className={styles.icon} />
+                <h1>Events</h1>
+              </div>
+
+              <div className={styles.link} onClick={() => router.push("/administrator-portal/set-student-fees")}>
+                <ArrowRightIcon className={styles.icon} />
+                <h1>Fees</h1>
+              </div>
             </div>
           </div>
         </>
