@@ -152,7 +152,7 @@ function StudentList() {
                           {i + 1}
                         </p>
                       ) : i === 3 ? (
-                        <span key="ellipsis">...</span>
+                        <span key="ellipsis" style={{color: '#fff'}}>...</span>
                       ) : null
                     )}
                     <button

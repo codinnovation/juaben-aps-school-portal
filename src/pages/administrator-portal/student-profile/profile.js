@@ -33,7 +33,6 @@ function StudentProfilePage({
   const [activeComponent, setActiveComponent] = useState("profile");
   const [openModal, setOpenModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const [isActive, setIsActive] = useState(true);
 
   const [editDriverHolder, setEditDriverHolder] = useState({
     FirstName: selectedStudent?.FirstName,
@@ -524,6 +523,7 @@ function StudentProfilePage({
           selectedStudent={selectedStudent}
           attendance={attendance}
           hideStudentProfilePage={hideStudentProfilePage}
+          activeComponent={activeComponent}
         />
       )}
 
@@ -532,6 +532,7 @@ function StudentProfilePage({
           navigateToComp={navigateToComp}
           hideStudentProfilePage={hideStudentProfilePage}
           selectedStudent={selectedStudent}
+          activeComponent={activeComponent}
         />
       )}
 
@@ -540,6 +541,8 @@ function StudentProfilePage({
           navigateToComp={navigateToComp}
           selectedStudent={selectedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
+          activeComponent={activeComponent}
+
         />
       )}
 
@@ -548,6 +551,8 @@ function StudentProfilePage({
           navigateToComp={navigateToComp}
           selectedStudent={selectedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
+          activeComponent={activeComponent}
+
         />
       )}
 
@@ -556,6 +561,8 @@ function StudentProfilePage({
           navigateToComp={navigateToComp}
           selectedStudent={selectedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
+          activeComponent={activeComponent}
+
         />
       )}
       {activeComponent === "projectWork" && (
@@ -563,6 +570,8 @@ function StudentProfilePage({
           navigateToComp={navigateToComp}
           selectedStudent={selectedStudent}
           hideStudentProfilePage={hideStudentProfilePage}
+          activeComponent={activeComponent}
+
         />
       )}
 
