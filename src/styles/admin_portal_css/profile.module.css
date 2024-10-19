@@ -1,5 +1,5 @@
 .profileContainer {
-  height: 100%;
+  height: 100vh;
   width: 85%;
   margin-left: 15%;
   top: 0;
@@ -11,16 +11,20 @@
 }
 
 .profileContent {
-  width: 80%;
-  height: 100%;
+  width: 90%;
+  height: auto;
   margin: 0% auto;
-  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .profileHeader {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 56.5%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  margin-top: 2%;
 }
 
 .backButton {
@@ -50,7 +54,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1%;
+  height: 100%;
+  margin-top: 2%;
 }
 
 .profileNavigation .link {
@@ -89,37 +94,37 @@
   text-transform: uppercase;
 }
 
-.driverAccountProfile {
+.studentProfile {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  margin-top: 3.5%;
+  margin-top: 2%;
 }
 
-.driverPhoto {
+.studentPhoto {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.driverPhoto img {
-  width: 50%;
+.studentPhoto img {
+  width: 40%;
   border-radius: 50%;
   height: auto;
 }
 
-.driverName {
+.studentName {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.driverName h1 {
-  font-size: 1.3em;
+.studentName h1 {
+  font-size: 1.8em;
   text-transform: uppercase;
   font-weight: 400;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #c99b2c;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
@@ -137,14 +142,15 @@
 }
 
 .editContainer .edit p {
-  font-size: 16px;
+  font-size: 1em;
   font-family: sans-serif;
   font-weight: 700;
 }
 
 .editContainer .edit .editIcon {
-  font-size: 19px;
+  font-size: 1.1em;
   margin-right: 8px;
+  color: #c99b2c;
 }
 
 .saveChangesButton {
@@ -157,7 +163,7 @@
 .saveChangesButton button {
   background-color: #dedede;
   color: rgba(159, 159, 159, 1);
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 700;
   width: 151px;
   height: 53px;
@@ -169,16 +175,14 @@
   color: #fff;
 }
 
-.driverInformationContainer {
-  width: 100%;
-  height: auto;
-  margin-top: 3%;
+.studentInfoContainer {
+  margin-top: 3.5%;
 }
 
 .fieldContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 25px;
+  gap: 8%;
 }
 
 .fieldContainer .field {
@@ -263,12 +267,12 @@
     font-size: 0.65em;
   }
 
-  .driverAccountProfile {
+  .studentProfile {
     grid-template-columns: 1fr 1fr;
     margin-top: 10%;
   }
 
-  .driverName {
+  .studentName {
     display: none;
   }
 

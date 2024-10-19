@@ -1,9 +1,178 @@
-.studentProfilePageContainer {
+.profileContainer {
+  height: 100vh;
   width: 85%;
   margin-left: 15%;
-  z-index: 900;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 400;
   position: absolute;
-  margin-top: 13%;
+  background-color: #ebecf1;
+}
+
+.profileContent {
+  width: 90%;
+  height: auto;
+  margin: 0% auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profileHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  margin-top: 2%;
+}
+
+.backButton {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.backButton .button {
+  background-color: #250035;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 50px;
+  padding: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.backButton .button h1 {
+  font-size: 0.9em;
+  font-family: sans-serif;
+}
+
+.profileNavigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 2%;
+}
+
+.profileNavigation .link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profileNavigation .link {
+  background-color: #fff;
+  width: 150px;
+  height: 50px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.profileNavigation .activeLink {
+  background-color: #000;
+  color: #fff;
+  width: 150px;
+  height: 50px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.profileNavigation .activeLink .h1 {
+  color: #fff;
+}
+
+.profileNavigation .link h1 {
+  font-size: 0.72em;
+  font-weight: 900;
+  color: #000;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+
+.studentProfile {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin-top: 2%;
+}
+
+.studentPhoto {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.studentPhoto img {
+  width: 40%;
+  border-radius: 50%;
+  height: auto;
+}
+
+.studentName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.studentName h1 {
+  font-size: 1.8em;
+  text-transform: uppercase;
+  font-weight: 400;
+  border-bottom: 1px solid #c99b2c;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.editContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.editContainer .edit {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+.editContainer .edit p {
+  font-size: 1em;
+  font-family: sans-serif;
+  font-weight: 700;
+}
+
+.editContainer .edit .editIcon {
+  font-size: 1.1em;
+  margin-right: 8px;
+  color: #c99b2c;
+}
+
+.saveChangesButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+}
+
+.saveChangesButton button {
+  background-color: #dedede;
+  color: rgba(159, 159, 159, 1);
+  font-size: 1em;
+  font-weight: 700;
+  width: 151px;
+  height: 53px;
+  border: none;
+}
+
+.saveChangesButton .saveChangesButtonActive {
+  background-color: #250035;
+  color: #fff;
 }
 
 .studentFeesContainer {
@@ -111,4 +280,113 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .profileContainer {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    z-index: 900;
+  }
+
+  .profileContent {
+    width: 95%;
+    padding-top: 10px;
+  }
+
+  .profileHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .backButton .button {
+    height: 40px;
+    padding: 3px;
+  }
+
+  .backButton .button h1 {
+    font-size: 0.8em;
+    font-family: sans-serif;
+  }
+
+  .profileNavigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .profileNavigation .link {
+    width: auto;
+    height: 40px;
+  }
+
+  .profileNavigation .link h1 {
+    font-size: 0.65em;
+  }
+
+  .studentProfile {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10%;
+  }
+
+  .studentName {
+    display: none;
+  }
+
+  .editContainer .edit p {
+    font-size: 0.9em;
+  }
+
+  .editContainer .edit .editIcon {
+    font-size: 1em;
+    margin-right: 1px;
+  }
+
+  .saveChangesButton {
+    margin-left: 10px;
+  }
+  .saveChangesButton button {
+    font-size: 0.9em;
+    width: 100%;
+    height: 40px;
+    padding: 6px;
+    border: none;
+  }
+
+  .studentFeesContainer {
+    width: 100%;
+    margin-top: 6%;
+  }
+
+  .header1 label {
+    font-size: 0.8em;
+    margin-bottom: 5px;
+  }
+
+  .header1 h1 {
+    padding: 10px;
+    font-size: 1em;
+    width: 100%;
+  }
+
+  .header2 label {
+    font-size: 0.8em;
+    margin-bottom: 5px;
+  }
+
+  .header2 h1 {
+    padding: 10px;
+    font-size: 1em;
+    width: 100%;
+  }
+
+  .paymentHistory {
+    margin-top: 7%;
+  }
+
+  .paymentHistory h1 {
+    font-size: 0.9em;
+  }
 }
