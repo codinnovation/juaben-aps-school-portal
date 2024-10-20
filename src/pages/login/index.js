@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import styles from "../../styles/login.module.css";
-import VisibilityOffOutlined from "@mui/icons-material/VisibilityOffOutlined";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -12,14 +10,23 @@ import { auth } from ".././../lib/firebase";
 
 function LoginForm() {
   const router = useRouter();
-  const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-
+  const [rememberMe, setRememberMe] = useState(false); // New state for "Remember Me"
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
   });
+
+  // Automatically populate email from localStorage if "Remember Me" was checked
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("savedEmail");
+    if (savedEmail) {
+      setUserCredentials((prev) => ({
+        ...prev,
+        email: savedEmail,
+      }));
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +34,10 @@ function LoginForm() {
       ...prevCredentials,
       [name]: value,
     }));
+  };
+
+  const handleRememberMeChange = (e) => {
+    setRememberMe(e.target.checked);
   };
 
   const handleFormSubmit = async (e) => {
@@ -48,21 +59,23 @@ function LoginForm() {
       });
 
       if (response.ok) {
-        toast.success(`Welcome   ${userCredentials.email}`);
-        console.log(userCredentials.user)
+        if (rememberMe) {
+          localStorage.setItem("savedEmail", userCredentials.email);
+        } else {
+          localStorage.removeItem("savedEmail");
+        }
+
+        toast.success(`Welcome ${userCredentials.email}`);
         router.push("/");
-        setIsSubmitting(false);
       } else {
         toast.error("Login Failed, Enter valid credentials");
-        setIsSubmitting(false);
         setUserCredentials({
           email: "",
           password: "",
         });
       }
     } catch (error) {
-      toast.error("Error Occurred");
-      setIsSubmitting(false);
+      toast.error("Login Failed");
       setUserCredentials({
         email: "",
         password: "",
@@ -86,67 +99,6 @@ function LoginForm() {
 
   return (
     <>
-      <Head>
-        <title>Please Sign In</title>
-        <link rel="icon" href="/logo2.png" />
-      </Head>
-
-      <div className={styles.authContainer}>
-        <div className={styles.authItems}>
-          <div className={styles.authLogin}>
-            <h2>Login</h2>
-          </div>
-
-          <div className={styles.authForm}>
-            <form onSubmit={handleFormSubmit}>
-              <div className={styles.authFormInput}>
-                <label>Email</label>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  required
-                  value={userCredentials.email}
-                  onChange={handleInputChange}
-                  placeholder="example@gmail.com"
-                />
-              </div>
-
-              <div className={styles.authFormInput}>
-                <label>Password</label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  required
-                  value={userCredentials.password}
-                  onChange={handleInputChange}
-                />
-                {showPassword ? (
-                  <VisibilityOffOutlined
-                    className={styles.visibilityIcon}
-                    onClick={() => setShowPassword(false)}
-                  />
-                ) : (
-                  <VisibilityOutlinedIcon
-                    className={styles.visibilityIcon}
-                    onClick={() => setShowPassword(true)}
-                  />
-                )}
-              </div>
-
-              <div className={styles.authForgetPassword}>
-                <a onClick={resetPassword}>Forget Password</a>
-              </div>
-
-              <button type="submit" className={styles.loginButton}>
-                Log me in
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <ToastContainer />
       {isSubmitting && (
         <>
           <div className={styles.loadingContainer}>
@@ -156,6 +108,62 @@ function LoginForm() {
           </div>
         </>
       )}
+      <Head>
+        <title>Juaben APS - Please Log In</title>
+        <meta name="description" content="Juaben APS - Log In" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/logo2.png" />
+      </Head>
+      <div className={styles.loginContainer}>
+        <div className={styles.loginContent}>
+          <div className={styles.loginContentHeader}>
+            <h1>Login</h1>
+          </div>
+
+          <form onSubmit={handleFormSubmit}>
+            <div className={styles.inputField}>
+              <input
+                placeholder="Email"
+                type="email"
+                name="email"
+                value={userCredentials.email}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className={styles.inputField}>
+              <input
+                placeholder="Password"
+                type="password"
+                name="password"
+                value={userCredentials.password}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className={styles.actionsContainer}>
+              <div className={styles.rememberMe}>
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={handleRememberMeChange}
+                />
+                <p>Remember Me</p>
+              </div>
+
+              <div className={styles.forgetPassword}>
+                <p onClick={resetPassword}>Forgot</p>
+              </div>
+            </div>
+
+            <div className={styles.submitButton}>
+              <button type="submit">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <ToastContainer />
     </>
   );
 }
