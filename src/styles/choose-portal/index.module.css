@@ -1,4 +1,8 @@
 .choosePortalContainer {
-  background: #131022;
-  height: auto;
+  background: #000000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }

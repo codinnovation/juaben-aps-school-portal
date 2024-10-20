@@ -125,12 +125,12 @@ function Index({ user }) {
           style: {
             position: 'absolute',
             top: anchorEl ? anchorEl.getBoundingClientRect().bottom : '50px',
-            left: anchorEl ? anchorEl.getBoundingClientRect().left : '0px',
+            left: anchorEl ? anchorEl.getBoundingClientRect().left : '50px',
             margin: '0',
           },
         }}
       >
-        <DialogContent>
+        <DialogContent className={styles.buttonContainer}>
           <button onClick={() => router.push("/create-teacher")}>Create Teacher&apos;s Account</button>
           <button onClick={() => router.push('/create-parent')}>Create Parents&apos;s Account</button>
         </DialogContent>

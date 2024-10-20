@@ -85,19 +85,16 @@ function RegistrationForm() {
       {
         label: "First Name",
         name: "FirstName",
-        placeholder: "Student First Name",
         type: "text",
       },
       {
         label: "Middle Name",
         name: "MiddleName",
-        placeholder: "Student Middle Name",
         type: "text",
       },
       {
         label: "Last Name",
         name: "LastName",
-        placeholder: "Student Last Name",
         type: "text",
       },
       {
@@ -127,20 +124,17 @@ function RegistrationForm() {
       {
         label: "Student Residence",
         name: "StudentResidence",
-        placeholder: "Student Residence",
         type: "text",
       },
 
       {
         label: "Date of Birth",
         name: "DOB",
-        placeholder: "Date of  Birth",
         type: "date",
       },
       {
         label: "Gender",
         name: "Gender",
-        placeholder: "Student Gender",
         type: "select",
         options: ["", "Female", "Male"],
         onChange: (selectedGender) =>
@@ -151,21 +145,18 @@ function RegistrationForm() {
       {
         label: "Enrollment Date",
         name: "EnrollmentDate",
-        placeholder: "Enrollment Date",
         type: "date",
       },
 
       {
         label: "Religion",
         name: "Religion",
-        placeholder: "Student's Religion",
         type: "text",
       },
 
       {
         label: "Denomination",
         name: "Denomination",
-        placeholder: "Student's Denomination",
         type: "text",
       },
 
@@ -175,33 +166,28 @@ function RegistrationForm() {
       {
         label: "Parent's/Guardian's Name",
         name: "guardianName",
-        placeholder: "Parent's/Guardian's Name",
         type: "text",
       },
 
       {
         label: "Parent's/Guardian's Residence",
         name: "guardianResidence",
-        placeholder: "Parent's/Guardian's Residence",
         type: "text",
       },
       {
         label: "Parent's/Guardian's Phone",
         name: "guardianPhone",
-        placeholder: "Parent's/Guardian's Phone",
         type: "text",
       },
 
       {
         label: "Parent's/Guardian's Other Phone",
         name: "guardianOtherPhone",
-        placeholder: "Parent's/Guardian's Other Phone",
         type: "text",
       },
       {
         label: "Student NHIS Id No",
         name: "NHISno",
-        placeholder: "Student NHIS Number",
         type: "text",
       },
 
@@ -215,14 +201,12 @@ function RegistrationForm() {
       {
         label: "Student Former School",
         name: "FormerSchool",
-        placeholder: "Student Former School",
         type: "text",
       },
 
       {
         label: "Student Cause Of Leaving",
         name: "CauseOfLeaving",
-        placeholder: "Cause Of Leaving",
         type: "text",
       },
     ],
