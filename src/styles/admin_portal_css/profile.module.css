@@ -20,8 +20,8 @@
 }
 
 .profileHeader {
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   height: 100%;
   margin-top: 2%;
@@ -46,6 +46,29 @@
 }
 
 .backButton .button h1 {
+  font-size: 0.9em;
+  font-family: sans-serif;
+}
+
+.deleteButton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.deleteButton .button {
+  background-color: #250035;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 50px;
+  padding: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.deleteButton .button h1 {
   font-size: 0.9em;
   font-family: sans-serif;
 }
@@ -247,7 +270,17 @@
     padding: 3px;
   }
 
+  .deleteButton .button {
+    height: 40px;
+    padding: 3px;
+  }
+
   .backButton .button h1 {
+    font-size: 0.8em;
+    font-family: sans-serif;
+  }
+
+  .deleteButton .button h1 {
     font-size: 0.8em;
     font-family: sans-serif;
   }

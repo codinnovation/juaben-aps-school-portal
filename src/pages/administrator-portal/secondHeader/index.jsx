@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/admin_portal_css/secondHeader.module.css";
-import { ToastContainer, toast } from "react-toastify";
+import { Toaster, toast } from 'react-hot-toast';
 import { useRouter } from "next/router";
 import "react-toastify/dist/ReactToastify.css";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
+import withSession from "@/lib/session";
 
 function SecondHeader() {
   const router = useRouter();
@@ -82,8 +83,29 @@ function SecondHeader() {
           </div>
         </div>
       </div>
-      <ToastContainer />
+      <Toaster />
     </>
   );
 }
 export default SecondHeader;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from "../../../styles/admin_portal_css/individual-test.module.css";
 import { ref, get } from "firebase/database";
 import { db } from "../../../lib/firebase";
-import PanToolAltIcon from "@mui/icons-material/PanToolAlt";
 import EditIcon from "@mui/icons-material/Edit";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import DriverPhoto from '../../../../public/studentprofile.avif'
 import Image from "next/image";
+import withSession from "@/lib/session";
 
 
 function IndividualTest({ selectedStudent, hideStudentProfilePage, activeComponent, navigateToComp }) {
@@ -276,3 +276,27 @@ function IndividualTest({ selectedStudent, hideStudentProfilePage, activeCompone
 }
 
 export default IndividualTest;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user || user?.displayName !== "Administrator") {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  auth.signOut();
+
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+
+  return {
+    props: {
+      user,
+    },
+  };
+});

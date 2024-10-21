@@ -1,7 +1,7 @@
 .firstHeaderContainer {
   width: 85%;
   height: 8vh;
-  background-color: #131022;
+  background-color: #000;
   margin-left: 15%;
 }
 
@@ -62,10 +62,10 @@
 }
 
 .profilePhoto .icon {
-  color: #cdcccc;
+  color: #aeaeae;
   font-size: 3.5em;
   padding: 5px;
-  border: 1px solid #636262;
+  border: 2px solid #aeaeae;
   border-radius: 50%;
 }
 

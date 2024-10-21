@@ -5,6 +5,7 @@ import { db } from "../../../lib/firebase";
 import { ref, update, get } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import withSession from "@/lib/session";
 
 function Index() {
   const [studentData, setStudentData] = useState([]);
@@ -144,3 +145,24 @@ function Index() {
 }
 
 export default Index;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

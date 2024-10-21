@@ -10,7 +10,7 @@ function Layout({ children, searchQuery, setSearchQuery }) {
       <FirstHeading searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <SecondHeader />
       {children}
-    </div>
+    </div> 
   );
 }
 

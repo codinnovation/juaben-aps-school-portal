@@ -16,6 +16,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import withSession from "@/lib/session";
 
 
 function TeacherProfile({
@@ -321,3 +322,27 @@ function TeacherProfile({
 }
 
 export default TeacherProfile;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user || user?.displayName !== "Administrator") {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  auth.signOut();
+
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+
+  return {
+    props: {
+      user,
+    },
+  };
+});
