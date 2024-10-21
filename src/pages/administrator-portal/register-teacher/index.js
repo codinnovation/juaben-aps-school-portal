@@ -7,7 +7,7 @@ import { db } from "../../../lib/firebase";
 import { push, ref } from "firebase/database";
 import Layout from "../layout";
 import { useRouter } from "next/router";
-import { ToastContainer, toast } from "react-toastify";
+import { Toaster, toast } from 'react-hot-toast';
 import "react-toastify/dist/ReactToastify.css";
 import withSession from "@/lib/session";
 
@@ -32,6 +32,9 @@ function RegistrationForm() {
 
     if (formSection < InputFields.length) {
       setFormSection(formSection + 1);
+    } else if (!formData?.FirstName || !formData?.MiddleName || !formData?.LastName || !formData?.ClassToTeacher || !formData?.TeacherPhone || !formData?.Gender || !formData?.DateOfAppointment) {
+      toast.error("Fill all the fields")
+      return;
     } else {
       try {
         const newStudentRef = push(ref(db, "japsteachers"), formData);
@@ -43,12 +46,6 @@ function RegistrationForm() {
         toast.error("Error occured in addmiting Teacher");
       }
     }
-  };
-
-  const handleCloseForm = () => {
-    router.push({
-      pathname: "/administrator-portal/",
-    });
   };
 
   const handleInputChange = (e) => {
@@ -64,17 +61,14 @@ function RegistrationForm() {
       {
         label: "First Name",
         name: "FirstName",
-        placeholder: "Teacher First Name",
       },
       {
         label: "Middle Name",
         name: "MiddleName",
-        placeholder: "Teacher Middle Name",
       },
       {
         label: "Last Name",
         name: "LastName",
-        placeholder: "Teacher Last Name",
       },
       {
         label: "Class To Handle",
@@ -103,13 +97,11 @@ function RegistrationForm() {
       {
         label: "Phone Number",
         name: "TeacherPhone",
-        placeholder: "Teacher Phone",
       },
 
       {
         label: "Gender",
         name: "Gender",
-        placeholder: "Teacher Gender",
         type: "select",
         options: [
           "",
@@ -121,13 +113,11 @@ function RegistrationForm() {
       {
         label: "Date Of Appointment",
         name: "DateOfAppointment",
-        placeholder: "Date Of Appointment",
         type: "date"
       },
       {
         label: "Qualification",
         name: "Qualification",
-        placeholder: "Qualification",
         type: "select",
         options: [
           "",
@@ -147,7 +137,6 @@ function RegistrationForm() {
       {
         label: "Year of Qualification",
         name: "YearOfQualification",
-        placeholder: "Year of Qualification",
         type: "date"
       },
     ],
@@ -217,7 +206,7 @@ function RegistrationForm() {
             </div>
           </div>
         </div>
-        <ToastContainer />
+        <Toaster />
       </Layout>
     </>
   );

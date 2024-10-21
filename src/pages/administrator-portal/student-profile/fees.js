@@ -9,7 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import withSession from "@/lib/session";
 
 
-function StudentFees({ selectedStudent, hideStudentProfilePage , activeComponent}) {
+function StudentFees({ selectedStudent, hideStudentProfilePage , activeComponent, navigateToComp}) {
   const [paymentHistoryArray, setPaymentHistoryArray] = useState([]);
   const [balanceFee, setBalanceFee] = useState();
   const [editMode, setEditMode] = useState(false);

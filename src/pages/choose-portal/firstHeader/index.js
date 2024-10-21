@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../../styles/choose-portal/firstHeader.module.css";
 import Image from "next/image";
-import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Dialog, DialogContent, Button } from "@mui/material";
-import { ToastContainer, toast } from "react-toastify";
+import { Dialog, DialogContent } from "@mui/material";
+import { Toaster, toast } from 'react-hot-toast';
 import "react-toastify/dist/ReactToastify.css";
 import withSession from "@/lib/session";
 import Box from "@mui/material/Box";
@@ -48,7 +46,7 @@ function Index({ user }) {
 
   const handleNotificationClick = (event) => {
     setAnchorEl(event.currentTarget);
-    setOpen(!open); // Toggle modal visibility
+    setOpen(!open);
   };
 
   const handleOpenProfileModal = (e) => {
@@ -136,7 +134,7 @@ function Index({ user }) {
         </DialogContent>
       </Dialog>
 
-      <ToastContainer />
+      <Toaster />
     </>
   );
 }

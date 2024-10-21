@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import styles from "../../styles/login.module.css";
-import { ToastContainer, toast } from "react-toastify";
+import { Toaster, toast } from 'react-hot-toast';
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -11,13 +11,12 @@ import { auth } from ".././../lib/firebase";
 function LoginForm() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false); // New state for "Remember Me"
+  const [rememberMe, setRememberMe] = useState(false);
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
   });
 
-  // Automatically populate email from localStorage if "Remember Me" was checked
   useEffect(() => {
     const savedEmail = localStorage.getItem("savedEmail");
     if (savedEmail) {
@@ -163,7 +162,7 @@ function LoginForm() {
         </div>
       </div>
 
-      <ToastContainer />
+      <Toaster />
     </>
   );
 }

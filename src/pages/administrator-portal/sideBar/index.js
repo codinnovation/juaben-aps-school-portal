@@ -12,6 +12,11 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import SchoolIcon from '@mui/icons-material/School';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import AddIcon from '@mui/icons-material/Add';
 import withSession from "@/lib/session";
 
 
@@ -43,13 +48,13 @@ function Sidebar() {
             <div className={styles.navigationLinkContainer}>
 
               <div className={styles.linkContainer} onClick={() => router.push("/administrator-portal/register-teacher")}>
-                <PeopleIcon className={styles.icon} />
+                <AddCircleOutlineIcon className={styles.icon} />
                 <h1>Add Teacher</h1>
                 <ArrowRightIcon className={styles.icon2} />
               </div>
 
               <div className={styles.linkContainer} onClick={() => router.push("/administrator-portal/register-non-staff")}>
-                <PeopleIcon className={styles.icon} />
+                <AddCircleOutlineIcon className={styles.icon} />
                 <h1>Add Non-staff</h1>
                 <ArrowRightIcon className={styles.icon2} />
               </div>
@@ -61,7 +66,7 @@ function Sidebar() {
               </div>
 
               <div className={styles.linkContainer} onClick={() => router.push('/administrator-portal/teachers-list')}>
-                <PeopleOutlineIcon className={styles.icon} />
+                <SchoolIcon className={styles.icon} />
                 <h1>Teacher&apos;s List</h1>
                 <ArrowRightIcon className={styles.icon2} />
               </div>
