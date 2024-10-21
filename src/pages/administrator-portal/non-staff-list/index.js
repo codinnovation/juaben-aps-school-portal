@@ -5,6 +5,7 @@ import {  db } from "../../../lib/firebase";
 import { ref } from "firebase/database";
 import { get } from "firebase/database";
 import Layout from "../layout";
+import withSession from "@/lib/session";
 
 function StudentList() {
   const [teacherListView, setTeacherListView] = useState(true);
@@ -176,3 +177,24 @@ function StudentList() {
 }
 
 export default StudentList;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

@@ -7,7 +7,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Image from "next/image";
 import SchoolImage from '../../../../public/logo2.png';
-import Link from "next/link";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useRouter } from "next/router";
 

@@ -20,8 +20,10 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Image from "next/image";
 import { useRouter } from "next/router";
+import withSession from "@/lib/session";
 
 
 function StudentProfilePage({
@@ -117,6 +119,17 @@ function StudentProfilePage({
                   <h1>Back</h1>
                 </div>
               </div>
+
+              <div className={styles.deleteButton}>
+                <div
+                  className={styles.button}
+                  onClick={() => setOpenModal(true)}
+                >
+                  <DeleteForeverIcon className={styles.icon} />
+                  <h1> Student</h1>
+                </div>
+              </div>
+
             </div>
 
             <div className={styles.profileNavigation}>
@@ -581,3 +594,27 @@ function StudentProfilePage({
 }
 
 export default StudentProfilePage;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user || user?.displayName !== "Administrator") {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  auth.signOut();
+
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+
+  return {
+    props: {
+      user,
+    },
+  };
+});
