@@ -12,6 +12,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import withSession from "@/lib/session";
 
 
 function Sidebar() {
@@ -103,3 +104,24 @@ function Sidebar() {
 }
 
 export default Sidebar;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Layout from "../layout";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import withSession from "@/lib/session";
 
 function RegistrationForm() {
   const router = useRouter();
@@ -64,12 +65,6 @@ function RegistrationForm() {
         toast.error("Error occured in addmiting student");
       }
     }
-  };
-
-  const handleCloseForm = () => {
-    router.push({
-      pathname: "/administrator-portal/",
-    });
   };
 
   const handleInputChange = (e) => {
@@ -220,7 +215,7 @@ function RegistrationForm() {
         </Head>
         <div className={styles.container}>
           <div className={styles.containerItems}>
-  
+
             <div className={styles.inputFieldsContainer}>
               <form onSubmit={handleFormSubmit}>
                 <div className={styles.inputFields}>
@@ -280,3 +275,24 @@ function RegistrationForm() {
 }
 
 export default RegistrationForm;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

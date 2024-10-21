@@ -4,6 +4,7 @@ import Layout from "../layout";
 import { db } from "../../../lib/firebase";
 import { ref, get } from "firebase/database";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
+import withSession from "@/lib/session";
 
 function Index() {
   const [notificationContainer, setNotificationContainer] = useState([]);
@@ -98,3 +99,24 @@ function Index() {
 }
 
 export default Index;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});

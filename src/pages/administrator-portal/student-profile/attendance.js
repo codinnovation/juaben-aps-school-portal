@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ref, get } from "firebase/database";
 import { db } from "../../../lib/firebase";
 import DriverPhoto from '../../../../public/studentprofile.avif'
+import withSession from "@/lib/session";
 
 
 function StudentAttendance({ selectedStudent, hideStudentProfilePage, navigateToComp, activeComponent }) {
@@ -201,3 +202,27 @@ function StudentAttendance({ selectedStudent, hideStudentProfilePage, navigateTo
 }
 
 export default StudentAttendance;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user || user?.displayName !== "Administrator") {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  auth.signOut();
+
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+
+  return {
+    props: {
+      user,
+    },
+  };
+});

@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Layout from "../layout";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import withSession from "@/lib/session";
 
 function RegistrationForm() {
   const [formSection, setFormSection] = useState(1);
@@ -203,3 +204,24 @@ function RegistrationForm() {
 }
 
 export default RegistrationForm;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});
