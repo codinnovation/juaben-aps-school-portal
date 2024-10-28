@@ -1,174 +1,350 @@
 .profileContainer {
-   width: 77%;
-   margin-left: 20%;
-   margin-top: 2%;
+  height: 100vh;
+  width: 85%;
+  margin-left: 15%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 400;
+  position: absolute;
+  background-color: #ebecf1;
 }
 
 .profileContent {
-   margin: 0.5% auto;
-   margin-left: 0%;
+  width: 90%;
+  height: auto;
+  margin: 0% auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .profileHeader {
-   display: grid;
-   grid-template-columns: 1fr auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-top: 2%;
 }
 
-.profilePageName {
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
+.backButton {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.profilePageName h1 {
-   font-family: sans-serif;
-   font-size: 1.6em;
+.backButton .button {
+  background-color: #c99b2c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 50px;
+  padding: 8px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.backButton .button h1 {
+  font-size: 0.9em;
+  font-family: sans-serif;
+}
+
+.deleteButton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.deleteButton .button {
+  background-color: #c99b2c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 50px;
+  padding: 8px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.deleteButton .button h1 {
+  font-size: 0.9em;
+  font-family: sans-serif;
 }
 
 .profileNavigation {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
 }
 
-.profileNavigation button {
-   margin-right: 20px;
-   width: 100px;
-   height: 40px;
-   border: none;
-   color: #0f3834;
-   font-weight: 800;
-   font-family: sans-serif;
+.profileNavigation .link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #fff;
+  width: 150px;
+  height: 50px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
-.menuIconContainer {
-   display: none;
+.profileNavigation .activeLink {
+  background-color: #c99b2c;
+  color: #fff;
+  width: 150px;
+  height: 50px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
-.profileDetails {
-   width: 100%;
-   height: auto;
-   margin-top: 5%;
+.profileNavigation .activeLink .h1 {
+  color: #fff;
 }
 
-.profileItems {
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   gap: 10%;
+.profileNavigation .link h1 {
+  font-size: 0.72em;
+  font-weight: 900;
+  color: #000;
+  font-family: sans-serif;
+  text-transform: uppercase;
 }
 
-.profileItems .item {
-   display: flex;
-   justify-content: center;
-   align-items: flex-start;
-   flex-direction: column;
+.studentProfile {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin-top: 2%;
 }
 
-.profileItems .item h1 {
-   border: 1px solid #0f3834;
-   width: 100%;
-   height: 45px;
-   border-radius: 5px;
-   margin-top: 10px;
-   font-size: 1em;
-   display: flex;
-   justify-content: flex-start;
-   padding-left: 10px;
-   align-items: center;
-   text-transform: uppercase;
+.studentPhoto {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.loadingContainer {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: rgba(0, 0, 0, 0.8);
-   z-index: 9999;
+.studentPhoto img {
+  width: 40%;
+  border-radius: 50%;
+  height: auto;
 }
 
+.studentName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-@media(max-width:700px) {
-   .profileContainer {
-      width: 96%;
-      margin: 0px auto;
-   }
+.studentName h1 {
+  font-size: 1.8em;
+  text-transform: uppercase;
+  font-weight: 400;
+  border-bottom: 1px solid #c99b2c;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
 
-   .profileHeader {
-      grid-template-columns: 1fr;
-      margin-top: 10px;
-   }
+.editContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-   .profilePageName h1 {
-      font-size: 1.1em;
-   }
+.editContainer .edit {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
 
-   .profileNavigation {
-      display: none;
-   }
+.editContainer .edit p {
+  font-size: 1em;
+  font-family: sans-serif;
+  font-weight: 700;
+}
 
-   .menuIconContainer {
-      display: grid;
-      grid-template-columns: 1fr 1fr auto;
-      margin-top: 8%;
-   }
+.editContainer .edit .editIcon {
+  font-size: 1.1em;
+  margin-right: 8px;
+  color: #c99b2c;
+}
 
-   .menuIconContainer .link {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-   }
+.saveChangesButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+}
 
-   .menuIconContainer .icon {
-      font-size: 1.1em;
-   }
+.saveChangesButton button {
+  background-color: #dedede;
+  color: rgba(159, 159, 159, 1);
+  font-size: 1em;
+  font-weight: 700;
+  width: 151px;
+  height: 53px;
+  border: none;
+}
 
-   .menuIconContainer h1 {
-      font-size: 0.9em;
-      font-family: sans-serif;
-   }
+.saveChangesButton .saveChangesButtonActive {
+  background-color: #250035;
+  color: #fff;
+}
 
-   .profileItems {
-      grid-template-columns: 1fr 1fr;
-      margin-bottom: 0px;
-      gap: 6%;
-   }
+.studentInfoContainer {
+  margin-top: 3.5%;
+}
 
-   .profileItems .item p {
-      font-size: 0.95em;
-   }
+.fieldContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8%;
+}
 
-   .profileItems .item h1 {
-      font-size: 0.9em;
-      height: 35px;
-   }
+.fieldContainer .field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
 
-   .navLinks {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-   }
+.fieldContainer .field label {
+  color: rgba(130, 130, 130, 1);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 0.9em;
+  font-weight: 400;
+}
 
-   .navLinks .links {
-      border: 1px solid #ccc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-   }
+.fieldContainer .field h1 {
+  font-family: sans-serif;
+  font-size: 0.9em;
+  height: 40px;
+  margin-top: 10px;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+}
 
-   .navLinks .links h1 {
-      font-size: 0.9em;
-      padding: 5px;
-   }
+.fieldContainer .field input {
+  font-family: sans-serif;
+  font-size: 0.9em;
+  height: 40px;
+  margin-top: 10px;
+  font-weight: 100;
+  color: #000;
+  text-transform: uppercase;
+}
 
-   .navLinks .links:nth-child(7){
-      background-color: red;
-      color: #fff;
-   }
+.fieldContainer .field input:focus {
+  outline: none;
+}
 
+@media (max-width: 600px) {
+  .profileContainer {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    z-index: 900;
+  }
+
+  .profileContent {
+    width: 90%;
+    padding-top: 0px;
+  }
+
+  .backButton .button {
+    width: auto;
+    height: 45px;
+    padding: 8px;
+  }
+
+  .backButton .button h1 {
+    font-size: 0.8em;
+  }
+
+  .deleteButton .button {
+    width: auto;
+    height: 45px;
+    padding: 8px;
+  }
+
+  .deleteButton .button h1 {
+    font-size: 0.8em;
+  }
+
+  .profileNavigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 5%;
+  }
+
+  .profileNavigation .link {
+    width: 100%;
+    height: 50px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+
+  .profileNavigation .link h1 {
+    font-size: 0.7em;
+    font-weight: 500;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+  }
+
+  .studentProfile {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10%;
+  }
+
+  .studentName {
+    display: none;
+  }
+
+  .editContainer .edit p {
+    font-size: 0.9em;
+  }
+
+  .editContainer .edit .editIcon {
+    font-size: 1em;
+    margin-right: 1px;
+  }
+
+  .saveChangesButton {
+    margin-left: 10px;
+  }
+  .saveChangesButton button {
+    font-size: 0.9em;
+    width: 100%;
+    height: 40px;
+    padding: 6px;
+    border: none;
+  }
+
+  .fieldContainer {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+  }
+
+  .fieldContainer .field label {
+    font-size: 0.8em;
+  }
+  
+  .fieldContainer .field h1 {
+    font-size: 0.7em;
+    height: 40px;
+    margin-top: 8px;
+  }
+
+  .fieldContainer .field input {
+    font-size: 0.7em;
+    height: 40px;
+    margin-top: 8px;
+    width: 100%;
+  }
 }
