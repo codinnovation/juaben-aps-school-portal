@@ -202,6 +202,7 @@ function Index() {
           </div>
         )}
 
+
         {/* Modal for displaying full notification details */}
         <Dialog open={openModal} onClose={handleCloseModal}>
           <DialogTitle>{selectedNotification?.header}</DialogTitle>
@@ -209,6 +210,7 @@ function Index() {
           <Button onClick={() => handleEditNotificationClick(selectedNotification)}>EDIT</Button>
           <Button onClick={() => handleDeleteNotification(selectedNotification.key)}>DELETE</Button>
         </Dialog>
+
 
         {/* Edit Notification Form */}
         {openEditForm && (
