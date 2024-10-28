@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "@/styles/parent_portal_css/studentClassScore.module.css";
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 
-function StudentClassScore({ varifiedStudent, classScoreOfVerifiedStudent }) {
+function IndividualTest({ varifiedStudent, classScoreOfVerifiedStudent }) {
   const [openModal, setOpenModal] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
   const [subjectScores, setSubjectScores] = useState({});
@@ -129,4 +129,4 @@ function StudentClassScore({ varifiedStudent, classScoreOfVerifiedStudent }) {
   );
 }
 
-export default StudentClassScore;
+export default IndividualTest;

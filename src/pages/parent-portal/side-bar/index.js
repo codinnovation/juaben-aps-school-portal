@@ -1,157 +1,79 @@
-import React, { useState } from "react";
-import styles from "../../../styles/parent_portal_css/side-bar.module.css";
-import Link from "next/link";
+import React from "react";
+import styles from "../../../styles/admin_portal_css/sidebar.module.css";
 import Image from "next/image";
+import LogoImage from '../../../../public/logo2.png';
 import { useRouter } from "next/router";
-import PeopleIcon from "@mui/icons-material/People";
-import PaymentIcon from "@mui/icons-material/Payment";
-import { auth } from "../../../lib/firebase";
-import EventAvailable from "@mui/icons-material/EventAvailable";
-import LogoutIcon from "@mui/icons-material/Logout";
-import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Dashboard from "@mui/icons-material/Dashboard";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import CircularProgress from "@mui/material/CircularProgress";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import withSession from "@/lib/session";
+
 
 function Sidebar() {
-  const [userProfile, setUserProfile] = useState(false);
-  const [user, setUser] = useState(null);
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-
-  const router = useRouter();
-
-  const openUserProfile = () => {
-    setUserProfile(true);
-  };
-
-  const closeUserProfile = () => {
-    setUserProfile(false);
-  };
-
-  const goToThpDashboard = async () => {
-    router.push("/parent_portal");
-  };
-
-  const handleLogout = async (e) => {
-    setIsButtonClicked(true);
-    try {
-      const response = await fetch("/api/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        toast.success("Logout Successful");
-        router.push("/login");
-        setIsButtonClicked(false);
-      } else {
-        toast.error("Logout Failed");
-        setIsButtonClicked(false);
-      }
-    } catch (error) {
-      toast.error("Error Occurred");
-      setIsButtonClicked(false);
-    }
-  };
+  const router = useRouter()
 
   return (
     <>
-      {isButtonClicked && (
-        <>
-          <div className={styles.circle_container}>
-            <Box sx={{ display: "flex" }}>
-              <CircularProgress />
-            </Box>
-          </div>
-        </>
-      )}
+      <div className={styles.sidebarContainer}>
+        <div className={styles.sidebarContent}>
+          <div className={styles.firstContent}>
 
-      <div className={styles.container}>
-        <div className={styles.container_items}>
-          <div className={styles.container_items_1} onClick={goToThpDashboard}>
-            <div className={styles.container_items_1_logo}>
-              <Image
-                src="/logo2.png"
-                width={60}
-                height={100}
-                alt="juabenaps_logo"
-                className={styles.logo}
-              />
-            </div>
-          </div>
-
-          <div className={styles.container_items_2}>
-            <Link
-              href="/parent_portal/"
-              className={styles.link}
-            >
-              Parent&apos;s Portal
-            </Link>{" "}
-          </div>
-
-          <div className={styles.container_items_3}>
-            <hr className={styles.hr} />
-          </div>
-
-          <div className={styles.container_items_4}>
-            <div className={styles.container_items_4_items}>
-              <div className={styles.container_items_4_link}>
-                <Dashboard className={styles.container_items_4_icon} />
-                <Link href="/parent_portal" className={styles.link}>
-                  Dashboard
-                </Link>{" "}
-              </div>
-
-              <div className={styles.container_items_4_link}>
-                <NotificationAddIcon
-                  className={styles.container_items_4_icon}
-                />
-                <Link
-                  href="/parent_portal/notification/"
-                  className={styles.link}
-                >
-                  Parent&apos;s Notification
-                </Link>
-              </div>
-
-              <div className={styles.container_items_4_link}>
-                <EventAvailable className={styles.container_items_4_icon} />
-                <Link
-                  href="/parent_portal/events/"
-                  className={styles.link}
-                >
-                  Events
-                </Link>{" "}
+            <div className={styles.schoolLogo}>
+              <Image src={LogoImage} width={900} height={900} alt="" />
+              <div className={styles.iconContainer}>
+                <DashboardIcon className={styles.icon} onClick={() => router.push('/parent-portal/')} />
               </div>
             </div>
-          </div>
 
-          <div className={styles.container_items_5} onClick={handleLogout}>
-            <LogoutIcon />
-            <h1>Logout</h1>
+            <div className={styles.schoolName}>
+              <h1>Nana Akosua Akyamaah || Preparatory School</h1>
+            </div>
+
+            <div className={styles.createStudent}>
+              <DashboardIcon className={styles.icon} />
+              <h1>Parent&apos;s Portal</h1>
+            </div>
+
+            <div className={styles.navigationLinkContainer}>
+              <div className={styles.linkContainer} onClick={() => router.push('/parent-portal/parent-notifications')}>
+                <NotificationsIcon className={styles.icon} />
+                <h1>Notifications</h1>
+                <ArrowRightIcon className={styles.icon2} />
+              </div>
+
+              <div className={styles.linkContainer} onClick={() => router.push('/parent-portal/events')}>
+                <EmojiEventsIcon className={styles.icon} />
+                <h1>Events</h1>
+                <ArrowRightIcon className={styles.icon2} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <ToastContainer />
     </>
   );
 }
 
 export default Sidebar;
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const user = req.session.get("user");
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (user) {
+    req.session.set("user", user);
+    await req.session.save();
+  }
+  return {
+    props: {
+      user: user,
+    },
+  };
+});
